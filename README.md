@@ -1,6 +1,6 @@
 # Dancing☆Onigiri (CW Edition) Wiki-html
 ## 概要
-- [Dancing☆Onigiri (CW Edition)](https://github.com/cwtickle/danoniplus) Wikiをローカルでダウンロードし、閲覧できるようにしたものです。
+- [Dancing☆Onigiri (CW Edition)](https://github.com/cwtickle/danoniplus) Wikiをローカルへダウンロードし、閲覧できるようにしたものです。
 
 ## 注意点
 - 最新版については基本、Wikiに追随しますが、以下の点にご留意ください。
