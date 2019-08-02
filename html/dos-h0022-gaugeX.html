@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>dos-h0022-gaugeX.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+</head>
+<body>
+<p><a href="dos_header.html">← 譜面ヘッダー仕様に戻る</a></p>
+<h2 id="gaugenormal-gaugeeasy-gaugehardbr%E3%83%8E%E3%83%AB%E3%83%9E%E5%88%B6%E3%82%B2%E3%83%BC%E3%82%B8">gaugeNormal / gaugeEasy / gaugeHard<br>(ノルマ制ゲージ)</h2>
+<h3 id="%E4%BD%BF%E3%81%84%E6%96%B9">使い方</h3>
+<pre class="hljs"><code><div>|gaugeEasy=70,2,5,40$70,5,7,30|
+</div></code></pre>
+<h3 id="%E8%AA%AC%E6%98%8E">説明</h3>
+<p>ゲージパラメータの設定を記述します。</p>
+<p>gaugeNormal, gaugeEasy, gaugeHardがそれぞれNormal, Easy, Hardゲージの設定です。<br>
+&quot;$&quot;区切りで譜面ごとの設定で、<br>
+さらにカンマ区切りでノルマ割合、ライフ増加・減少割合、初期ライフ割合を指定します。<br>
+カンマ区切りの内容は次の通りです。</p>
+<table>
+<thead>
+<tr>
+<th>番号</th>
+<th>設定例</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>70</td>
+<td>対象譜面が達成すべきノルマ率を0～100で指定します。<br>0を指定した場合、ライフが0になるとゲームオーバーです。</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>対象譜面のライフ増加割合を0～100で指定します。</td>
+</tr>
+<tr>
+<td>3</td>
+<td>5</td>
+<td>対象譜面のライフ減少割合を0～100で指定します。</td>
+</tr>
+<tr>
+<td>4</td>
+<td>40</td>
+<td>対象譜面の初期ライフ割合を0～100で指定します。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="%E6%9C%AA%E8%A8%AD%E5%AE%9A%E6%99%82%E3%81%AE%E6%97%A2%E5%AE%9A%E5%80%A4%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6-%E3%83%8E%E3%83%AB%E3%83%9E%E5%88%B6%E3%82%B2%E3%83%BC%E3%82%B8">未設定時の既定値について (ノルマ制ゲージ)</h3>
+<p>当パラメータが未設定の場合、<code>danoni_setting.js</code>を参照します。<br>
+そこにも定義されていない場合は、下記の値が適用されます。</p>
+<table>
+<thead>
+<tr>
+<th>ゲージ種類</th>
+<th>ノルマ</th>
+<th>回復割合</th>
+<th>ダメージ割合</th>
+<th>初期ライフ割合</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Normal</td>
+<td>70%</td>
+<td>2</td>
+<td>7</td>
+<td>25%</td>
+</tr>
+<tr>
+<td>Easy</td>
+<td>70%</td>
+<td>4</td>
+<td>7</td>
+<td>25%</td>
+</tr>
+<tr>
+<td>Hard</td>
+<td>0</td>
+<td>1</td>
+<td>50</td>
+<td>100%</td>
+</tr>
+</tbody>
+</table>
+<p>1譜面目の設定をgauge***で行っているが2譜面目の設定はない場合、一律以下の設定になります。<br>
+→ノルマ70%、ライフ増加2、ライフ減少7、初期ライフ25%</p>
+<h2 id="gaugeoriginal-gaugelight-gaugenorecoverybr%E3%83%A9%E3%82%A4%E3%83%95%E5%88%B6%E3%82%B2%E3%83%BC%E3%82%B8">gaugeOriginal / gaugeLight / gaugeNoRecovery<br>(ライフ制ゲージ)</h2>
+<h3 id="%E4%BD%BF%E3%81%84%E6%96%B9">使い方</h3>
+<pre class="hljs"><code><div>|gaugeLight=x,20,70,30$x,30,40,30|
+|gaugeNoRecovery=x,0,100,100$|
+</div></code></pre>
+<h3 id="%E8%AA%AC%E6%98%8E">説明</h3>
+<p>ゲージパラメータの設定を記述します。</p>
+<p>gaugeOriginal, gaugeLight, gaugeNoRecoveryがそれぞれOriginal, Light, NoRecoveryゲージの設定です。<br>
+&quot;$&quot;区切りで譜面ごとの設定で、<br>
+さらにカンマ区切りでノルマ割合、<strong>ライフ増加・減少量(固定)</strong>、初期ライフ割合を指定します。<br>
+カンマ区切りの内容は次の通りです。</p>
+<table>
+<thead>
+<tr>
+<th>番号</th>
+<th>設定例</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>x</td>
+<td>x固定。</td>
+</tr>
+<tr>
+<td>2</td>
+<td>30</td>
+<td>対象譜面の<strong>ライフ増加量</strong>を指定します。</td>
+</tr>
+<tr>
+<td>3</td>
+<td>70</td>
+<td>対象譜面の<strong>ライフ減少量</strong>を指定します。</td>
+</tr>
+<tr>
+<td>4</td>
+<td>40</td>
+<td>対象譜面の初期ライフ割合を0～100で指定します。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="%E6%9C%AA%E8%A8%AD%E5%AE%9A%E6%99%82%E3%81%AE%E6%97%A2%E5%AE%9A%E5%80%A4%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6-%E3%83%A9%E3%82%A4%E3%83%95%E5%88%B6%E3%82%B2%E3%83%BC%E3%82%B8">未設定時の既定値について (ライフ制ゲージ)</h3>
+<p>当パラメータが未設定の場合、<code>danoni_setting.js</code>を参照します。<br>
+そこにも定義されていない場合は、下記の値が適用されます。</p>
+<table>
+<thead>
+<tr>
+<th>ゲージ種類</th>
+<th>ノルマ</th>
+<th>回復量</th>
+<th>ダメージ量</th>
+<th>初期ライフ割合</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Original</td>
+<td>-</td>
+<td>6</td>
+<td>40</td>
+<td>25%</td>
+</tr>
+<tr>
+<td>Light</td>
+<td>-</td>
+<td>12</td>
+<td>40</td>
+<td>25%</td>
+</tr>
+<tr>
+<td>NoRecovery</td>
+<td>-</td>
+<td>0</td>
+<td>50</td>
+<td>100%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E5%B1%A5%E6%AD%B4">バージョン履歴</h3>
+<ul>
+<li><a href="../releases/tag/v6.5.0">v6.5.0</a>
+<ul>
+<li>gaugeOriginal / gaugeLight / gaugeNoRecovery (ライフ制ゲージ)を実装。</li>
+<li>既定値をゲージ設定ごとに個別設定できるように変更。</li>
+</ul>
+</li>
+<li><a href="../releases/tag/v1.5.0">v1.5.0</a>
+<ul>
+<li>初回実装</li>
+</ul>
+</li>
+</ul>
+
+</body>
+</html>

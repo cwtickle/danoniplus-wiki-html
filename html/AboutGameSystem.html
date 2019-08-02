@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AboutGameSystem.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+</head>
+<body>
+<h1 id="%E3%82%B2%E3%83%BC%E3%83%A0%E7%94%BB%E9%9D%A2%E3%81%AE%E8%AA%AC%E6%98%8E-about-game-system">ゲーム画面の説明 (About Game System)</h1>
+<h2 id="gametitle-%E3%82%B2%E3%83%BC%E3%83%A0%E3%82%BF%E3%82%A4%E3%83%88%E3%83%AB">GameTitle / ゲームタイトル</h2>
+<ul>
+<li>Click Here!! を押してゲームをスタートします。<br>
+※作品により、画面の見た目が異なる場合があります。<br>
+(Press Click Here !! to start the game.)</li>
+</ul>
+<p><img src="./wiki/01game-title-1.png" alt="01game-title"></p>
+<h2 id="settings-%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2">Settings / 設定画面</h2>
+<ul>
+<li>譜面(Difficulty)や矢印の流れる速度などを変更できます。<br>
+(You can change the charts (Difficulty) and the speed of the sequences.
+In DanOni, we call the sequences &quot;arrows&quot;.)</li>
+</ul>
+<p><img src="./wiki/11game-setting1-1.png" alt="11game-setting1"></p>
+<h3 id="difficulty-%E8%AD%9C%E9%9D%A2">Difficulty (譜面)</h3>
+<p>譜面が複数あれば、変更することができます。<br>
+(Set the charts if the works have multiple charts.)</p>
+<h3 id="speed-%E9%80%9F%E5%BA%A6">Speed (速度)</h3>
+<p>1x から 10x の間で矢印の流れる速度を変更できます。<br>
+※譜面により、これ以上(以下)の速度で矢印が流れてくる場合があります。<br>
+(Set the speed of the sequences between 1x and 10x.)</p>
+<h3 id="motion-%E7%9F%A2%E5%8D%B0%E3%81%AE%E6%B5%81%E3%82%8C%E3%82%8B%E3%83%A2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E5%A4%89%E5%8C%96">Motion (矢印の流れるモーションの変化)</h3>
+<p>矢印の速度を一定ではなく、変動させるモーションをつけるか設定します。<br>
+(Set the motion of sequences to make it faster or slower on the way.)</p>
+<table>
+<thead>
+<tr>
+<th>種類</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OFF</td>
+<td>変化なし<br>(Same speed from beginning to end)</td>
+</tr>
+<tr>
+<td>Boost</td>
+<td>初めは初速、ステップゾーンに近づくにつれて速くなる<br>(Initially initial speed, faster as it gets closer to the step zone)</td>
+</tr>
+<tr>
+<td>Brake</td>
+<td>初めは速く、ステップゾーンに近づくにつれて初速になる<br>(Initially fast, and becomes initial speed as it gets closer to the step zone)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="reverse-%E7%9F%A2%E5%8D%B0%E3%81%AE%E6%B5%81%E3%82%8C%E3%82%8B%E5%90%91%E3%81%8D">Reverse (矢印の流れる向き)</h3>
+<p>矢印の流れる向きを設定します。<br>
+(Set the flow direction of the sequences.)</p>
+<table>
+<thead>
+<tr>
+<th>種類</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OFF</td>
+<td>下から上へ流れます。<br>両方にステップゾーンがある場合は一部上から下へも流れます。<br>(Generally, it flows from bottom to top.)</td>
+</tr>
+<tr>
+<td>ON</td>
+<td>上から下へ流れます。<br>両方にステップゾーンがある場合は、OFFの状態に対してそれぞれ逆になります。<br>(Generally, it flows from  top to bottom.)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="shuffle-%E3%83%9F%E3%83%A9%E3%83%BC%E3%80%81%E3%83%A9%E3%83%B3%E3%83%80%E3%83%A0">Shuffle (ミラー、ランダム)</h3>
+<p>譜面を左右反転したり、ランダムにします。<br>
+ランダムにした場合は別譜面扱いとなり、<strong>ハイスコアは保存されません。</strong><br>
+(Flip the sequences left or right or make it random.
+If you make it random, it will be treated as another sequences, and the high score will not be saved.)</p>
+<table>
+<thead>
+<tr>
+<th>種類</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OFF</td>
+<td>変化なし</td>
+</tr>
+<tr>
+<td>Mirror</td>
+<td>譜面をグループレーンごとに左右反転する。<br>(Flip the sequences horizontally for each group lane.)</td>
+</tr>
+<tr>
+<td>Random</td>
+<td>譜面をグループレーンごとにランダムに再配置する。<br>(Rearrange the sequences randomly for each group lane.)</td>
+</tr>
+<tr>
+<td>Random+</td>
+<td>譜面をグループに関係なくレーンごとにランダムに再配置する。<br>(Rearrange the sequences randomly for each lane regardless of the group.)</td>
+</tr>
+<tr>
+<td>S-Random</td>
+<td>譜面をグループごとに矢印個別にランダムに再配置する。<br>(Arrange the sequences randomly for each group by arrows.)</td>
+</tr>
+<tr>
+<td>S-Random+</td>
+<td>譜面をグループに関係なく矢印個別にランダムに再配置する。<br>(Arrange the sequences randomly regardless of the groups and arrows individually.)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="autoplay-%E3%82%AA%E3%83%BC%E3%83%88%E3%83%97%E3%83%AC%E3%82%A4">AutoPlay (オートプレイ)</h3>
+<p>オートプレイにするかどうかを設定します。<br>
+オートプレイ時は<strong>ハイスコアを保存しません。</strong><br>
+(Set whether to play auto play.
+High score is not saved during auto play.)</p>
+<h3 id="gauge-%E3%83%A9%E3%82%A4%E3%83%95%E3%82%B2%E3%83%BC%E3%82%B8%E8%A8%AD%E5%AE%9A">Gauge (ライフゲージ設定)</h3>
+<p>クリア条件を設定します。<br>
+Dancing☆Onigiri (CW Edition)の場合、<br>
+クリア条件設定は譜面により大きくライフ制ゲージ・ノルマ制ゲージに分かれます。<br>
+詳細は下記の通りです。<br>
+(Set the clear condition. The details are as follows.)</p>
+<p>■ ライフ制ゲージ（回復・ダメージ固定） / Life-Left Mode</p>
+<ul>
+<li>プレイ終了までにライフゲージが1でも残っていたらクリアです。<br>
+ライフゲージが0になった場合、途中終了します。<br>
+回復・ダメージ量は矢印数によらず固定です。<br>
+(It is clear if there is <strong>one</strong> life gauge left by the end of play.
+If the life gauge reaches 0, it will stop prematurely.
+The amount of recovery and damage is fixed regardless of the number of sequences.)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>種類</th>
+<th>概要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Original</td>
+<td>回復・ダメージ量固定のデフォルトゲージです。<br>(Default)</td>
+</tr>
+<tr>
+<td>Light</td>
+<td>Originalと同じですが、Originalよりも回復量が大きくなっています。<br>(Same as Original, but with greater recovery than Original)</td>
+</tr>
+<tr>
+<td>NoRecovery</td>
+<td>ゲージが最初からMAXの状態で開始しますが、回復しません。<br>(The gauge starts from the beginning in the state of MAX but does not recover.)</td>
+</tr>
+<tr>
+<td>SuddenDeath</td>
+<td>1ミス(ウワァン/イクナイ)で終了するモードです。<br>(It is a mode to end with 1 mistake.)</td>
+</tr>
+</tbody>
+</table>
+<p>■ ノルマ制ゲージ（回復・ダメージ変動） / Norm Mode</p>
+<ul>
+<li>プレイ終了時、ライフゲージがノルマに達している必要があります。<br>
+ノルマが0の場合は、ライフ制ゲージと同じです。<br>
+回復・ダメージ量は矢印数に応じて変動します。（SuddenDeathを除く）<br>
+矢印数が多くなると、回復・ダメージ量の幅は小さくなります。<br>
+(At the end of play, the life gauge needs to reach the norm.
+If the norm is 0, it is the same as a &quot;Life-Left Mode&quot;.
+The amount of recovery and damage changes according to the number of sequences. (Except SuddenDeath)
+The greater the number of sequences, the smaller the amount of recovery and damage.)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>種類</th>
+<th>概要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Normal</td>
+<td>ノルマ制ゲージが指定された場合のデフォルトゲージです。<br>目標ノルマ到達でクリアです。<br>(It is clear by reaching the target quota at the end of the play.)</td>
+</tr>
+<tr>
+<td>Easy</td>
+<td>Normalと同じですが、Normalよりも回復量が大きくなっています。<br>(Same as Normal, but with greater recovery than Normal)</td>
+</tr>
+<tr>
+<td>Hard</td>
+<td>ゲージが最初からMAXの状態で開始しますが、回復量が微小でダメージ量が大きいモードです。<br>最後までゲージが残っていればクリアです。<br>(The gauge starts from the beginning in the state of MAX, but it is a mode with a small amount of recovery and a large amount of damage. It is clear if the gauge remains to the end.)</td>
+</tr>
+<tr>
+<td>SuddenDeath</td>
+<td>1ミス(ウワァン/イクナイ)で終了するモードです。<br>(It is a mode to end with 1 mistake.)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="adjustment-%E3%82%BF%E3%82%A4%E3%83%9F%E3%83%B3%E3%82%B0%E8%AA%BF%E6%95%B4">Adjustment (タイミング調整)</h3>
+<p>タイミングにズレを感じる場合、数値を変えることでズレを直すことができます。<br>
+(If you feel a gap in timing, you can correct the gap by changing the value.)</p>
+<h3 id="fadein-%E3%83%95%E3%82%A7%E3%83%BC%E3%83%89%E3%82%A4%E3%83%B3">Fadein (フェードイン)</h3>
+<p>譜面を途中から再生します。<br>
+途中から開始した場合は<strong>ハイスコアを保存しません。</strong><br>
+(Play the music from the middle.
+High score is not saved if you start from the middle.)</p>
+<h3 id="volume-%E9%9F%B3%E9%87%8F">Volume (音量)</h3>
+<p>ゲーム内の音量を設定します。<br>
+(Set the in-game volume.)</p>
+<h2 id="display-settings-%E7%94%BB%E9%9D%A2%E3%81%AE%E8%A6%8B%E3%81%88%E6%96%B9">Display Settings / 画面の見え方</h2>
+<ul>
+<li>プレイ画面上に存在するものの表示／非表示を切り替えます。<br>
+(Switch between showing and hiding what exists on the play screen.)</li>
+</ul>
+<p><img src="./wiki/12game-setting2-1.png" alt="12game-setting2"></p>
+<h2 id="keyconfig-%E3%82%AD%E3%83%BC%E3%82%B3%E3%83%B3%E3%83%95%E3%82%A3%E3%82%B0%EF%BC%88%E7%9F%A2%E5%8D%B0%E3%81%AB%E5%AF%BE%E5%BF%9C%E3%81%99%E3%82%8B%E3%82%AD%E3%83%BC%E3%81%AE%E5%89%B2%E3%82%8A%E5%BD%93%E3%81%A6%EF%BC%89">Keyconfig / キーコンフィグ（矢印に対応するキーの割り当て）</h2>
+<ul>
+<li>画面が表示されている間に対応するキーを押すことで、<br>
+割り当てるキーを変えることができます。<br>
+変更されたキーは「黄色」で表示されます。</li>
+<li>また、設定画面で「Data Save」を「ON」にしていれば、<br>
+次回以降、設定したキーコンフィグをパターンとして丸ごと保存します。<br>
+保存したキーは青色で表示されます。<br>
+(By pressing the corresponding key while the screen is displayed,
+You can change the key assigned.
+The changed key is displayed in &quot;yellow&quot;.
+Also, if &quot;Data Save&quot; is set to &quot;ON&quot; on the setting screen,
+From the next time, the set key configuration will be saved as a whole pattern.
+Saved keys are displayed in &quot;blue&quot;.)</li>
+</ul>
+<p><img src="./wiki/21game-keyconfig1-1.png" alt="21game-keyconfig1"></p>
+<p><img src="./wiki/22game-keyconfig2.png" alt="22game-keyconfig2"></p>
+<h3 id="configtype">ConfigType</h3>
+<p>キーコンフィグ対象の矢印群を切り替えます。<br>
+Dan★Oniでは、1つの矢印に2つ以上のキーを割り当てることが可能な場合があり、<br>
+この場合は左上の「ConfigType」を「Replaced」「ALL」にすることで変更が可能です。<br>
+(Switches sequences for key configuration.
+DanOni may be able to assign more than one key per sequence,
+In this case, you can change it by setting &quot;ConfigType&quot; on the top left to &quot;Replaced&quot; or &quot;ALL&quot;.)</p>
+<h3 id="colortype">ColorType</h3>
+<p>矢印色の配色パターンを変更できます。<br>
+(You can change the color scheme of the arrow color.)</p>
+<h3 id="ptnchange-keyconfig%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3%E5%A4%89%E6%9B%B4">PtnChange (KeyConfigパターン変更)</h3>
+<p>キーコンフィグの配列パターンを変更します。<br>
+「前回のキーコンフィグパターン」→「パターン1」(→「パターン2」→・・・)<br>
+の順に切り替わります。<br>
+(Change the array pattern of key configuration.
+&quot;Previous key configuration pattern&quot; → &quot;pattern 1&quot; (→ &quot;pattern 2&quot; → ...)
+It changes in order of.)</p>
+<h3 id="reset-keyconfig%E3%81%AE%E3%83%AA%E3%82%BB%E3%83%83%E3%83%88">Reset (KeyConfigのリセット)</h3>
+<p>キーコンフィグのキー配列をデフォルトのキーパターンに戻します。<br>
+(Restore key configuration key layout to default key pattern.)</p>
+<h2 id="main-%E3%83%97%E3%83%AC%E3%82%A4%E7%94%BB%E9%9D%A2">Main / プレイ画面</h2>
+<ul>
+<li>Ready? が出た後にゲームが始まります。<br>
+※ゲームによって、表示の仕方が異なる場合があります。<br>
+(The game starts after &quot;Ready?&quot;.)</li>
+</ul>
+<p><img src="./wiki/31game-main1.png" alt="31game-main1"></p>
+<p><img src="./wiki/32game-main2.png" alt="32game-main2"></p>
+<h2 id="result-%E7%B5%90%E6%9E%9C%E7%94%BB%E9%9D%A2">Result / 結果画面</h2>
+<ul>
+<li>ゲームが終わると、結果画面へ移行します。<br>
+最終的な判定やランクが画面に表示されます。<br>
+「Tweet」ボタンを押すことでTwitterへ投稿も可能です。<br>
+(When the game is over, the screen shifts to the result screen.
+The final judgment or rank is displayed on the screen.
+You can post to Twitter by pressing the &quot;Tweet&quot; button.)</li>
+</ul>
+<p><img src="./wiki/41game-resultView1.png" alt="41game-resultView1"></p>
+
+</body>
+</html>

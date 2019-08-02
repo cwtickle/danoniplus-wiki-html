@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MigrationGuide.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+</head>
+<body>
+<h1 id="%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89%E3%82%AC%E3%82%A4%E3%83%89-migration-guide">アップグレードガイド (Migration Guide)</h1>
+<ul>
+<li>最新の情報は<a href="../../releases">Release</a>をご覧ください。</li>
+<li>更新情報の概要については<a href="UpdateInfo">更新情報(UpdateInfo)</a>もご覧ください。</li>
+</ul>
+<h2 id="%E2%AD%90%EF%B8%8F-v6x---v7x">⭐️ v6.x -&gt; v7.x</h2>
+<h3 id="1-%E5%80%8B%E5%88%A5%E8%89%B2%E5%A4%89%E5%8C%96%E3%83%95%E3%83%AA%E3%83%BC%E3%82%BA%E3%82%A2%E3%83%AD%E3%83%BC%E3%83%92%E3%83%83%E3%83%88%E6%99%82%E3%81%AE%E3%82%BF%E3%82%A4%E3%83%9F%E3%83%B3%E3%82%B0%E5%A4%89%E6%9B%B4">1. 個別色変化(フリーズアローヒット時)のタイミング変更</h3>
+<ul>
+<li><a href="dos-e0002-colorData">個別色変化(color_data)</a>においてフリーズアローヒット時の色のタイミングが変わりました。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>B/A</th>
+<th>概要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>変更前</td>
+<td>対象のフリーズアローが出現したタイミングで色変更<br>※逆算されるため、実際に使用するタイミングより値を大きくする必要がある</td>
+</tr>
+<tr>
+<td>変更後</td>
+<td>対象のフリーズアローがヒット時に変わる(ステップゾーン到達)タイミングで色変更<br>※実際に使用するタイミングと同一</td>
+</tr>
+</tbody>
+</table>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85">🛠 修正事項</h4>
+<ul>
+<li>フリーズアローヒット時の色変更を<code>color_data</code>で行っていた場合、<br>
+値の見直しを行うか、譜面ヘッダーで以下を指定してください。</li>
+</ul>
+<pre class="hljs"><code><div>|colorDataType=v6|
+</div></code></pre>
+<h3 id="2-danonimaincss%E3%81%AE%E6%9B%B4%E6%96%B0">2. danoni_main.cssの更新</h3>
+<ul>
+<li>誤爆抑止用のボタンアニメの実装のために、CSSモーションを追加しています。</li>
+</ul>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85%EF%BC%88%E5%BF%85%E9%A0%88%EF%BC%89">🛠 修正事項（必須）</h4>
+<ul>
+<li>danoni_main.css を入れ替えてください。</li>
+</ul>
+<h2 id="%E2%AD%90%EF%B8%8F-v5x---v6x">⭐️ v5.x -&gt; v6.x</h2>
+<h3 id="1-%E3%83%A9%E3%82%A4%E3%83%95%E3%82%B2%E3%83%BC%E3%82%B8%EF%BC%88%E5%88%9D%E6%9C%9F%EF%BC%89%E3%81%AE%E5%80%A4%E5%A4%89%E6%9B%B4">1. ライフゲージ（初期）の値変更</h3>
+<ul>
+<li>ライフ上限値を可変にしたため、ライフゲージ（初期）の値(lifeInit)の取り方が変わりました。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>B/A</th>
+<th>概要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>変更前</td>
+<td>ライフ上限：1000に対して実際の初期ライフ値を設定（デフォルト：250）</td>
+</tr>
+<tr>
+<td>変更後</td>
+<td>上限値に関係なく、全体の何％を初期ライフ値にするかを設定（デフォルト：25）</td>
+</tr>
+</tbody>
+</table>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85">🛠 修正事項</h4>
+<ul>
+<li>通常はありませんが、カスタム側で強制的に<code>lifeInit</code>を変更する処理を入れていた場合、<br>
+値の見直し（数値を10で割る）が必要です。</li>
+</ul>
+<h2 id="%E2%AD%90%EF%B8%8F-v4x---v5x">⭐️ v4.x -&gt; v5.x</h2>
+<h3 id="1-%E5%A4%89%E6%95%B0%E5%90%8D%E3%81%AE%E5%A4%89%E6%9B%B4">1. 変数名の変更</h3>
+<ul>
+<li>コード集約により、変数名の一部が変わりました。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>変更前</th>
+<th>変更後</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>g_stateObj.auto</td>
+<td>g_stateObj.autoPlay</td>
+</tr>
+<tr>
+<td>g_stateObj.lifeId</td>
+<td>g_gaugeNum</td>
+</tr>
+<tr>
+<td>g_stateObj.lifeSetName</td>
+<td>g_stateObj.gauge</td>
+</tr>
+</tbody>
+</table>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85">🛠 修正事項</h4>
+<ul>
+<li>カスタム側でこれらの変数（変更前）を使用していた場合、<br>
+変更後の変数へ置き換えが必要です。</li>
+</ul>
+<h3 id="2-danonimaincss%E3%81%AE%E6%9B%B4%E6%96%B0">2. danoni_main.cssの更新</h3>
+<ul>
+<li>歌詞表示のフェードイン・アウト用のCSSモーションを追加しています。</li>
+</ul>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85%EF%BC%88%E5%BF%85%E9%A0%88%EF%BC%89">🛠 修正事項（必須）</h4>
+<ul>
+<li>danoni_main.css を入れ替えてください。</li>
+</ul>
+<h2 id="%E2%AD%90%EF%B8%8F-v3x---v4x">⭐️ v3.x -&gt; v4.x</h2>
+<ul>
+<li>特にありません。</li>
+<li>v4.x以降、<a href="LocalStorage">ローカルストレージ保存</a>機能が有効となり、<br>
+ハイスコア等のデータが保存されるようになります。</li>
+</ul>
+<h2 id="%E2%AD%90%EF%B8%8F-v2x---v3x">⭐️ v2.x -&gt; v3.x</h2>
+<h3 id="1-%E8%A8%AD%E5%AE%9A%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB-danonisettingjs%E3%81%AE%E8%BF%BD%E5%8A%A0">1. 設定ファイル (danoni_setting.js)の追加</h3>
+<ul>
+<li>作品群全体の設定ファイル(danoni_setting.js)が追加されました。</li>
+</ul>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85%EF%BC%88%E5%BF%85%E9%A0%88%EF%BC%89">🛠 修正事項（必須）</h4>
+<ul>
+<li>jsフォルダ配下に、<code>danoni_setting.js</code>を追加する必要があります。</li>
+</ul>
+<h3 id="2-danonimaincss%E3%81%AE%E6%9B%B4%E6%96%B0">2. danoni_main.cssの更新</h3>
+<ul>
+<li>タイトル文字用のCSSモーションを追加しています。</li>
+</ul>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85%EF%BC%88%E5%BF%85%E9%A0%88%EF%BC%89">🛠 修正事項（必須）</h4>
+<ul>
+<li>danoni_main.css を入れ替えてください。</li>
+</ul>
+<h3 id="3-%E6%AD%8C%E8%A9%9E%E8%A1%A8%E7%A4%BAworddata%E3%81%AE%E3%82%BB%E3%83%83%E3%83%88%E6%AF%8E%E6%94%B9%E8%A1%8C%E5%8C%BA%E5%88%87%E3%82%8A%E3%81%AB%E5%AF%BE%E5%BF%9C">3. 歌詞表示(word_data)のセット毎改行区切りに対応</h3>
+<ul>
+<li>1セット1行としている場合に限り、行末のカンマが不要になりました。
+※色変化についてもセット毎改行区切りに対応しました。</li>
+</ul>
+<pre class="hljs"><code><div>|word_data=
+300,0,[fadein]
+350,0,歌詞テスト
+400,0,[fadeout]
+|
+</div></code></pre>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85">🛠 修正事項</h4>
+<ul>
+<li>特になし。<br>
+ただし今後、改行を使わない歌詞表示(word_data)については非推奨となる可能性があります。</li>
+</ul>
+<h3 id="4-%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2%E3%81%AE%E3%83%AC%E3%82%A4%E3%82%A2%E3%82%A6%E3%83%88%E5%A4%89%E6%9B%B4">4. 設定画面のレイアウト変更</h3>
+<ul>
+<li>Shuffle機能追加に伴い、画面レイアウトが変わりました。</li>
+</ul>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85">🛠 修正事項</h4>
+<ul>
+<li>設定画面の上からカスタムでデザインを変えている場合、位置調整が必要です。</li>
+</ul>
+<h2 id="%E2%AD%90%EF%B8%8F-v1x---v2x">⭐️ v1.x -&gt; v2.x</h2>
+<h3 id="1-danonicustomjs%E3%81%AE%E8%A6%8B%E7%9B%B4%E3%81%97">1. danoni_custom.jsの見直し</h3>
+<ul>
+<li>従来のcustomファイルより、共通部分がdanoni_main.jsへ移動しました。</li>
+</ul>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85%EF%BC%88%E5%BF%85%E9%A0%88%EF%BC%89">🛠 修正事項（必須）</h4>
+<ul>
+<li><a href="for_ver2.1.0">ver2.1.0への移行について</a>をご覧ください。</li>
+</ul>
+
+</body>
+</html>

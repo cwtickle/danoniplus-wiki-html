@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>dos-e0004-animationData.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+</head>
+<body>
+<p><a href="dos_effect.html">← 譜面データによる画面効果に戻る</a></p>
+<h2 id="%E8%83%8C%E6%99%AF%E3%83%BB%E3%83%9E%E3%82%B9%E3%82%AF%E3%83%A2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3-backdata-maskdata">背景・マスクモーション (back_data, mask_data)</h2>
+<h3 id="%E4%BD%BF%E3%81%84%E6%96%B9">使い方</h3>
+<pre class="hljs"><code><div>|mask_data=
+400,0,../img/frzbar.png,,0,250,500,250,1
+700,0
+|
+
+|back_data=
+200,0,../img/c_600.png,,20,20,200,200,0.5,leftToRightFade,120
+200,1,../img/iyo_600.png,,220,220,200,200,1,spinY,120
+300,0
+320,1,../img/iyo_600.png,,220,220,200,200,0,leftToRightFade,120
+400,2,文字のフローテスト,,100,140,36,0,0,fromBig,100
+500,2,文字のフローテスト,,100,140,36,0,0,upToDown,100
+600,2,文字のフローテスト,,100,140,36,0,1,spinX,100
+700,2,文字のフローテスト,,100,140,36,0,1,spinY,100
+800,2,文字のフローテスト,,100,140,36,0,1,spinZ,100
+900,2,文字のフローテスト,,100,140,36,0,1
+950,2
+|
+
+|backtitle_data=
+200,0,../img/c_600.png,,20,20,200,200,0.5,leftToRightFade,120
+200,1,../img/iyo_600.png,,220,220,200,200,1,spinY,120
+300,0
+320,1,../img/iyo_600.png,,220,220,200,200,0,leftToRightFade,120
+400,2,文字のフローテスト,,100,140,36,0,0,fromBig,100
+500,2,文字のフローテスト,,100,140,36,#ff9999,0,upToDown,100
+600,2,文字のフローテスト,,100,140,36,#ffff99,1,spinX,100
+700,2,文字のフローテスト,,100,140,36,#99ff99,1,spinY,100
+800,2,文字のフローテスト,,100,140,36,#99ffff,1,spinZ,100
+900,2,文字のフローテスト,,100,140,36,0,1
+1000,0,[jump],1100,2
+1050,0,[loop],200
+1200,0,../img/giko_600.png,,220,220,200,200,1,spinX,120
+1300,0
+|
+</div></code></pre>
+<p>設定を行う画面により、データ名が異なります。<br>
+back_data, mask_dataはメイン画面用のため、譜面別にデータを持たせることができます。<br>
+メイン(リバース)は未指定の場合、メイン(通常)のものが採用されます。</p>
+<table>
+<thead>
+<tr>
+<th>画面</th>
+<th>背景用モーション</th>
+<th>マスク用モーション</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>タイトル</td>
+<td>backtitle_data</td>
+<td>masktitle_data</td>
+</tr>
+<tr>
+<td>メイン(通常)</td>
+<td>back_data, <br>back2_data, <br>...</td>
+<td>mask_data, <br>mask2_data, <br>...</td>
+</tr>
+<tr>
+<td>メイン(リバース)</td>
+<td>backRev_data, <br>backRev2_data, <br>...</td>
+<td>maskRev_data, <br>maskRev2_data, <br>...</td>
+</tr>
+<tr>
+<td>リザルト</td>
+<td>backresult_data</td>
+<td>maskresult_data</td>
+</tr>
+</tbody>
+</table>
+<p>1行1セット。他と異なり、改行区切りです。<br>
+それぞれはカンマ区切りで、最初の2つ以外は省略が可能です。</p>
+<p>設定により、&lt;img&gt;タグ版と&lt;span&gt;タグ版の2種類に分けられます。<br>
+メイン画面以外のモーションでは、back_dataやmask_dataと利用方法は同じですが、<br>
+フレーム移動やループ操作が可能となっています。</p>
+<h3 id="img%E3%82%BF%E3%82%B0%E7%89%88">&lt;img&gt;タグ版</h3>
+<table>
+<thead>
+<tr>
+<th>番号</th>
+<th>論理名</th>
+<th>設定例</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Frame</td>
+<td>200</td>
+<td>変更するタイミングのフレーム数を指定します。</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Depth</td>
+<td>0</td>
+<td>背景の深度を数字で指定します。0以上の値を指定。<br>深度は大きくすることもできますが、その分背景スプライトの数が増えるので重くなる可能性があります。</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Img Source</td>
+<td>../img/c_600.png</td>
+<td>表示する画像のパスを指定します。相対パス可。<br>画像はpng/jpg/gif/bmpのいずれかを拡張子付きで指定します。</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Img Class</td>
+<td>imgMotion</td>
+<td>imgタグにつけるCSSのClassを設定します。以下で設定が足りない場合などに使用します。</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Left(X)</td>
+<td>25</td>
+<td>画像を表示するX座標を指定します。</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Top(Y)</td>
+<td>30</td>
+<td>画像を表示するY座標を指定します。</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Width(X)</td>
+<td>200</td>
+<td>画像の横サイズをpxで指定します。デフォルトは画像自体の横サイズです。</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Height(Y)</td>
+<td>200</td>
+<td>画像の縦サイズをpxで指定します。デフォルトは画像自体の縦サイズです。</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Opacity</td>
+<td>0.5</td>
+<td>画像の透明度を0～1の間で指定します。デフォルトは1(透明度なし)。<br>CSSアニメーション後、表示を消したいときは0を指定するとアニメーション後に画像が消えます。</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Animation-Name</td>
+<td>leftToRightFade</td>
+<td>CSSアニメーション名を指定します。内容はCSSで定義します。<br>デフォルトはnone(なし)です。</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Animation-Duration</td>
+<td>120</td>
+<td>CSSアニメーションを動かす間隔をフレーム数で指定します。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="span%E3%82%BF%E3%82%B0%E7%89%88">&lt;span&gt;タグ版</h3>
+<table>
+<thead>
+<tr>
+<th>番号</th>
+<th>論理名</th>
+<th>設定例</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Frame</td>
+<td>200</td>
+<td>変更するタイミングのフレーム数を指定します。</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Depth</td>
+<td>0</td>
+<td>背景の深度を数字で指定します。0以上の値を指定。<br>深度は大きくすることもできますが、その分背景スプライトの数が増えるので重くなる可能性があります。</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Display</td>
+<td>フローテスト</td>
+<td>画像のパスではなく、文字を入れると&lt;span&gt;タグとして扱います。</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Span Class</td>
+<td>spanMotion</td>
+<td>spanタグにつけるCSSのClassを設定します。以下で設定が足りない場合などに使用します。</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Left(X)</td>
+<td>25</td>
+<td>文字を表示するX座標を指定します。</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Top(Y)</td>
+<td>30</td>
+<td>文字を表示するY座標を指定します。</td>
+</tr>
+<tr>
+<td>7</td>
+<td>FontSize</td>
+<td>36</td>
+<td>画像の横サイズをpxで指定します。デフォルトは画面の横サイズです。<br>(画像自体の幅ではありません)</td>
+</tr>
+<tr>
+<td>8</td>
+<td>FontColor</td>
+<td>#ffff00</td>
+<td>文字の色をカラーコードで指定します。</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Opacity</td>
+<td>0.5</td>
+<td>画像の透明度を0～1の間で指定します。デフォルトは1(透明度なし)。<br>CSSアニメーション後、表示を消したいときは0を指定するとアニメーション後に画像が消えます。</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Animation-Name</td>
+<td>leftToRightFade</td>
+<td>CSSアニメーション名を指定します。内容はCSSで定義します。<br>デフォルトはnone(なし)です。</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Animation-Duration</td>
+<td>120</td>
+<td>CSSアニメーションを動かす間隔をフレーム数で指定します。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="%E8%A1%A8%E7%A4%BA%E3%81%AE%E6%B6%88%E5%8E%BB">表示の消去</h3>
+<table>
+<thead>
+<tr>
+<th>番号</th>
+<th>論理名</th>
+<th>設定例</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Frame</td>
+<td>200</td>
+<td>変更するタイミングのフレーム数を指定します。</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Depth</td>
+<td>0</td>
+<td>背景の深度を数字で指定します。0以上の値を指定。<br>深度は大きくすることもできますが、その分背景スプライトの数が増えるので重くなる可能性があります。</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Display</td>
+<td></td>
+<td>空にすると、画像・文字を消去できます。以降の指定は不要です。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="%E3%83%AB%E3%83%BC%E3%83%97%E3%83%BB%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%82%B8%E3%83%A3%E3%83%B3%E3%83%97-%E3%82%BF%E3%82%A4%E3%83%88%E3%83%AB%E3%83%AA%E3%82%B6%E3%83%AB%E3%83%88%E3%83%A2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%81%BF">ループ・フレームジャンプ (タイトル/リザルトモーションのみ)</h3>
+<table>
+<thead>
+<tr>
+<th>番号</th>
+<th>論理名</th>
+<th>設定例</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Frame</td>
+<td>200</td>
+<td>変更するタイミングのフレーム数を指定します。</td>
+</tr>
+<tr>
+<td>2</td>
+<td>ー</td>
+<td>0</td>
+<td>指定なし</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Keyword</td>
+<td>[jump]</td>
+<td>キーワード指定。<br>[loop]指定フレームへ戻ります。<br>[jump]ループ条件付きで指定フレームへ移動します。</td>
+</tr>
+<tr>
+<td>4</td>
+<td>gotoAndPlay</td>
+<td>1200</td>
+<td>移動先のフレームを指定します。</td>
+</tr>
+<tr>
+<td>5</td>
+<td>LoopCondition</td>
+<td>2</td>
+<td>[jump]のみ指定。<br>ここで指定した回数分のループが終わっていれば、4で指定したフレームへ移動します。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E5%B1%A5%E6%AD%B4">バージョン履歴</h3>
+<ul>
+<li><a href="../releases/tag/v6.3.0">v6.3.0</a>
+<ul>
+<li>タイトルモーション(masktitle_data), リザルトモーション(backresult_data, maskresult_data)を実装</li>
+<li>リバース用背景・マスクモーション(backRev_data, maskRev_data)の実装</li>
+</ul>
+</li>
+<li><a href="../releases/tag/v4.7.0">v4.7.0</a>
+<ul>
+<li>タイトルモーション(backtitle_data)に対してループ・フレームジャンプを実装</li>
+</ul>
+</li>
+<li><a href="../releases/tag/v4.4.0">v4.4.0</a>
+<ul>
+<li>タイトルモーション(backtitle_data)を実装</li>
+</ul>
+</li>
+<li><a href="../releases/tag/v4.2.0">v4.2.0</a>
+<ul>
+<li>マスク表示(mask_data)を実装</li>
+</ul>
+</li>
+<li><a href="../releases/tag/v1.0.1">v1.0.0 (v0.67.0)</a>
+<ul>
+<li>背景表示(back_data) 初回実装</li>
+</ul>
+</li>
+</ul>
+
+</body>
+</html>

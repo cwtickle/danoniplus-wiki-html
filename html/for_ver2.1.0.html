@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>for_ver2.1.0.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+</head>
+<body>
+<h1 id="ver210%E3%81%B8%E3%81%AE%E7%A7%BB%E8%A1%8C%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">ver2.1.0への移行について</h1>
+<p>ver2.1.0より、danoni_custom.js側にあった記述がdanoni_main.js側に移りました。<br>
+これまでのdanoni_custom.jsもそのままの利用が可能で、<br>
+独自の表示を行いたい場合は変更不要ですが、<br>
+タイトル表示のデフォルトに対してカスタムを行っている場合、<br>
+記述を変更（基本的には表示の削除）を行うことで、新しい設定変更にも対応できます。</p>
+<h2 id="%E5%A4%89%E6%9B%B4%E7%AE%87%E6%89%80">変更箇所</h2>
+<h3 id="customtitleinit">customTitleInit</h3>
+<p>＜Before＞</p>
+<pre class="hljs"><code><div>	<span class="hljs-comment">// レイヤー情報取得</span>
+	<span class="hljs-keyword">var</span> layer0 = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">`layer0`</span>);
+	<span class="hljs-keyword">var</span> l0ctx = layer0.getContext(<span class="hljs-string">`2d`</span>);
+
+	<span class="hljs-comment">// 画面背景を指定 (background-color)</span>
+	<span class="hljs-keyword">var</span> grd = l0ctx.createLinearGradient(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, g_sHeight);
+	grd.addColorStop(<span class="hljs-number">0</span>, <span class="hljs-string">`#000000`</span>);
+	grd.addColorStop(<span class="hljs-number">1</span>, <span class="hljs-string">`#222222`</span>);
+	l0ctx.fillStyle = grd;
+	l0ctx.fillRect(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, g_sWidth, g_sHeight);
+
+
+	<span class="hljs-comment">// 背景の矢印オブジェクトを表示</span>
+	<span class="hljs-keyword">var</span> lblArrow = createArrowEffect(<span class="hljs-string">`lblArrow`</span>, g_headerObj[<span class="hljs-string">`setColor`</span>][<span class="hljs-number">0</span>], (g_sWidth - <span class="hljs-number">500</span>) / <span class="hljs-number">2</span>, <span class="hljs-number">-15</span>, <span class="hljs-number">500</span>, <span class="hljs-number">180</span>);
+	lblArrow.style.opacity = <span class="hljs-number">0.25</span>;
+	lblArrow.style.zIndex = <span class="hljs-number">0</span>;
+	divRoot.appendChild(lblArrow);
+
+	<span class="hljs-comment">// 曲名文字描画（曲名は譜面データから取得）</span>
+	<span class="hljs-comment">// TEST:試験的に矢印色の1番目と3番目を使ってタイトルをグラデーション</span>
+	<span class="hljs-keyword">var</span> grd = l0ctx.createLinearGradient(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, g_sHeight, <span class="hljs-number">0</span>);
+	<span class="hljs-keyword">if</span> (g_headerObj[<span class="hljs-string">`setColor`</span>][<span class="hljs-number">0</span>] != <span class="hljs-literal">undefined</span>) {
+		grd.addColorStop(<span class="hljs-number">0</span>, g_headerObj[<span class="hljs-string">`setColor`</span>][<span class="hljs-number">0</span>]);
+	} <span class="hljs-keyword">else</span> {
+		grd.addColorStop(<span class="hljs-number">0</span>, <span class="hljs-string">`#ffffff`</span>);
+	}
+	<span class="hljs-keyword">if</span> (g_headerObj[<span class="hljs-string">`setColor`</span>][<span class="hljs-number">2</span>] != <span class="hljs-literal">undefined</span>) {
+		grd.addColorStop(<span class="hljs-number">1</span>, g_headerObj[<span class="hljs-string">`setColor`</span>][<span class="hljs-number">2</span>]);
+	} <span class="hljs-keyword">else</span> {
+		grd.addColorStop(<span class="hljs-number">1</span>, <span class="hljs-string">`#66ffff`</span>);
+	}
+	<span class="hljs-keyword">var</span> titlefontsize = <span class="hljs-number">64</span> * (<span class="hljs-number">12</span> / g_headerObj[<span class="hljs-string">`musicTitle`</span>].length);
+	<span class="hljs-keyword">if</span> (titlefontsize &gt;= <span class="hljs-number">64</span>) {
+		titlefontsize = <span class="hljs-number">64</span>;
+	}
+
+	<span class="hljs-comment">// カスタム変数 titlesize の定義</span>
+	<span class="hljs-keyword">if</span> (g_rootObj.titlesize != <span class="hljs-literal">undefined</span> &amp;&amp; g_rootObj.titlesize != <span class="hljs-string">``</span>) {
+		titlefontsize = setVal(g_rootObj.titlesize, titlefontsize, <span class="hljs-string">`number`</span>);
+	}
+
+	createLabel(l0ctx, g_headerObj[<span class="hljs-string">`musicTitle`</span>], g_sWidth / <span class="hljs-number">2</span>, g_sHeight / <span class="hljs-number">2</span>,
+		titlefontsize, <span class="hljs-string">`メイリオ`</span>, grd, <span class="hljs-string">`center`</span>);
+</div></code></pre>
+<p>＜After＞　※ver3.6.0以降は下記記載も不要です。</p>
+<pre class="hljs"><code><div>	<span class="hljs-comment">// 以下は全体設定です。作品別に設定する場合は不要です。</span>
+
+	<span class="hljs-comment">// タイトル曲名表示のカスタム利用有無 (false:デフォルトを利用 / true:カスタムを利用(これまで通り))</span>
+	g_headerObj.customTitleUse = <span class="hljs-string">`false`</span>;
+	<span class="hljs-comment">// タイトル背景矢印表示のカスタム利用有無 (false:デフォルトを利用 / true:カスタムを利用(これまで通り))</span>
+	g_headerObj.customTitleArrowUse = <span class="hljs-string">`false`</span>;
+	<span class="hljs-comment">// タイトル背景表示のカスタム利用有無 (false:デフォルトを利用 / true:カスタムを利用(これまで通り))</span>
+	g_headerObj.customBackUse = <span class="hljs-string">`false`</span>;
+	<span class="hljs-comment">// タイトル背景表示（メイン画面のみ適用）のカスタム利用有無 (false:デフォルトを利用 / true:カスタムを利用(これまで通り))</span>
+	g_headerObj.customBackMainUse = <span class="hljs-string">`false`</span>;
+	<span class="hljs-comment">// Ready表示のカスタム利用有無 (false:デフォルトを利用 / true:カスタムを利用(これまで通り))</span>
+	g_headerObj.customReadyUse = <span class="hljs-string">`false`</span>;
+</div></code></pre>
+<h3 id="customoptioninit">customOptionInit</h3>
+<p>＜Before＞</p>
+<pre class="hljs"><code><div>	<span class="hljs-comment">// レイヤー情報取得</span>
+	<span class="hljs-keyword">var</span> layer0 = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">`layer0`</span>);
+	<span class="hljs-keyword">var</span> l0ctx = layer0.getContext(<span class="hljs-string">`2d`</span>);
+
+	<span class="hljs-comment">// 画面背景を指定 (background-color)</span>
+	<span class="hljs-keyword">var</span> grd = l0ctx.createLinearGradient(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, g_sHeight);
+	grd.addColorStop(<span class="hljs-number">0</span>, <span class="hljs-string">`#000000`</span>);
+	grd.addColorStop(<span class="hljs-number">1</span>, <span class="hljs-string">`#222222`</span>);
+	l0ctx.fillStyle = grd;
+	l0ctx.fillRect(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, g_sWidth, g_sHeight);
+</div></code></pre>
+<p>＜After＞</p>
+<pre class="hljs"><code><div>	<span class="hljs-comment">// 記述不要</span>
+</div></code></pre>
+<h3 id="customsettingsdisplayinit">customSettingsDisplayInit</h3>
+<p>＜Before＞</p>
+<pre class="hljs"><code><div>	<span class="hljs-comment">// レイヤー情報取得</span>
+	<span class="hljs-keyword">var</span> layer0 = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">`layer0`</span>);
+	<span class="hljs-keyword">var</span> l0ctx = layer0.getContext(<span class="hljs-string">`2d`</span>);
+
+	<span class="hljs-comment">// 画面背景を指定 (background-color)</span>
+	<span class="hljs-keyword">var</span> grd = l0ctx.createLinearGradient(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, g_sHeight);
+	grd.addColorStop(<span class="hljs-number">0</span>, <span class="hljs-string">`#000000`</span>);
+	grd.addColorStop(<span class="hljs-number">1</span>, <span class="hljs-string">`#222222`</span>);
+	l0ctx.fillStyle = grd;
+	l0ctx.fillRect(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, g_sWidth, g_sHeight);
+</div></code></pre>
+<p>＜After＞</p>
+<pre class="hljs"><code><div>	<span class="hljs-comment">// 記述不要</span>
+</div></code></pre>
+<h3 id="custommaininit">customMainInit</h3>
+<p>＜Before＞</p>
+<pre class="hljs"><code><div>	<span class="hljs-comment">// レイヤー情報取得</span>
+	<span class="hljs-keyword">var</span> layer0 = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">`layer0`</span>);
+	<span class="hljs-keyword">var</span> l0ctx = layer0.getContext(<span class="hljs-string">`2d`</span>);
+
+	<span class="hljs-comment">// 画面背景を指定 (background-color)</span>
+	<span class="hljs-keyword">var</span> grd = l0ctx.createLinearGradient(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, g_sHeight);
+	grd.addColorStop(<span class="hljs-number">0</span>, <span class="hljs-string">`#000000`</span>);
+	grd.addColorStop(<span class="hljs-number">1</span>, <span class="hljs-string">`#222222`</span>);
+	l0ctx.fillStyle = grd;
+	l0ctx.fillRect(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, g_sWidth, g_sHeight);
+
+	<span class="hljs-comment">// Ready?表示</span>
+	<span class="hljs-keyword">var</span> lblReady = createDivLabel(<span class="hljs-string">`lblReady`</span>, g_sWidth / <span class="hljs-number">2</span> - <span class="hljs-number">100</span>, g_sHeight / <span class="hljs-number">2</span> - <span class="hljs-number">100</span>,
+		<span class="hljs-number">200</span>, <span class="hljs-number">50</span>, <span class="hljs-number">40</span>, C_CLR_TITLE,
+		<span class="hljs-string">`&lt;span style='color:#9999ff;font-size:60px;'&gt;R&lt;/span&gt;EADY?`</span>);
+	divRoot.appendChild(lblReady);
+	lblReady.style.animationDuration = <span class="hljs-string">`2.5s`</span>;
+	lblReady.style.animationName = <span class="hljs-string">`leftToRightFade`</span>;
+	lblReady.style.opacity = <span class="hljs-number">0</span>;
+</div></code></pre>
+<p>＜After＞</p>
+<pre class="hljs"><code><div>	<span class="hljs-comment">// 記述不要</span>
+</div></code></pre>
+<h3 id="customresultinit">customResultInit</h3>
+<p>＜Before＞</p>
+<pre class="hljs"><code><div>	<span class="hljs-comment">// レイヤー情報取得</span>
+	<span class="hljs-keyword">var</span> layer0 = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">`layer0`</span>);
+	<span class="hljs-keyword">var</span> l0ctx = layer0.getContext(<span class="hljs-string">`2d`</span>);
+
+	<span class="hljs-comment">// 画面背景を指定 (background-color)</span>
+	<span class="hljs-keyword">var</span> grd = l0ctx.createLinearGradient(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, g_sHeight);
+	grd.addColorStop(<span class="hljs-number">0</span>, <span class="hljs-string">`#000000`</span>);
+	grd.addColorStop(<span class="hljs-number">1</span>, <span class="hljs-string">`#222222`</span>);
+	l0ctx.fillStyle = grd;
+	l0ctx.fillRect(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, g_sWidth, g_sHeight);
+</div></code></pre>
+<p>＜After＞</p>
+<pre class="hljs"><code><div>	<span class="hljs-comment">// 記述不要</span>
+</div></code></pre>
+
+</body>
+</html>

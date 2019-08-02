@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>varReference.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+</head>
+<body>
+<h1 id="%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9">オブジェクトリファレンス</h1>
+<ul>
+<li>danoni_main.js で定義されており、cumtom側で制御できるオブジェクトを定義する。</li>
+</ul>
+<h2 id="%E3%83%A9%E3%82%A4%E3%83%95%E3%82%B2%E3%83%BC%E3%82%B8">ライフゲージ</h2>
+<table>
+<thead>
+<tr>
+<th>変数名</th>
+<th>規定値</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C_CLR_MAXLIFE</td>
+<td>#440000</td>
+<td>ライフゲージのライフがMAX時の色</td>
+</tr>
+<tr>
+<td>C_CLR_CLEARLIFE</td>
+<td>#004444</td>
+<td>ノルマ以上のライフ時の色</td>
+</tr>
+<tr>
+<td>C_CLR_DEFAULTLIFE</td>
+<td>#444444</td>
+<td>ノルマ未満のライフ時の色</td>
+</tr>
+<tr>
+<td>C_CLR_BORDER</td>
+<td>#555555</td>
+<td>ノルマ位置を示す数字の背景色</td>
+</tr>
+<tr>
+<td>C_CLR_BACKLIFE</td>
+<td>#222222</td>
+<td>ライフゲージの裏側の背景色</td>
+</tr>
+</tbody>
+</table>
+<h2 id="%E5%88%A4%E5%AE%9A%E8%A8%B1%E5%AE%B9%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E6%95%B0-gjudgobj">判定許容フレーム数 (g_judgObj)</h2>
+<h3 id="arrowj">arrowJ</h3>
+<ul>
+<li>矢印の許容フレーム数。<br>
+左から「イイ」「シャキン」「マターリ」「ショボーン」の許容フレーム数、<br>
+「ウワァン」の判定開始フレーム数を表す。</li>
+</ul>
+<pre class="hljs"><code><div>g_judgObj.arrowJ = [<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>, <span class="hljs-number">8</span>, <span class="hljs-number">8</span>];
+</div></code></pre>
+<h3 id="frzj">frzJ</h3>
+<ul>
+<li>フリーズアローの許容フレーム数。<br>
+左から「キター」「セフセフ」の許容フレーム数、<br>
+「イクナイ」の判定開始フレーム数を表す。　※セフセフは未実装</li>
+</ul>
+<pre class="hljs"><code><div>g_judgObj.frzJ = [<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">8</span>];
+</div></code></pre>
+<h2 id="%E3%83%A9%E3%83%B3%E3%82%AF%E8%A1%A8%E7%A4%BA-grankobj">ランク表示 (g_rankObj)</h2>
+<h3 id="rankmarks">rankMarks</h3>
+<pre class="hljs"><code><div>g_rankObj.rankMarks = [<span class="hljs-string">"SS"</span>, <span class="hljs-string">"S"</span>, <span class="hljs-string">"SA"</span>, <span class="hljs-string">"AAA"</span>, <span class="hljs-string">"AA"</span>, <span class="hljs-string">"A"</span>, <span class="hljs-string">"B"</span>];
+</div></code></pre>
+<ul>
+<li>ランク文字の定義。上位ランク順に記載する。</li>
+<li>PF, C, Fランクは別定義。</li>
+</ul>
+<h3 id="rankrate">rankRate</h3>
+<pre class="hljs"><code><div>g_rankObj.rankRate = [<span class="hljs-number">97</span>, <span class="hljs-number">90</span>, <span class="hljs-number">85</span>, <span class="hljs-number">80</span>, <span class="hljs-number">75</span>, <span class="hljs-number">70</span>, <span class="hljs-number">50</span>];
+</div></code></pre>
+<ul>
+<li>ランクの獲得条件(総スコアのパーセント表記)。数字必須。</li>
+<li>rankMarksと同じ配列数とすること。</li>
+</ul>
+<h3 id="rankcolor">rankColor</h3>
+<pre class="hljs"><code><div>g_rankObj.rankColor = [<span class="hljs-string">"#00ccff"</span>, <span class="hljs-string">"#6600ff"</span>, <span class="hljs-string">"#ff9900"</span>, <span class="hljs-string">"#ff0000"</span>, <span class="hljs-string">"#00ff00"</span>, <span class="hljs-string">"#ff00ff"</span>, <span class="hljs-string">"#cc00ff"</span>];
+</div></code></pre>
+<ul>
+<li>ランクの色。カラーコード指定。</li>
+<li>rankMarksと同じ配列数とすること。</li>
+</ul>
+<h2 id="function-setval">function: setVal</h2>
+<ul>
+<li>変数の中身の型をチェックし、指定された型に変換する。</li>
+<li>不適切な値の場合は、デフォルト値を返却する。</li>
+<li>undefinedやNaN、空白など、扱いにくい変数が入りそうなときに<br>
+チェックを兼ねて使用する。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>引数</th>
+<th>型</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>_checkStr</td>
+<td>string</td>
+<td>型チェック対象の変数</td>
+</tr>
+<tr>
+<td>_defaultStr</td>
+<td>string</td>
+<td>型チェックがNGの場合のデフォルト値</td>
+</tr>
+<tr>
+<td>_type</td>
+<td>string</td>
+<td>チェックする型<br>(&quot;number&quot;:整数, &quot;float&quot;:小数, &quot;string&quot;:文字列)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="%E8%BF%94%E5%8D%B4%E5%80%A4">返却値</h3>
+<ul>
+<li>_checkStrを指定された型に変換した値 (変換できない場合は _defaultStr を返却)</li>
+</ul>
+<h3 id="%E4%BD%BF%E7%94%A8%E4%BE%8B">使用例</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> checkStr = <span class="hljs-string">"abc123"</span>;
+<span class="hljs-keyword">const</span> returnStr1 = setVal(checkStr, <span class="hljs-string">"a"</span>, <span class="hljs-string">"string"</span>);  <span class="hljs-comment">// abc123</span>
+<span class="hljs-keyword">const</span> returnStr2 = setVal(checkStr, <span class="hljs-number">0</span>, <span class="hljs-string">"number"</span>);    <span class="hljs-comment">// 0</span>
+</div></code></pre>
+<h2 id="function-createsprite">function: createSprite</h2>
+<ul>
+<li>空のスプライト(オブジェクト)を作成する。</li>
+<li>すでに同じ名前のスプライトが存在する場合は、作成済のスプライトを返却する。</li>
+<li>関数内でappendChild(子要素追加)を呼び出しているため、即画面反映される。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>引数</th>
+<th>型</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>_parentObjName</td>
+<td>string</td>
+<td>親スプライト名</td>
+</tr>
+<tr>
+<td>_newObjName</td>
+<td>string</td>
+<td>作成する子スプライト名</td>
+</tr>
+<tr>
+<td>_x</td>
+<td>number</td>
+<td>作成するスプライトのx座標（親スプライト基準）</td>
+</tr>
+<tr>
+<td>_y</td>
+<td>number</td>
+<td>作成するスプライトのy座標（親スプライト基準）</td>
+</tr>
+<tr>
+<td>_width</td>
+<td>number</td>
+<td>作成するスプライトの幅</td>
+</tr>
+<tr>
+<td>_height</td>
+<td>number</td>
+<td>作成するスプライトの高さ</td>
+</tr>
+</tbody>
+</table>
+<h3 id="%E8%BF%94%E5%8D%B4%E5%80%A4">返却値</h3>
+<ul>
+<li>_newObjNameで指定したスプライト(オブジェクト)</li>
+</ul>
+<h3 id="%E4%BD%BF%E7%94%A8%E4%BE%8B">使用例</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">// divRoot上の座標(x, y) = (100, 50)の位置に、400px × 300pxの空スプライト「mysprite」を作成する。</span>
+<span class="hljs-keyword">const</span> mysprite = createSprite(<span class="hljs-string">"divRoot"</span>, <span class="hljs-string">"mysprite"</span>, <span class="hljs-number">100</span>, <span class="hljs-number">50</span>, <span class="hljs-number">400</span>, <span class="hljs-number">300</span>);
+</div></code></pre>
+<h2 id="function-deletechildspriteall">function: deleteChildspriteAll</h2>
+<ul>
+<li>親スプライト(オブジェクト)配下のスプライトを全削除する。</li>
+<li>親スプライト自体は削除されない。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>引数</th>
+<th>型</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>_parentObjName</td>
+<td>string</td>
+<td>親スプライト名</td>
+</tr>
+</tbody>
+</table>
+<h3 id="%E8%BF%94%E5%8D%B4%E5%80%A4">返却値</h3>
+<ul>
+<li>無し</li>
+</ul>
+<h3 id="%E4%BD%BF%E7%94%A8%E4%BE%8B">使用例</h3>
+<pre class="hljs"><code><div>deleteChildspriteAll(<span class="hljs-string">"mysprite"</span>);
+</div></code></pre>
+<h2 id="function-createbutton">function: createButton</h2>
+<ul>
+<li>汎用ボタンを作成する。</li>
+<li>ボタンを押したときの処理を記述できる。</li>
+<li>オンマウス時のポインタ変更、ボタン色変更は関数の中で自動適用されている。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>引数</th>
+<th>型</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>_obj</td>
+<td>object</td>
+<td>ボタンのスタイル設定</td>
+</tr>
+<tr>
+<td>_func</td>
+<td>function</td>
+<td>ボタンを押したときの処理</td>
+</tr>
+</tbody>
+</table>
+<h3 id="obj%E3%81%A7%E4%BF%9D%E6%8C%81%E3%81%8C%E5%BF%85%E8%A6%81%E3%81%AA%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3">_objで保持が必要なプロパティ</h3>
+<table>
+<thead>
+<tr>
+<th>プロパティ</th>
+<th>型</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>string</td>
+<td>ボタンオブジェクト名</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>ボタンに表示するテキスト</td>
+</tr>
+<tr>
+<td>x</td>
+<td>number</td>
+<td>作成先のx座標 (appendChildする親に対する位置)</td>
+</tr>
+<tr>
+<td>y</td>
+<td>number</td>
+<td>作成先のy座標 (appendChildする親に対する位置)</td>
+</tr>
+<tr>
+<td>width</td>
+<td>number</td>
+<td>ボタンの幅</td>
+</tr>
+<tr>
+<td>height</td>
+<td>number</td>
+<td>ボタンの高さ</td>
+</tr>
+<tr>
+<td>fontsize</td>
+<td>number</td>
+<td>文字サイズ</td>
+</tr>
+<tr>
+<td>normalColor</td>
+<td>string</td>
+<td>通常時のボタンの背景色(カラーコード指定)</td>
+</tr>
+<tr>
+<td>hoverColor</td>
+<td>string</td>
+<td>オンマウス時のボタンの背景色(カラーコード指定)</td>
+</tr>
+<tr>
+<td>align</td>
+<td>string</td>
+<td>テキスト表示位置</td>
+</tr>
+</tbody>
+</table>
+<h3 id="%E8%BF%94%E5%8D%B4%E5%80%A4">返却値</h3>
+<ul>
+<li>ボタンオブジェクト</li>
+</ul>
+<h3 id="%E4%BD%BF%E7%94%A8%E4%BE%8B">使用例</h3>
+<pre class="hljs"><code><div>
+<span class="hljs-comment">// ボタン描画</span>
+<span class="hljs-keyword">const</span> btnStart = createButton({
+  <span class="hljs-attr">id</span>: <span class="hljs-string">"btnStart"</span>,
+  <span class="hljs-attr">name</span>: <span class="hljs-string">"Click Here!!"</span>,
+  <span class="hljs-attr">x</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">y</span>: g_sHeight - <span class="hljs-number">100</span>,
+  <span class="hljs-attr">width</span>: g_sWidth,
+  <span class="hljs-attr">height</span>: C_BTN_HEIGHT,
+  <span class="hljs-attr">fontsize</span>: C_LBL_TITLESIZE,
+  <span class="hljs-attr">normalColor</span>: C_CLR_DEFAULT,
+  <span class="hljs-attr">hoverColor</span>: C_CLR_DEFHOVER,
+  <span class="hljs-attr">align</span>: C_ALIGN_CENTER
+}, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-comment">// ボタン押下後の処理</span>
+  clearWindow();
+  optionInit();
+});
+
+<span class="hljs-comment">// ボタン作成後はappendChildが必須</span>
+divRoot.appendChild(btnStart);
+</div></code></pre>
+<h2 id="function-ghandleraddlistener">function: g_handler.addListener</h2>
+<ul>
+<li>イベントハンドラの追加</li>
+<li>addEventListenerと異なり、リスナーキーを返却するためListenerの消し忘れに有効。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>引数</th>
+<th>型</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>_target</td>
+<td>object</td>
+<td>対象スプライト</td>
+</tr>
+<tr>
+<td>_type</td>
+<td>string</td>
+<td>対象のイベント名(click, touchstartなど)</td>
+</tr>
+<tr>
+<td>_listener</td>
+<td>function</td>
+<td>イベントをトリガーとする処理</td>
+</tr>
+<tr>
+<td>_capture</td>
+<td>boolean</td>
+<td>イベント伝播方法。addEventListenerのuseCaptureと同じ。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="%E8%BF%94%E5%8D%B4%E5%80%A4">返却値</h3>
+<ul>
+<li>リスナーキー(number)</li>
+</ul>
+<h3 id="%E4%BD%BF%E7%94%A8%E4%BE%8B">使用例</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">// divオブジェクトに対してタップしたときのイベントを追加</span>
+<span class="hljs-keyword">const</span> lsnrkeyTS = g_handler.addListener(div, <span class="hljs-string">"touchstart"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  div.style.backgroundColor = _obj.hoverColor;
+  div.style.cursor = <span class="hljs-string">"pointer"</span>;
+}, <span class="hljs-literal">false</span>);
+
+<span class="hljs-comment">// イベントリスナー用のキーをセット</span>
+div.setAttribute(<span class="hljs-string">"lsnrkeyTS"</span>, lsnrkeyTS);
+</div></code></pre>
+<h2 id="function-ghandlerremovelistener">function: g_handler.removeListener</h2>
+<ul>
+<li>イベントハンドラの削除</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>引数</th>
+<th>型</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>_key</td>
+<td>number</td>
+<td>リスナーキー</td>
+</tr>
+</tbody>
+</table>
+<h3 id="%E8%BF%94%E5%8D%B4%E5%80%A4">返却値</h3>
+<ul>
+<li>無し</li>
+</ul>
+<h3 id="%E4%BD%BF%E7%94%A8%E4%BE%8B">使用例</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">// divRootの子要素のイベントハンドラを削除</span>
+<span class="hljs-keyword">while</span> (divRoot.hasChildNodes()) {
+  g_handler.removeListener(divRoot.firstChild.getAttribute(<span class="hljs-string">"lsnrkeyTS"</span>));
+}
+</div></code></pre>
+
+</body>
+</html>
