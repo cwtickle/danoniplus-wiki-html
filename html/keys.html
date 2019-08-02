@@ -439,26 +439,6 @@ pos<b>11</b>_<b>0</b>
 <td>キーコンフィグ</td>
 <td>各ステップに対応するキーコードを指定。多次元配列で表現する。同じステップに対して複数のキーを割り当てることも可能。</td>
 </tr>
-<tr>
-<td>shuffleX_Y</td>
-<td>シャッフルグループ</td>
-<td>Mirror, Random, S-Random使用時、同じグループ同士で入れ替える。同じ数字が同じグループになる。</td>
-</tr>
-<tr>
-<td>transKeyX_Y</td>
-<td>別キーモードの設定</td>
-<td>指定されたキーパターンが別キーのものである場合にそのキーの名前を指定。<u>同一キーの場合は指定しない。</u><br>指定した場合、結果画面にてここで指定したキーが補足情報として表示される。<br>また、別キーモードでプレイ中はハイスコアやキーコンフィグ等の保存対象外となる。</td>
-</tr>
-<tr>
-<td>keyRetryX_Y</td>
-<td>リトライキー</td>
-<td>プレイ中ショートカットで、リトライが行えるキーのキーコードを指定。<br>デフォルトは8(BackSpace)。</td>
-</tr>
-<tr>
-<td>keyTitleBackX_Y</td>
-<td>タイトルバックキー</td>
-<td>プレイ中ショートカットで、タイトルバックが行えるキーのキーコードを指定。<br>デフォルトは46(Delete)。</td>
-</tr>
 </tbody>
 </table>
 <h2 id="%E5%B0%91%E3%81%97%E3%81%A0%E3%81%91%E5%85%B7%E4%BD%93%E4%BE%8B-11key%E3%81%AE%E5%A0%B4%E5%90%88">少しだけ具体例 (11keyの場合)</h2>
@@ -567,8 +547,8 @@ pos<b>11</b>_<b>0</b>
 <pre>
 |keyExtraList=6|
 </pre>
-<h3 id="colorx-charax-divx-steprtnx-keyctrlx-blankx-shufflex">colorX, charaX, divX, stepRtnX, keyCtrlX, blankX, shuffleX</h3>
-<p>それぞれ、colorX_Y, charaX_Y, divX_Y, stepRtnX_Y, keyCtrlX_Y, blankX_Y, shuffleX_Yに相当します。複数指定の場合は&quot;$&quot;で区切ります。<br>
+<h3 id="colorx-charax-divx-steprtnx-keyctrlx-blankx-shufflex">colorX, charaX, divX, stepRtnX, keyCtrlX, blankX</h3>
+<p>それぞれ、colorX_Y, charaX_Y, divX_Y, stepRtnX_Y, keyCtrlX_Y, blankX_Yに相当します。複数指定の場合は&quot;$&quot;で区切ります。<br>
 keyCtrlの場合、代替キー指定はスラッシュ(/)で区切ります。</p>
 <table>
 <thead>
@@ -601,22 +581,6 @@ keyCtrlの場合、代替キー指定はスラッシュ(/)で区切ります。<
 <tr>
 <td>blankX</td>
 <td>blank6=60$60</td>
-</tr>
-<tr>
-<td>shuffleX</td>
-<td>shuffle6=0,0,0,0,0,1$0,0,0,0,0,1</td>
-</tr>
-<tr>
-<td>transKeyX</td>
-<td>transKey6=$6i</td>
-</tr>
-<tr>
-<td>keyRetryX</td>
-<td>keyRetry6=9</td>
-</tr>
-<tr>
-<td>keyTitleBackX</td>
-<td>keyTitleBack6=46</td>
 </tr>
 </tbody>
 </table>

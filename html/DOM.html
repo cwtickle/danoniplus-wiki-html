@@ -395,10 +395,8 @@ blockquote {
 「divRoot」上のオブジェクトを全て消せば、画面をクリアしたこととほぼ同じです。<br>
 (関数で言うと、clearWindow()が同じことをやっています)</p>
 <h2 id="%E3%82%BF%E3%82%A4%E3%83%88%E3%83%AB%E7%94%BB%E9%9D%A2-titleinit">タイトル画面 (titleInit)</h2>
-<p><img src="./wiki/dom1_1.png" alt="dom1"></p>
-<p>「divRoot」というオブジェクトの上に、タイトル・背景矢印・曲名があり、<br>
-その上に背景モーションが入ります。<br>
-ボタンを隠したい場合、その上のマスクモーションを使用します。</p>
+<p><img src="./wiki/dom1.png" alt="dom1"></p>
+<p>「divRoot」というオブジェクトの上に、タイトル・背景矢印・曲名が乗っています。</p>
 <p>主なボタン</p>
 <table>
 <thead>
@@ -487,9 +485,9 @@ blockquote {
 ただし、ここは計算が終わるとすぐにメイン画面に飛んでしまうため、<br>
 画面としての位置づけは無いに等しいです。</p>
 <h2 id="%E3%83%A1%E3%82%A4%E3%83%B3%E7%94%BB%E9%9D%A2-maininit">メイン画面 (mainInit)</h2>
-<p><img src="./wiki/dom3_2.png" alt="dom3"></p>
+<p><img src="./wiki/dom3_1.png" alt="dom3"></p>
 <p>画面内で最もDOMを使っている箇所です。<br>
-backSprite/mainSprite/infoSprite/judgeSprite/maskSpriteは上下関係があり、<br>
+backSprite/mainSprite/infoSprite/judgeSpriteは上下関係があり、<br>
 mainSpriteの中で作られたオブジェクトはinfoSpriteのいずれのオブジェクトよりも<br>
 上に来ることはありません。<br>
 これを利用して、infoSprite上に前面に表示したいオブジェクトを置くこともできます。</p>
@@ -510,7 +508,7 @@ jは矢印番号、kはその矢印が何番目の矢印かを表します。</p
 <p>フリーズアローは開始矢印(本体・塗り）、帯、終了矢印（本体・塗り）で構成されます。<br>
 ヒット時（押しっぱなし時）は開始矢印（本体）が隠れ、開始矢印（塗り）が白色に変化します。</p>
 <h2 id="%E7%B5%90%E6%9E%9C%E7%94%BB%E9%9D%A2-resultinit">結果画面 (resultInit)</h2>
-<p><img src="./wiki/dom4_1.png" alt="dom4"></p>
+<p><img src="./wiki/dom4.png" alt="dom4"></p>
 <p>タイトル画面と構成はほぼ同じです。</p>
 <p>主なボタン</p>
 <table>
