@@ -418,8 +418,8 @@ blockquote {
 700,2,文字のフローテスト,,100,140,36,#99ff99,1,spinY,100
 800,2,文字のフローテスト,,100,140,36,#99ffff,1,spinZ,100
 900,2,文字のフローテスト,,100,140,36,0,1
-1000,0,[jump],1100,2
-1050,0,[loop],200
+1000,0,[jump],1100,3
+1050,0,[loop],200:700:700
 1200,0,../img/giko_600.png,,220,220,200,200,1,spinX,120
 1300,0
 |
@@ -685,7 +685,7 @@ back_data, mask_dataはメイン画面用のため、譜面別にデータを持
 <td>4</td>
 <td>gotoAndPlay</td>
 <td>1200</td>
-<td>移動先のフレームを指定します。</td>
+<td>移動先のフレームを指定します。<br>コロン（：）指定で、どのフレームに飛ぶかを確率で分岐できます。<br>例）300:1500 → 1/2の確率で300フレーム、1/2の確率で1500フレーム<br>例）300:300:1200 → 2/3の確率で300フレーム、1/3の確率で1200フレーム</td>
 </tr>
 <tr>
 <td>5</td>
@@ -704,6 +704,10 @@ back_data, mask_dataはメイン画面用のため、譜面別にデータを持
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v7.6.0">v7.6.0</a></td>
+<td>・タイトル／リザルトモーションのループ・フレームジャンプを拡張</td>
+</tr>
 <tr>
 <td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v6.3.0">v6.3.0</a></td>
 <td>・タイトルモーション(masktitle_data), <br>　リザルトモーション(backresult_data, maskresult_data)を実装<br>・リバース用背景・マスクモーション(backRev_data, maskRev_data)の実装</td>
