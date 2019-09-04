@@ -452,9 +452,19 @@ back_data, mask_dataはメイン画面用のため、譜面別にデータを持
 <td>maskRev_data, <br>maskRev2_data, <br>...</td>
 </tr>
 <tr>
-<td>リザルト</td>
+<td>リザルト(クリア時)</td>
 <td>backresult_data</td>
 <td>maskresult_data</td>
+</tr>
+<tr>
+<td>リザルト(途中終了時)</td>
+<td>backfailedS_data</td>
+<td>maskfailedS_data</td>
+</tr>
+<tr>
+<td>リザルト(ノルマ失敗時)</td>
+<td>backfailedB_data</td>
+<td>maskfailedB_data</td>
 </tr>
 </tbody>
 </table>
@@ -652,6 +662,37 @@ back_data, mask_dataはメイン画面用のため、譜面別にデータを持
 </tr>
 </tbody>
 </table>
+<h3 id="%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88">コメント</h3>
+<table>
+<thead>
+<tr>
+<th>番号</th>
+<th>論理名</th>
+<th>設定例</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Frame</td>
+<td>200</td>
+<td>フレーム数指定。指定は任意です。</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Depth</td>
+<td>-</td>
+<td>ハイフン固定でコメント扱いとなり、行ごと読込対象外となります。</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Comment</td>
+<td>＜演出開始＞</td>
+<td>コメント文を自由に入力できます。</td>
+</tr>
+</tbody>
+</table>
 <h3 id="%E3%83%AB%E3%83%BC%E3%83%97%E3%83%BB%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E3%82%B8%E3%83%A3%E3%83%B3%E3%83%97-%E3%82%BF%E3%82%A4%E3%83%88%E3%83%AB%E3%83%AA%E3%82%B6%E3%83%AB%E3%83%88%E3%83%A2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%81%BF">ループ・フレームジャンプ (タイトル/リザルトモーションのみ)</h3>
 <table>
 <thead>
@@ -704,6 +745,10 @@ back_data, mask_dataはメイン画面用のため、譜面別にデータを持
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v7.9.0">v7.9.0</a></td>
+<td>・クリア失敗時のリザルトモーション実装<br>・コメント行を実装</td>
+</tr>
 <tr>
 <td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v7.7.0">v7.7.0</a></td>
 <td>・表示の消去において深度「ALL」（全消去）を実装</td>
