@@ -453,18 +453,18 @@ back_data, mask_dataはメイン画面用のため、譜面別にデータを持
 </tr>
 <tr>
 <td>リザルト(クリア時)</td>
-<td>backresult_data</td>
-<td>maskresult_data</td>
+<td>backresult_data<br>backresult2_data<br>...</td>
+<td>maskresult_data<br>maskresult2_data<br>...</td>
 </tr>
 <tr>
 <td>リザルト(途中終了時)</td>
-<td>backfailedS_data</td>
-<td>maskfailedS_data</td>
+<td>backfailedS_data<br>backfailedS2_data<br>...</td>
+<td>maskfailedS_data<br>maskfailedS2_data<br>...</td>
 </tr>
 <tr>
 <td>リザルト(ノルマ失敗時)</td>
-<td>backfailedB_data</td>
-<td>maskfailedB_data</td>
+<td>backfailedB_data<br>backfailedB2_data<br>...</td>
+<td>maskfailedB_data<br>maskfailedB2_data<br>...</td>
 </tr>
 </tbody>
 </table>
@@ -473,6 +473,39 @@ back_data, mask_dataはメイン画面用のため、譜面別にデータを持
 <p>設定により、&lt;img&gt;タグ版と&lt;span&gt;タグ版の2種類に分けられます。<br>
 メイン画面以外のモーションでは、back_dataやmask_dataと利用方法は同じですが、<br>
 フレーム移動やループ操作が可能となっています。</p>
+<p>リザルトモーションについては指定が無い場合、<br>
+例えば 2譜面目のリザルト(ノルマ失敗時) については以下の順で適用されます。</p>
+<table>
+<thead>
+<tr>
+<th>適用順</th>
+<th>適用モーション</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>backfailedB2_data</td>
+<td>リザルト(ノルマ失敗時)の２譜面目</td>
+</tr>
+<tr>
+<td>2</td>
+<td>backfailedB_data</td>
+<td>リザルト(ノルマ失敗時)の１譜面目</td>
+</tr>
+<tr>
+<td>3</td>
+<td>backresult2_data</td>
+<td>リザルト(クリア時)の２譜面目</td>
+</tr>
+<tr>
+<td>4</td>
+<td>backresult_data</td>
+<td>リザルト(クリア時)の１譜面目</td>
+</tr>
+</tbody>
+</table>
 <h3 id="img%E3%82%BF%E3%82%B0%E7%89%88">&lt;img&gt;タグ版</h3>
 <table>
 <thead>
@@ -745,6 +778,10 @@ back_data, mask_dataはメイン画面用のため、譜面別にデータを持
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v8.0.0">v8.0.0</a></td>
+<td>・リザルトモーションの譜面別設定を実装</td>
+</tr>
 <tr>
 <td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v7.9.0">v7.9.0</a></td>
 <td>・クリア失敗時のリザルトモーション実装<br>・コメント行を実装</td>

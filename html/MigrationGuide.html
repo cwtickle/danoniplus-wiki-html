@@ -390,6 +390,45 @@ blockquote {
 <li>最新の情報は<a href="https://github.com/cwtickle/danoniplus/releases/">Release</a>をご覧ください。</li>
 <li>更新情報の概要については<a href="UpdateInfo.html">更新情報(UpdateInfo)</a>もご覧ください。</li>
 </ul>
+<h2 id="%E2%AD%90%EF%B8%8F-v7x---v8x">⭐️ v7.x -&gt; v8.x</h2>
+<h3 id="1-%E3%83%AA%E3%82%B6%E3%83%AB%E3%83%88%E3%83%A2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E9%9F%B3%E6%A5%BD%E5%90%8C%E6%9C%9F%E5%8C%96">1. リザルトモーションの音楽同期化</h3>
+<ul>
+<li>リザルトモーション（backresult_data 他）について、<br>
+音楽に同期したフレーム制御になりました。（メイン画面と同様）</li>
+</ul>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85">🛠 修正事項</h4>
+<ul>
+<li>通常は変更不要です。<br>
+リザルトモーションと音楽を同期させる演出を行っている場合、フレーム数の修正が必要になる場合があります。</li>
+</ul>
+<h3 id="2-%E9%80%9F%E5%BA%A6%E5%A4%89%E5%8C%96-speeddatachange-%E3%81%AE%E7%B5%B1%E4%B8%80">2. 速度変化 (speed_data/change) の統一</h3>
+<ul>
+<li>途中変速で使用する速度変化 (speed_data, speed_change) がキーの種類に関係なくどちらでも使えるようになりました。<br>
+どちらも指定した場合は、speed_change側が優先されます。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>B/A</th>
+<th>概要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>変更前</td>
+<td>5key: speed_data / 5key以外: speed_change</td>
+</tr>
+<tr>
+<td>変更後</td>
+<td>speed_data もしくは speed_change (キーの種類によらず)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85">🛠 修正事項</h4>
+<ul>
+<li>通常は変更不要です。<br>
+同一譜面でどちらも指定していた場合のみ、どちらかに合わせることを推奨します。</li>
+</ul>
 <h2 id="%E2%AD%90%EF%B8%8F-v6x---v7x">⭐️ v6.x -&gt; v7.x</h2>
 <h3 id="1-%E5%80%8B%E5%88%A5%E8%89%B2%E5%A4%89%E5%8C%96%E3%83%95%E3%83%AA%E3%83%BC%E3%82%BA%E3%82%A2%E3%83%AD%E3%83%BC%E3%83%92%E3%83%83%E3%83%88%E6%99%82%E3%81%AE%E3%82%BF%E3%82%A4%E3%83%9F%E3%83%B3%E3%82%B0%E5%A4%89%E6%9B%B4">1. 個別色変化(フリーズアローヒット時)のタイミング変更</h3>
 <ul>
@@ -420,7 +459,17 @@ blockquote {
 </ul>
 <pre class="hljs"><code><div>|colorDataType=v6|
 </div></code></pre>
-<h3 id="2-danonimaincss%E3%81%AE%E6%9B%B4%E6%96%B0">2. danoni_main.cssの更新</h3>
+<h3 id="2-%E6%A5%BD%E6%9B%B2%E3%81%AE%E7%B5%82%E4%BA%86%E5%88%A4%E5%AE%9A%E3%82%BF%E3%82%A4%E3%83%9F%E3%83%B3%E3%82%B0%E3%81%AE%E5%A4%89%E6%9B%B4%EF%BC%88%E7%A7%92%E5%8D%98%E4%BD%8D%E3%81%8B%E3%82%89%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E5%8D%98%E4%BD%8D%E3%81%B8%EF%BC%89">2. 楽曲の終了判定タイミングの変更（秒単位からフレーム単位へ）</h3>
+<ul>
+<li>楽曲の終了判定タイミングがフレーム単位に変わりました。</li>
+</ul>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85">🛠 修正事項</h4>
+<ul>
+<li>ほとんど問題はありませんが、譜面ヘッダー：endFrameなどで終了タイミングを指定していない場合、
+楽曲の終了位置が若干変わる可能性があります。<br>
+必要に応じて、譜面ヘッダー：endFrameを指定して終了位置を調整してください。</li>
+</ul>
+<h3 id="3-danonimaincss%E3%81%AE%E6%9B%B4%E6%96%B0">3. danoni_main.cssの更新</h3>
 <ul>
 <li>誤爆抑止用のボタンアニメの実装のために、CSSモーションを追加しています。</li>
 </ul>

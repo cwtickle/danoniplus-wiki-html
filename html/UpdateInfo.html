@@ -391,19 +391,38 @@ blockquote {
 <li>最新の情報は<a href="https://github.com/cwtickle/danoniplus/releases/">Release</a>をご覧ください。</li>
 <li>アップグレードについては<a href="MigrationGuide.html">アップグレードガイド(Migration Guide)</a>もご覧ください。</li>
 </ul>
+<h2 id="%E2%AD%90%EF%B8%8F-v7x---v8x">⭐️ v7.x -&gt; v8.x</h2>
+<ul>
+<li>タイトル/リザルトモーションの音楽同期に対応</li>
+<li>リザルトモーションを譜面別に作成できるように変更</li>
+<li>楽曲のフェードアウト長を指定できるように変更</li>
+<li>速度変化表記 (speed_data/change) の統一</li>
+<li>ステップゾーン(下)位置を変更できる設定を追加</li>
+</ul>
+<h3 id="%F0%9F%93%94-documentation">📔 Documentation</h3>
+<ul>
+<li>譜面データによる画面効果 ( <a href="dos-e0004-animationData.html">back_data / mask_data</a> / <a href="dos-e0001-speedData.html">speed_data/change / boost_data</a> )</li>
+<li>譜面ヘッダー仕様 ( <a href="dos-h0008-fadeFrame.html">fadeFrame</a> / <a href="dos-h0049-stepYR.html">stepYR</a> )</li>
+</ul>
 <h2 id="%E2%AD%90%EF%B8%8F-v6x---v7x">⭐️ v6.x -&gt; v7.x</h2>
 <ul>
 <li>矢印・フリーズアローにCSSモーション機能を実装</li>
 <li>フリーズアローヒット時の個別色変化のタイミングを変更</li>
 <li>デフォルトで選択状態にする譜面をURLで指定できる機能を実装</li>
-<li>譜面読込画面に入ったときに譜面データを再読込できるように変更</li>
-<li>タイトル・リザルトモーションのジャンプ(loop/jump)で確率でジャンプ先を変えられるように変更</li>
+<li>譜面読込画面に入ったときに譜面データ・リザルトモーションを再読込できるように変更</li>
+<li>タイトル/リザルトモーションのジャンプ(loop/jump)で
+確率でジャンプ先を変えられるように変更</li>
 <li>歌詞表示・背景/マスクモーションにおいて同一フレームの複数同時描画に対応</li>
-<li>背景/マスクモーションにおいて、深度に「ALL」を指定することで、 全てのオブジェクトを一斉クリアできるように対応</li>
+<li>背景/マスクモーションにおいて、深度に「ALL」を指定することで、
+全てのオブジェクトを一斉クリアできるように対応</li>
+<li>楽曲の終了判定タイミングを秒単位からフレーム単位に変更</li>
+<li>クリア失敗時のリザルトモーションを実装</li>
+<li>背景・マスクモーション、速度変化、色変化、歌詞表示でコメント文を実装</li>
 </ul>
 <h3 id="%F0%9F%93%94-documentation">📔 Documentation</h3>
 <ul>
 <li>譜面データによる画面効果 ( <a href="dos-e0005-motionData.html">矢印・フリーズアローモーション</a> / <a href="dos-e0004-animationData.html">back_data / mask_data</a> )</li>
+<li>譜面ヘッダー仕様 ( <a href="dos-h0046-colorDataType.html">colorDataType</a> / <a href="dos-h0047-colorCdPaddingUse.html">colorCdPaddingUse</a> / <a href="dos-h0048-resultMotionSet.html">resultMotionSet</a> )</li>
 </ul>
 <h2 id="%E2%AD%90%EF%B8%8F-v5x---v6x">⭐️ v5.x -&gt; v6.x</h2>
 <ul>
