@@ -388,7 +388,7 @@ blockquote {
 <p><a href="dos_header.html">← 譜面ヘッダー仕様に戻る</a></p>
 <h2 id="difdata">difData (*)</h2>
 <h3 id="%E4%BD%BF%E3%81%84%E6%96%B9">使い方</h3>
-<pre class="hljs"><code><div>|difData=11W,Normal,3.5,x,10,5$11W,Hard,3.5,70,2,7|
+<pre class="hljs"><code><div>|difData=11W,Normal,3.5,x,10,5$11W,Hard::tickle,3.5,70,2,7$11W,Extra::ティックル,3.5,70,2,7|
 </div></code></pre>
 <h3 id="%E8%AA%AC%E6%98%8E">説明</h3>
 <p>譜面情報を記述します。まず、&quot;$&quot;区切りで譜面ごとの設定です。<br>
@@ -414,7 +414,7 @@ blockquote {
 <tr>
 <td>2</td>
 <td>Normal</td>
-<td>対象譜面の名前を指定します。</td>
+<td>対象譜面の名前を指定します。<br>また、コロンを2つ繋いでその後に制作者名を入れると、<br>リザルトコピー他でその制作者名が表示されるようになります（制作者名の指定は任意）。</td>
 <td>Normal</td>
 </tr>
 <tr>
@@ -458,6 +458,10 @@ blockquote {
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v8.2.0">v8.2.0</a></td>
+<td>譜面別の制作者表示に対応</td>
+</tr>
 <tr>
 <td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v1.0.1">v1.0.0</a></td>
 <td>初回実装</td>
