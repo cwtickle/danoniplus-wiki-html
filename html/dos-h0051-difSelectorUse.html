@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>DOM.md</title>
+<title>dos-h0051-difSelectorUse.md</title>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 
 <style>
@@ -385,153 +385,47 @@ blockquote {
 
 </head>
 <body>
-<h1 id="%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E6%A7%8B%E6%88%90%E3%83%BB%E3%83%9C%E3%82%BF%E3%83%B3">オブジェクト構成・ボタン</h1>
-<p>Dancing☆Onigiri(CW Edition)ソースでは、<br>
-基本的にJavaScriptでDOMと呼ばれるオブジェクト構成を操作しています。</p>
-<p>いくつかコアとなるオブジェクト(スプライト)があるので、<br>
-それを押さえることでイメージがつきやすくなるかもしれません。</p>
-<p>例えばソース内において、全てのオブジェクトは「divRoot」という<br>
-1つのオブジェクト(スプライト)の上に乗っているので、<br>
-「divRoot」上のオブジェクトを全て消せば、画面をクリアしたこととほぼ同じです。<br>
-(関数で言うと、clearWindow()が同じことをやっています)</p>
-<h2 id="%E3%82%BF%E3%82%A4%E3%83%88%E3%83%AB%E7%94%BB%E9%9D%A2-titleinit">タイトル画面 (titleInit)</h2>
-<p><img src="./wiki/dom1_2.png" alt="dom1"></p>
-<p>「divRoot」というオブジェクトの上に、背景矢印があり、<br>
-その上に背景モーションが入ります。<br>
-ボタンを隠したい場合、その上のマスクモーションを使用します。</p>
-<p>主なボタン</p>
+<p><a href="dos_header.html">← 譜面ヘッダー仕様に戻る</a></p>
+<h2 id="difselectoruse">difSelectorUse</h2>
+<h3 id="%E4%BD%BF%E3%81%84%E6%96%B9">使い方</h3>
+<pre class="hljs"><code><div>|difSelectorUse=true|
+</div></code></pre>
+<h3 id="%E8%AA%AC%E6%98%8E">説明</h3>
+<p>設定画面の譜面選択を矢印カーソルだけでなく、一覧から選択させたい場合に使用します。<br>
+指定しない場合は <code>false</code>(譜面リストを生成しない)。</p>
 <table>
 <thead>
 <tr>
-<th>ボタン</th>
-<th>機能</th>
+<th>値</th>
+<th>既定</th>
+<th>内容</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Click Here!</td>
-<td>設定・オプション画面へ移行します。</td>
+<td>false</td>
+<td>*</td>
+<td>譜面リストを生成しない（譜面選択はカーソルによる移動のみ）</td>
 </tr>
 <tr>
-<td>Maker:XXX</td>
-<td>製作者のページへリンクします。(別窓)</td>
-</tr>
-<tr>
-<td>Artist:XXX</td>
-<td>アーティストさんのページへリンクします。(別窓)</td>
-</tr>
-<tr>
-<td>©2018 ティックル, CW Ver...</td>
-<td>このGitHubのページへリンクします。(別窓)</td>
+<td>true</td>
+<td></td>
+<td>譜面リストを生成する（譜面一覧から選択、ランダム選択が可能）</td>
 </tr>
 </tbody>
 </table>
-<h2 id="%E8%A8%AD%E5%AE%9A%E3%83%BB%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E7%94%BB%E9%9D%A2-optioninit">設定・オプション画面 (optionInit)</h2>
-<p><img src="./wiki/dom2.png" alt="dom2"></p>
-<p>「divRoot」の上の階層の「optionSprite」が出てきました。<br>
-「optionSprite」上には、Difficultyなどの設定項目や、それに対応するボタンが乗っかります。<br>
-オプション表示項目だけデザインを変える、といったことができるようになっています。</p>
-<p>主なボタン</p>
+<h3 id="%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E5%B1%A5%E6%AD%B4">バージョン履歴</h3>
 <table>
 <thead>
 <tr>
-<th>ボタン</th>
-<th>機能</th>
+<th>Version</th>
+<th>変更内容</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Back</td>
-<td>タイトル画面へ戻ります。</td>
-</tr>
-<tr>
-<td>KeyConfig</td>
-<td>キーコンフィグ画面へ移動します。</td>
-</tr>
-<tr>
-<td>Play</td>
-<td>今の設定でゲームを開始します。</td>
-</tr>
-</tbody>
-</table>
-<h2 id="%E3%82%AD%E3%83%BC%E3%82%B3%E3%83%B3%E3%83%95%E3%82%A3%E3%82%B0%E7%94%BB%E9%9D%A2-keyconfiginit">キーコンフィグ画面 (keyconfigInit)</h2>
-<p><img src="./wiki/dom5.png" alt="dom5"></p>
-<p>設定・オプション画面と構成は同じです。<br>
-サンプルとなるステップゾーンやカーソルが上の階層である「keyconSprite」に乗っています。</p>
-<p>主なボタン</p>
-<table>
-<thead>
-<tr>
-<th>ボタン</th>
-<th>機能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Back</td>
-<td>設定・オプション画面へ戻ります。</td>
-</tr>
-<tr>
-<td>PtnChange</td>
-<td>同一キーで別パターンがある場合、それを表示します。</td>
-</tr>
-<tr>
-<td>Reset</td>
-<td>キーの割り当てを元の状態に戻します。</td>
-</tr>
-</tbody>
-</table>
-<h2 id="%E8%AA%AD%E8%BE%BC%E7%94%BB%E9%9D%A2-loadingscoreinit">読込画面 (loadingScoreInit)</h2>
-<p><img src="./wiki/dom1.png" alt="dom1"></p>
-<p>ここもタイトルと同じです。<br>
-ただし、ここは計算が終わるとすぐにメイン画面に飛んでしまうため、<br>
-画面としての位置づけは無いに等しいです。</p>
-<h2 id="%E3%83%A1%E3%82%A4%E3%83%B3%E7%94%BB%E9%9D%A2-maininit">メイン画面 (mainInit)</h2>
-<p><img src="./wiki/dom3_2.png" alt="dom3"></p>
-<p>画面内で最もDOMを使っている箇所です。<br>
-backSprite/mainSprite/infoSprite/judgeSprite/maskSpriteは上下関係があり、<br>
-mainSpriteの中で作られたオブジェクトはinfoSpriteのいずれのオブジェクトよりも<br>
-上に来ることはありません。<br>
-これを利用して、infoSprite上に前面に表示したいオブジェクトを置くこともできます。</p>
-<p>また、これらのオブジェクトは独立しているため、<br>
-それぞれの位置・座標を変えたり、<br>
-そのオブジェクトだけアルファを掛けるといったことができます。</p>
-<h3 id="%E3%82%B9%E3%83%86%E3%83%83%E3%83%97%E3%82%BE%E3%83%BC%E3%83%B3">ステップゾーン</h3>
-<p><img src="./wiki/arrow_tree_1.png" alt="arrow_tree"></p>
-<p>ステップゾーンは本体(stepj)と矢印がヒットしたときのモーション(stepHitj)の2つの組み合わせで構成されています。<br>
-(jは矢印番号で、左から右、上から下の順で0から順に数字が割り振られます。)<br>
-ヒットモーション(stepHitj)は普段は隠れていますが、矢印とステップゾーンが重なったときに表示されます。</p>
-<h3 id="%E7%9F%A2%E5%8D%B0">矢印</h3>
-<p><img src="./wiki/arrow.png" alt="arrow"></p>
-<p>矢印は単純に1つのオブジェクト(arrowj_k)のみです。<br>
-jは矢印番号、kはその矢印が何番目の矢印かを表します。</p>
-<h3 id="%E3%83%95%E3%83%AA%E3%83%BC%E3%82%BA%E3%82%A2%E3%83%AD%E3%83%BC">フリーズアロー</h3>
-<p><img src="./wiki/frzArrow.png" alt="frzarrow"></p>
-<p>フリーズアローは開始矢印(本体・塗り）、帯、終了矢印（本体・塗り）で構成されます。<br>
-ヒット時（押しっぱなし時）は開始矢印（本体）が隠れ、開始矢印（塗り）が白色に変化します。</p>
-<h2 id="%E7%B5%90%E6%9E%9C%E7%94%BB%E9%9D%A2-resultinit">結果画面 (resultInit)</h2>
-<p><img src="./wiki/dom4_1.png" alt="dom4"></p>
-<p>タイトル画面と構成はほぼ同じです。</p>
-<p>主なボタン</p>
-<table>
-<thead>
-<tr>
-<th>ボタン</th>
-<th>機能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Back</td>
-<td>タイトル画面へ戻ります。</td>
-</tr>
-<tr>
-<td>Tweet</td>
-<td>結果内容をTwitter用に加工して、ツイート画面を表示します。</td>
-</tr>
-<tr>
-<td>Retry</td>
-<td>もう一度同じ設定でプレイします。</td>
+<td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v8.3.0">v8.3.0</a></td>
+<td>初回実装</td>
 </tr>
 </tbody>
 </table>
