@@ -387,10 +387,93 @@ blockquote {
 <body>
 <h1 id="%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89%E3%82%AC%E3%82%A4%E3%83%89-migration-guide">アップグレードガイド (Migration Guide)</h1>
 <ul>
-<li>最新の情報は<a href="https://github.com/cwtickle/danoniplus/releases/">Release</a>をご覧ください。</li>
+<li>最新の情報は<a href="https://github.com/cwtickle/danoniplus/releases">Release</a>をご覧ください。</li>
 <li>更新情報の概要については<a href="UpdateInfo.html">更新情報(UpdateInfo)</a>もご覧ください。</li>
 </ul>
-<h2 id="%E2%AD%90%EF%B8%8F-v7x---v8x">⭐️ v7.x -&gt; v8.x</h2>
+<h2 id="%E2%AD%90%EF%B8%8F-v8---v9">⭐️ v8 -&gt; v9</h2>
+<h3 id="1-%E7%9F%A2%E5%8D%B0%E3%83%BB%E3%83%95%E3%83%AA%E3%83%BC%E3%82%BA%E3%82%A2%E3%83%AD%E3%83%BC%E3%81%AE%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%83%AB%E3%83%BC%E3%83%88%E5%A4%89%E6%9B%B4">1. 矢印・フリーズアローのオブジェクトルート変更</h3>
+<ul>
+<li>以下のように変更しました。arrowSprite0/1は、mainSpriteの子要素です。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>オブジェクト</th>
+<th>v8まで</th>
+<th>v9以降</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ステップゾーン</td>
+<td>mainSprite</td>
+<td>mainSprite</td>
+</tr>
+<tr>
+<td>矢印・フリーズアロー</td>
+<td>mainSprite</td>
+<td>arrowSprite0 (スクロール方向が上向き)<br>arrowSprite1 (スクロール方向が下向き)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85">🛠 修正事項</h4>
+<ul>
+<li>通常は変更不要です。<br>
+矢印・フリーズアローを作成・削除する処理を外部から行っている場合、変更が必要です。</li>
+</ul>
+<h3 id="2-danonimaincss%E3%81%AE%E6%9B%B4%E6%96%B0%EF%BC%88v943%E3%81%AB%E3%81%A6%E6%9B%B4%E6%96%B0%E3%81%82%E3%82%8A%EF%BC%89">2. danoni_main.cssの更新（v9.4.3にて更新あり）</h3>
+<ul>
+<li>Appearance用のクリッピングマスクとして、CSSクラスを追加しています。</li>
+<li>設定画面のGaugeオプションの詳細表示で、新たにCSSクラスを追加しています。</li>
+</ul>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85%EF%BC%88%E5%BF%85%E9%A0%88%EF%BC%89">🛠 修正事項（必須）</h4>
+<ul>
+<li>danoni_main.css を入れ替えてください。</li>
+</ul>
+<h3 id="3-danonisettingjs%E3%81%AE%E6%9B%B4%E6%96%B0%EF%BC%88v942%E3%81%AB%E3%81%A6%E6%9B%B4%E6%96%B0%E3%81%82%E3%82%8A%EF%BC%89">3. danoni_setting.jsの更新（v9.4.2にて更新あり）</h3>
+<ul>
+<li>カスタムゲージ実装によりデフォルト設定以外のゲージの再設定が必要なため、一部追加が必要です。</li>
+</ul>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85%EF%BC%88%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%82%B2%E3%83%BC%E3%82%B8%E5%88%A9%E7%94%A8%E6%99%82%E5%BF%85%E9%A0%88%EF%BC%89">🛠 修正事項（カスタムゲージ利用時必須）</h4>
+<ul>
+<li>danoni_setting.js のg_presetGaugeCustom を、以下のように変更してください。<br>
+SuddenDeath以外の各数値は必要に応じて変更して問題ありません。</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment">// ゲージ設定（デフォルト以外）</span>
+<span class="hljs-keyword">const</span> g_presetGaugeCustom = {
+	<span class="hljs-attr">Easy</span>: {
+		<span class="hljs-attr">Border</span>: <span class="hljs-number">70</span>,
+		<span class="hljs-attr">Recovery</span>: <span class="hljs-number">4</span>,
+		<span class="hljs-attr">Damage</span>: <span class="hljs-number">7</span>,
+		<span class="hljs-attr">Init</span>: <span class="hljs-number">25</span>,
+	},
+	<span class="hljs-attr">Hard</span>: {
+		<span class="hljs-attr">Border</span>: <span class="hljs-string">`x`</span>,
+		<span class="hljs-attr">Recovery</span>: <span class="hljs-number">1</span>,
+		<span class="hljs-attr">Damage</span>: <span class="hljs-number">50</span>,
+		<span class="hljs-attr">Init</span>: <span class="hljs-number">100</span>,
+	},
+	<span class="hljs-attr">NoRecovery</span>: {
+		<span class="hljs-attr">Border</span>: <span class="hljs-string">`x`</span>,
+		<span class="hljs-attr">Recovery</span>: <span class="hljs-number">0</span>,
+		<span class="hljs-attr">Damage</span>: <span class="hljs-number">50</span>,
+		<span class="hljs-attr">Init</span>: <span class="hljs-number">100</span>,
+	},
+	<span class="hljs-attr">SuddenDeath</span>: {
+		<span class="hljs-attr">Border</span>: <span class="hljs-string">`x`</span>,
+		<span class="hljs-attr">Recovery</span>: <span class="hljs-number">0</span>,
+		<span class="hljs-attr">Damage</span>: setVal(g_rootObj.maxLifeVal, C_VAL_MAXLIFE, C_TYP_FLOAT),
+		<span class="hljs-attr">Init</span>: <span class="hljs-number">100</span>,
+	},
+	<span class="hljs-attr">Practice</span>: {
+		<span class="hljs-attr">Border</span>: <span class="hljs-string">`x`</span>,
+		<span class="hljs-attr">Recovery</span>: <span class="hljs-number">0</span>,
+		<span class="hljs-attr">Damage</span>: <span class="hljs-number">0</span>,
+		<span class="hljs-attr">Init</span>: <span class="hljs-number">50</span>,
+	}
+};
+</div></code></pre>
+<h2 id="%E2%AD%90%EF%B8%8F-v7---v8">⭐️ v7 -&gt; v8</h2>
 <h3 id="1-%E3%83%AA%E3%82%B6%E3%83%AB%E3%83%88%E3%83%A2%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E9%9F%B3%E6%A5%BD%E5%90%8C%E6%9C%9F%E5%8C%96">1. リザルトモーションの音楽同期化</h3>
 <ul>
 <li>リザルトモーション（backresult_data 他）について、<br>
@@ -429,7 +512,7 @@ blockquote {
 <li>通常は変更不要です。<br>
 同一譜面でどちらも指定していた場合のみ、どちらかに合わせることを推奨します。</li>
 </ul>
-<h2 id="%E2%AD%90%EF%B8%8F-v6x---v7x">⭐️ v6.x -&gt; v7.x</h2>
+<h2 id="%E2%AD%90%EF%B8%8F-v6---v7">⭐️ v6 -&gt; v7</h2>
 <h3 id="1-%E5%80%8B%E5%88%A5%E8%89%B2%E5%A4%89%E5%8C%96%E3%83%95%E3%83%AA%E3%83%BC%E3%82%BA%E3%82%A2%E3%83%AD%E3%83%BC%E3%83%92%E3%83%83%E3%83%88%E6%99%82%E3%81%AE%E3%82%BF%E3%82%A4%E3%83%9F%E3%83%B3%E3%82%B0%E5%A4%89%E6%9B%B4">1. 個別色変化(フリーズアローヒット時)のタイミング変更</h3>
 <ul>
 <li><a href="dos-e0002-colorData.html">個別色変化(color_data)</a>においてフリーズアローヒット時の色のタイミングが変わりました。</li>
@@ -477,7 +560,7 @@ blockquote {
 <ul>
 <li>danoni_main.css を入れ替えてください。</li>
 </ul>
-<h2 id="%E2%AD%90%EF%B8%8F-v5x---v6x">⭐️ v5.x -&gt; v6.x</h2>
+<h2 id="%E2%AD%90%EF%B8%8F-v5---v6">⭐️ v5 -&gt; v6</h2>
 <h3 id="1-%E3%83%A9%E3%82%A4%E3%83%95%E3%82%B2%E3%83%BC%E3%82%B8%EF%BC%88%E5%88%9D%E6%9C%9F%EF%BC%89%E3%81%AE%E5%80%A4%E5%A4%89%E6%9B%B4">1. ライフゲージ（初期）の値変更</h3>
 <ul>
 <li>ライフ上限値を可変にしたため、ライフゲージ（初期）の値(lifeInit)の取り方が変わりました。</li>
@@ -505,7 +588,7 @@ blockquote {
 <li>通常はありませんが、カスタム側で強制的に<code>lifeInit</code>を変更する処理を入れていた場合、<br>
 値の見直し（数値を10で割る）が必要です。</li>
 </ul>
-<h2 id="%E2%AD%90%EF%B8%8F-v4x---v5x">⭐️ v4.x -&gt; v5.x</h2>
+<h2 id="%E2%AD%90%EF%B8%8F-v4---v5">⭐️ v4 -&gt; v5</h2>
 <h3 id="1-%E5%A4%89%E6%95%B0%E5%90%8D%E3%81%AE%E5%A4%89%E6%9B%B4">1. 変数名の変更</h3>
 <ul>
 <li>コード集約により、変数名の一部が変わりました。</li>
@@ -545,13 +628,13 @@ blockquote {
 <ul>
 <li>danoni_main.css を入れ替えてください。</li>
 </ul>
-<h2 id="%E2%AD%90%EF%B8%8F-v3x---v4x">⭐️ v3.x -&gt; v4.x</h2>
+<h2 id="%E2%AD%90%EF%B8%8F-v3---v4">⭐️ v3 -&gt; v4</h2>
 <ul>
 <li>特にありません。</li>
 <li>v4.x以降、<a href="LocalStorage.html">ローカルストレージ保存</a>機能が有効となり、<br>
 ハイスコア等のデータが保存されるようになります。</li>
 </ul>
-<h2 id="%E2%AD%90%EF%B8%8F-v2x---v3x">⭐️ v2.x -&gt; v3.x</h2>
+<h2 id="%E2%AD%90%EF%B8%8F-v2---v3">⭐️ v2 -&gt; v3</h2>
 <h3 id="1-%E8%A8%AD%E5%AE%9A%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB-danonisettingjs%E3%81%AE%E8%BF%BD%E5%8A%A0">1. 設定ファイル (danoni_setting.js)の追加</h3>
 <ul>
 <li>作品群全体の設定ファイル(danoni_setting.js)が追加されました。</li>
@@ -592,14 +675,14 @@ blockquote {
 <ul>
 <li>設定画面の上からカスタムでデザインを変えている場合、位置調整が必要です。</li>
 </ul>
-<h2 id="%E2%AD%90%EF%B8%8F-v1x---v2x">⭐️ v1.x -&gt; v2.x</h2>
+<h2 id="%E2%AD%90%EF%B8%8F-v1---v2">⭐️ v1 -&gt; v2</h2>
 <h3 id="1-danonicustomjs%E3%81%AE%E8%A6%8B%E7%9B%B4%E3%81%97">1. danoni_custom.jsの見直し</h3>
 <ul>
 <li>従来のcustomファイルより、共通部分がdanoni_main.jsへ移動しました。</li>
 </ul>
 <h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85%EF%BC%88%E5%BF%85%E9%A0%88%EF%BC%89">🛠 修正事項（必須）</h4>
 <ul>
-<li><a href="for_ver2.1.0">ver2.1.0への移行について</a>をご覧ください。</li>
+<li><a href="for_ver2.1.0.html">ver2.1.0への移行について</a>をご覧ください。</li>
 </ul>
 
 </body>

@@ -436,7 +436,7 @@ blockquote {
     <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"Content-Style-Type"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"text/css"</span>&gt;</span>
 
     <span class="hljs-comment">&lt;!--// Dan☆Oniで使用するJavascript, CSSファイル。このページ用の別CSSファイル等も指定できる。下記は必須。 //--&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"../js/danoni_main.js"</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"../js/danoni_main.js"</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/css"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"../css/danoni_main.css"</span>&gt;</span>
 
   <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
@@ -518,7 +518,7 @@ swfファイルはFlash版のみの話なので、上記のhtmlファイルが�
     <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"Content-Style-Type"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"text/css"</span>&gt;</span>
 
     <span class="hljs-comment">&lt;!--// Dan☆Oniで使用するJavascript, CSSファイル。このページ用の別CSSファイル等も指定できる。下記は必須。 //--&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"../js/danoni_main.js"</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"../js/danoni_main.js"</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/css"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"../css/danoni_main.css"</span>&gt;</span>
 
   <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
@@ -577,6 +577,42 @@ swfファイルはFlash版のみの話なので、上記のhtmlファイルが�
 <span class="hljs-string">`;
 }//
 </span></div></code></pre>
+<h2 id="%E5%8F%82%E8%80%83%EF%BC%9A%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E8%A8%AD%E5%AE%9A">参考：その他の設定</h2>
+<h3 id="%E8%AD%9C%E9%9D%A2%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AEuri%E3%83%87%E3%82%B3%E3%83%BC%E3%83%89%E8%A8%AD%E5%AE%9A">譜面データのURIデコード設定</h3>
+<ul>
+<li>例えば「%26」が「&amp;」に変換されます。デフォルトはURIデコードしません。
+有効化するには、HTML側に以下を記述する必要があります。</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"hidden"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"enableDecodeURI"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"enableDecodeURI"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"true"</span>&gt;</span>
+</div></code></pre>
+<h3 id="%E8%AD%9C%E9%9D%A2%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E5%8C%BA%E5%88%87%E3%82%8A%E5%8F%AF%E5%90%A6%E3%81%AE%E8%A8%AD%E5%AE%9A">譜面データの&amp;区切り可否の設定</h3>
+<ul>
+<li>&amp;区切りをやめることで、曲名やURLに&amp;が使えるようになります。
+デフォルトは&amp;, |区切りの両方を許容します。
+&amp;区切りをやめるには、HTML側に以下を記述します。</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"hidden"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"enableAmpersandSplit"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"enableAmpersandSplit"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"false"</span>&gt;</span>
+</div></code></pre>
+<h3 id="%E8%AD%9C%E9%9D%A2%E6%AF%8E%E3%81%AE%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E5%88%86%E5%89%B2%E8%A8%AD%E5%AE%9A">譜面毎のファイル分割設定</h3>
+<ul>
+<li><code>externalDos</code>と組み合わせて使用します。デフォルトは分割しない（false）設定です。<br>
+分割した場合、下記の例であれば1譜面目は「musicscore.txt」、2譜面目は「musicscore2.txt」、3譜面目は「musicscore3.txt」、・・・となります。</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment">&lt;!--// 外部dos定義 //--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"hidden"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"externalDos"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"externalDos"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"musicscore.txt"</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!--// 譜面分割フラグ（valueを"true"にすると譜面毎にファイル分割） //--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"hidden"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"externalDosDivide"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"externalDosDivide"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"true"</span>&gt;</span>
+</div></code></pre>
+<ul>
+<li>また通常の場合、譜面番号は2譜面目なら「2」、3譜面目なら「3」となりますが、
+ファイル分割しても譜面番号を変えたくないケースもあると思います。
+その場合は下記の設定を追加すれば可能です。
+（常に<code>left_data</code>, <code>down_data</code>のように数字無しの譜面データが読み込まれる）</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment">&lt;!--// 譜面番号固定フラグ（valueを"true"にすると譜面番号が変わっても譜面番号は1譜面目と同じ） //--&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"hidden"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"externalDosLock"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"externalDosLock"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"true"</span>&gt;</span>
+</div></code></pre>
 
 </body>
 </html>

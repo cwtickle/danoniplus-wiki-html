@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>dos-h0022-gaugeX.md</title>
+<title>dos-h0053-customGauge.md</title>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 
 <style>
@@ -386,165 +386,48 @@ blockquote {
 </head>
 <body>
 <p><a href="dos_header.html">← 譜面ヘッダー仕様に戻る</a></p>
-<h2 id="gaugenormal-gaugeeasy-gaugehardbr%E3%83%8E%E3%83%AB%E3%83%9E%E5%88%B6%E3%82%B2%E3%83%BC%E3%82%B8">gaugeNormal / gaugeEasy / gaugeHard<br>(ノルマ制ゲージ)</h2>
+<h2 id="customgauge">customGauge</h2>
 <h3 id="%E4%BD%BF%E3%81%84%E6%96%B9">使い方</h3>
-<pre class="hljs"><code><div>|gaugeEasy=70,2,5,40$70,5,7,30|
+<pre class="hljs"><code><div>|customGauge=Original::F,Normal::V,Escape::V|
+
+|gaugeOriginal=x,4,60,25$x,3,20,25|
+|gaugeNormal=50,70,1,25$x,3,25,25|
+|gaugeEscape=0,1,50,100$x,5,30,25|
 </div></code></pre>
 <h3 id="%E8%AA%AC%E6%98%8E">説明</h3>
-<p>ゲージパラメータの設定を記述します。</p>
-<p>gaugeNormal, gaugeEasy, gaugeHardがそれぞれNormal, Easy, Hardゲージの設定です。<br>
-&quot;$&quot;区切りで譜面ごとの設定で、<br>
-さらにカンマ区切りでノルマ割合、ライフ増加・減少割合、初期ライフ割合を指定します。<br>
-カンマ区切りの内容は次の通りです。</p>
-<table>
-<thead>
-<tr>
-<th>番号</th>
-<th>設定例</th>
-<th>内容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>70</td>
-<td>対象譜面が達成すべきノルマ率を0～100で指定します。<br>0を指定した場合、ライフが0になるとゲームオーバーです。</td>
-</tr>
-<tr>
-<td>2</td>
-<td>2</td>
-<td>対象譜面のライフ増加割合を0～100で指定します。</td>
-</tr>
-<tr>
-<td>3</td>
-<td>5</td>
-<td>対象譜面のライフ減少割合を0～100で指定します。</td>
-</tr>
-<tr>
-<td>4</td>
-<td>40</td>
-<td>対象譜面の初期ライフ割合を0～100で指定します。</td>
-</tr>
-</tbody>
-</table>
-<h3 id="%E6%9C%AA%E8%A8%AD%E5%AE%9A%E6%99%82%E3%81%AE%E6%97%A2%E5%AE%9A%E5%80%A4%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6-%E3%83%8E%E3%83%AB%E3%83%9E%E5%88%B6%E3%82%B2%E3%83%BC%E3%82%B8">未設定時の既定値について (ノルマ制ゲージ)</h3>
-<p>当パラメータが未設定の場合、<code>danoni_setting.js</code>を参照します。<br>
-そこにも定義されていない場合は、下記の値が適用されます。</p>
-<table>
-<thead>
-<tr>
-<th>ゲージ種類</th>
-<th>ノルマ</th>
-<th>回復割合</th>
-<th>ダメージ割合</th>
-<th>初期ライフ割合</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Normal</td>
-<td>70%</td>
-<td>2</td>
-<td>7</td>
-<td>25%</td>
-</tr>
-<tr>
-<td>Easy</td>
-<td>70%</td>
-<td>4</td>
-<td>7</td>
-<td>25%</td>
-</tr>
-<tr>
-<td>Hard</td>
-<td>0</td>
-<td>1</td>
-<td>50</td>
-<td>100%</td>
-</tr>
-</tbody>
-</table>
-<p>1譜面目の設定をgauge***で行っているが2譜面目の設定はない場合、一律以下の設定になります。<br>
-→ノルマ70%、ライフ増加2、ライフ減少7、初期ライフ25%</p>
-<h2 id="gaugeoriginal-gaugelight-gaugenorecoverybr%E3%83%A9%E3%82%A4%E3%83%95%E5%88%B6%E3%82%B2%E3%83%BC%E3%82%B8">gaugeOriginal / gaugeLight / gaugeNoRecovery<br>(ライフ制ゲージ)</h2>
-<h3 id="%E4%BD%BF%E3%81%84%E6%96%B9">使い方</h3>
-<pre class="hljs"><code><div>|gaugeLight=x,20,70,30$x,30,40,30|
-|gaugeNoRecovery=x,0,100,100$|
+<ul>
+<li><a href="dos-h0022-gaugeX">gaugeX</a>と合わせて使用します。</li>
+<li>カンマ区切りで、ゲージ設定毎の設定を行います。<br>
+「ゲージ名::回復/ダメージ量設定」の組み合わせで設定します。<br>
+回復/ダメージ量設定は、「F」なら矢印数によらず固定、<br>
+「V」なら矢印数により変動します。</li>
+<li>ライフ制/ノルマ制の区別は各個別のゲージ設定(<a href="dos-h0022-gaugeX.html">gaugeX</a>)にて行います。<br>
+このため、ノルマ制ながら回復/ダメージ量は固定にするといった設定が可能になります。</li>
+</ul>
+<h3 id="%E8%A3%9C%E8%B6%B3">補足</h3>
+<ul>
+<li>カスタムゲージを指定した場合は <a href="dos-h0022-gaugeX.html">gaugeX</a> の指定 もしくは<br>
+<code>danoni_setting.js</code>の<code>g_presetGaugeCustom</code>の設定が必須です。<br>
+また、OriginalとNormalがデフォルトゲージで無い場合についても、<br>
+設定が必須となります。ご注意ください。</li>
+<li>原則、ライフ設定は <a href="dos-h0002-difData.html">difData</a> ではなく <a href="dos-h0022-gaugeX.html">gaugeX</a> で行い、<br>
+自動設定されているゲージ設定についても、個別に設定してください。</li>
+<li>カスタムゲージを設定した場合、その作品全体でゲージ設定が共有されます。<br>
+特定の譜面だけ別のゲージ名を採用することはできません。設定値は譜面毎に設定できます。</li>
+<li><code>danoni_setting.js</code>の<code>g_presetGaugeCustom</code>に追加するゲージ設定を記載することで<br>
+どの作品に対してもカスタムゲージを適用できるようになります。</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment">// ゲージ設定（デフォルト以外）</span>
+<span class="hljs-keyword">const</span> g_presetGaugeCustom = {
+	<span class="hljs-comment">// (省略)</span>
+	Escape: {
+		<span class="hljs-attr">Border</span>: <span class="hljs-number">70</span>,
+		<span class="hljs-attr">Recovery</span>: <span class="hljs-number">1</span>,
+		<span class="hljs-attr">Damage</span>: <span class="hljs-number">50</span>,
+		<span class="hljs-attr">Init</span>: <span class="hljs-number">70</span>,
+	},
+};
 </div></code></pre>
-<h3 id="%E8%AA%AC%E6%98%8E">説明</h3>
-<p>ゲージパラメータの設定を記述します。</p>
-<p>gaugeOriginal, gaugeLight, gaugeNoRecoveryがそれぞれOriginal, Light, NoRecoveryゲージの設定です。<br>
-&quot;$&quot;区切りで譜面ごとの設定で、<br>
-さらにカンマ区切りでノルマ割合、<strong>ライフ増加・減少量(固定)</strong>、初期ライフ割合を指定します。<br>
-カンマ区切りの内容は次の通りです。</p>
-<table>
-<thead>
-<tr>
-<th>番号</th>
-<th>設定例</th>
-<th>内容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>x</td>
-<td>x固定。</td>
-</tr>
-<tr>
-<td>2</td>
-<td>30</td>
-<td>対象譜面の<strong>ライフ増加量</strong>を指定します。</td>
-</tr>
-<tr>
-<td>3</td>
-<td>70</td>
-<td>対象譜面の<strong>ライフ減少量</strong>を指定します。</td>
-</tr>
-<tr>
-<td>4</td>
-<td>40</td>
-<td>対象譜面の初期ライフ割合を0～100で指定します。</td>
-</tr>
-</tbody>
-</table>
-<h3 id="%E6%9C%AA%E8%A8%AD%E5%AE%9A%E6%99%82%E3%81%AE%E6%97%A2%E5%AE%9A%E5%80%A4%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6-%E3%83%A9%E3%82%A4%E3%83%95%E5%88%B6%E3%82%B2%E3%83%BC%E3%82%B8">未設定時の既定値について (ライフ制ゲージ)</h3>
-<p>当パラメータが未設定の場合、<code>danoni_setting.js</code>を参照します。<br>
-そこにも定義されていない場合は、下記の値が適用されます。</p>
-<table>
-<thead>
-<tr>
-<th>ゲージ種類</th>
-<th>ノルマ</th>
-<th>回復量</th>
-<th>ダメージ量</th>
-<th>初期ライフ割合</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Original</td>
-<td>-</td>
-<td>6</td>
-<td>40</td>
-<td>25%</td>
-</tr>
-<tr>
-<td>Light</td>
-<td>-</td>
-<td>12</td>
-<td>40</td>
-<td>25%</td>
-</tr>
-<tr>
-<td>NoRecovery</td>
-<td>-</td>
-<td>0</td>
-<td>50</td>
-<td>100%</td>
-</tr>
-</tbody>
-</table>
 <h3 id="%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E5%B1%A5%E6%AD%B4">バージョン履歴</h3>
 <table>
 <thead>
@@ -556,14 +439,6 @@ blockquote {
 <tbody>
 <tr>
 <td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v9.4.0">v9.4.0</a></td>
-<td>・gaugeXXXを実装（XXXは任意のカスタムゲージ名）。</td>
-</tr>
-<tr>
-<td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v6.5.0">v6.5.0</a></td>
-<td>・gaugeOriginal / gaugeLight / gaugeNoRecovery (ライフ制ゲージ)を実装。<br>・既定値をゲージ設定ごとに個別設定できるように変更。</td>
-</tr>
-<tr>
-<td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v1.5.0">v1.5.0</a></td>
 <td>初回実装</td>
 </tr>
 </tbody>
