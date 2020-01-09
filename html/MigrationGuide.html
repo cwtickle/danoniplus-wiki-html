@@ -390,6 +390,76 @@ blockquote {
 <li>最新の情報は<a href="https://github.com/cwtickle/danoniplus/releases">Release</a>をご覧ください。</li>
 <li>更新情報の概要については<a href="UpdateInfo.html">更新情報(UpdateInfo)</a>もご覧ください。</li>
 </ul>
+<h2 id="%E2%AD%90%EF%B8%8F-v10---v11">⭐️ v10 -&gt; v11</h2>
+<h3 id="1-danonicontentsjs%E3%81%AE%E6%9B%B4%E6%96%B0">1. danoni_contents.jsの更新</h3>
+<ul>
+<li>キーコンフィグの見直しを行っています。</li>
+</ul>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85%EF%BC%88%E5%BF%85%E9%A0%88%EF%BC%89">🛠 修正事項（必須）</h4>
+<ul>
+<li>danoni_contents.js を入れ替えてください。（./js/lib にあります）</li>
+</ul>
+<h3 id="2-danoniskindefaultlight-skybluecss-%E3%81%AE%E6%9B%B4%E6%96%B0%EF%BC%88v1011%E4%BB%A5%E5%89%8D%E3%81%8B%E3%82%89%E3%81%AE%E6%9B%B4%E6%96%B0%E3%81%AE%E3%81%BF%EF%BC%89">2. danoni_skin_default(light, skyblue).css の更新（v10.1.1以前からの更新のみ）</h3>
+<ul>
+<li>v10.2.1より、Reverse / Scroll の色設定を追加しています。</li>
+</ul>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85">🛠 修正事項</h4>
+<ul>
+<li>v10.1.1以前からの更新の場合、skinフォルダにある以下のファイルを入れ替えてください。
+<ul>
+<li>danoni_skin_default.css</li>
+<li>danoni_skin_light.css</li>
+<li>danoni_skin_skyblue.css</li>
+</ul>
+</li>
+</ul>
+<h2 id="%E2%AD%90%EF%B8%8F-v9---v10">⭐️ v9 -&gt; v10</h2>
+<h3 id="1-%E3%82%B9%E3%82%AD%E3%83%B3%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E8%BF%BD%E5%8A%A0%E3%83%BB%E7%94%BB%E5%83%8F%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E5%90%8D%E5%A4%89%E6%9B%B4">1. スキンファイル追加・画像ファイル名変更</h3>
+<ul>
+<li><a href="UpdateInfo-v10.html">更新情報(UpdateInfo-v10)</a>にも追記していますが、<br>
+スキン実装によりファイルが追加・変更されています。</li>
+</ul>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85-%E5%BF%85%E9%A0%88">🛠 修正事項 (必須)</h4>
+<ul>
+<li>cssフォルダ、imgフォルダを v10 のものに入れ替えてください。<br>
+また、skinフォルダをcss, imgフォルダと同じ階層に置いてください。<br>
+※danoni_custom.js, danoni_setting.jsの入れ替えは不要です。</li>
+</ul>
+<h3 id="2-%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2%E3%81%AEoptionsprite%E4%BD%8D%E7%BD%AE%E5%A4%89%E6%9B%B4">2. 設定画面のoptionsprite位置変更</h3>
+<ul>
+<li>設定画面の各項目を覆うoptionspriteについて、背景色を塗ったときに欠けが起こらないよう、位置を調整しました。</li>
+</ul>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85">🛠 修正事項</h4>
+<ul>
+<li>optionsprite上に別オブジェクトを配置している場合、X方向に25px, Y方向に20pxを足してください。</li>
+</ul>
+<h3 id="3-%E3%82%B9%E3%83%86%E3%83%83%E3%83%97%E3%82%BE%E3%83%BC%E3%83%B3%E3%81%AE%E3%82%B0%E3%83%AB%E3%83%BC%E3%83%97%E5%8C%96">3. ステップゾーンのグループ化</h3>
+<ul>
+<li>ステップゾーン関係のオブジェクトが<code>stepRootX</code>で一律管理されるようになりました。</li>
+</ul>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85">🛠 修正事項</h4>
+<ol>
+<li>座標変更している作品は<code>stepX</code> -&gt; <code>stepRootX</code> へ変更が必要です。</li>
+</ol>
+<pre class="hljs"><code><div>    <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">`#step0`</span>).style.left = <span class="hljs-string">`50px`</span>;  <span class="hljs-comment">// 変更前</span>
+    <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">`#stepRoot0`</span>).style.left = <span class="hljs-string">`50px`</span>;  <span class="hljs-comment">// 変更後</span>
+</div></code></pre>
+<ol start="2">
+<li>またステップゾーンに回転を加えている場合、
+指定するオブジェクトにより指定する回転数が異なります。
+（既存作品については、手間でも構成オブジェクト個々に回転数を指定した方が無難です。）
+<ul>
+<li><code>stepRootX</code> (ステップゾーンルート)：
+生成時点からの<strong>相対値</strong> (最初が60度、移動後が90度なら指定する値は30度)</li>
+<li><code>stepX</code>, <code>stepDivX</code>, <code>stepHitX</code> (ステップゾーン構成オブジェクト)：
+指定した<strong>絶対値</strong>そのまま (移動後が90度なら、指定する値は最初によらず90度固定)</li>
+</ul>
+</li>
+</ol>
+<pre class="hljs"><code><div>    <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">`#step0`</span>).style.transform = <span class="hljs-string">`rotate(180deg)`</span>; 
+    <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">`#stepHit0`</span>).style.transform = <span class="hljs-string">`rotate(180deg)`</span>; 
+    <span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">`#stepDiv0`</span>).style.transform = <span class="hljs-string">`rotate(180deg)`</span>;   <span class="hljs-comment">// 新たに追加</span>
+</div></code></pre>
 <h2 id="%E2%AD%90%EF%B8%8F-v8---v9">⭐️ v8 -&gt; v9</h2>
 <h3 id="1-%E7%9F%A2%E5%8D%B0%E3%83%BB%E3%83%95%E3%83%AA%E3%83%BC%E3%82%BA%E3%82%A2%E3%83%AD%E3%83%BC%E3%81%AE%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%83%AB%E3%83%BC%E3%83%88%E5%A4%89%E6%9B%B4">1. 矢印・フリーズアローのオブジェクトルート変更</h3>
 <ul>

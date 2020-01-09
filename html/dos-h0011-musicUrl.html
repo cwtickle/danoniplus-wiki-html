@@ -391,6 +391,7 @@ blockquote {
 <pre class="hljs"><code><div>|musicUrl=PetitMagie.mp3|
 |musicUrl=PetitMagie.js|
 |musicUrl=rainbow.mp3$rainbow2.js|
+|musicUrl=(..)PetitMagie.mp3|  // 作品ページと同じフォルダを参照
 </div></code></pre>
 <h3 id="%E8%AA%AC%E6%98%8E">説明</h3>
 <ol>
@@ -438,7 +439,15 @@ musicUrlの値は、「jsファイル」もしくは「txtファイル」とし�
 <h3 id="%E8%A3%9C%E8%B6%B3">補足</h3>
 <p>ver4.0.0以降、&quot;$&quot;区切りで複数曲指定できるようになりました。<br>
 musicTitleの&quot;$&quot;区切り、musicNoの番号と連動します。</p>
-<h3 id="%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E5%B1%A5%E6%AD%B4">バージョン履歴</h3>
+<h3 id="%E9%96%A2%E9%80%A3%E9%A0%85%E7%9B%AE">関連項目</h3>
+<ul>
+<li><a href="dos-h0001-musicTitle"><strong>musicTitle</strong></a> (*, ★.html)  楽曲／楽曲クレジット</li>
+<li><a href="dos-h0002-difData"><strong>difData</strong></a> (*, ★.html)  譜面情報</li>
+<li><a href="dos-h0012-musicNo.html">musicNo</a>  楽曲ファイルと譜面の対応付け</li>
+<li><a href="dos-h0013-musicFolder.html">musicFolder</a>  楽曲ファイルの格納先</li>
+<li><a href="dos-h0010-playbackRate.html"><strong>playbackRate</strong></a>  楽曲再生速度（主にテストプレイ用）</li>
+</ul>
+<h3 id="%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B4">更新履歴</h3>
 <table>
 <thead>
 <tr>
@@ -447,6 +456,10 @@ musicTitleの&quot;$&quot;区切り、musicNoの番号と連動します。</p>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v10.0.0">v10.0.0</a></td>
+<td><code>(..)</code>を先頭に指定することで作品ページと同じフォルダを参照するように変更</td>
+</tr>
 <tr>
 <td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v4.0.0">v4.0.0</a></td>
 <td>&quot;$&quot;区切りで複数曲指定できるように変更</td>
