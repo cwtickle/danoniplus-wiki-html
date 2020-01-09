@@ -385,6 +385,7 @@ blockquote {
 
 </head>
 <body>
+
 <h1 id="parafla%E3%82%BD%E3%83%BC%E3%82%B9%E5%88%A9%E7%94%A8%E8%80%85%E5%90%91%E3%81%91-%E4%BD%9C%E5%93%81%E7%A7%BB%E8%A1%8C%E6%96%B9%E6%B3%95">ParaFla!ソース利用者向け 作品移行方法</h1>
 <h2 id="%E3%82%BD%E3%83%BC%E3%82%B9%E4%B8%80%E5%BC%8F%E3%82%92%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89">ソース一式をダウンロード</h2>
 <p>Clone or Download より、一式をダウンロードします。<br>
@@ -428,6 +429,8 @@ blockquote {
 <li>譜面ファイル (dos.txt)</li>
 <li>楽曲ファイル (通常、mp3ファイル)</li>
 <li>htmlファイル (「danoni」フォルダにあるサンプルの流用を推奨）</li>
+<li>ブラウザ (Chrome, VivaldiなどBlink系のブラウザを推奨)</li>
+<li>Xampp (ローカルプレイ時に必要です。<a href="HowToLocalPlay.html">インストール・設定方法はこちら</a>)</li>
 </ul>
 <h2 id="%E5%AE%9F%E9%9A%9B%E3%81%AE%E3%82%B3%E3%83%B3%E3%83%90%E3%83%BC%E3%83%88%E6%96%B9%E6%B3%95">実際のコンバート方法</h2>
 <h3 id="%E8%AD%9C%E9%9D%A2%E3%81%AE%E3%82%B3%E3%83%B3%E3%83%90%E3%83%BC%E3%83%88">譜面のコンバート</h3>
@@ -445,7 +448,7 @@ blockquote {
 デフォルトのままなら200のはず。</p>
 <p>この状態で、譜面ファイルの中身を全て選択し、<br>
 サンプルページのソースにある下記の間に入れます。<br>
-<code>&lt;input type=&quot;hidden&quot; name=&quot;dos&quot; id=&quot;dos&quot; value='＜ここに譜面ファイルを入れる＞'&gt;</code></p>
+<code>&lt;input type=&quot;hidden&quot; name=&quot;dos&quot; id=&quot;dos&quot; value='＜ここに譜面ファイルを入れる＞'&gt;  </code></p>
 <p>実際にはこんな感じになるはずです。改行OK。<br>
 この中で囲ったものがDan☆Oniのコア部分になります。</p>
 <pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"hidden"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"dos"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"dos"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">'
@@ -460,13 +463,13 @@ blockquote {
    |tuning=ティックル,http://cw7.sakura.ne.jp/|
 '</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"canvas-frame"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"width:600px;margin:auto;"</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">canvas</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"layer0"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"600"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"500"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">canvas</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">canvas</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"layer1"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"600"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"500"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">canvas</span>&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">canvas</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"layer0"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"600"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"500"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">canvas</span>&gt;</span> <span class="hljs-comment">&lt;!-- v10以降、この行は不要 --&gt;</span>
+   <span class="hljs-tag">&lt;<span class="hljs-name">canvas</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"layer1"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"600"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"500"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">canvas</span>&gt;</span> <span class="hljs-comment">&lt;!-- v10以降、この行は不要 --&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 </div></code></pre>
 <p>サンプルのhtmlファイルを利用しない場合は、<br>
 以下の2行を&lt;head&gt;タグ内に入れてください。</p>
-<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"../js/danoni_main.js"</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"../js/danoni_main.js"</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/css"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"../css/danoni_main.css"</span>&gt;</span>
 </div></code></pre>
 <h3 id="%E9%9F%B3%E6%A5%BD%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E6%A0%BC%E7%B4%8D">音楽ファイルの格納</h3>

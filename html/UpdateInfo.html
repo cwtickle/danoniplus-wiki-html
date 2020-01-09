@@ -388,8 +388,46 @@ blockquote {
 <h1 id="%E6%9B%B4%E6%96%B0%E6%83%85%E5%A0%B1-updateinfo">更新情報 (UpdateInfo)</h1>
 <ul>
 <li>新機能を中心にまとめています。</li>
-<li>最新の情報は<a href="https://github.com/cwtickle/danoniplus/releases">Release</a>をご覧ください。</li>
+<li>最新の情報は<a href="../../releases">Release</a>をご覧ください。</li>
 <li>アップグレードについては<a href="MigrationGuide.html">アップグレードガイド(Migration Guide)</a>もご覧ください。</li>
+</ul>
+<h2 id="%E2%AD%90%EF%B8%8F-v11">⭐️ v11</h2>
+<ul>
+<li>Displayオプションのデフォルト設定を追加</li>
+<li>カスタム用のDisplayオプション「Special」を追加</li>
+<li>判定キャラクタの下にFast/Slow/Just表記を追加</li>
+<li>判定キャラクタの位置調整機能を追加</li>
+<li>5keyのKeyPattern: 3(おにぎり中央)の既定のキーコンフィグを変更</li>
+<li>7keyの既定のキーコンフィグを追加</li>
+<li>下側の歌詞表示位置をステップゾーン位置に追随させる設定を追加</li>
+<li>判定キャラクタ、ReadyのY座標を下側のステップゾーン位置(stepYR)に合わせて<br>
+自動調整するように変更</li>
+</ul>
+<h3 id="%F0%9F%93%94-documentation">📔 Documentation</h3>
+<ul>
+<li>譜面ヘッダー仕様 ( <a href="dos-h0057-displayUse.html">displayUse</a> / <a href="dos-h0058-jdgY.html">arrowJdgY / frzJdgY</a> / <a href="dos-h0059-bottomWordSet.html">bottomWordSet</a> )</li>
+</ul>
+<h2 id="%E2%AD%90%EF%B8%8F-v10">⭐️ v10</h2>
+<ul>
+<li>スキン機能の実装</li>
+<li>背景・マスクに対象拡張子のデータがあれば、自動でpreloadする機能を実装</li>
+<li>danoni_setting.js をグループごとに分けられるように変更</li>
+<li>js, css, skinフォルダ配下のファイル指定に対してカレントディレクトリ指定に対応</li>
+<li>danoni_custom.js や danoni_setting.js が無くても動作するように変更</li>
+<li>Canvasタグを使用しなくても動作するように変更</li>
+<li>MacOS, iOS (Safari)において動作しない問題を修正 (v5, v8, v9にも適用済)</li>
+<li>スクロール拡張（Cross / Split / Flat 他）に対応</li>
+<li>矢印のヒット部分を押したタイミングに応じて変わるように変更</li>
+<li>矢印名で指定できる種類を拡張<br>
+（ある程度任意の名前を指定しても、フリーズアローが自動で対応するように変更）</li>
+</ul>
+<h3 id="%F0%9F%93%94-documentation">📔 Documentation</h3>
+<ul>
+<li><a href="UpdateInfo-v10.html">更新情報 (UpdateInfo-v10)</a></li>
+<li><a href="MigrationGuide.html">アップグレードガイド</a></li>
+<li><a href="AboutSource.html">ソースの構成</a></li>
+<li>譜面ヘッダー仕様 ( <a href="dos-h0011-musicUrl.html">musicUrl</a> / <a href="dos-h0019-customjs.html">customjs</a> / <a href="dos-h0054-skinType.html">skinType</a> / <a href="dos-h0056-settingType.html">settingType</a> / <a href="dos-h0055-autoPreload.html">autoPreload</a> / <a href="dos-h0035-settingUse.html">scrollUse</a> )</li>
+<li>譜面データによる画面効果 ( [word_data](dos-e0003-wordData.html / <a href="dos-e0004-animationData.html">back_data / mask_data</a> )</li>
 </ul>
 <h2 id="%E2%AD%90%EF%B8%8F-v9">⭐️ v9</h2>
 <ul>
@@ -418,7 +456,7 @@ blockquote {
 </ul>
 <h3 id="%F0%9F%93%94-documentation">📔 Documentation</h3>
 <ul>
-<li><a href="HowToMake.html">譜面の作成概要</a></li>
+<li><a href="HowtoMake.html">譜面の作成概要</a></li>
 <li>譜面データによる画面効果 ( <a href="dos-e0004-animationData.html">back_data / mask_data</a> / <a href="dos-e0001-speedData.html">speed_data/change / boost_data</a> )</li>
 <li>譜面ヘッダー仕様 ( <a href="dos-h0001-musicTitle.html">musicTitle</a> / <a href="dos-h0002-difData.html">difData</a> / <a href="dos-h0008-fadeFrame.html">fadeFrame</a> / <a href="dos-h0049-stepYR.html">stepYR</a> / <a href="dos-h0050-makerView.html">makerView</a> / <a href="dos-h0051-difSelectorUse.html">difSelectorUse</a> )</li>
 <li><a href="LocalStorage.html">ローカルストレージ仕様</a></li>

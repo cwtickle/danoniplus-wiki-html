@@ -386,17 +386,18 @@ blockquote {
 </head>
 <body>
 <p><a href="dos_header.html">← 譜面ヘッダー仕様に戻る</a></p>
-<h2 id="motionuse-shuffleuse-autoplayuse-gaugeuse-appearanceuse">motionUse / shuffleUse / autoPlayUse / gaugeUse / appearanceUse</h2>
-<p>[ver3.x以降]</p>
+<h2 id="motionuse-scrolluse-shuffleuse-autoplayuse-gaugeuse-appearanceuse">motionUse / scrollUse / shuffleUse / autoPlayUse / gaugeUse / appearanceUse</h2>
 <h3 id="%E4%BD%BF%E3%81%84%E6%96%B9">使い方</h3>
 <pre class="hljs"><code><div>|motionUse=false|
+|scrollUse=false|
 |shuffleUse=false|
 |autoPlayUse=false|
 |gaugeUse=false|
 |appearanceUse=false|
 </div></code></pre>
 <h3 id="%E8%AA%AC%E6%98%8E">説明</h3>
-<p>設定画面の項目「Motion」「Shuffle」「AutoPlay」「Gauge」「Appearance」を作品の都合上使用させない場合に使用します。</p>
+<p>設定画面の項目「Motion」「Scroll」「Shuffle」「AutoPlay」「Gauge」「Appearance」を作品の都合上使用させない場合に使用します。<br>
+「ScrollUse」については、falseにした場合でもReverseは設定可能です。</p>
 <table>
 <thead>
 <tr>
@@ -418,7 +419,19 @@ blockquote {
 </tr>
 </tbody>
 </table>
-<h3 id="%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E5%B1%A5%E6%AD%B4">バージョン履歴</h3>
+<h3 id="%E4%BD%BF%E7%94%A8%E4%BE%8B">使用例</h3>
+<ul>
+<li>上記の「使い方」に記載のオプションを全て適用（使用禁止）した場合</li>
+</ul>
+<p><img src="./wiki/dos-h0035-01.png" alt="dos-h0035-01.png"></p>
+<h3 id="%E9%96%A2%E9%80%A3%E9%A0%85%E7%9B%AE">関連項目</h3>
+<ul>
+<li><a href="dos-h0057-displayUse.html">displayUse</a>  Display項目の利用有無</li>
+<li><a href="dos-h0024-transKeyUse.html">transKeyUse</a>  別キーモードの利用有無</li>
+<li><a href="dos-h0053-customGauge.html">customGauge</a>  カスタムゲージ設定</li>
+<li><a href="dos-h0022-gaugeX.html"><strong>gaugeX</strong></a>  ゲージ設定の詳細</li>
+</ul>
+<h3 id="%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B4">更新履歴</h3>
 <table>
 <thead>
 <tr>
@@ -427,6 +440,10 @@ blockquote {
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v10.2.1">v10.2.1</a></td>
+<td>スクロール拡張実装に伴い、Scrollの利用有無設定を追加</td>
+</tr>
 <tr>
 <td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v9.0.0">v9.0.0</a></td>
 <td>Appearance実装に伴い、Appearanceの利用有無設定を追加</td>

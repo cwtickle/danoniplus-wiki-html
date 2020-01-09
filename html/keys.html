@@ -386,7 +386,7 @@ blockquote {
 </head>
 <body>
 <h1 id="%E3%82%AD%E3%83%BC%E3%81%AE%E4%BB%95%E6%A7%98%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">キーの仕様について</h1>
-<p><img src="./wiki/keys1.png" alt="keys" width="600"></p>
+<p><img src="./wiki/keys1.png" alt="keys"></p>
 <p>Dan☆Oniの各キーは、キーとパターンの組み合わせから成っています。<br>
 以下であれば、11keyの1番目（0番目）のパターンであることを示します。</p>
 <pre>
@@ -458,6 +458,16 @@ pos<b>11</b>_<b>0</b>
 <td>keyTitleBackX_Y</td>
 <td>タイトルバックキー</td>
 <td>プレイ中ショートカットで、タイトルバックが行えるキーのキーコードを指定。<br>デフォルトは46(Delete)。</td>
+</tr>
+<tr>
+<td>scrollNameX</td>
+<td>スクロール拡張名</td>
+<td>スクロール拡張で使用する名前。デフォルトは<code>---</code>。</td>
+</tr>
+<tr>
+<td>scrollDirX_Y</td>
+<td>スクロール拡張の方向設定</td>
+<td>矢印毎の方向設定。「1」は下から上へ、「-1」は上から下へ流れる。</td>
 </tr>
 </tbody>
 </table>
@@ -617,6 +627,10 @@ keyCtrlの場合、代替キー指定はスラッシュ(/)で区切ります。<
 <tr>
 <td>keyTitleBackX</td>
 <td>keyTitleBack6=46</td>
+</tr>
+<tr>
+<td>scrollX</td>
+<td>scroll6=Cross::1,1,-1,-1,1,1/Split::1,1,1,-1,-1,-1/Alternate::1,-1,1,-1,1,-1$Cross::1,1,-1,-1,1,1/Split::1,1,1,-1,-1,-1/Alternate::1,-1,1,-1,1,-1</td>
 </tr>
 </tbody>
 </table>

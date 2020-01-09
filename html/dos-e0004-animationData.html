@@ -427,7 +427,8 @@ blockquote {
 <h3 id="%E3%83%87%E3%83%BC%E3%82%BF%E5%90%8D%E3%81%AE%E7%A8%AE%E9%A1%9E">データ名の種類</h3>
 <p>設定を行う画面により、データ名が異なります。<br>
 back_data, mask_dataはメイン画面用のため、譜面別にデータを持たせることができます。<br>
-メイン(リバース)は未指定の場合、メイン(通常)のものが採用されます。</p>
+メイン(リバース)は未指定の場合、メイン(通常)のものが採用されます。<br>
+メイン(Cross, Split 他)についても同様です。</p>
 <table>
 <thead>
 <tr>
@@ -451,6 +452,11 @@ back_data, mask_dataはメイン画面用のため、譜面別にデータを持
 <td>メイン(リバース)</td>
 <td>backRev_data, <br>backRev2_data, <br>...</td>
 <td>maskRev_data, <br>maskRev2_data, <br>...</td>
+</tr>
+<tr>
+<td>メイン(Cross, Split 他)</td>
+<td>backAlt_data, <br>backAlt2_data, <br>...</td>
+<td>maskAlt_data, <br>maskAlt2_data, <br>...</td>
 </tr>
 <tr>
 <td>リザルト(クリア時)</td>
@@ -770,7 +776,17 @@ back_data, mask_dataはメイン画面用のため、譜面別にデータを持
 </tr>
 </tbody>
 </table>
-<h3 id="%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E5%B1%A5%E6%AD%B4">バージョン履歴</h3>
+<h3 id="%E9%96%A2%E9%80%A3%E9%A0%85%E7%9B%AE">関連項目</h3>
+<ul>
+<li><a href="dos-h0057-displayUse.html">displayUse</a>  Display項目の利用有無</li>
+<li><a href="dos-h0043-masktitleButton.html">masktitleButton</a>  タイトル画面上のボタン群の有効/無効設定</li>
+<li><a href="dos-h0044-maskresultButton.html">maskresultButton</a>  リザルト画面上のボタン群の有効/無効設定</li>
+<li><a href="dos-h0048-resultMotionSet.html">resultMotionSet</a>  リザルトモーションのON/OFF設定</li>
+<li><a href="dos-h0021-preloadImages.html"><strong>preloadImages</strong></a>  画像ファイルの事前読み込み設定</li>
+<li><a href="dos-h0055-autoPreload.html"><strong>autoPreload</strong></a>  画像ファイルの自動読み込み設定</li>
+<li><a href="dos-e0003-wordData.html">歌詞表示 (word_data)</a>(★)</li>
+</ul>
+<h3 id="%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B4">更新履歴</h3>
 <table>
 <thead>
 <tr>
@@ -779,6 +795,10 @@ back_data, mask_dataはメイン画面用のため、譜面別にデータを持
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v10.2.1">v10.2.1</a></td>
+<td>・スクロール拡張設定用背景・マスクモーション<br>(backAlt_data, maskAlt_data)の実装</td>
+</tr>
 <tr>
 <td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v9.1.0">v9.1.0</a></td>
 <td>・背景／マスクモーションの適用順序設定を追加<br>（リザルトモーションと同様の設定）</td>
