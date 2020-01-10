@@ -1,4 +1,6 @@
 # Dancing☆Onigiri (CW Edition) Wiki-html
+[![Netlify Status](https://api.netlify.com/api/v1/badges/710f284d-1d4d-4322-ac49-778595d3547e/deploy-status)](https://app.netlify.com/sites/danoniplus-wiki/deploys)
+
 ## 概要
 - [Dancing☆Onigiri (CW Edition)](https://github.com/cwtickle/danoniplus) Wikiをローカルへダウンロードし、閲覧できるようにしたものです。
 - このようなイメージでダウンロードできます。-> [サンプル](https://cwtickle.github.io/danoniplus-wiki-html/)
