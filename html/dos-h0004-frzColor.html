@@ -382,13 +382,13 @@ blockquote {
 }
 
 </style>
-
 </head>
 <body>
 <p><a href="dos_header.html">← 譜面ヘッダー仕様に戻る</a></p>
 <h2 id="frzcolor">frzColor (*)</h2>
 <h3 id="%E4%BD%BF%E3%81%84%E6%96%B9">使い方</h3>
 <pre class="hljs"><code><div>|frzColor=#00ffff,#6600ff,#ffff66,#ffff66$#ff00ff,#ff6600,#ffff66,#ffff66|
+|frzColor=#00ffff:#00ff00,#6600ff:#9900ff,#ffff66:#ffff99,#ffff66$#ff00ff,#ff6600,#ffff66,#ffff66|
 </div></code></pre>
 <h3 id="%E8%AA%AC%E6%98%8E">説明</h3>
 <p>フリーズアロー色を指定します。指定の仕方は、「#ffffff」もしくは「0xffffff」の形式です。<br>
@@ -397,13 +397,16 @@ blockquote {
 フリーズアロー色を変えることができます。</p>
 <p>ParaFlaではこういう場合、基本的には矢印色変化を行う必要がありましたが、<br>
 「frzColor」で最初からある程度制御できるようになりました。</p>
+<p>また、ver12以降<a href="dos-c0001-gradation.html">コロン(:)区切りによるグラデーション</a>に対応しています。</p>
 <h3 id="%E9%96%A2%E9%80%A3%E9%A0%85%E7%9B%AE">関連項目</h3>
 <ul>
-<li><a href="dos-h0047-colorCdPaddingUse.html">colorCdPaddingUse</a>  初期矢印色/フリーズアロー色のゼロパディング有無設定</li>
-<li><a href="dos-h0003-setColor.html"><strong>setColor</strong></a> (*, ★)  矢印色</li>
-<li><a href="dos-h0041-setShadowColor.html">setShadowColor</a>  矢印の内側を塗りつぶす設定および色の設定</li>
-<li><a href="dos-h0032-titlegrd.html">titlegrd</a>  タイトルグラデーション</li>
+<li><a href="dos-h0047-colorCdPaddingUse.html">colorCdPaddingUse</a> 初期矢印色/フリーズアロー色のゼロパディング有無設定</li>
+<li><a href="dos-h0003-setColor.html"><strong>setColor</strong></a> (*, ★) 矢印色</li>
+<li><a href="dos-h0041-setShadowColor.html">setShadowColor</a> 矢印の内側を塗りつぶす設定および色の設定</li>
+<li><a href="dos-h0061-defaultColorgrd.html">defaultColorgrd</a> 自動グラデーション設定</li>
+<li><a href="dos-h0032-titlegrd.html">titlegrd / titlearrowgrd</a> タイトルグラデーション</li>
 <li><a href="dos-e0002-colorData.html">色変化 (acolor_data, color_data)</a>(★)</li>
+<li><a href="dos-c0001-gradation.html">グラデーション仕様</a></li>
 </ul>
 <h3 id="%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B4">更新履歴</h3>
 <table>
@@ -414,6 +417,10 @@ blockquote {
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v12.0.0">v12.0.0</a></td>
+<td>グラデーション記述に対応</td>
+</tr>
 <tr>
 <td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v1.0.1">v1.0.0</a></td>
 <td>初回実装</td>
