@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>dos-h0003-setColor.md</title>
+<title>dos-c0001-gradation.md</title>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 
 <style>
@@ -384,31 +384,62 @@ blockquote {
 </style>
 </head>
 <body>
-<p><a href="dos_header.html">← 譜面ヘッダー仕様に戻る</a></p>
-<h2 id="setcolor">setColor (*)</h2>
+<p><a href="dos_header.html">← 譜面ヘッダー仕様に戻る</a><br>
+<a href="dos_effect.html">← 譜面データによる画面効果に戻る</a></p>
+<h2 id="%E3%82%B0%E3%83%A9%E3%83%87%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E4%BB%95%E6%A7%98%EF%BC%88%E5%85%B1%E9%80%9A%EF%BC%89">グラデーション仕様（共通）</h2>
 <h3 id="%E4%BD%BF%E3%81%84%E6%96%B9">使い方</h3>
-<pre class="hljs"><code><div>|setColor=#9999ff,#ccffff,#ffffff,#ffff99,#ff9966|
-|setColor=#ffcccc:#ffffff@radial-gradient,#ff9999:#ffff99@conic-gradient,#ffffff,#ffff99,#ff9966|
+<pre>
+|setColor=<b>#99ff66:#66ff99</b>,#9999ff,#ffffff,#ff9999,#ffff99|
+|titlegrd=<b>#ffff99:#ff9999@radial-gradient</b>|
+|color_data=
+300,20,<b>45deg:#ffff99:#ffffff:#9999ff</b>
+400,20,<b>#ffff99:#ffffff:#9999ff@radial-gradient</b>
+500,20,<b>#ffff99:#ffffff:#9999ff@conic-gradient</b>
+|
+</pre>
+<h3 id="%E8%A8%98%E8%BF%B0%E4%BB%95%E6%A7%98">記述仕様</h3>
+<pre class="hljs"><code><div>グラデーション記述(コロン区切りで記述)@グラデーションの種類
 </div></code></pre>
-<h3 id="%E8%AA%AC%E6%98%8E">説明</h3>
-<p>矢印色を指定します。指定の仕方は、「#ffffff」もしくは「0xffffff」の形式です。<br>
-カンマ区切りで5つの色を指定すると、キー数によって自動で色を振り分けてくれます。<br>
-(ランダムではなく、キー数によって決まっています)<br>
-また、ver12以降<a href="dos-c0001-gradation.html">コロン(:)区切りによるグラデーション</a>に対応しています。</p>
-<h3 id="%E5%8F%82%E8%80%83%EF%BC%9Asetcolor%E3%81%A7%E5%89%B2%E3%82%8A%E5%BD%93%E3%81%A6%E3%82%89%E3%82%8C%E3%81%9F%E8%89%B2%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">参考：setColorで割り当てられた色について</h3>
 <ul>
-<li>割り当て色は、キーコンフィグ画面で確認できます。</li>
+<li>グラデーション種類を省略した場合：linear-gradient が指定されます。</li>
+<li>linear-gradient でグラデーション方向を省略した場合：to rightが指定されます。</li>
+<li>矢印色1種類を指定した場合：グラデーションのない単色になります。
+（実際はlinear-gradientで開始色と終了色が同じ）</li>
 </ul>
-<p><img src="./wiki/dos-h0003-01.png" alt="dos-h0003-01.png"></p>
+<h3 id="%E4%BD%BF%E7%94%A8%E3%81%A7%E3%81%8D%E3%82%8B%E3%82%B0%E3%83%A9%E3%83%87%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E7%A8%AE%E9%A1%9E">使用できるグラデーションの種類</h3>
+<table>
+<thead>
+<tr>
+<th>種類</th>
+<th>グラデーションの方法・記述仕様</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>linear-<br>gradient</td>
+<td>線形のグラデーション。指定が無い場合のデフォルトです。<br><code>(グラデーション方向):(カラーコード1):(カラーコード2)...</code> のように指定します。<br>グラデーション方向は省略可能で、省略した場合は「to right」です。</td>
+</tr>
+<tr>
+<td>radial-<br>gradient</td>
+<td>放射グラデーション(中心から放射)。<br><code>(カラーコード1):(カラーコード2)...</code> のように指定します。</td>
+</tr>
+<tr>
+<td>conic-<br>gradient</td>
+<td>放射グラデーション(中心点の周りを回りながら色が変化)。<br><code>(カラーコード1):(カラーコード2)...</code> のように指定します。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="%E8%A3%9C%E8%B6%B3">補足</h3>
+<ul>
+<li><code>linear-gradient</code>及び<code>repeating-linear-gradient</code>のグラデーションの方向を変えたい場合は、先頭に「45deg」「to top right」などをつけることで変更することができます。</li>
+<li>カラーコード指定が原則です。色名指定も可能ですが、意図しない動きになることがありますのでご注意ください。</li>
+</ul>
 <h3 id="%E9%96%A2%E9%80%A3%E9%A0%85%E7%9B%AE">関連項目</h3>
 <ul>
-<li><a href="dos-h0047-colorCdPaddingUse.html">colorCdPaddingUse</a> 初期矢印色/フリーズアロー色のゼロパディング有無設定</li>
+<li><a href="dos-h0003-setColor.html"><strong>setColor</strong></a> (*, ★) 矢印色</li>
 <li><a href="dos-h0004-frzColor.html"><strong>frzColor</strong></a> (*, ★) フリーズアロー色</li>
-<li><a href="dos-h0041-setShadowColor.html">setShadowColor</a> 矢印の内側を塗りつぶす設定および色の設定</li>
-<li><a href="dos-h0061-defaultColorgrd.html">defaultColorgrd</a> 自動グラデーション設定</li>
-<li><a href="dos-h0032-titlegrd.html">titlegrd / titlearrowgrd</a> タイトルグラデーション</li>
+<li><a href="dos-h0032-titlegrd.html">titlegrd / titlearrowgrd</a> グラデーション</li>
 <li><a href="dos-e0002-colorData.html">色変化 (acolor_data, color_data)</a>(★)</li>
-<li><a href="dos-c0001-gradation.html">グラデーション仕様</a></li>
 </ul>
 <h3 id="%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B4">更新履歴</h3>
 <table>
@@ -421,11 +452,7 @@ blockquote {
 <tbody>
 <tr>
 <td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v12.0.0">v12.0.0</a></td>
-<td>グラデーション記述に対応</td>
-</tr>
-<tr>
-<td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v1.0.1">v1.0.0</a></td>
-<td>初回実装</td>
+<td>・初期実装</td>
 </tr>
 </tbody>
 </table>

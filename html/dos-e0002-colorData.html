@@ -382,7 +382,6 @@ blockquote {
 }
 
 </style>
-
 </head>
 <body>
 <p><a href="dos_effect.html">← 譜面データによる画面効果に戻る</a></p>
@@ -391,10 +390,10 @@ blockquote {
 <pre class="hljs"><code><div>|color_data=202,20,0xffffff,204,21,0xcccccc,206,23,0xccccff,1283,23,0xaa99ff|
 
 |color_data=
-202,20,0xffffff
-204,21,0xcccccc
-206,23,0xccccff
-1283,23,0xaa99ff
+202,20,#ffffff
+204,21,#ffcccc:#ffffff@radial-gradient
+206,23,45deg:#ccccff:#ccfffff
+1283,23,#aa99ff
 |
 </div></code></pre>
 <p>3つで1セット。&quot;acolor_data&quot;が画面全体の矢印色変化(全体即時適用)、<br>
@@ -428,7 +427,7 @@ blockquote {
 <td>3</td>
 <td>ColorCode</td>
 <td>#aa99ff</td>
-<td>カラーコード。0x始まり、#始まりどちらも使用できます。</td>
+<td>カラーコード。0x始まり、#始まりどちらも使用できます。<br>また、<a href="dos-c0001-gradation.html">コロン(:)区切りによるグラデーション</a>に対応しています。</td>
 </tr>
 </tbody>
 </table>
@@ -642,8 +641,10 @@ blockquote {
 </ul>
 <h3 id="%E9%96%A2%E9%80%A3%E9%A0%85%E7%9B%AE">関連項目</h3>
 <ul>
-<li><a href="dos-h0057-displayUse.html">displayUse</a>  Display項目の利用有無</li>
-<li><a href="dos-h0046-colorDataType.html">colorDataType</a>  色変化の過去互換設定</li>
+<li><a href="dos-h0057-displayUse.html">displayUse</a> Display項目の利用有無</li>
+<li><a href="dos-h0046-colorDataType.html">colorDataType</a> 色変化の過去互換設定</li>
+<li><a href="dos-h0061-defaultColorgrd.html">defaultColorgrd</a> 自動グラデーション設定</li>
+<li><a href="dos-c0001-gradation.html">グラデーション仕様</a></li>
 </ul>
 <h3 id="%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B4">更新履歴</h3>
 <table>
@@ -654,6 +655,10 @@ blockquote {
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v12.0.0">v12.0.0</a></td>
+<td>・グラデーション記述に対応</td>
+</tr>
 <tr>
 <td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v7.9.0">v7.9.0</a></td>
 <td>・コメント行を実装</td>

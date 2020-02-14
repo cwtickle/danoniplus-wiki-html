@@ -382,7 +382,6 @@ blockquote {
 }
 
 </style>
-
 </head>
 <body>
 <h1 id="%E6%9C%AC%E4%BD%93%E3%81%AE%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%82%A2%E3%83%83%E3%83%97%E6%96%B9%E6%B3%95">本体のバージョンアップ方法</h1>
@@ -394,6 +393,7 @@ blockquote {
 <img src="./wiki/danoniVersion.png" width="400"></li>
 </ol>
 <h2 id="%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%82%A2%E3%83%83%E3%83%97%E6%96%B9%E6%B3%95%EF%BC%88git%E3%82%92%E5%88%A9%E7%94%A8%E3%81%97%E3%81%AA%E3%81%84%E5%A0%B4%E5%90%88%EF%BC%89">バージョンアップ方法（Gitを利用しない場合）</h2>
+<p>※メジャーバージョンアップを伴う場合、下記の「メジャーバージョンアップを含む更新を行う場合」もご覧ください。</p>
 <ol start="2">
 <li><a href="https://github.com/cwtickle/danoniplus/releases">Releases</a>へアクセスします。</li>
 </ol>
@@ -493,22 +493,36 @@ blockquote {
 </tr>
 </tbody>
 </table>
-<h3 id="%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%82%A2%E3%83%83%E3%83%97%E3%81%97%E3%81%A6%E3%82%82%E3%81%86%E3%81%BE%E3%81%8F%E5%8B%95%E4%BD%9C%E3%81%97%E3%81%AA%E3%81%84%E3%81%A8%E3%81%8D">バージョンアップしてもうまく動作しないとき</h3>
+<h3 id="%E3%83%A1%E3%82%B8%E3%83%A3%E3%83%BC%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E3%82%A2%E3%83%83%E3%83%97%E3%82%92%E5%90%AB%E3%82%80%E6%9B%B4%E6%96%B0%E3%82%92%E8%A1%8C%E3%81%86%E5%A0%B4%E5%90%88">メジャーバージョンアップを含む更新を行う場合</h3>
 <ul>
 <li>
-<p>上記の「現バージョンと最新バージョンとの差分を確認する方法」に記載の<br>
-「v6.4.0 -&gt; v6.5.0」もしくは「XX Commits」をクリックすると下記画面になります。<br>
-このとき、「XX files changed」と書かれた部分に着目してください。<br>
-<img src="./wiki/danoniRelease4_2.png" width="600"></p>
+<p>v11からv12など、しばらく更新しなかった場合には<code>danoni_main.js</code>の他に<br>
+変更が必要なファイルがある場合があります。<br>
+事前に、ダンおにのフォルダ一式を別の場所にコピーしておくと良いです。</p>
 </li>
 <li>
-<p>下にスクロールさせると、「XX changed files」というリンクがあるので<br>
-クリックすると、最新バージョンまでに変更のあったファイルの一覧が表示されます。<br>
-この一覧より、拡張子が「.js」「.css」に変更があったファイルで、<br>
+<p>Release画面より、「compare」ボタンを押して<br>
+現在適用中のバージョンをクリックしてください。<br>
+<img src="./wiki/danoniRelease6.png" width="600"></p>
+</li>
+<li>
+<p>適用中のバージョンと最新を比較した画面が表示されます。<br>
+「files changed XX」と書かれた場所をクリックするとファイルの変更状況が見えるので、<br>
+さらに「XX changed files」のリンクをクリックしてください。<br>
+変更が必要なファイルの一覧が表示されます。
+<img src="./wiki/danoniRelease7.png" width="600"></p>
+</li>
+<li>
+<p>この一覧より、拡張子が「.js」「.css」に変更があったファイルで、<br>
 ダウンロードしていないものがあれば最新の「Release」より、<br>
 「Source code(zip)」一式をダウンロードして表示されたファイルを上書きしてください。<br>
 (ただし、danoni_custom.jsは中身を確認したうえで上書きが必要か確認してください。)
-<img src="./wiki/danoniRelease5.png" width="600"></p>
+<img src="./wiki/danoniRelease8.png" width="600"></p>
+</li>
+<li>
+<p>メジャーバージョンアップの場合、直近のRelease状況（Recent Changes）や<br>
+<a href="MigrationGuide.html">アップグレードガイド</a>を参照して、他に変更が必要な箇所が無いか確認してから<br>
+更新を行ってください。</p>
 </li>
 </ul>
 

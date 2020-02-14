@@ -382,44 +382,70 @@ blockquote {
 }
 
 </style>
-
 </head>
 <body>
 <h1 id="%E6%9B%B4%E6%96%B0%E6%83%85%E5%A0%B1-updateinfo">更新情報 (UpdateInfo)</h1>
 <ul>
 <li>新機能を中心にまとめています。</li>
-<li>最新の情報は<a href="../../releases">Release</a>をご覧ください。</li>
+<li>最新の情報は<a href="https://github.com/cwtickle/danoniplus/releases">Release</a>をご覧ください。</li>
 <li>アップグレードについては<a href="MigrationGuide.html">アップグレードガイド(Migration Guide)</a>もご覧ください。</li>
+</ul>
+<h2 id="%E2%AD%90%EF%B8%8F-v12">⭐️ v12</h2>
+<ul>
+<li>矢印色、フリーズアロー色の<strong>グラデーション</strong>を実装</li>
+<li>常時グラデーション設定の追加</li>
+<li>タイトル曲名、背景矢印のグラデーション拡張を実装</li>
+<li><strong>レベル計算</strong>ツール++の移植</li>
+</ul>
+<h3 id="%F0%9F%92%A1-feature-updates">💡 Feature Updates</h3>
+<ul>
+<li><a href="https://github.com/cwtickle/danoniplus/releases/tag/v12.0.0"><strong>v12.0.0</strong></a></li>
+</ul>
+<h3 id="%F0%9F%93%94-documentation">📔 Documentation</h3>
+<ul>
+<li><a href="dos-c0001-gradation.html">グラデーション仕様</a></li>
+<li>譜面ヘッダー仕様 ( <a href="dos-h0003-setColor.html">setColor</a> / <a href="dos-h0004-frzColor.html">frzColor</a> / <a href="dos-h0032-titlegrd.html">titlegrd / titlearrowgrd</a> / <a href="dos-h0061-defaultColorgrd.html">defaultColorgrd</a> )</li>
+<li>譜面データによる画面効果 ( <a href="dos-e0002-colorData.html">acolor/color_data</a> )</li>
 </ul>
 <h2 id="%E2%AD%90%EF%B8%8F-v11">⭐️ v11</h2>
 <ul>
 <li>Displayオプションのデフォルト設定を追加</li>
 <li>カスタム用のDisplayオプション「Special」を追加</li>
-<li>判定キャラクタの下にFast/Slow/Just表記を追加</li>
+<li>判定キャラクタの下に<strong>Fast/Slow/Just</strong>表記を追加</li>
 <li>判定キャラクタの位置調整機能を追加</li>
 <li>5keyのKeyPattern: 3(おにぎり中央)の既定のキーコンフィグを変更</li>
 <li>7keyの既定のキーコンフィグを追加</li>
 <li>下側の歌詞表示位置をステップゾーン位置に追随させる設定を追加</li>
 <li>判定キャラクタ、ReadyのY座標を下側のステップゾーン位置(stepYR)に合わせて<br>
 自動調整するように変更</li>
+<li><strong>速度変化の遷移グラフ、譜面密度分布グラフ</strong>の実装</li>
+</ul>
+<h3 id="%F0%9F%92%A1-feature-updates">💡 Feature Updates</h3>
+<ul>
+<li><a href="https://github.com/cwtickle/danoniplus/releases/tag/v11.4.0">v11.4.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v11.3.0"><strong>v11.3.0</strong></a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v11.1.2">v11.1.2</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v11.0.0"><strong>v11.0.0</strong></a></li>
 </ul>
 <h3 id="%F0%9F%93%94-documentation">📔 Documentation</h3>
 <ul>
-<li>譜面ヘッダー仕様 ( <a href="dos-h0057-displayUse.html">displayUse</a> / <a href="dos-h0058-jdgY.html">arrowJdgY / frzJdgY</a> / <a href="dos-h0059-bottomWordSet.html">bottomWordSet</a> )</li>
+<li>譜面ヘッダー仕様 ( <a href="dos-h0057-displayUse.html">displayUse</a> / <a href="dos-h0058-jdgY.html">arrowJdgY / frzJdgY</a> / <a href="dos-h0059-bottomWordSet.html">bottomWordSet</a> / <a href="dos-h0060-scoreDetailUse.html">scoreDetailUse</a> )</li>
 </ul>
 <h2 id="%E2%AD%90%EF%B8%8F-v10">⭐️ v10</h2>
 <ul>
-<li>スキン機能の実装</li>
-<li>背景・マスクに対象拡張子のデータがあれば、自動でpreloadする機能を実装</li>
-<li>danoni_setting.js をグループごとに分けられるように変更</li>
-<li>js, css, skinフォルダ配下のファイル指定に対してカレントディレクトリ指定に対応</li>
+<li><strong>スキン</strong>機能の実装</li>
+<li>背景・マスクに対象拡張子のデータがあれば、<strong>自動でpreload</strong>する機能を実装</li>
+<li>danoni_setting.js を<strong>グループごとに分けられる</strong>ように変更</li>
+<li>js, css, skinフォルダ配下のファイル指定に対して<strong>カレントディレクトリ指定</strong>に対応<br>
+(skinType, settingType, musicUrl, customjs でファイルの先頭に(..) を付加することで可能)</li>
 <li>danoni_custom.js や danoni_setting.js が無くても動作するように変更</li>
 <li>Canvasタグを使用しなくても動作するように変更</li>
-<li>MacOS, iOS (Safari)において動作しない問題を修正 (v5, v8, v9にも適用済)</li>
-<li>スクロール拡張（Cross / Split / Flat 他）に対応</li>
+<li><strong>MacOS, iOS</strong> (Safari)において動作しない問題を修正 (v5, v8, v9にも適用済)</li>
+<li><strong>スクロール拡張</strong>（Cross / Split / Flat 他）に対応</li>
 <li>矢印のヒット部分を押したタイミングに応じて変わるように変更</li>
 <li>矢印名で指定できる種類を拡張<br>
 （ある程度任意の名前を指定しても、フリーズアローが自動で対応するように変更）</li>
+</ul>
+<h3 id="%F0%9F%92%A1-feature-updates">💡 Feature Updates</h3>
+<ul>
+<li><a href="https://github.com/cwtickle/danoniplus/releases/tag/v10.4.0">v10.4.0</a>  / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v10.2.1"><strong>v10.2.1</strong></a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v10.1.1">v10.1.1</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v10.0.0"><strong>v10.0.0</strong></a></li>
 </ul>
 <h3 id="%F0%9F%93%94-documentation">📔 Documentation</h3>
 <ul>
@@ -427,14 +453,18 @@ blockquote {
 <li><a href="MigrationGuide.html">アップグレードガイド</a></li>
 <li><a href="AboutSource.html">ソースの構成</a></li>
 <li>譜面ヘッダー仕様 ( <a href="dos-h0011-musicUrl.html">musicUrl</a> / <a href="dos-h0019-customjs.html">customjs</a> / <a href="dos-h0054-skinType.html">skinType</a> / <a href="dos-h0056-settingType.html">settingType</a> / <a href="dos-h0055-autoPreload.html">autoPreload</a> / <a href="dos-h0035-settingUse.html">scrollUse</a> )</li>
-<li>譜面データによる画面効果 ( [word_data](dos-e0003-wordData.html / <a href="dos-e0004-animationData.html">back_data / mask_data</a> )</li>
+<li>譜面データによる画面効果 ( <a href="dos-e0003-wordData.html">word_data</a> / <a href="dos-e0004-animationData.html">back_data / mask_data</a> )</li>
 </ul>
 <h2 id="%E2%AD%90%EF%B8%8F-v9">⭐️ v9</h2>
 <ul>
-<li>Appearanceオプションの実装</li>
-<li>Ready表示の遅延フレーム設定を追加</li>
+<li><strong>Appearance</strong>オプションの実装</li>
+<li>Ready表示の<strong>遅延フレーム設定</strong>を追加</li>
 <li>リバース用のword_dataを実装</li>
-<li>カスタムゲージ設定の実装</li>
+<li><strong>カスタムゲージ設定</strong>の実装</li>
+</ul>
+<h3 id="%F0%9F%92%A1-feature-updates">💡 Feature Updates</h3>
+<ul>
+<li><a href="https://github.com/cwtickle/danoniplus/releases/tag/v9.4.2">v9.4.2</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v9.4.0"><strong>v9.4.0</strong></a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v9.3.0">v9.3.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v9.2.0">v9.2.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v9.1.0">v9.1.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v9.0.0"><strong>v9.0.0</strong></a></li>
 </ul>
 <h3 id="%F0%9F%93%94-documentation">📔 Documentation</h3>
 <ul>
@@ -443,16 +473,20 @@ blockquote {
 </ul>
 <h2 id="%E2%AD%90%EF%B8%8F-v8">⭐️ v8</h2>
 <ul>
-<li>タイトル/リザルトモーションの音楽同期に対応</li>
+<li>タイトル/リザルトモーションの<strong>音楽同期</strong>に対応</li>
 <li>リザルトモーションを譜面別に作成できるように変更</li>
-<li>楽曲のフェードアウト長を指定できるように変更</li>
+<li><strong>楽曲のフェードアウト長</strong>を指定できるように変更</li>
 <li>速度変化表記 (speed_data/change) の統一</li>
 <li>ステップゾーン(下)位置を変更できる設定を追加</li>
-<li>制作者表示の複数化に対応（設定画面・結果画面・リザルトコピー）</li>
+<li><strong>制作者表示の複数化</strong>に対応（設定画面・結果画面・リザルトコピー）</li>
 <li>曲名（複数行）を1行で表示する場合に間を空白で埋めない（全角で埋める）設定を追加</li>
-<li>譜面変更用のセレクターを実装</li>
-<li>譜面毎のファイル分割に対応</li>
+<li>譜面変更用の<strong>セレクター</strong>を実装</li>
+<li><strong>譜面毎のファイル分割</strong>に対応</li>
 <li>譜面をファイル分割した場合に、譜面番号を常時固定するかどうかの設定を追加</li>
+</ul>
+<h3 id="%F0%9F%92%A1-feature-updates">💡 Feature Updates</h3>
+<ul>
+<li><a href="https://github.com/cwtickle/danoniplus/releases/tag/v8.7.0">v8.7.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v8.5.0"><strong>v8.5.0</strong></a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v8.4.0">v8.4.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v8.3.0"><strong>v8.3.0</strong></a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v8.2.0">v8.2.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v8.1.0">v8.1.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v8.0.4">v8.0.4</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v8.0.0"><strong>v8.0.0</strong></a></li>
 </ul>
 <h3 id="%F0%9F%93%94-documentation">📔 Documentation</h3>
 <ul>
@@ -463,18 +497,22 @@ blockquote {
 </ul>
 <h2 id="%E2%AD%90%EF%B8%8F-v7">⭐️ v7</h2>
 <ul>
-<li>矢印・フリーズアローにCSSモーション機能を実装</li>
+<li>矢印・フリーズアローに<strong>CSSモーション</strong>機能を実装</li>
 <li>フリーズアローヒット時の個別色変化のタイミングを変更</li>
 <li>デフォルトで選択状態にする譜面をURLで指定できる機能を実装</li>
 <li>譜面読込画面に入ったときに譜面データ・リザルトモーションを再読込できるように変更</li>
 <li>タイトル/リザルトモーションのジャンプ(loop/jump)で<br>
-確率でジャンプ先を変えられるように変更</li>
-<li>歌詞表示・背景/マスクモーションにおいて同一フレームの複数同時描画に対応</li>
+<strong>確率でジャンプ先を変えられる</strong>ように変更</li>
+<li>歌詞表示・背景/マスクモーションにおいて<strong>同一フレームの複数同時描画</strong>に対応</li>
 <li>背景/マスクモーションにおいて、深度に「ALL」を指定することで、<br>
-全てのオブジェクトを一斉クリアできるように対応</li>
-<li>楽曲の終了判定タイミングを秒単位からフレーム単位に変更</li>
+全てのオブジェクトを<strong>一斉クリア</strong>できるように対応</li>
+<li>楽曲の終了判定タイミングを秒単位から<strong>フレーム単位</strong>に変更</li>
 <li>クリア失敗時のリザルトモーションを実装</li>
-<li>背景・マスクモーション、速度変化、色変化、歌詞表示でコメント文を実装</li>
+<li>背景・マスクモーション、速度変化、色変化、歌詞表示で<strong>コメント文</strong>を実装</li>
+</ul>
+<h3 id="%F0%9F%92%A1-feature-updates">💡 Feature Updates</h3>
+<ul>
+<li><a href="https://github.com/cwtickle/danoniplus/releases/tag/v7.9.0"><strong>v7.9.0</strong></a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v7.8.1">v7.8.1</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v7.8.0"><strong>v7.8.0</strong></a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v7.7.0"><strong>v7.7.0</strong></a> /  <a href="https://github.com/cwtickle/danoniplus/releases/tag/v7.6.0">v7.6.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v7.5.0"><strong>v7.5.0</strong></a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v7.4.0">v7.4.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v7.3.0"><strong>v7.3.0</strong></a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v7.1.0">v7.1.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v7.0.0"><strong>v7.0.0</strong></a></li>
 </ul>
 <h3 id="%F0%9F%93%94-documentation">📔 Documentation</h3>
 <ul>
@@ -483,14 +521,18 @@ blockquote {
 </ul>
 <h2 id="%E2%AD%90%EF%B8%8F-v6">⭐️ v6</h2>
 <ul>
-<li>ダミー矢印・フリーズアロー機能の実装</li>
+<li><strong>ダミー</strong>矢印・フリーズアロー機能の実装</li>
 <li>配点と最大スコアを変数化し、danoni_custom/setting.jsから変更できるように対応</li>
 <li>リバース用背景・マスクモーション(backRev_data, maskRev_data)の実装</li>
-<li>リザルトモーション(backresult_data, maskresult_data)の実装</li>
+<li><strong>リザルトモーション</strong>(backresult_data, maskresult_data)の実装</li>
 <li>タイトルに対してマスクモーション(masktitle_data)を実装</li>
 <li>ライフ上限値の設定を追加</li>
-<li>ライフ制ゲージ (Original, Light, NoRecovery)の設定を譜面ヘッダーから設定できるように変更</li>
+<li><strong>ライフ制ゲージ</strong> (Original, Light, NoRecovery)の設定を譜面ヘッダーから設定できるように変更</li>
 <li>特殊キー(keyExtraList指定キー)に対してリバース、キーコンフィグ保存に対応</li>
+</ul>
+<h3 id="%F0%9F%92%A1-feature-updates">💡 Feature Updates</h3>
+<ul>
+<li><a href="https://github.com/cwtickle/danoniplus/releases/tag/v6.6.0">v6.6.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v6.5.0"><strong>v6.5.0</strong></a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v6.4.0">v6.4.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v6.3.0"><strong>v6.3.0</strong></a> /  <a href="https://github.com/cwtickle/danoniplus/releases/tag/v6.2.0">v6.2.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v6.1.0">v6.1.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v6.0.0"><strong>v6.0.0</strong></a></li>
 </ul>
 <h3 id="%F0%9F%93%94-documentation">📔 Documentation</h3>
 <ul>
@@ -500,17 +542,21 @@ blockquote {
 </ul>
 <h2 id="%E2%AD%90%EF%B8%8F-v5">⭐️ v5</h2>
 <ul>
-<li>タイトル（デフォルト）の行別グラデーションに対応</li>
+<li>タイトル（デフォルト）の<strong>行別グラデーション</strong>に対応</li>
 <li>縦方向のスケーリングに対応</li>
 <li>最低・最高速度、譜面変更ボタン(setDifficulty)に対してカスタム関数を追加</li>
-<li>歌詞表示(word_data)の複数階層化に対応</li>
+<li>歌詞表示(word_data)の<strong>複数階層化</strong>に対応</li>
 <li>歌詞フェードイン・アウトの時間の可変対応</li>
-<li>フリーズアロー開始判定の実装</li>
+<li>フリーズアロー<strong>開始判定</strong>の実装</li>
 <li>譜面データのURIデコードに対応</li>
 <li>譜面データの&amp;区切り可否の切替機能を追加</li>
 <li>フリーズアローの許容フレームを譜面ヘッダーから指定できるように変更</li>
 <li>キー毎にタイトルバック、リトライ用ショートカットキーの指定を行えるように変更</li>
-<li>通常矢印の内側を塗りつぶす機能を追加</li>
+<li>通常矢印の<strong>内側を塗りつぶす</strong>機能を追加</li>
+</ul>
+<h3 id="%F0%9F%92%A1-feature-updates">💡 Feature Updates</h3>
+<ul>
+<li><a href="https://github.com/cwtickle/danoniplus/releases/tag/v5.12.0"><strong>v5.12.0</strong></a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v5.11.0">v5.11.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v5.10.0"><strong>v5.10.0</strong></a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v5.9.0">v5.9.0</a> /  <a href="https://github.com/cwtickle/danoniplus/releases/tag/v5.8.0"><strong>v5.8.0</strong></a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v5.7.0">v5.7.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v5.6.6"><strong>v5.6.6</strong></a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v5.6.0">v5.6.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v5.4.0"><strong>v5.4.0</strong></a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v5.2.0">v5.2.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v5.1.0"><strong>v5.1.0</strong></a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v5.0.0">v5.0.0</a></li>
 </ul>
 <h3 id="%F0%9F%93%94-documentation">📔 Documentation</h3>
 <ul>
@@ -520,12 +566,16 @@ blockquote {
 </ul>
 <h2 id="%E2%AD%90%EF%B8%8F-v4">⭐️ v4</h2>
 <ul>
-<li>譜面別の複数曲読込に対応</li>
-<li>ローカルストレージ(作品別、キー別)を実装</li>
-<li>画面全体にマスクを設定するためのデータ(mask_data)を実装</li>
+<li>譜面別の<strong>複数曲読込</strong>に対応</li>
+<li><strong>ローカルストレージ</strong>(作品別、キー別)を実装</li>
+<li>画面全体に<strong>マスク</strong>を設定するためのデータ(mask_data)を実装</li>
 <li>タイトル画面に対して背景表示をつける機能 (backtitle_data) を追加</li>
-<li>11key譜面を11Lkeyとしてプレイできるモードを追加</li>
+<li>11key譜面を<strong>11Lkeyとして</strong>プレイできるモードを追加</li>
 <li>曲中リトライ以外のタイミングで曲の再読み込みを行う仕様に変更</li>
+</ul>
+<h3 id="%F0%9F%92%A1-feature-updates">💡 Feature Updates</h3>
+<ul>
+<li><a href="https://github.com/cwtickle/danoniplus/releases/tag/v4.10.0"><strong>v4.10.0</strong></a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v4.8.0"><strong>v4.8.0</strong></a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v4.7.0">v4.7.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v4.6.0"><strong>v4.6.0</strong></a> /  <a href="https://github.com/cwtickle/danoniplus/releases/tag/v4.4.0"><strong>v4.4.0</strong></a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v4.3.0">v4.3.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v4.2.0"><strong>v4.2.0</strong></a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v4.1.0">v4.1.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v4.0.0"><strong>v4.0.0</strong></a></li>
 </ul>
 <h3 id="%F0%9F%93%94-documentation">📔 Documentation</h3>
 <ul>
@@ -536,12 +586,16 @@ blockquote {
 <h2 id="%E2%AD%90%EF%B8%8F-v3">⭐️ v3</h2>
 <ul>
 <li>製作者別設定ファイルを追加</li>
-<li>Shuffle機能（Mirror, Randomなど）を追加</li>
+<li><strong>Shuffle</strong>機能（Mirror, Randomなど）を追加</li>
 <li>曲名タイトル（デフォルト）の複数行、モーション、グラデーション対応</li>
-<li>速度変化、色変化、歌詞表示のセット毎改行区切りに対応</li>
+<li>速度変化、色変化、歌詞表示の<strong>セット毎改行区切り</strong>に対応</li>
 <li>譜面ヘッダー「startFrame」について、譜面毎に設定できるように変更</li>
 <li>キーコンフィグ画面で作品毎の矢印色ではない、<br>
 共通デフォルト色を指定できるように変更 (ColorTypeの追加)</li>
+</ul>
+<h3 id="%F0%9F%92%A1-feature-updates">💡 Feature Updates</h3>
+<ul>
+<li><a href="https://github.com/cwtickle/danoniplus/releases/tag/v3.12.0">v3.12.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v3.11.0">v3.11.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v3.10.0"><strong>v3.10.0</strong></a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v3.9.0">v3.9.0</a> /  <a href="https://github.com/cwtickle/danoniplus/releases/tag/v3.7.0">v3.7.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v3.6.0">v3.6.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v3.5.0"><strong>v3.5.0</strong></a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v3.2.0"><strong>v3.2.0</strong></a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v3.1.0"><strong>v3.1.0</strong></a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v3.0.0"><strong>v3.0.0</strong></a></li>
 </ul>
 <h3 id="%F0%9F%93%94-documentation">📔 Documentation</h3>
 <ul>
@@ -553,23 +607,27 @@ blockquote {
 </ul>
 <h2 id="%E2%AD%90%EF%B8%8F-v2">⭐️ v2</h2>
 <ul>
-<li>譜面データの外部ファイル化に対応</li>
+<li>譜面データの<strong>外部ファイル化</strong>に対応</li>
 <li>ロード画面の実装</li>
 <li>オンライン時にWebAudioAPIで楽曲を再生するように変更</li>
-<li>譜面ヘッダーで曲の再生速度を指定できる機能を追加</li>
-<li>譜面ヘッダーにて、譜面別に（製作者側が）タイミング調整できるように変更</li>
+<li>譜面ヘッダーで<strong>曲の再生速度を指定</strong>できる機能を追加</li>
+<li>譜面ヘッダーにて、譜面別に（製作者側が）<strong>タイミング調整</strong>できるように変更</li>
 <li>タイトル文字のフォント設定に対応</li>
+</ul>
+<h3 id="%F0%9F%92%A1-feature-updates">💡 Feature Updates</h3>
+<ul>
+<li><a href="https://github.com/cwtickle/danoniplus/releases/tag/v2.9.0">v2.9.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v2.8.0"><strong>v2.8.0</strong></a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v2.7.0">v2.7.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v2.6.0">v2.6.0</a> /  <a href="https://github.com/cwtickle/danoniplus/releases/tag/v2.5.0">v2.5.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v2.3.0"><strong>v2.3.0</strong></a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v2.2.0"><strong>v2.2.0</strong></a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v2.1.0"><strong>v2.1.0</strong></a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v2.0.0">v2.0.0</a></li>
 </ul>
 <h3 id="%F0%9F%93%94-documentation">📔 Documentation</h3>
 <ul>
 <li>譜面ヘッダー仕様 ( <a href="dos-h0009-adjustment.html">adjustment</a> / <a href="dos-h0010-playbackRate.html">playbackRate</a> )</li>
-<li><a href="HowToMake.html">譜面の作成概要</a></li>
+<li><a href="HowtoMake.html">譜面の作成概要</a></li>
 </ul>
 <h2 id="%E2%AD%90%EF%B8%8F-v1">⭐️ v1</h2>
 <ul>
-<li>Gaugeオプションの実装</li>
-<li>ノルマ制ゲージ (Normal, Easy, Hard)の設定を譜面ヘッダーから設定できるように変更</li>
-<li>音楽ファイルについてbase64エンコードに対応</li>
+<li><strong>Gauge</strong>オプションの実装</li>
+<li><strong>ノルマ制ゲージ</strong> (Normal, Easy, Hard)の設定を譜面ヘッダーから設定できるように変更</li>
+<li>音楽ファイルについて<strong>base64エンコード</strong>に対応</li>
 <li>歌詞表示で、左揃え/中央揃え/右揃えの設定を追加</li>
 <li>歌詞表示の二重階層化に対応</li>
 <li>曲終了フレーム(endFrame)の譜面別指定に対応</li>
@@ -577,6 +635,10 @@ blockquote {
 <li>外部jsファイルのキャッシュを利用しないように変更</li>
 <li>タイトル文字以外のフォントを設定できるように変更</li>
 <li>ステップゾーン間隔を譜面側から設定できるように変更 (blankX)</li>
+</ul>
+<h3 id="%F0%9F%92%A1-feature-updates">💡 Feature Updates</h3>
+<ul>
+<li><a href="https://github.com/cwtickle/danoniplus/releases/tag/v1.15.0">v1.15.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v1.14.0">v1.14.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v1.13.0">v1.13.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v1.12.0">v1.12.0</a> /  <a href="https://github.com/cwtickle/danoniplus/releases/tag/v1.11.0"><strong>v1.11.0</strong></a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v1.10.0">v1.10.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v1.9.0"><strong>v1.9.0</strong></a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v1.7.0"><strong>v1.7.0</strong></a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v1.5.0"><strong>v1.5.0</strong></a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v1.3.0">v1.3.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v1.2.0">v1.2.0</a> / <a href="https://github.com/cwtickle/danoniplus/releases/tag/v1.0.1">v1.0.0</a></li>
 </ul>
 
 </body>
