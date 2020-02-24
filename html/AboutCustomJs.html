@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Sidebar.md</title>
+<title>AboutCustomJs.md</title>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 
 <style>
@@ -385,46 +385,28 @@ blockquote {
 
 </head>
 <body>
-<h2 id="home"><a href="Home.html" target="right">Home</a></h2>
-<h2 id="how-to-play">How To Play</h2>
-<ul>
-<li><a href="AboutGameSystem.html" target="right">ゲーム画面の説明</a></li>
-<li><a href="HowToLocalPlay.html" target="right">ローカルでのプレイ方法</a></li>
-</ul>
-<h2 id="how-to-make">How To Make</h2>
-<ul>
-<li><a href="forParaFlaUser.html" target="right">ParaFla!ユーザ向け移行概要</a></li>
-<li><a href="HowtoMake.html" target="right">譜面の作成概要</a></li>
-<li><a href="dos_header.html" target="right">譜面ヘッダー仕様</a></li>
-<li><a href="dos_score.html" target="right">譜面データ仕様</a></li>
-<li><a href="dos_effect.html" target="right">譜面データによる画面効果</a></li>
-<li><a href="keys.html" target="right">キーの仕様について</a></li>
-<li><a href="AboutSource.html" target="right">ソースの構成</a></li>
-<li><a href="HowToUpdate.html" target="right">本体のバージョンアップ</a></li>
-<li><a href="MigrationGuide.html" target="right">アップグレードガイド</a></li>
-<li><a href="UpdateInfo.html" target="right">更新情報概要</a></li>
-</ul>
-<h2 id="customize">Customize</h2>
-<ul>
-<li><a href="varReference.html" target="right">オブジェクトリファレンス</a></li>
-<li><a href="objectMainRef.html" target="right">主要オブジェクトのプロパティ</a></li>
-<li><a href="for_ver2.1.0.html" target="right">ver2.1.0への移行について</a></li>
-</ul>
-<h2 id="tips">Tips</h2>
-<ul>
-<li><a href="tips-XXXX-template.html" target="right">XXXX-tipsテンプレート</a></li>
-<li><a href="tips-0001-comma.html" target="right">タイトルや歌詞表示に半角コンマ(,)を使う</a></li>
-</ul>
-<h2 id="for-developers">For Developers</h2>
-<ul>
-<li><a href="BranchesPolicy.html" target="right">ブランチポリシー</a></li>
-</ul>
-<h2 id="others">Others</h2>
-<ul>
-<li><a href="DOM.html" target="right">オブジェクト構成・ボタン</a></li>
-<li><a href="AboutCustomJs.html" target="right">カスタムjs(スキンjs)による処理割込み</a></li>
-<li><a href="LocalStorage.html" target="right">ローカルストレージ仕様</a></li>
-</ul>
+<h1 id="%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0js%E3%82%B9%E3%82%AD%E3%83%B3js%E3%81%AB%E3%82%88%E3%82%8B%E5%87%A6%E7%90%86%E5%89%B2%E8%BE%BC%E3%81%BF">カスタムjs(スキンjs)による処理割込み</h1>
+<p>Dancing☆Onigiri(CW Edition)ソースでは、<br>
+カスタムjsファイルやスキンjsファイルによる処理割込みを行うことで<br>
+danoni_main.js を直接変更することなく、画面内のオブジェクトの情報を変更することができます。<br>
+アクセスできるオブジェクトについては<a href="DOM.html">DOM</a>のページもご覧ください。</p>
+<p>なお、スキン用関数についてはフォントサイズや色変更などが<br>
+CSSで制御できない場合に使用することを想定していますが、<br>
+カスタムjsと同じような使い方をすることも可能です。</p>
+<h2 id="%E3%82%BF%E3%82%A4%E3%83%88%E3%83%AB%E7%94%BB%E9%9D%A2-titleinit">タイトル画面 (titleInit)</h2>
+<p><img src="./wiki/interrupt1.png" alt="interrupt1"></p>
+<h2 id="%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2-optioninit">設定画面 (optionInit)</h2>
+<p><img src="./wiki/interrupt2.png" alt="interrupt2"></p>
+<h2 id="%E8%A8%AD%E5%AE%9Adisplay%E7%94%BB%E9%9D%A2-settingsdisplayinit">設定(Display)画面 (settingsDisplayInit)</h2>
+<p><img src="./wiki/interrupt3.png" alt="interrupt3"></p>
+<h2 id="%E3%82%AD%E3%83%BC%E3%82%B3%E3%83%B3%E3%83%95%E3%82%A3%E3%82%B0%E7%94%BB%E9%9D%A2-keyconfiginit">キーコンフィグ画面 (keyConfigInit)</h2>
+<p><img src="./wiki/interrupt4.png" alt="interrupt4"></p>
+<h2 id="%E8%AA%AD%E8%BE%BC%E7%94%BB%E9%9D%A2-loadingscoreinit">読込画面 (loadingScoreInit)</h2>
+<p><img src="./wiki/interrupt5.png" alt="interrupt5"></p>
+<h2 id="%E3%83%A1%E3%82%A4%E3%83%B3%E7%94%BB%E9%9D%A2-maininit">メイン画面 (mainInit)</h2>
+<p><img src="./wiki/interrupt6.png" alt="interrupt6"></p>
+<h2 id="%E7%B5%90%E6%9E%9C%E7%94%BB%E9%9D%A2-resultinit">結果画面 (resultInit)</h2>
+<p><img src="./wiki/interrupt7.png" alt="interrupt7"></p>
 
 </body>
 </html>
