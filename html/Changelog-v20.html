@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Changelog-v20.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<p>⭐ New Features / 🛠️ Improvements / 🐞 Bug Fixes</p>
+<p><a href="Changelog-v21.html"><strong>&lt;- v21</strong></a> | <strong>v20</strong> | <a href="Changelog-v19.html"><strong>v19 -&gt;</strong></a></p>
+<h2 id="v2053-2021-04-07">v20.5.3 (<a href="https://github.com/cwtickle/danoniplus/releases/tag/v20.5.3">2021-04-07</a>)</h2>
+<ul>
+<li>🐞 空の矢印データを含む譜面にS-Randomをかけるとフルコン演出が早まる問題を修正
+( PR <a href="https://github.com/cwtickle/danoniplus/pull/1044">#1044</a>, Gitter <a href="https://gitter.im/danonicw/community?at=606c808592a3431fd67b1640">2021-04-06</a> ) &lt;- <img class="emoji" alt="boom" src="data:image/png;base64,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" /> <a href="Changelog-v3.html#v310-2019-02-26"><strong>v3.1.0</strong></a></li>
+</ul>
+<hr>
+<h2 id="v2052-2021-03-09">v20.5.2 (<a href="https://github.com/cwtickle/danoniplus/releases/tag/v20.5.2">2021-03-09</a>)</h2>
+<ul>
+<li>🐞 グラデーション文字列にdeg/radなどが入っているときに文字が表示されない問題を修正 ( PR <a href="https://github.com/cwtickle/danoniplus/pull/1014">#1014</a> ) &lt;- <img class="emoji" alt="boom" src="data:image/png;base64,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" /> <a href="Changelog-v20.html#v2051-2021-03-06"><strong>v20.5.1</strong></a></li>
+</ul>
+<h2 id="v2051-2021-03-06">v20.5.1 (<a href="https://github.com/cwtickle/danoniplus/releases/tag/v20.5.1">2021-03-06</a>)</h2>
+<ul>
+<li>🛠️ Base64エンコードした曲データを直接デコードするよう変更 ( PR <a href="https://github.com/cwtickle/danoniplus/pull/1009">#1009</a> )</li>
+<li>🛠️ キーコンフィグ、グラデーション周りのコード整理 ( PR <a href="https://github.com/cwtickle/danoniplus/pull/1006">#1006</a>, <a href="https://github.com/cwtickle/danoniplus/pull/1007">#1007</a>, <a href="https://github.com/cwtickle/danoniplus/pull/1008">#1008</a> )</li>
+</ul>
+<h2 id="v2040-2021-02-27">v20.4.0 (<a href="https://github.com/cwtickle/danoniplus/releases/tag/v20.4.0">2021-02-27</a>)</h2>
+<ul>
+<li>⭐ タイトル画面、ロード画面(iOSのみ)のショートカットキーを追加 ( PR <a href="https://github.com/cwtickle/danoniplus/pull/1002">#1002</a> )</li>
+<li>🛠️ ショートカットキーでキーコンフィグ画面へ移動した場合、0.5秒の待ち時間を設けるよう変更 ( PR <a href="https://github.com/cwtickle/danoniplus/pull/1002">#1002</a> )</li>
+<li>🛠️ clearWindow関数にキーを押した状態の初期化処理、背景再描画処理を統合 ( PR <a href="https://github.com/cwtickle/danoniplus/pull/1002">#1002</a>, <a href="https://github.com/cwtickle/danoniplus/pull/1003">#1003</a> )</li>
+<li>🛠️ setShortcutEvent関数にcreateScTextCommon関数を包含するよう変更 ( PR <a href="https://github.com/cwtickle/danoniplus/pull/1002">#1002</a> )</li>
+</ul>
+<h2 id="v2031-2021-02-24">v20.3.1 (<a href="https://github.com/cwtickle/danoniplus/releases/tag/v20.3.1">2021-02-24</a>)</h2>
+<ul>
+<li>⭐ 設定名、結果画面用の省略名を置き換える機能を実装 ( PR <a href="https://github.com/cwtickle/danoniplus/pull/995">#995</a> )</li>
+<li>🛠️ 譜面選択リストにあるキー別フィルターボタンのID重複を解消 ( PR <a href="https://github.com/cwtickle/danoniplus/pull/994">#994</a> )</li>
+<li>🛠️ MacOSのキー表示関係、ランク表示部分、その他コード重複部分を見直し ( PR <a href="https://github.com/cwtickle/danoniplus/pull/994">#994</a>, <a href="https://github.com/cwtickle/danoniplus/pull/996">#996</a>, <a href="https://github.com/cwtickle/danoniplus/pull/998">#998</a>, <a href="https://github.com/cwtickle/danoniplus/pull/1000">#1000</a> )</li>
+<li>🛠️ フォントリスト取得関数にて優先フォントが指定できるよう変更 ( PR <a href="https://github.com/cwtickle/danoniplus/pull/994">#994</a> )</li>
+<li>🐞 タイトル文字、譜面名のフォントサイズに関する不具合の修正 ( PR <a href="https://github.com/cwtickle/danoniplus/pull/997">#997</a> ) &lt;- <img class="emoji" alt="boom" src="data:image/png;base64,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" /> <a href="Changelog-v20.html#v2012-2021-02-14"><strong>v20.1.2</strong></a></li>
+</ul>
+<h2 id="v2021-2021-02-20">v20.2.1 (<a href="https://github.com/cwtickle/danoniplus/releases/tag/v20.2.1">2021-02-20</a>)</h2>
+<ul>
+<li>🛠️ KeyConfig画面のTo Settingsボタンの表示部にg_lblNameObjを適用 ( PR <a href="https://github.com/cwtickle/danoniplus/pull/986">#986</a> )</li>
+<li>🛠️ ショートカット表示部分のフォーマット方法を拡張 ( PR <a href="https://github.com/cwtickle/danoniplus/pull/987">#987</a> )</li>
+<li>🛠️ imgタグ生成時においてcrossOrigin属性を付与するよう変更 ( PR <a href="https://github.com/cwtickle/danoniplus/pull/988">#988</a> )</li>
+<li>🐞 preloadFile関数において画像ファイル以外が指定された場合の問題を修正 ( PR <a href="https://github.com/cwtickle/danoniplus/pull/989">#989</a> ) &lt;- <img class="emoji" alt="boom" src="data:image/png;base64,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" /> <a href="Changelog-v18.html#v1850-2020-12-20"><strong>v18.5.0</strong></a></li>
+</ul>
+<h2 id="v2020-2021-02-16">v20.2.0 (<a href="https://github.com/cwtickle/danoniplus/releases/tag/v20.2.0">2021-02-16</a>)</h2>
+<ul>
+<li>⭐ ボタン・ショートカットキー有効化までのフレーム数設定を実装 ( PR <a href="https://github.com/cwtickle/danoniplus/pull/982">#982</a> )</li>
+<li>⭐ 11ikeyに方向表示が異なるキーパターンを追加 ( PR <a href="https://github.com/cwtickle/danoniplus/pull/936">#936</a> )</li>
+<li>🛠️ キーコンフィグ画面以外の戻るボタンのショートカットキーにShift+Tabを追加割り当て ( PR <a href="https://github.com/cwtickle/danoniplus/pull/981">#981</a> )</li>
+<li>🛠️ MacOS/iPadOSにおいてメイン画面、キーコンフィグ画面の割り当てキーを一部変更 ( PR <a href="https://github.com/cwtickle/danoniplus/pull/981">#981</a> )</li>
+<li>🐞 MacOS/iPadOSにおいて結果画面のCopyResultのショートカットキーを押した後、
+他のキーを押すとCopyResultが動いてしまう問題を修正 ( PR <a href="https://github.com/cwtickle/danoniplus/pull/981">#981</a> ) &lt;- <img class="emoji" alt="boom" src="data:image/png;base64,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" /> <a href="Changelog-v19.html#v1950-2021-02-09"><strong>v19.5.0</strong></a></li>
+<li>🐞 対象が無いときにショートカットキーを使うとエラーになることがある問題を修正 ( PR <a href="https://github.com/cwtickle/danoniplus/pull/983">#983</a> ) &lt;- <img class="emoji" alt="boom" src="data:image/png;base64,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" /> <a href="Changelog-v19.html#v1950-2021-02-09"><strong>v19.5.0</strong></a></li>
+</ul>
+<h2 id="v2012-2021-02-14">v20.1.2 (<a href="https://github.com/cwtickle/danoniplus/releases/tag/v20.1.2">2021-02-14</a>)</h2>
+<ul>
+<li>⭐ タイトル文字、譜面名のフォントサイズの自動設定方法を改善 ( PR <a href="https://github.com/cwtickle/danoniplus/pull/975">#975</a> )</li>
+<li>🛠️ Adjustment設定のショートカットにテンキーの「+」「-」を追加で割り当て ( PR <a href="https://github.com/cwtickle/danoniplus/pull/973">#973</a> )</li>
+</ul>
+<h2 id="v2000-2021-02-12">v20.0.0 (<a href="https://github.com/cwtickle/danoniplus/releases/tag/v20.0.0">2021-02-12</a>)</h2>
+<ul>
+<li>⭐ ボタン処理を画面移動系とそれ以外に分離 ( PR <a href="https://github.com/cwtickle/danoniplus/pull/970">#970</a> )</li>
+<li>⭐ ボタンの割り込み処理を本体処理より前に挿入できるよう変更 ( PR <a href="https://github.com/cwtickle/danoniplus/pull/970">#970</a> )</li>
+<li>⭐ 右クリック操作の無いボタンに対して処理を追加できるように変更 ( PR <a href="https://github.com/cwtickle/danoniplus/pull/970">#970</a> )</li>
+<li>🛠️ 古い関数・変数の整理、単独変数のオブジェクト集約 ( PR <a href="https://github.com/cwtickle/danoniplus/pull/971">#971</a> )</li>
+<li>🛠️ 判定周りのコード整理 ( PR <a href="https://github.com/cwtickle/danoniplus/pull/969">#969</a> )</li>
+</ul>
+<p><a href="Changelog-v21.html"><strong>&lt;- v21</strong></a> | <strong>v20</strong> | <a href="Changelog-v19.html"><strong>v19 -&gt;</strong></a></p>
+
+</body>
+</html>

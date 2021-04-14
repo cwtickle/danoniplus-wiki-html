@@ -5,16 +5,17 @@
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 
 <style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
 body {
-	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
-	font-size: 14px;
-	padding: 0 12px;
-	line-height: 22px;
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
 	word-wrap: break-word;
 }
 
@@ -38,7 +39,6 @@ body {
 	background-color:#007acc;
 	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
 }
-
 
 body.scrollBeyondLastLine {
 	margin-bottom: calc(100vh - 22px);
@@ -71,12 +71,20 @@ body.showEditorSelection li.code-line:hover:before {
 	border-left: 3px solid rgba(0, 0, 0, 0.40);
 }
 
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
 .vscode-dark.showEditorSelection .code-active-line:before {
 	border-left: 3px solid rgba(255, 255, 255, 0.4);
 }
 
 .vscode-dark.showEditorSelection .code-line:hover:before {
 	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
 }
 
 .vscode-high-contrast.showEditorSelection .code-active-line:before {
@@ -87,14 +95,21 @@ body.showEditorSelection li.code-line:hover:before {
 	border-left: 3px solid rgba(255, 160, 0, 1);
 }
 
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
 img {
 	max-width: 100%;
 	max-height: 100%;
 }
 
 a {
-	color: #4080D0;
 	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
 }
 
 a:focus,
@@ -122,21 +137,6 @@ h1, h2, h3 {
 	font-weight: normal;
 }
 
-h1 code,
-h2 code,
-h3 code,
-h4 code,
-h5 code,
-h6 code {
-	font-size: inherit;
-	line-height: auto;
-}
-
-a:hover {
-	color: #4080D0;
-	text-decoration: underline;
-}
-
 table {
 	border-collapse: collapse;
 }
@@ -160,22 +160,18 @@ table > tbody > tr + tr > td {
 blockquote {
 	margin: 0 7px 0 5px;
 	padding: 0 16px 0 10px;
-	border-left: 5px solid;
+	border-left-width: 5px;
+	border-left-style: solid;
 }
 
 code {
 	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
-	font-size: 14px;
-	line-height: 19px;
+	font-size: 1em;
+	line-height: 1.357em;
 }
 
 body.wordWrap pre {
 	white-space: pre-wrap;
-}
-
-.mac code {
-	font-size: 12px;
-	line-height: 18px;
 }
 
 pre:not(.hljs),
@@ -185,43 +181,22 @@ pre.hljs code > div {
 	overflow: auto;
 }
 
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
 /** Theming */
 
-.vscode-light,
-.vscode-light pre code {
-	color: rgb(30, 30, 30);
-}
-
-.vscode-dark,
-.vscode-dark pre code {
-	color: #DDD;
-}
-
-.vscode-high-contrast,
-.vscode-high-contrast pre code {
-	color: white;
-}
-
-.vscode-light code {
-	color: #A31515;
-}
-
-.vscode-dark code {
-	color: #D7BA7D;
-}
-
-.vscode-light pre:not(.hljs),
-.vscode-light code > div {
+.vscode-light pre {
 	background-color: rgba(220, 220, 220, 0.4);
 }
 
-.vscode-dark pre:not(.hljs),
-.vscode-dark code > div {
+.vscode-dark pre {
 	background-color: rgba(10, 10, 10, 0.4);
 }
 
-.vscode-high-contrast pre:not(.hljs),
-.vscode-high-contrast code > div {
+.vscode-high-contrast pre {
 	background-color: rgb(0, 0, 0);
 }
 
@@ -249,16 +224,6 @@ pre.hljs code > div {
 	border-color: rgba(255, 255, 255, 0.18);
 }
 
-.vscode-light blockquote,
-.vscode-dark blockquote {
-	background: rgba(127, 127, 127, 0.1);
-	border-color: rgba(0, 122, 204, 0.5);
-}
-
-.vscode-high-contrast blockquote {
-	background: transparent;
-	border-color: #fff;
-}
 </style>
 
 <style>
@@ -343,7 +308,8 @@ pre.hljs code > div {
  */
 
  body {
-	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
 }
 
 pre {
@@ -369,6 +335,11 @@ blockquote {
 	height: 1.4em;
 }
 
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
 /* for inline code */
 :not(pre):not(.hljs) > code {
 	color: #C9AE75; /* Change the old color so it seems less like an error */
@@ -383,19 +354,32 @@ blockquote {
 
 </style>
 
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
 </head>
 <body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
 <p><a href="dos_header.html">← 譜面ヘッダー仕様に戻る</a></p>
 <h2 id="titlepos">titlepos</h2>
 <p>[ver3.x以降]</p>
 <h3 id="%E4%BD%BF%E3%81%84%E6%96%B9">使い方</h3>
 <pre class="hljs"><code><div>|titlepos=-5,10|
+|titlepos=5,10$30,0|
 </div></code></pre>
 <h3 id="%E8%AA%AC%E6%98%8E">説明</h3>
 <p>デフォルトの曲名表示を使用した場合に、<br>
 タイトル文字の位置をX座標, Y座標の順で調整できます。<br>
 単位はpxです。<br>
 customTitleUseがfalseに設定されているとき、この値は無視されます。</p>
+<p>ver17.3.0より、$区切りで2行目の位置を調整できるようになりました。<br>
+1行目の中央位置を基準にx, y座標の順に指定します。<br>
+y座標についてはtitlelineheightとの同時適用が可能です。</p>
 <h3 id="%E3%82%BF%E3%82%A4%E3%83%88%E3%83%AB%E6%9B%B2%E5%90%8D%E6%96%87%E5%AD%97%E3%83%87%E3%83%95%E3%82%A9%E3%83%AB%E3%83%88%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3%E3%81%AE%E8%A8%AD%E5%AE%9A%E7%AE%87%E6%89%80%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">タイトル曲名文字(デフォルトデザイン)の設定箇所について</h3>
 <p><img src="./wiki/dos-h0030-01.png" alt="dos-h0030-01.png"></p>
 <h3 id="%E9%96%A2%E9%80%A3%E9%A0%85%E7%9B%AE">関連項目</h3>
@@ -414,8 +398,12 @@ customTitleUseがfalseに設定されているとき、この値は無視され�
 </thead>
 <tbody>
 <tr>
+<td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v17.3.0">v17.3.0</a></td>
+<td>・2行目の位置設定を追加</td>
+</tr>
+<tr>
 <td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v3.2.0">v3.2.0</a></td>
-<td>初回実装</td>
+<td>・初回実装</td>
 </tr>
 </tbody>
 </table>

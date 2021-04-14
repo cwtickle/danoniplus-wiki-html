@@ -1,0 +1,356 @@
+# IDリファレンス
+
+## タイトル画面
+<img src="./wiki/id01_title.png" width="100%">
+
+- divBack
+- lblArrow
+- backTitleSprite - 背景モーション(タイトル)
+  - backTitleSprite*N*
+- lblTitle
+- lblmusicTitle [[musicTitle](dos-h0001-musicTitle.html)] - 曲名
+  - lblmusicTitle1 - 曲名(1行目)
+  - lblmusicTitle2 - 曲名(2行目)
+- lblWarning - 警告メッセージエリア
+- btnStart [[lbl.clickHere](obj-v0015-g_lblNameObj#ページタイトル)] - スタートボタン
+  - scStart
+- btnReset - ローカルストレージのデータ消去ボタン
+- btnReload - リロードボタン
+- btnHelp - ゲーム画面説明へのリンクボタン　※ver18.8.0より
+- lnkMaker [[tuning](dos-h0017-tuning.html)] - 制作者リンク
+- lnkArtist [[musicTitle](dos-h0001-musicTitle.html)]- アーティストリンク
+- lnkVersion [[releaseDate](dos-h0036-releaseDate.html)]- バージョン番号、GitHubリンク
+- lnkComparison - セキュリティポリシーリンク
+- lblComment [[commentVal](dos-h0066-commentVal.html)] - コメントエリア
+- btnComment [[lbl.comment](obj-v0015-g_lblNameObj#ページタイトル)] - コメントエリアの表示有無ボタン
+- maskTitleSprite - マスクモーション(タイトル)
+  - maskTitleSprite*N*
+
+## 設定画面
+<img src="./wiki/id02_settings01.png" width="100%">  
+<img src="./wiki/id02_settings02.png" width="100%">
+
+- divBack
+- lblTitle
+- optionsprite - 設定描画エリア
+  - difficultySprite
+    - lblDifficulty [[lbl.Difficulty](obj-v0015-g_lblNameObj#設定画面ラベル)]
+    - lnkDifficulty
+    - lnkDifficultyR
+    - lnkDifficultyL
+    - scDifficulty
+  - speedSprite
+    - lblSpeed [[lbl.Speed](obj-v0015-g_lblNameObj#設定画面ラベル)]
+    - lnkSpeed
+    - lnkSpeedR
+    - lnkSpeedL
+    - lnkSpeedRR
+    - lnkSpeedLL
+    - scSpeed
+    - btnGraph - 譜面詳細子画面の開閉ボタン
+      - scGraph
+    - scDifficulty
+  - motionSprite
+    - lblMotion [[lbl.Motion](obj-v0015-g_lblNameObj#設定画面ラベル)]
+    - lnkMotion
+    - lnkMotionR
+    - lnkMotionL
+    - scMotion
+  - reverseSprite - Reverse設定エリア：拡張スクロール設定(Scroll)が無効時にscrollSpriteの代わりに使用
+    - lblReverse [[lbl.Reverse](obj-v0015-g_lblNameObj#設定画面ラベル)]
+    - lnkReverse
+    - lnkReverseR
+    - lnkReverseL
+    - scReverse
+  - scrollSprite - Scroll設定エリア
+    - lblScroll [[lbl.Scroll](obj-v0015-g_lblNameObj#設定画面ラベル)]
+    - lnkScroll
+    - lnkScrollR
+    - lnkScrollL
+    - btnReverse
+    - scScroll
+  - shuffleSprite
+    - lblShuffle [[lbl.Shuffle](obj-v0015-g_lblNameObj#設定画面ラベル)]
+    - lnkShuffle
+    - lnkShuffleR
+    - lnkShuffleL
+    - scShuffle
+  - autoPlaySprite
+    - lblAutoPlay [[lbl.AutoPlay](obj-v0015-g_lblNameObj#設定画面ラベル)]
+    - lnkAutoPlay
+    - lnkAutoPlayR
+    - lnkAutoPlayL
+    - scAutoPlay
+  - gaugeSprite
+    - lblGauge [[lbl.Gauge](obj-v0015-g_lblNameObj#設定画面ラベル)]
+    - lblGauge2
+       - gaugeDivCover
+         - lblGaugeDivTable - ゲージ詳細画面ヘッダー
+           - lblGaugeStart [[lbl.g_start](obj-v0015-g_lblNameObj#設定画面ゲージ詳細表示)]
+           - lblGaugeBorder [[lbl.g_border](obj-v0015-g_lblNameObj#設定画面ゲージ詳細表示)]
+           - lblGaugeRecovery [[lbl.g_recovery](obj-v0015-g_lblNameObj#設定画面ゲージ詳細表示)]
+           - lblGaugeDamage [[lbl.g_damage](obj-v0015-g_lblNameObj#設定画面ゲージ詳細表示)]
+         - dataGaugeDivTable - ゲージ詳細画面数値部分
+           - dataGaugeStart
+           - dataGaugeBorder
+           - dataGaugeRecovery
+           - dataGaugeDamage
+    - lnkGauge
+    - lnkGaugeR
+    - lnkGaugeL
+    - scGauge
+  - adjustmentSprite
+    - lblAdjustment [[lbl.Adjustment](obj-v0015-g_lblNameObj#設定画面ラベル)]
+    - lnkAdjustment
+    - lnkAdjustmentR
+    - lnkAdjustmentL
+    - lnkAdjustmentRR
+    - lnkAdjustmentLL
+    - scAdjustment
+  - fadeinSprite
+    - lblFadein [[lbl.Fadein](obj-v0015-g_lblNameObj#設定画面ラベル)]
+    - lnkFadein
+    - lnkFadeinR
+    - lnkFadeinL
+    - lblFadeinBar
+    - fadeinSlider
+  - volumeSprite
+    - lblVolume [[lbl.Volume](obj-v0015-g_lblNameObj#設定画面ラベル)]
+    - lnkVolume
+    - lnkVolumeR
+    - lnkVolumeL
+    - scVolume
+  - scoreDetail - 譜面詳細エリア
+    - lnkScoreDetail
+      - scScoreDetail
+    - detailSpeed - 速度変化グラフ描画エリア
+      - graphSpeed
+      - lblSpeed [[lbl.s_speed](obj-v0015-g_lblNameObj#設定画面速度密度グラフツール値表示)]
+      - dataSpeed
+      - lblBoost [[lbl.s_boost](obj-v0015-g_lblNameObj#設定画面速度密度グラフツール値表示)]
+      - dataBoost
+    - detailDensity - 譜面密度グラフ描画エリア
+      - graphDensity
+      - lblAPM [[lbl.s_apm](obj-v0015-g_lblNameObj#設定画面速度密度グラフツール値表示)]
+      - dataAPM
+      - lblTime [[lbl.s_time](obj-v0015-g_lblNameObj#設定画面速度密度グラフツール値表示)]
+      - dataTime
+      - lblArrow [[lbl.s_arrow](obj-v0015-g_lblNameObj#設定画面速度密度グラフツール値表示)]
+      - dataArrow
+      - lblFrz [[lbl.s_frz](obj-v0015-g_lblNameObj#設定画面速度密度グラフツール値表示)]
+      - dataFrz
+    - detailToolDif - レベル計算ツール値描画エリア
+      - lblToolDif [[lbl.s_level](obj-v0015-g_lblNameObj#設定画面速度密度グラフツール値表示)]
+      - dataToolDif
+      - lblDouji [[lbl.s_douji](obj-v0015-g_lblNameObj#設定画面速度密度グラフツール値表示)]
+      - lblTate [[lbl.s_tate](obj-v0015-g_lblNameObj#設定画面速度密度グラフツール値表示)]
+      - dataDouji
+      - dataTate
+      - lblArrowInfo [[lbl.s_cnts](obj-v0015-g_lblNameObj#設定画面速度密度グラフツール値表示)]
+      - dataArrowInfo
+      - lblArrowInfo2 [[lbl.s_linecnts](obj-v0015-g_lblNameObj#設定画面速度密度グラフツール値表示)]
+      - dataArrowInfo2
+      - lnkDifInfo [[lbl.s_print](obj-v0015-g_lblNameObj#設定画面速度密度グラフツール値表示)]
+        - scDifInfo
+  - difList - 譜面選択用セレクター(右側)
+    - dif*N*
+  - difCover - 譜面選択用セレクター(左側)
+    - difRandom
+    - keyFilter
+    - keyFilter*N*
+  - btnDifU
+  - btnDifD
+- btnBack [[lbl.b_back](obj-v0015-g_lblNameObj#画面移動系ボタン)]
+  - scBack
+- btnKeyConfig [[lbl.b_keyConfig](obj-v0015-g_lblNameObj#画面移動系ボタン)]
+  - scKeyConfig
+- btnPlay [[lbl.b_play](obj-v0015-g_lblNameObj#画面移動系ボタン)]
+  - scPlay
+- btnDisplay
+  - scDisplay
+- btnSave [[lbl.dataSave](obj-v0015-g_lblNameObj#固定ボタン)]
+  - scSave
+
+## Display画面
+<img src="./wiki/id03_settings01.png" width="100%">  
+
+- divBack
+- lblTitle
+- optionsprite - 設定描画エリア
+  - appearanceSprite
+    - lblAppearance [[lbl.Appearance](obj-v0015-g_lblNameObj#設定画面display画面)]
+    - lnkAppearance
+    - lnkAppearanceR
+    - lnkAppearanceL
+    - scAppearance
+  - opacitySprite
+    - lblOpacity [[lbl.Opacity](obj-v0015-g_lblNameObj#設定画面display画面)]
+    - lnkOpacity
+    - lnkOpacityR
+    - lnkOpacityL
+    - scOpacity
+  - displaySprite
+    - lnkstepZone [[lbl.d_StepZone](obj-v0015-g_lblNameObj#設定画面display画面)]
+      - scstepZone
+    - lnkjudgment [[lbl.d_Judgment](obj-v0015-g_lblNameObj#設定画面display画面)]
+      - scjudgment
+    - lnkfastSlow [[lbl.d_FastSlow](obj-v0015-g_lblNameObj#設定画面display画面)]
+      - scfastSlow
+    - lnklifeGauge [[lbl.d_LifeGauge](obj-v0015-g_lblNameObj#設定画面display画面)]
+      - sclifeGauge
+    - lnkscore [[lbl.d_Score](obj-v0015-g_lblNameObj#設定画面display画面)]
+      - scscore
+    - lnkmusicInfo [[lbl.d_MusicInfo](obj-v0015-g_lblNameObj#設定画面display画面)]
+      - scmusicInfo
+    - lnkfilterLine [[lbl.d_FilterLine](obj-v0015-g_lblNameObj#設定画面display画面)]
+      - scfilterLine
+    - lnkspeed [[lbl.d_Speed](obj-v0015-g_lblNameObj#設定画面display画面)]
+      - scspeed
+    - lnkcolor [[lbl.d_Color](obj-v0015-g_lblNameObj#設定画面display画面)]
+      - sccolor
+    - lnklyrics [[lbl.d_Lyrics](obj-v0015-g_lblNameObj#設定画面display画面)]
+      - sclyrics
+    - lnkbackground [[lbl.d_Background](obj-v0015-g_lblNameObj#設定画面display画面)]
+      - scbackground
+    - lnkarrowEffect [[lbl.d_ArrowEffect](obj-v0015-g_lblNameObj#設定画面display画面)]
+      - scarrowEffect
+    - lnkspecial [[lbl.d_Special](obj-v0015-g_lblNameObj#設定画面display画面)]
+      - scspecial
+- sdDesc - Display画面の説明エリア
+- scMsg - Display画面の注意点表示エリア
+- btnBack [[lbl.b_back](obj-v0015-g_lblNameObj#画面移動系ボタン)]
+  - scBack
+- btnKeyConfig [[lbl.b_keyConfig](obj-v0015-g_lblNameObj#画面移動系ボタン)]
+  - scKeyConfig
+- btnPlay [[lbl.b_play](obj-v0015-g_lblNameObj#画面移動系ボタン)]
+  - scPlay
+- btnSettings
+  - scSettings
+- btnSave [[lbl.dataSave](obj-v0015-g_lblNameObj#固定ボタン)]
+  - scSave
+
+## キーコンフィグ画面
+<img src="./wiki/id04_keyconfig.png" width="50%">  
+
+- divBack
+- lblTitle
+- kcDesc - キーコンフィグ画面の説明エリア
+- keyconSprite
+  - arrowShadow*N*
+  - arrow*N*
+  - keycon*N*_*P*
+  - cursor
+- scMsg - ショートカットキーの説明エリア
+- kcMsg - 別キーモードの説明エリア
+- lblKcType [[lbl.ConfigType](obj-v0015-g_lblNameObj#キーコンフィグ画面)]
+- lnkKcType
+- lblcolorType [[lbl.ColorType](obj-v0015-g_lblNameObj#キーコンフィグ画面)]
+- lnkcolorType
+- btnBack
+  - scBack
+- lblPattern [[lbl.KeyPattern](obj-v0015-g_lblNameObj#キーコンフィグ画面)]
+- btnPtnChangeR
+- btnPtnChangeL
+- btnReset [[lbl.b_reset](obj-v0015-g_lblNameObj#画面移動系ボタン)]
+
+## ロード画面
+- divBack
+- lblLoading
+- lblWarning - 警告メッセージエリア
+- btnPlay [[lbl.b_play](obj-v0015-g_lblNameObj#画面移動系ボタン)]
+
+## メイン画面
+- divBack
+- backSprite - 背景モーション(メイン)
+  - backSprite*N*
+- mainSprite
+  - stepRoot*N* - ステップゾーン
+    - stepShadow*N* - 本体の影部分
+    - step*N* - 本体
+    - stepDiv*N* - 空打ち時のオブジェクト
+    - stepHit*N* - ヒット時のオブジェクト
+  - stepBar - Flat時のステップゾーンの代わり
+  - filterBar*N* - Appearance用の境界線フィルター
+  - borderBar*N* - 矢印描画（最大）境界線フィルター
+  - filterView - Appearance(Hidden+/Sudden+)の表示率
+  - arrowSprite*N*
+    - *arrowNameN*_*Cnt* - 矢印本体
+      - *arrowName*Shadow*N*_*Cnt*
+      - *arrowName*Top*N*_*Cnt*
+    - *frzNameN*_*Cnt* - フリーズアロー本体
+      - *frzName*Bar*N*_*Cnt*
+      - *frzName*TopShadow*N*_*Cnt*
+      - *frzName*Top*N*_*Cnt*
+      - *frzName*BtmShadow*N*_*Cnt*
+      - *frzName*Btm*N*_*Cnt*
+  - frzHit*N* - フリーズアローヒット部分
+    - frzHitShadow*N*
+    - frzHitTop*N*
+- infoSprite
+  - lblLife - ライフ（数字）
+  - lifeBackObj - ライフ背景オブジェクト
+  - lifeBar - ライフゲージ本体
+  - lifeBorderObj - ライフのノルマライン
+- judgeSprite
+  - wordSprite - 歌詞表示エリア
+    - lblword*N*
+  - lblCredit - 楽曲クレジット
+  - lblTime1 - 現在の経過時間
+  - lblTime2 - 総時間
+  - charaJ - 判定キャラクタ（矢印）
+  - comboJ - コンボ数（矢印）
+  - diffJ - Fast/Slow表示エリア（矢印）
+  - charaFJ - 判定キャラクタ（フリーズアロー）
+  - comboFJ - コンボ数（フリーズアロー）
+  - diffFJ - Fast/Slow表示エリア（フリーズアロー）※未使用
+  - lbl*Judge* - 判定別数
+  - finishView - 終了時演出
+- maskSprite - マスクモーション(メイン)
+  - maskSprite*N*
+- lblFrame - 現在のフレーム数
+- lblReady - Ready表示
+
+## 結果画面
+<img src="./wiki/id07_result.png" width="100%">
+
+- divBack
+- backResultSprite - 背景モーション(結果)
+  - backResultSprite*N*
+- lblTitle
+- playDataWindow
+  - lblMusic - 曲名(ラベル)
+  - lblMusicData - 曲名(1行目)
+  - lblMusicData2 - 曲名(2行目)
+  - lblDifficulty - 難易度(ラベル)
+  - lblDifData - キー数、難易度名（Shuffle設定）
+  - lblStyle - プレイスタイル（ラベル）
+  - lblStyleData - プレイスタイル（実際の設定）
+  - lblDisplay - Display設定（ラベル）
+  - lblDisplayData - Display設定（1行目）
+  - lblDisplay2Data - Display設定（2行目）
+- resultWindow
+  - lbl*Judge* - 判定キャラクタ
+  - lbl*Judge*S - 判定キャラクタに対する判定数
+  - lblFast - Fast（ラベル）
+  - lblSlow - Slow（ラベル）
+  - lblFastS - Fast値
+  - lblSlowS - Slow値
+  - lblRank - ランク
+  - lbl*Judge*L1 - ハイスコア差分（左括弧）
+  - lbl*Judge*LS - ハイスコア差分値
+  - lbl*Judge*L2 - ハイスコア差分（右括弧）
+  - lblAutoView - Autoプレイ時に`(No Record)`を表示
+- lblResultPre - Clear/Failed表示（モーション付き）
+- lblResultPre2 - Clear/Failed表示（固定）
+- btnBack [[lbl.b_back](obj-v0015-g_lblNameObj#画面移動系ボタン)]
+  - scBack
+- btnCopy [[lbl.b_copy](obj-v0015-g_lblNameObj#画面移動系ボタン)] - リザルトデータをクリップボードへコピーするボタン
+  - scCopy
+- btnTweet [[lbl.b_tweet](obj-v0015-g_lblNameObj#画面移動系ボタン)] - Twitterへリザルトデータを転送するボタン
+  - scTweet
+- btnGitter [[lbl.b_gitter](obj-v0015-g_lblNameObj#画面移動系ボタン)] - Gitter（得点報告用）へのリンクボタン　※ver18.8.0より
+  - scGitter
+- btnRetry [[lbl.b_retry](obj-v0015-g_lblNameObj#画面移動系ボタン)] - リトライボタン
+  - scRetry
+- maskResultSprite - マスクモーション(メイン)
+  - maskResultSprite*N*

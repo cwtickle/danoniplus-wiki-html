@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ruffle.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="ruffle%E3%81%AE%E5%88%A9%E7%94%A8%E6%96%B9%E6%B3%95">Ruffleの利用方法</h1>
+<ul>
+<li>Flash Playerのエミュレーター、Ruffleの利用方法をまとめます。<br>
+(最新の使い方は<a href="https://github.com/ruffle-rs/ruffle/wiki/Using-Ruffle">Using Ruffle</a>も参考にしてください)</li>
+<li>サーバー側で準備する方法の場合、定期的に更新が必要ですがファイルの置き換えで対処可能です。</li>
+<li>現状開発版(Nightly)なので、不具合がある場合があります。実施する場合はご注意ください。</li>
+</ul>
+<h2 id="%E5%88%A9%E7%94%A8%E5%81%B4%E3%83%AD%E3%83%BC%E3%82%AB%E3%83%AB%E7%89%88%E3%81%A7%E5%AF%BE%E5%BF%9C%E3%81%99%E3%82%8B%E5%A0%B4%E5%90%88">利用側(ローカル版)で対応する場合</h2>
+<h3 id="windows">Windows</h3>
+<ul>
+<li>Ruffle (Releases)ページより、<code>ruffle_nightly_YYYY_MM_DD_windows.zip</code> をダウンロードします。<br>
+(Assetsをクリックするとダウンロードの一覧が展開されます)<br>
+https://github.com/ruffle-rs/ruffle/releases/</li>
+<li>フォルダを解凍して、任意の場所に置きます。</li>
+<li>実行したいswfファイルを、<code>ruffle.exe</code>にドラッグ＆ドロップすると再生されます。</li>
+</ul>
+<h3 id="macos-linux">MacOS, Linux</h3>
+<ul>
+<li><a href="https://github.com/ruffle-rs/ruffle/wiki/Using-Ruffle">Using Ruffle</a>のDesktopをご覧ください。</li>
+</ul>
+<h2 id="%E5%88%A9%E7%94%A8%E5%81%B4%E3%83%96%E3%83%A9%E3%82%A6%E3%82%B6%E6%8B%A1%E5%BC%B5%E3%81%A7%E5%AF%BE%E5%BF%9C%E3%81%99%E3%82%8B%E5%A0%B4%E5%90%88">利用側(ブラウザ拡張)で対応する場合</h2>
+<ul>
+<li><a href="https://github.com/ruffle-rs/ruffle/wiki/Using-Ruffle">Using Ruffle</a>のBrowser Extensionをご覧ください。</li>
+</ul>
+<h2 id="%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E5%81%B4%E4%BD%9C%E5%93%81%E5%85%AC%E9%96%8B%E5%85%83%E3%81%A7%E6%BA%96%E5%82%99%E3%81%99%E3%82%8B%E5%A0%B4%E5%90%88-self-hosted">サーバー側(作品公開元)で準備する場合 (Self-Hosted)</h2>
+<ul>
+<li>RuffleではWebAssemblyを利用しているため、.wasm のファイルを利用できるようにする設定が必要です。</li>
+<li>.htaccess が触れるレンタルサーバの場合は、.htaccessに以下を追加すれば可能です。</li>
+</ul>
+<pre class="hljs"><code><div>AddType application/wasm .wasm
+</div></code></pre>
+<ul>
+<li>
+<p>Ruffle (Releases)ページより、<code>ruffle_nightly_YYYY_MM_DD_selfhosted.zip</code> をダウンロードします。
+<img src="./wiki/ruffle1.png" width="70%"></p>
+</li>
+<li>
+<p>ファイルを解凍して「ruffle」フォルダを作成し、フォルダ内のファイル（赤枠）をコピーしておきます。<br>
+（英数字の羅列：オレンジ下線の部分は、nightlyのバージョンにより異なります）
+<img src="./wiki/ruffle2.png" width="70%"></p>
+</li>
+<li>
+<p>「ruffle」フォルダをサーバーへアップロードします。場所はどこでも構いません。</p>
+</li>
+<li>
+<p>Flash作品のHTMLファイルのヘッダーに、以下の記述を追加します。<br>
+（ダンおに作品は文字コードをShift-JISにしていることが多いので、charsetも念のため指定しておきます）</p>
+</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+// 省略
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"(アップロードしたフォルダの)ルートパス)/ruffle/ruffle.js"</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+</div></code></pre>
+<ul>
+<li>HTMLファイルをサーバーにアップロードして、Ruffleが優先されるか確認します。<br>
+動作サンプル：<a href="https://cw7.sakura.ne.jp/danoni/2006/lapis/">サンプルページ</a></li>
+</ul>
+
+</body>
+</html>

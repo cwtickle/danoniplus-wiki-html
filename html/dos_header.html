@@ -5,16 +5,17 @@
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 
 <style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
 body {
-	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
-	font-size: 14px;
-	padding: 0 12px;
-	line-height: 22px;
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
 	word-wrap: break-word;
 }
 
@@ -38,7 +39,6 @@ body {
 	background-color:#007acc;
 	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
 }
-
 
 body.scrollBeyondLastLine {
 	margin-bottom: calc(100vh - 22px);
@@ -71,12 +71,20 @@ body.showEditorSelection li.code-line:hover:before {
 	border-left: 3px solid rgba(0, 0, 0, 0.40);
 }
 
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
 .vscode-dark.showEditorSelection .code-active-line:before {
 	border-left: 3px solid rgba(255, 255, 255, 0.4);
 }
 
 .vscode-dark.showEditorSelection .code-line:hover:before {
 	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
 }
 
 .vscode-high-contrast.showEditorSelection .code-active-line:before {
@@ -87,14 +95,21 @@ body.showEditorSelection li.code-line:hover:before {
 	border-left: 3px solid rgba(255, 160, 0, 1);
 }
 
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
 img {
 	max-width: 100%;
 	max-height: 100%;
 }
 
 a {
-	color: #4080D0;
 	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
 }
 
 a:focus,
@@ -122,21 +137,6 @@ h1, h2, h3 {
 	font-weight: normal;
 }
 
-h1 code,
-h2 code,
-h3 code,
-h4 code,
-h5 code,
-h6 code {
-	font-size: inherit;
-	line-height: auto;
-}
-
-a:hover {
-	color: #4080D0;
-	text-decoration: underline;
-}
-
 table {
 	border-collapse: collapse;
 }
@@ -160,22 +160,18 @@ table > tbody > tr + tr > td {
 blockquote {
 	margin: 0 7px 0 5px;
 	padding: 0 16px 0 10px;
-	border-left: 5px solid;
+	border-left-width: 5px;
+	border-left-style: solid;
 }
 
 code {
 	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
-	font-size: 14px;
-	line-height: 19px;
+	font-size: 1em;
+	line-height: 1.357em;
 }
 
 body.wordWrap pre {
 	white-space: pre-wrap;
-}
-
-.mac code {
-	font-size: 12px;
-	line-height: 18px;
 }
 
 pre:not(.hljs),
@@ -185,43 +181,22 @@ pre.hljs code > div {
 	overflow: auto;
 }
 
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
 /** Theming */
 
-.vscode-light,
-.vscode-light pre code {
-	color: rgb(30, 30, 30);
-}
-
-.vscode-dark,
-.vscode-dark pre code {
-	color: #DDD;
-}
-
-.vscode-high-contrast,
-.vscode-high-contrast pre code {
-	color: white;
-}
-
-.vscode-light code {
-	color: #A31515;
-}
-
-.vscode-dark code {
-	color: #D7BA7D;
-}
-
-.vscode-light pre:not(.hljs),
-.vscode-light code > div {
+.vscode-light pre {
 	background-color: rgba(220, 220, 220, 0.4);
 }
 
-.vscode-dark pre:not(.hljs),
-.vscode-dark code > div {
+.vscode-dark pre {
 	background-color: rgba(10, 10, 10, 0.4);
 }
 
-.vscode-high-contrast pre:not(.hljs),
-.vscode-high-contrast code > div {
+.vscode-high-contrast pre {
 	background-color: rgb(0, 0, 0);
 }
 
@@ -249,16 +224,6 @@ pre.hljs code > div {
 	border-color: rgba(255, 255, 255, 0.18);
 }
 
-.vscode-light blockquote,
-.vscode-dark blockquote {
-	background: rgba(127, 127, 127, 0.1);
-	border-color: rgba(0, 122, 204, 0.5);
-}
-
-.vscode-high-contrast blockquote {
-	background: transparent;
-	border-color: #fff;
-}
 </style>
 
 <style>
@@ -343,7 +308,8 @@ pre.hljs code > div {
  */
 
  body {
-	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
 }
 
 pre {
@@ -369,6 +335,11 @@ blockquote {
 	height: 1.4em;
 }
 
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
 /* for inline code */
 :not(pre):not(.hljs) > code {
 	color: #C9AE75; /* Change the old color so it seems less like an error */
@@ -383,30 +354,39 @@ blockquote {
 
 </style>
 
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
 </head>
 <body>
-<h1 id="%E8%AD%9C%E9%9D%A2%E3%83%98%E3%83%83%E3%83%80%E3%83%BC%E4%BB%95%E6%A7%98">譜面ヘッダー仕様</h1>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%E8%AD%9C%E9%9D%A2%E3%83%98%E3%83%83%E3%83%80%E3%83%BC%E4%BB%95%E6%A7%98-%E5%88%9D%E6%9C%9F%E8%A8%AD%E5%AE%9A">譜面ヘッダー仕様 (初期設定)</h1>
 <p>ParaFla版をベースとしているため、ほとんどの項目はそのまま使えます。<br>
 また区切り文字として&quot;|&quot;を使用していますが、&quot;&amp;&quot;も一応使えます。<br>
-注意点は<a href="forParaFlaUser.html">ParaFlaユーザ向け使い方</a>もご覧ください。</p>
-<p>必須項目には(*)、ParaFlaソースとの共用項目には(★)をつけています。<br>
+注意点は<a href="forParaFlaUser">ParaFlaユーザ向け使い方</a>もご覧ください。</p>
+<p>(*)必須項目 / (★)ParaFlaソースとの共用項目 / (◇)譜面別設定可 / (◆)譜面別分割書式可<br>
 また使用頻度が高かったり、要所で使う可能性のあるものは太字にしています。</p>
 <h2 id="%F0%9F%8E%B6-%E6%A5%BD%E6%9B%B2%E3%83%BB%E8%AD%9C%E9%9D%A2%E6%83%85%E5%A0%B1">🎶 楽曲・譜面情報</h2>
 <ul>
 <li><a href="dos-h0001-musicTitle.html"><strong>musicTitle</strong></a> (*, ★)  楽曲／楽曲クレジット</li>
-<li><a href="dos-h0002-difData.html"><strong>difData</strong></a> (*, ★)  譜面情報</li>
+<li><a href="dos-h0002-difData.html"><strong>difData</strong></a> (★, ◇)  譜面情報</li>
 <li><a href="dos-h0011-musicUrl.html"><strong>musicUrl</strong></a> (*)  楽曲ファイル名</li>
-<li><a href="dos-h0012-musicNo.html">musicNo</a>  楽曲ファイルと譜面の対応付け</li>
+<li><a href="dos-h0012-musicNo.html">musicNo</a> (◇)  楽曲ファイルと譜面の対応付け</li>
 <li><a href="dos-h0013-musicFolder.html">musicFolder</a>  楽曲ファイルの格納先</li>
-<li><a href="dos-h0042-dummyId.html">dummyId</a>  ダミー譜面の指定</li>
+<li><a href="dos-h0042-dummyId.html">dummyId</a> (◇)  ダミー譜面の指定</li>
 </ul>
 <h2 id="%E2%8F%B3-%E3%83%97%E3%83%AC%E3%82%A4%E6%99%82%E9%96%93%E5%88%B6%E5%BE%A1%E3%83%BB%E8%AD%9C%E9%9D%A2%E4%BD%8D%E7%BD%AE%E8%AA%BF%E6%95%B4">⏳ プレイ時間制御・譜面位置調整</h2>
 <ul>
-<li><a href="dos-h0005-startFrame.html">startFrame</a> (★)  プレイ開始フレーム数</li>
+<li><a href="dos-h0005-startFrame.html">startFrame</a> (★, ◇)  プレイ開始フレーム数</li>
 <li><a href="dos-h0006-blankFrame.html">blankFrame</a>  曲開始までの空白フレーム数</li>
-<li><a href="dos-h0007-endFrame.html"><strong>endFrame</strong></a>  プレイ終了フレーム数</li>
-<li><a href="dos-h0008-fadeFrame.html"><strong>fadeFrame</strong></a>  フェードアウト開始フレーム数</li>
-<li><a href="dos-h0009-adjustment.html"><strong>adjustment</strong></a>  譜面位置の初期調整</li>
+<li><a href="dos-h0007-endFrame.html"><strong>endFrame</strong></a> (◇)  プレイ終了フレーム数</li>
+<li><a href="dos-h0008-fadeFrame.html"><strong>fadeFrame</strong></a> (◇)  フェードアウト開始フレーム数</li>
+<li><a href="dos-h0009-adjustment.html"><strong>adjustment</strong></a> (◇)  譜面位置の初期調整</li>
 <li><a href="dos-h0010-playbackRate.html"><strong>playbackRate</strong></a>  楽曲再生速度（主にテストプレイ用）</li>
 </ul>
 <h2 id="%F0%9F%9B%A0-%E8%A8%AD%E5%AE%9A%E6%99%82%E3%81%AE%E5%88%9D%E6%9C%9F%E8%A8%AD%E5%AE%9A">🛠 設定時の初期設定</h2>
@@ -414,39 +394,81 @@ blockquote {
 <li><a href="dos-h0015-minSpeed.html">minSpeed</a>  設定できる最低速度</li>
 <li><a href="dos-h0016-maxSpeed.html">maxSpeed</a>  設定できる最高速度</li>
 <li><a href="dos-h0051-difSelectorUse.html">difSelectorUse</a>  譜面選択セレクターの利用有無</li>
-<li><a href="dos-h0060-scoreDetailUse">scoreDetailUse</a> 譜面明細表示の利用有無</li>
-<li><a href="dos-h0035-settingUse.html"><strong>settingUse</strong></a>  設定項目の利用有無</li>
-<li><a href="dos-h0057-displayUse.html">displayUse</a>  Display項目の利用有無</li>
-<li><a href="dos-h0024-transKeyUse.html">transKeyUse</a>  別キーモードの利用有無</li>
+<li><a href="dos-h0060-scoreDetailUse.html">scoreDetailUse</a>  譜面明細表示の利用有無</li>
+<li><a href="dos-h0035-settingUse.html"><strong>settingUse</strong></a>  設定項目の利用有無
+<ul>
+<li>motionUse, scrollUse, shuffleUse, ... etc</li>
+</ul>
+</li>
+<li><a href="dos-h0057-displayUse.html">displayUse</a>  Display項目の利用有無, 初期値設定
+<ul>
+<li>stepZoneUse, judgmentUse, fastSlowUse, ... etc</li>
+</ul>
+</li>
+<li><a href="dos-h0064-displayChainOFF.html">displayChainOFF</a>  Display項目の連動OFF設定
+<ul>
+<li>backgroundChainOFF, arrowEffectChainOFF, specialChainOFF, ... etc</li>
+</ul>
+</li>
+<li><a href="dos-h0024-transKeyUse.html">transKeyUse</a> (◇)  別キーモードの利用有無</li>
 <li><a href="dos-h0020-customFont.html"><strong>customFont</strong></a>  画面全般のフォント</li>
-<li><a href="dos-h0053-customGauge.html">customGauge</a>  カスタムゲージ設定</li>
-<li><a href="dos-h0022-gaugeX.html"><strong>gaugeX</strong></a>  ゲージ設定の詳細</li>
+<li><a href="dos-h0053-customGauge.html"><strong>customGauge</strong></a> (◆)  カスタムゲージ設定</li>
+<li><a href="dos-h0022-gaugeX.html"><strong>gaugeX</strong></a> (◇, ◆)  ゲージ設定の詳細
+<ul>
+<li>gaugeEasy, gaugeHard, gaugeLight, ... etc</li>
+</ul>
+</li>
 <li><a href="dos-h0046-colorDataType.html">colorDataType</a>  色変化の過去互換設定</li>
 <li><a href="dos-h0047-colorCdPaddingUse.html">colorCdPaddingUse</a>  初期矢印色/フリーズアロー色のゼロパディング有無設定</li>
 </ul>
 <h2 id="%E2%8F%AF-%E3%83%97%E3%83%AC%E3%82%A4%E6%99%82%E3%81%AE%E5%88%9D%E6%9C%9F%E8%A8%AD%E5%AE%9A">⏯ プレイ時の初期設定</h2>
+<h3 id="%E7%9F%A2%E5%8D%B0%E3%83%BB%E3%83%95%E3%83%AA%E3%83%BC%E3%82%BA%E3%82%A2%E3%83%AD%E3%83%BC%E8%89%B2%E3%81%AE%E8%A8%AD%E5%AE%9A">矢印・フリーズアロー色の設定</h3>
 <ul>
+<li><a href="dos-h0003-setColor.html"><strong>setColor</strong></a> (★, ◆)  矢印色</li>
+<li><a href="dos-h0004-frzColor.html"><strong>frzColor</strong></a> (★, ◆)  フリーズアロー色</li>
+<li><a href="dos-h0041-setShadowColor.html">setShadowColor</a> (◆)  矢印の内側を塗りつぶす設定および色の設定</li>
+<li><a href="dos-h0062-frzShadowColor.html">frzShadowColor</a> (◆)  フリーズアローの矢印内側を塗りつぶす設定および色の設定</li>
+<li><a href="dos-h0061-defaultColorgrd.html"><strong>defaultColorgrd</strong></a>  自動グラデーション設定</li>
+<li><a href="dos-h0063-defaultFrzColorUse.html">defaultFrzColorUse</a>  フリーズアロー初期色(frzColor)が未指定時の適用方法</li>
+</ul>
+<h3 id="%E3%83%97%E3%83%AC%E3%82%A4%E7%94%BB%E9%9D%A2%E4%BD%8D%E7%BD%AE%E3%81%AE%E8%A8%AD%E5%AE%9A">プレイ画面位置の設定</h3>
+<ul>
+<li><a href="dos-h0070-playingX.html">playingX</a>  ゲーム表示エリアのX座標</li>
+<li><a href="dos-h0071-playingWidth.html">playingWidth</a>  ゲーム表示エリアの横幅</li>
 <li><a href="dos-h0014-stepY.html">stepY</a>  ステップゾーンのY座標位置</li>
-<li><a href="dos-h0049-stepYR.html">stepYR</a> ステップゾーン（下）のY座標現位置からの差分</li>
-<li><a href="dos-h0003-setColor.html"><strong>setColor</strong></a> (*, ★)  矢印色</li>
-<li><a href="dos-h0004-frzColor.html"><strong>frzColor</strong></a> (*, ★)  フリーズアロー色</li>
-<li><a href="dos-h0041-setShadowColor.html">setShadowColor</a>  矢印の内側を塗りつぶす設定および色の設定</li>
-<li><a href="dos-h0061-defaultColorgrd.html">defaultColorgrd</a> 自動グラデーション設定</li>
+<li><a href="dos-h0049-stepYR.html">stepYR</a>  ステップゾーン(下)のY座標現位置からの差分</li>
 <li><a href="dos-h0058-jdgY.html">arrowJdgY / frzJdgY</a>  判定キャラクタのY座標位置</li>
+<li><a href="dos-h0065-jdgPosReset.html">jdgPosReset</a>  判定キャラクタ位置のリセット設定(Background:OFF時)</li>
 <li><a href="dos-h0059-bottomWordSet.html">bottomWordSet</a>  下側の歌詞表示位置をステップゾーン位置に連動させる設定</li>
+<li><a href="dos-h0069-wordAutoReverse.html">wordAutoReverse</a>  Reverse時に歌詞表示を条件付きで反転させる設定</li>
+</ul>
+<h3 id="%E3%83%A9%E3%82%A4%E3%83%95%E3%82%B2%E3%83%BC%E3%82%B8%E3%83%BB%E5%88%A4%E5%AE%9A%E9%96%A2%E9%80%A3%E3%81%AE%E8%A8%AD%E5%AE%9A">ライフゲージ・判定関連の設定</h3>
+<ul>
 <li><a href="dos-h0045-maxLifeVal.html">maxLifeVal</a>  ライフの上限値</li>
 <li><a href="dos-h0037-frzStartjdgUse.html">frzStartjdgUse</a>  フリーズアロー開始判定の設定有無</li>
 <li><a href="dos-h0038-frzAttempt.html">frzAttempt</a>  フリーズアローヒット時の許容フレーム数</li>
+</ul>
+<h3 id="%E7%94%BB%E9%9D%A2%E8%A1%A8%E7%A4%BA%E3%83%BB%E3%82%AD%E3%83%BC%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB">画面表示・キーコントロール</h3>
+<ul>
 <li><a href="dos-h0052-readyDelayFrame.html">readyDelayFrame</a>  Ready?が表示されるまでの遅延フレーム数</li>
+<li><a href="dos-h0073-readyAnimationFrame.html">readyAnimationFrame</a>  Ready?のアニメーションフレーム数</li>
+<li><a href="dos-h0074-readyAnimationName.html">readyAnimationName</a>  Ready?のアニメーション名</li>
+<li><a href="dos-h0075-readyColor.html">readyColor</a>  Ready?の先頭色設定</li>
+<li><a href="dos-h0080-readyHtml.html">readyHtml</a>  Ready?の文字設定</li>
 <li><a href="dos-h0023-finishView.html">finishView</a>  フルコンボ演出の有無</li>
 <li><a href="dos-h0039-keyRetry.html">keyRetry</a>  リトライを行うショートカットキーのキーコード</li>
 <li><a href="dos-h0040-keyTitleBack.html">keyTitleBack</a>  タイトルバックを行うショートカットキーのキーコード</li>
 </ul>
 <h2 id="%E2%9A%93%EF%B8%8F-%E3%82%BF%E3%82%A4%E3%83%88%E3%83%AB%E3%83%BB%E7%B5%90%E6%9E%9C%E7%94%BB%E9%9D%A2%E3%81%AE%E5%88%9D%E6%9C%9F%E8%A8%AD%E5%AE%9A">⚓️ タイトル・結果画面の初期設定</h2>
 <ul>
+<li><a href="dos-h0066-commentVal.html"><strong>commentVal</strong></a>  コメント表示</li>
+<li><a href="dos-h0067-commentAutoBr.html">commentAutoBr</a>  コメント表示時に改行タグを自動挿入する設定</li>
+<li><a href="dos-h0068-commentExternal.html">commentExternal</a>  コメントを本体の外部に置く設定</li>
 <li><a href="dos-h0043-masktitleButton.html">masktitleButton</a>  タイトル画面上のボタン群の有効/無効設定</li>
+<li><a href="dos-h0076-resultDelayFrame.html">resultDelayFrame</a>  CLEARED/FAILEDが表示されるまでの遅延フレーム数</li>
 <li><a href="dos-h0044-maskresultButton.html">maskresultButton</a>  リザルト画面上のボタン群の有効/無効設定</li>
 <li><a href="dos-h0048-resultMotionSet.html">resultMotionSet</a>  リザルトモーションのON/OFF設定</li>
+<li><a href="dos-h0072-resultFormat.html"><strong>resultFormat</strong></a>  リザルトデータのフォーマット設定</li>
 </ul>
 <h2 id="%F0%9F%8F%99-%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%83%87%E3%83%BC%E3%82%BF%E3%81%AE%E5%8F%96%E8%BE%BC">🏙 カスタムデータの取込</h2>
 <ul>
@@ -455,22 +477,26 @@ blockquote {
 <li><a href="dos-h0055-autoPreload.html"><strong>autoPreload</strong></a>  画像ファイルの自動読み込み設定</li>
 <li><a href="dos-h0054-skinType.html"><strong>skinType</strong></a>  スキン設定</li>
 <li><a href="dos-h0056-settingType.html">settingType</a>  共通設定名</li>
+<li><a href="dos-h0081-backBright.html">backBright</a>  背景の明暗状態</li>
 </ul>
 <h2 id="%F0%9F%8D%82-%E3%83%87%E3%83%95%E3%82%A9%E3%83%AB%E3%83%88%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3%E3%81%AE%E5%88%A9%E7%94%A8%E6%9C%89%E7%84%A1">🍂 デフォルトデザインの利用有無</h2>
 <ul>
 <li><a href="dos-h0025-customTitleUse.html"><strong>customTitleUse</strong></a>  タイトルの曲名文字</li>
 <li><a href="dos-h0026-customTitleArrowUse.html">customTitleArrowUse</a>  タイトルの背景矢印</li>
-<li><a href="dos-h0027-customBackUse.html">customBackUse</a>  背景（プレイ画面以外）</li>
-<li><a href="dos-h0028-customBackMainUse.html">customBackMainUse</a>  背景（プレイ画面）</li>
+<li><a href="dos-h0078-customTitleAnimationUse.html">customTitleAnimationUse</a>  タイトルのアニメーション設定</li>
+<li><a href="dos-h0027-customBackUse.html">customBackUse</a>  背景(プレイ画面以外)</li>
+<li><a href="dos-h0028-customBackMainUse.html">customBackMainUse</a>  背景(プレイ画面)</li>
 <li><a href="dos-h0029-customReadyUse.html">customReadyUse</a>  プレイ開始時演出</li>
 </ul>
 <h2 id="%F0%9F%8C%9F-%E3%82%BF%E3%82%A4%E3%83%88%E3%83%AB%E6%9B%B2%E5%90%8D%E6%96%87%E5%AD%97%E3%83%87%E3%83%95%E3%82%A9%E3%83%AB%E3%83%88%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3%E3%81%AE%E3%82%A8%E3%83%95%E3%82%A7%E3%82%AF%E3%83%88">🌟 タイトル曲名文字(デフォルトデザイン)のエフェクト</h2>
 <ul>
 <li><a href="dos-h0030-titlesize.html"><strong>titlesize</strong></a>  文字サイズ</li>
 <li><a href="dos-h0031-titlefont.html"><strong>titlefont</strong></a>  フォント</li>
-<li><a href="dos-h0032-titlegrd.html">titlegrd</a>  グラデーション</li>
+<li><a href="dos-h0032-titlegrd.html">titlegrd / titlearrowgrd</a>  グラデーション</li>
 <li><a href="dos-h0033-titlepos.html">titlepos</a>  X, Y座標位置</li>
 <li><a href="dos-h0034-titlelineheight.html"><strong>titlelineheight</strong></a>  複数行の際の行間</li>
+<li><a href="dos-h0077-titleanimation.html"><strong>titleanimation</strong></a>  アニメーション設定</li>
+<li><a href="dos-h0079-titleanimationclass.html">titleanimationclass</a>  アニメーションクラス設定</li>
 </ul>
 <h2 id="%F0%9F%93%8B-%E3%82%AF%E3%83%AC%E3%82%B8%E3%83%83%E3%83%88%E9%96%A2%E9%80%A3">📋 クレジット関連</h2>
 <ul>

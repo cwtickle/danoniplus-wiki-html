@@ -5,16 +5,17 @@
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 
 <style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
 body {
-	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
-	font-size: 14px;
-	padding: 0 12px;
-	line-height: 22px;
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
 	word-wrap: break-word;
 }
 
@@ -38,7 +39,6 @@ body {
 	background-color:#007acc;
 	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
 }
-
 
 body.scrollBeyondLastLine {
 	margin-bottom: calc(100vh - 22px);
@@ -71,12 +71,20 @@ body.showEditorSelection li.code-line:hover:before {
 	border-left: 3px solid rgba(0, 0, 0, 0.40);
 }
 
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
 .vscode-dark.showEditorSelection .code-active-line:before {
 	border-left: 3px solid rgba(255, 255, 255, 0.4);
 }
 
 .vscode-dark.showEditorSelection .code-line:hover:before {
 	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
 }
 
 .vscode-high-contrast.showEditorSelection .code-active-line:before {
@@ -87,14 +95,21 @@ body.showEditorSelection li.code-line:hover:before {
 	border-left: 3px solid rgba(255, 160, 0, 1);
 }
 
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
 img {
 	max-width: 100%;
 	max-height: 100%;
 }
 
 a {
-	color: #4080D0;
 	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
 }
 
 a:focus,
@@ -122,21 +137,6 @@ h1, h2, h3 {
 	font-weight: normal;
 }
 
-h1 code,
-h2 code,
-h3 code,
-h4 code,
-h5 code,
-h6 code {
-	font-size: inherit;
-	line-height: auto;
-}
-
-a:hover {
-	color: #4080D0;
-	text-decoration: underline;
-}
-
 table {
 	border-collapse: collapse;
 }
@@ -160,22 +160,18 @@ table > tbody > tr + tr > td {
 blockquote {
 	margin: 0 7px 0 5px;
 	padding: 0 16px 0 10px;
-	border-left: 5px solid;
+	border-left-width: 5px;
+	border-left-style: solid;
 }
 
 code {
 	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
-	font-size: 14px;
-	line-height: 19px;
+	font-size: 1em;
+	line-height: 1.357em;
 }
 
 body.wordWrap pre {
 	white-space: pre-wrap;
-}
-
-.mac code {
-	font-size: 12px;
-	line-height: 18px;
 }
 
 pre:not(.hljs),
@@ -185,43 +181,22 @@ pre.hljs code > div {
 	overflow: auto;
 }
 
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
 /** Theming */
 
-.vscode-light,
-.vscode-light pre code {
-	color: rgb(30, 30, 30);
-}
-
-.vscode-dark,
-.vscode-dark pre code {
-	color: #DDD;
-}
-
-.vscode-high-contrast,
-.vscode-high-contrast pre code {
-	color: white;
-}
-
-.vscode-light code {
-	color: #A31515;
-}
-
-.vscode-dark code {
-	color: #D7BA7D;
-}
-
-.vscode-light pre:not(.hljs),
-.vscode-light code > div {
+.vscode-light pre {
 	background-color: rgba(220, 220, 220, 0.4);
 }
 
-.vscode-dark pre:not(.hljs),
-.vscode-dark code > div {
+.vscode-dark pre {
 	background-color: rgba(10, 10, 10, 0.4);
 }
 
-.vscode-high-contrast pre:not(.hljs),
-.vscode-high-contrast code > div {
+.vscode-high-contrast pre {
 	background-color: rgb(0, 0, 0);
 }
 
@@ -249,16 +224,6 @@ pre.hljs code > div {
 	border-color: rgba(255, 255, 255, 0.18);
 }
 
-.vscode-light blockquote,
-.vscode-dark blockquote {
-	background: rgba(127, 127, 127, 0.1);
-	border-color: rgba(0, 122, 204, 0.5);
-}
-
-.vscode-high-contrast blockquote {
-	background: transparent;
-	border-color: #fff;
-}
 </style>
 
 <style>
@@ -343,7 +308,8 @@ pre.hljs code > div {
  */
 
  body {
-	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
 }
 
 pre {
@@ -369,6 +335,11 @@ blockquote {
 	height: 1.4em;
 }
 
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
 /* for inline code */
 :not(pre):not(.hljs) > code {
 	color: #C9AE75; /* Change the old color so it seems less like an error */
@@ -383,16 +354,23 @@ blockquote {
 
 </style>
 
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
 </head>
 <body>
-
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
 <h1 id="parafla%E3%82%BD%E3%83%BC%E3%82%B9%E5%88%A9%E7%94%A8%E8%80%85%E5%90%91%E3%81%91-%E4%BD%9C%E5%93%81%E7%A7%BB%E8%A1%8C%E6%96%B9%E6%B3%95">ParaFla!ソース利用者向け 作品移行方法</h1>
 <h2 id="%E3%82%BD%E3%83%BC%E3%82%B9%E4%B8%80%E5%BC%8F%E3%82%92%E3%83%80%E3%82%A6%E3%83%B3%E3%83%AD%E3%83%BC%E3%83%89">ソース一式をダウンロード</h2>
-<p>Clone or Download より、一式をダウンロードします。<br>
-(Gitがわかる人や、今後ソース管理をしたい人はCloneした方がいいかもしれません。)<br>
-<img src="./wiki/parafla1.png" alt="Download Source"></p>
+<p><a href="https://github.com/cwtickle/danoniplus/releases/latest">Release</a>ページより、「Source code」を選択してダウンロードします。<br>
+<img src="./wiki/parafla3.png" width="100%"></p>
 <h2 id="%E3%82%BD%E3%83%BC%E3%82%B9%E3%81%AE%E6%A7%8B%E6%88%90">ソースの構成</h2>
-<p>「js」「css」「img」はこの構成で、階層を変えないでください。<br>
+<p>「js」「css」「img」「music」「skin」はこの構成で、階層を変えないでください。<br>
 <img src="./wiki/parafla2.png" alt=""></p>
 <table>
 <thead>
@@ -416,24 +394,37 @@ blockquote {
 </tr>
 <tr>
 <td>music</td>
-<td>楽曲用フォルダ。ここにmp3データ等を入れます。フォルダ作成必須。</td>
+<td>楽曲用フォルダ。ここにmp3データ等を入れます。必須。</td>
 </tr>
 <tr>
 <td>danoni</td>
-<td>作品フォルダ。「danoni」の名前は作品名に合わせて自由に変えて良い。 <br> 同じ階層であれば、作品別にフォルダをいくつでも切って良い<br>（現行のswfの公開形式と同じ）。<br>同一フォルダ上にまとめることも可能。</td>
+<td>作品フォルダ。「danoni」の名前は作品名に合わせて自由に変えて良い。 <br> 同じ階層であれば、作品別にフォルダをいくつでも置いたり増やして良い。<br>（現行のswfの公開形式と同じ）。<br>作品フォルダ内に複数の作品用htmlを置くこともできる。</td>
+</tr>
+<tr>
+<td>skin</td>
+<td>スキンファイル。設定するスキンに対応するcss, jsファイルが入る。<br>未設定の場合は、デフォルトスキンとしてこのフォルダを使用。</td>
 </tr>
 </tbody>
 </table>
+<p>※作品フォルダは、jsやcss、musicフォルダと同じ階層に置く必要があります。<br>
+　サブフォルダには対応していません。</p>
+<p>※フォルダ内のファイルについては<a href="AboutSource.html">ソースの構成</a>も必要に応じてご覧ください。</p>
 <h2 id="%E6%BA%96%E5%82%99%E3%81%99%E3%82%8B%E3%82%82%E3%81%AE-%E8%AD%9C%E9%9D%A2%E3%82%B3%E3%83%B3%E3%83%90%E3%83%BC%E3%83%88%E3%81%AE%E5%A0%B4%E5%90%88">準備するもの (譜面コンバートの場合)</h2>
 <ul>
 <li>譜面ファイル (dos.txt)</li>
 <li>楽曲ファイル (通常、mp3ファイル)</li>
 <li>htmlファイル (「danoni」フォルダにあるサンプルの流用を推奨）</li>
 <li>ブラウザ (Chrome, VivaldiなどBlink系のブラウザを推奨)</li>
-<li>Xampp (ローカルプレイ時に必要です。<a href="HowToLocalPlay.html">インストール・設定方法はこちら</a>)</li>
+<li>Xampp (ローカルプレイ時推奨。現在は必須ではありません。<a href="HowToLocalPlay">インストール・設定方法はこちら</a>.html)</li>
 </ul>
 <h2 id="%E5%AE%9F%E9%9A%9B%E3%81%AE%E3%82%B3%E3%83%B3%E3%83%90%E3%83%BC%E3%83%88%E6%96%B9%E6%B3%95">実際のコンバート方法</h2>
-<h3 id="%E8%AD%9C%E9%9D%A2%E3%81%AE%E3%82%B3%E3%83%B3%E3%83%90%E3%83%BC%E3%83%88">譜面のコンバート</h3>
+<h3 id="1-a-%E8%AD%9C%E9%9D%A2%E3%81%AE%E3%82%B3%E3%83%B3%E3%83%90%E3%83%BC%E3%83%88chart-converter%E5%88%A9%E7%94%A8">1-A. 譜面のコンバート（Chart Converter利用）</h3>
+<ul>
+<li>Dancing☆Onigiri Chart Converterを利用したコンバート方法です。<br>
+ツールにて譜面データやHTMLデータの変換が可能です。<br>
+詳細は<a href="https://github.com/cwtickle/danoniplus-converter/wiki">Chart ConverterのWiki</a>をご覧ください。</li>
+</ul>
+<h3 id="1-b-%E8%AD%9C%E9%9D%A2%E3%81%AE%E3%82%B3%E3%83%B3%E3%83%90%E3%83%BC%E3%83%88%E5%BE%93%E6%9D%A5%E3%81%AE%E6%96%B9%E6%B3%95">1-B. 譜面のコンバート（従来の方法）</h3>
 <p>譜面ファイルについて、&quot;&amp;&quot;を &quot;|&quot; で全置換します。</p>
 <ul>
 <li>Before<br>
@@ -442,10 +433,9 @@ blockquote {
 <code>|left_data=230,250,270,...|down_data=250,290,310,...|</code></li>
 </ul>
 <p>次の情報を譜面ファイルに付加します。<br>
-「music.mp3」はmp3のファイル名に置き換えてください。ファイル名は半角英数字推奨。<br>
-<code>|musicUrl=music.mp3|blankFrame=200|</code></p>
-<p>blankFrameは、ParaFla!ソースで言うところの開始前の「何もしない」フレームに相当します。<br>
-デフォルトのままなら200のはず。</p>
+<code>|musicUrl=nosound.mp3|adjustment=0|</code><br>
+adjustmentは、現行の譜面に対してどれだけ何フレーム早く/遅くするかを指定するかを設定します。<br>
+この後で修正します。</p>
 <p>この状態で、譜面ファイルの中身を全て選択し、<br>
 サンプルページのソースにある下記の間に入れます。<br>
 <code>&lt;input type=&quot;hidden&quot; name=&quot;dos&quot; id=&quot;dos&quot; value='＜ここに譜面ファイルを入れる＞'&gt;  </code></p>
@@ -456,15 +446,13 @@ blockquote {
    |difData=11W,Normal,3.5,x,10,5$11W,Hard,3.5,70,2,7|
    |setColor=0x9999ff,0xccffff,0xffffff,0xffff99,0xff9966|
    |frzColor=0x00ffff,0x6600ff,0xffff66,0xffff66|
-   |startFrame=0|blankFrame=195|
-   |musicUrl=PetitMagie.mp3|
+   |startFrame=0|adjustment=0|
+   |musicUrl=nosound.mp3|
    |left_data=264,857,1704,1873,1916,2043|leftdia_data=603,920,1492,1619,4351|down_data=899,1471,1556,1958,2170|
    |color_data=200,34,0xcc99ff,200,35,0x9966ff|
    |tuning=ティックル,http://cw7.sakura.ne.jp/|
 '</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"canvas-frame"</span> <span class="hljs-attr">style</span>=<span class="hljs-string">"width:600px;margin:auto;"</span>&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">canvas</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"layer0"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"600"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"500"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">canvas</span>&gt;</span> <span class="hljs-comment">&lt;!-- v10以降、この行は不要 --&gt;</span>
-   <span class="hljs-tag">&lt;<span class="hljs-name">canvas</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"layer1"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"600"</span> <span class="hljs-attr">height</span>=<span class="hljs-string">"500"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">canvas</span>&gt;</span> <span class="hljs-comment">&lt;!-- v10以降、この行は不要 --&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 </div></code></pre>
 <p>サンプルのhtmlファイルを利用しない場合は、<br>
@@ -472,15 +460,48 @@ blockquote {
 <pre class="hljs"><code><div><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"../js/danoni_main.js"</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/css"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"../css/danoni_main.css"</span>&gt;</span>
 </div></code></pre>
-<h3 id="%E9%9F%B3%E6%A5%BD%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E6%A0%BC%E7%B4%8D">音楽ファイルの格納</h3>
-<p>上で指定した音楽ファイル(mp3)を、「music」フォルダに入れてください。<br>
+<h3 id="2-%E9%9F%B3%E6%A5%BD%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E6%A0%BC%E7%B4%8D">2. 音楽ファイルの格納</h3>
+<p>譜面ヘッダー中にある |musicUrl=nosound.mp3| を、実際のmp3ファイル名に変更してください。<br>
+その後、指定した音楽ファイル(mp3)を、「music」フォルダに入れてください。<br>
 この状態でhtmlファイルを開けば、一通り動作すると思います。</p>
+<h3 id="3-%E8%AD%9C%E9%9D%A2%E3%83%98%E3%83%83%E3%83%80%E3%83%BC%E3%81%AB%E3%82%88%E3%82%8B%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF%E3%81%AE%E4%BF%AE%E6%AD%A3">3. 譜面ヘッダーによるパラメータの修正</h3>
+<p>2.の状態では動作はしますが、ほとんどの場合タイミングがずれます。<br>
+下記の譜面ヘッダー<code>adjustment</code>の数字を前後させることで、<br>
+タイミングを合わせることが可能です。(マイナス可)<br>
+使用頻度の高い譜面ヘッダーを下記に記載します。他については <a href="dos_header.html">譜面ヘッダー仕様</a>を参照してください。</p>
+<table>
+<thead>
+<tr>
+<th>変数名</th>
+<th>内容・使用例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>adjustment</td>
+<td>現行の譜面に対してどれだけ何フレーム早く/遅くするかを指定。<br>|adjustment=40|</td>
+</tr>
+<tr>
+<td>endFrame</td>
+<td>楽曲終了時のフレーム数(分秒指定も可能)。<br>通常は楽曲データから取得するため不要だが、尺余りするときに使う。<br>|endFrame=6000| もしくは |endFrame=1:40|</td>
+</tr>
+<tr>
+<td>fadeFrame</td>
+<td>フェードアウトするタイミングのフレーム数(分秒指定も可能)。<br>譜面別に指定が可能で、$で区切る。<br>|fadeFrame=3600$7200| もしくは |fadeFrame=1:00$2:00\</td>
+</tr>
+<tr>
+<td>titlesize</td>
+<td>タイトル画面の曲名の文字サイズを変更。枠から外れる場合に使用。<br>|titlesize=40|</td>
+</tr>
+</tbody>
+</table>
 <h3 id="%E6%B3%A8%E6%84%8F%E7%82%B9">注意点</h3>
 <ul>
 <li>
 <p>譜面ファイル内の半角シングルクォートについて<br>
-データを半角シングルクォートで括っているため、使用できません。<br>
-エスケープ(&amp;#39;)するか、全角のシングルクォート（’）を使ってください。</p>
+データを半角シングルクォートで括っているため、そのまま使えません。<br>
+<code>*squo*</code>を入れることで作品中、半角シングルクォートに置き換えられます。<br>
+その他の文字については<a href="SpecialCharacters.html">譜面データにおける特殊文字の取り扱い</a>をご覧ください。</p>
 </li>
 <li>
 <p>「music」フォルダについて<br>
@@ -496,35 +517,6 @@ Allow from all
 Deny from env=deny_ref
 </pre>
 <p>太字のところはサーバによって読み替えてください。「.」は「\.」で置き換えます。</p>
-<h3 id="%E8%AD%9C%E9%9D%A2%E3%83%98%E3%83%83%E3%83%80%E3%83%BC%E8%A3%9C%E8%B6%B3">譜面ヘッダー補足</h3>
-<p>ParaFla!ソースで作ったswfでは出てこない、設定可能な譜面ヘッダーを記載します。<br>
-他については <a href="dos_header.html">譜面ヘッダー仕様</a>を参照してください。</p>
-<table>
-<thead>
-<tr>
-<th>変数名</th>
-<th>内容・使用例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>adjustment</td>
-<td>現行の譜面に対してどれだけ何フレーム早く/遅くするかを指定。<br>adjustment=40</td>
-</tr>
-<tr>
-<td>endFrame</td>
-<td>楽曲終了時のフレーム数。<br>通常は楽曲データから取得するため不要だが、尺余りするときに使う。<br>endFrame=6000</td>
-</tr>
-<tr>
-<td>fadeFrame</td>
-<td>フェードアウトするタイミングのフレーム数。<br>譜面別に指定が可能で、$で区切る。<br>fadeFrame=3600$7200</td>
-</tr>
-<tr>
-<td>titlesize</td>
-<td>タイトル画面の曲名の文字サイズを変更。枠から外れる場合に使用。<br>titlesize=40</td>
-</tr>
-</tbody>
-</table>
 
 </body>
 </html>

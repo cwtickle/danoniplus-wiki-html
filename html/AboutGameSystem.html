@@ -5,16 +5,17 @@
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 
 <style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
 body {
-	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
-	font-size: 14px;
-	padding: 0 12px;
-	line-height: 22px;
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
 	word-wrap: break-word;
 }
 
@@ -38,7 +39,6 @@ body {
 	background-color:#007acc;
 	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
 }
-
 
 body.scrollBeyondLastLine {
 	margin-bottom: calc(100vh - 22px);
@@ -71,12 +71,20 @@ body.showEditorSelection li.code-line:hover:before {
 	border-left: 3px solid rgba(0, 0, 0, 0.40);
 }
 
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
 .vscode-dark.showEditorSelection .code-active-line:before {
 	border-left: 3px solid rgba(255, 255, 255, 0.4);
 }
 
 .vscode-dark.showEditorSelection .code-line:hover:before {
 	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
 }
 
 .vscode-high-contrast.showEditorSelection .code-active-line:before {
@@ -87,14 +95,21 @@ body.showEditorSelection li.code-line:hover:before {
 	border-left: 3px solid rgba(255, 160, 0, 1);
 }
 
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
 img {
 	max-width: 100%;
 	max-height: 100%;
 }
 
 a {
-	color: #4080D0;
 	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
 }
 
 a:focus,
@@ -122,21 +137,6 @@ h1, h2, h3 {
 	font-weight: normal;
 }
 
-h1 code,
-h2 code,
-h3 code,
-h4 code,
-h5 code,
-h6 code {
-	font-size: inherit;
-	line-height: auto;
-}
-
-a:hover {
-	color: #4080D0;
-	text-decoration: underline;
-}
-
 table {
 	border-collapse: collapse;
 }
@@ -160,22 +160,18 @@ table > tbody > tr + tr > td {
 blockquote {
 	margin: 0 7px 0 5px;
 	padding: 0 16px 0 10px;
-	border-left: 5px solid;
+	border-left-width: 5px;
+	border-left-style: solid;
 }
 
 code {
 	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
-	font-size: 14px;
-	line-height: 19px;
+	font-size: 1em;
+	line-height: 1.357em;
 }
 
 body.wordWrap pre {
 	white-space: pre-wrap;
-}
-
-.mac code {
-	font-size: 12px;
-	line-height: 18px;
 }
 
 pre:not(.hljs),
@@ -185,43 +181,22 @@ pre.hljs code > div {
 	overflow: auto;
 }
 
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
 /** Theming */
 
-.vscode-light,
-.vscode-light pre code {
-	color: rgb(30, 30, 30);
-}
-
-.vscode-dark,
-.vscode-dark pre code {
-	color: #DDD;
-}
-
-.vscode-high-contrast,
-.vscode-high-contrast pre code {
-	color: white;
-}
-
-.vscode-light code {
-	color: #A31515;
-}
-
-.vscode-dark code {
-	color: #D7BA7D;
-}
-
-.vscode-light pre:not(.hljs),
-.vscode-light code > div {
+.vscode-light pre {
 	background-color: rgba(220, 220, 220, 0.4);
 }
 
-.vscode-dark pre:not(.hljs),
-.vscode-dark code > div {
+.vscode-dark pre {
 	background-color: rgba(10, 10, 10, 0.4);
 }
 
-.vscode-high-contrast pre:not(.hljs),
-.vscode-high-contrast code > div {
+.vscode-high-contrast pre {
 	background-color: rgb(0, 0, 0);
 }
 
@@ -249,16 +224,6 @@ pre.hljs code > div {
 	border-color: rgba(255, 255, 255, 0.18);
 }
 
-.vscode-light blockquote,
-.vscode-dark blockquote {
-	background: rgba(127, 127, 127, 0.1);
-	border-color: rgba(0, 122, 204, 0.5);
-}
-
-.vscode-high-contrast blockquote {
-	background: transparent;
-	border-color: #fff;
-}
 </style>
 
 <style>
@@ -343,7 +308,8 @@ pre.hljs code > div {
  */
 
  body {
-	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
 }
 
 pre {
@@ -369,6 +335,11 @@ blockquote {
 	height: 1.4em;
 }
 
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
 /* for inline code */
 :not(pre):not(.hljs) > code {
 	color: #C9AE75; /* Change the old color so it seems less like an error */
@@ -383,21 +354,35 @@ blockquote {
 
 </style>
 
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
 </head>
 <body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
 <h1 id="%E3%82%B2%E3%83%BC%E3%83%A0%E7%94%BB%E9%9D%A2%E3%81%AE%E8%AA%AC%E6%98%8E-about-game-system">ゲーム画面の説明 (About Game System)</h1>
-<h2 id="gametitle-%E3%82%B2%E3%83%BC%E3%83%A0%E3%82%BF%E3%82%A4%E3%83%88%E3%83%AB">GameTitle / ゲームタイトル</h2>
+<ul>
+<li><a href="Shortcut.html">ゲーム内で使用できるショートカット</a>も合わせてご覧ください。</li>
+</ul>
+<h2 id="gametitle--%E3%82%B2%E3%83%BC%E3%83%A0%E3%82%BF%E3%82%A4%E3%83%88%E3%83%AB">GameTitle / ゲームタイトル</h2>
 <ul>
 <li>Click Here!! を押してゲームをスタートします。<br>
 ※作品により、画面の見た目が異なる場合があります。<br>
 (Press Click Here !! to start the game.)</li>
 </ul>
 <p><img src="./wiki/01game-title-1_v10.png" alt="01game-title"></p>
-<h2 id="settings-%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2">Settings / 設定画面</h2>
+<h2 id="settings--%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2">Settings / 設定画面</h2>
 <ul>
 <li>譜面(Difficulty)や矢印の流れる速度などを変更できます。<br>
 (You can change the charts (Difficulty) and the speed of the sequences.
 In DanOni, we call the sequences &quot;arrows&quot;.)</li>
+<li>PLAYボタンを押すとゲームがスタートします。<br>
+譜面のタイミングがずれるときは、Adjustmentの設定を上下させてみてください。</li>
 </ul>
 <p><img src="./wiki/11game-setting1-1_v10.png" alt="11game-setting1"></p>
 <h3 id="difficulty-%E8%AD%9C%E9%9D%A2">Difficulty (譜面)</h3>
@@ -424,11 +409,11 @@ In DanOni, we call the sequences &quot;arrows&quot;.)</li>
 </tr>
 <tr>
 <td>Boost</td>
-<td>初めは初速、ステップゾーンに近づくにつれて速くなる<br>(Initially initial speed, faster as it gets closer to the step zone)</td>
+<td>初めは初速、ステップゾーンに近づくにつれて速くなります。<br>(Initially initial speed, faster as it gets closer to the step zone)</td>
 </tr>
 <tr>
 <td>Brake</td>
-<td>初めは速く、ステップゾーンに近づくにつれて初速になる<br>(Initially fast, and becomes initial speed as it gets closer to the step zone)</td>
+<td>初めは速く、ステップゾーンに近づくにつれて初速になります。<br>(Initially fast, and becomes initial speed as it gets closer to the step zone)</td>
 </tr>
 </tbody>
 </table>
@@ -453,7 +438,48 @@ In DanOni, we call the sequences &quot;arrows&quot;.)</li>
 </tr>
 </tbody>
 </table>
-<h3 id="shuffle-%E3%83%9F%E3%83%A9%E3%83%BC%E3%80%81%E3%83%A9%E3%83%B3%E3%83%80%E3%83%A0">Shuffle (ミラー、ランダム)</h3>
+<h3 id="scroll-%E5%90%84%E3%83%AC%E3%83%BC%E3%83%B3%E3%81%AE%E3%82%B9%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%AB%E6%96%B9%E5%90%91%E3%81%AE%E8%A8%AD%E5%AE%9A">Scroll (各レーンのスクロール方向の設定)</h3>
+<p>各レーンのスクロール方向をパターンに沿って設定します。<br>
+(Set the scroll direction of each lane according to the pattern.)</p>
+<table>
+<thead>
+<tr>
+<th>種類</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>---</td>
+<td>すべてのレーンが同じ方向に流れます。<br>(All lanes flow in the same direction.)</td>
+</tr>
+<tr>
+<td>Cross</td>
+<td>正、逆、正の順に流れるよう設定します。<br>(Generally, set the flow to be default, reverse, and default.)</td>
+</tr>
+<tr>
+<td>Split</td>
+<td>中央を境界として、スクロール方向を反転します。<br>(Reverses the scroll direction with the center as the boundary.)</td>
+</tr>
+<tr>
+<td>Alternate</td>
+<td>交互にスクロール方向が反転するよう設定します。<br>(Set the scroll direction to be reversed alternately.)</td>
+</tr>
+<tr>
+<td>Twist</td>
+<td>Crossの亜種で、もう少し細かくスクロール方向が反転するよう設定します。<br>(A variant of &quot;Cross&quot; that sets the scroll direction to be slightly more reversed.)</td>
+</tr>
+<tr>
+<td>Asymmetry</td>
+<td>Alternateの亜種で、基本的には交互にスクロール方向が反転するよう設定しますが、左右非対称になるよう設定します。<br>(A variant of &quot;Alternate&quot; that basically sets the scroll direction to be alternately reversed, but sets it to be asymmetrical.)</td>
+</tr>
+<tr>
+<td>Flat</td>
+<td>すべてのレーンが矢印の重なりに関係なく同じ方向に流れます。<br>一部のキーのみ使用できます。<br>(All lanes flow in the same direction regardless of arrow overlap. <br>Only some keys can be used.)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="shuffle-%E3%83%9F%E3%83%A9%E3%83%BC%E3%83%A9%E3%83%B3%E3%83%80%E3%83%A0">Shuffle (ミラー、ランダム)</h3>
 <p>譜面を左右反転したり、ランダムにします。<br>
 ランダムにした場合は別譜面扱いとなり、<strong>ハイスコアは保存されません。</strong><br>
 (Flip the sequences left or right or make it random.
@@ -472,31 +498,31 @@ If you make it random, it will be treated as another sequences, and the high sco
 </tr>
 <tr>
 <td>Mirror</td>
-<td>譜面をグループレーンごとに左右反転する。<br>(Flip the sequences horizontally for each group lane.)</td>
+<td>譜面をグループレーンごとに左右反転します。<br>(Flip the sequences horizontally for each group lane.)</td>
 </tr>
 <tr>
 <td>Random</td>
-<td>譜面をグループレーンごとにランダムに再配置する。<br>(Rearrange the sequences randomly for each group lane.)</td>
+<td>譜面をグループレーンごとにランダムに再配置します。<br>(Rearrange the sequences randomly for each group lane.)</td>
 </tr>
 <tr>
 <td>Random+</td>
-<td>譜面をグループに関係なくレーンごとにランダムに再配置する。<br>(Rearrange the sequences randomly for each lane regardless of the group.)</td>
+<td>譜面をグループに関係なくレーンごとにランダムに再配置します。<br>(Rearrange the sequences randomly for each lane regardless of the group.)</td>
 </tr>
 <tr>
 <td>S-Random</td>
-<td>譜面をグループごとに矢印個別にランダムに再配置する。<br>(Arrange the sequences randomly for each group by arrows.)</td>
+<td>譜面をグループごとに矢印個別にランダムに再配置します。<br>(Arrange the sequences randomly for each group by arrows.)</td>
 </tr>
 <tr>
 <td>S-Random+</td>
-<td>譜面をグループに関係なく矢印個別にランダムに再配置する。<br>(Arrange the sequences randomly regardless of the groups and arrows individually.)</td>
+<td>譜面をグループに関係なく矢印個別にランダムに再配置します。<br>(Arrange the sequences randomly regardless of the groups and arrows individually.)</td>
 </tr>
 </tbody>
 </table>
 <h3 id="autoplay-%E3%82%AA%E3%83%BC%E3%83%88%E3%83%97%E3%83%AC%E3%82%A4">AutoPlay (オートプレイ)</h3>
-<p>オートプレイにするかどうかを設定します。<br>
-オートプレイ時は<strong>ハイスコアを保存しません。</strong><br>
-(Set whether to play auto play.
-High score is not saved during auto play.)</p>
+<p>一部もしくは全てのキーをアシストするかどうかを設定します。<br>
+完全オートプレイ時は<strong>ハイスコアを保存しません。</strong><br>
+(Set whether some or all keys are assisted or not.<br>
+High score is not saved during full auto play.)</p>
 <h3 id="gauge-%E3%83%A9%E3%82%A4%E3%83%95%E3%82%B2%E3%83%BC%E3%82%B8%E8%A8%AD%E5%AE%9A">Gauge (ライフゲージ設定)</h3>
 <p>クリア条件を設定します。<br>
 Dancing☆Onigiri (CW Edition)の場合、<br>
@@ -526,7 +552,11 @@ The amount of recovery and damage is fixed regardless of the number of sequences
 </tr>
 <tr>
 <td>Light</td>
-<td>Originalと同じですが、Originalよりも回復量が大きくなっています。<br>(Same as Original, but with greater recovery than Original)</td>
+<td>Originalと同じですが、Originalよりも回復量が大きくなっています。<br>(Same as &quot;Original&quot;, but with greater recovery than &quot;Original&quot;)</td>
+</tr>
+<tr>
+<td>Heavy</td>
+<td>Originalよりも回復量が小さく、ダメージが大きい設定です。<br>(The amount of recovery is smaller than &quot;Original&quot;, and the damage is large.)</td>
 </tr>
 <tr>
 <td>NoRecovery</td>
@@ -586,16 +616,118 @@ High score is not saved if you start from the middle.)</p>
 <h3 id="volume-%E9%9F%B3%E9%87%8F">Volume (音量)</h3>
 <p>ゲーム内の音量を設定します。<br>
 (Set the in-game volume.)</p>
-<h2 id="display-settings-%E7%94%BB%E9%9D%A2%E3%81%AE%E8%A6%8B%E3%81%88%E6%96%B9">Display Settings / 画面の見え方</h2>
-<ul>
-<li>プレイ画面上に存在するものの表示／非表示を切り替えます。<br>
-(Switch between showing and hiding what exists on the play screen.)</li>
-</ul>
+<h2 id="display-settings--%E7%94%BB%E9%9D%A2%E3%81%AE%E8%A6%8B%E3%81%88%E6%96%B9">Display Settings / 画面の見え方</h2>
 <p><img src="./wiki/12game-setting2-1_v10.png" alt="12game-setting2"></p>
-<h2 id="keyconfig-%E3%82%AD%E3%83%BC%E3%82%B3%E3%83%B3%E3%83%95%E3%82%A3%E3%82%B0%EF%BC%88%E7%9F%A2%E5%8D%B0%E3%81%AB%E5%AF%BE%E5%BF%9C%E3%81%99%E3%82%8B%E3%82%AD%E3%83%BC%E3%81%AE%E5%89%B2%E3%82%8A%E5%BD%93%E3%81%A6%EF%BC%89">Keyconfig / キーコンフィグ（矢印に対応するキーの割り当て）</h2>
+<h3 id="display-%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E7%AD%89%E3%81%AE%E8%A1%A8%E7%A4%BA%EF%BC%8F%E9%9D%9E%E8%A1%A8%E7%A4%BA">Display (オブジェクト等の表示／非表示)</h3>
+<p>プレイ画面上に存在するものの表示／非表示を切り替えます。<br>
+(Switch between showing and hiding what exists on the play screen.)</p>
+<table>
+<thead>
+<tr>
+<th>種類</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>StepZone</td>
+<td>ステップゾーンの表示<br>(Step zone)</td>
+</tr>
+<tr>
+<td>Judgment</td>
+<td>判定キャラクタ・コンボの表示<br>(Judgment character and combo)</td>
+</tr>
+<tr>
+<td>FastSlow</td>
+<td>Fast/Slow表示<br>(Displays the number of difference frames by determining whether the timing of pressing is early or late)</td>
+</tr>
+<tr>
+<td>LifeGauge</td>
+<td>ライフゲージの表示<br>(Life gauge)</td>
+</tr>
+<tr>
+<td>Score</td>
+<td>現時点の判定数を表示<br>(Display the current judgment count)</td>
+</tr>
+<tr>
+<td>MusicInfo</td>
+<td>音楽情報（現状は時間表示のみ）<br>(Music information (currently time display only))</td>
+</tr>
+<tr>
+<td>FilterLine</td>
+<td>Hidden+, Sudden+使用時のフィルターの境界線表示<br>(Filter border display when using &quot;Hidden+&quot; or &quot;Sudden+&quot;)</td>
+</tr>
+<tr>
+<td>Speed</td>
+<td>途中変速、個別加速の有効化<br>(Enable mid-shift and individual acceleration)</td>
+</tr>
+<tr>
+<td>Color</td>
+<td>色変化の有効化<br>(Enable color change)</td>
+</tr>
+<tr>
+<td>Lyrics</td>
+<td>歌詞表示の有効化<br>(Enable lyrics display)</td>
+</tr>
+<tr>
+<td>Background</td>
+<td>背景・マスクモーションの有効化<br>(Enable background and mask motion)</td>
+</tr>
+<tr>
+<td>ArrowEffect</td>
+<td>矢印・フリーズアローモーションの有効化<br>(Enable arrow and freeze arrow motion)</td>
+</tr>
+<tr>
+<td>Special</td>
+<td>作品固有の特殊演出の有効化<br>(Enable special productions specific to the work)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="appearance-%E6%B5%81%E3%82%8C%E3%82%8B%E7%9F%A2%E5%8D%B0%E3%81%AE%E8%A6%8B%E3%81%88%E6%96%B9">Appearance (流れる矢印の見え方)</h3>
+<p>流れる矢印の見え方を制御します。<br>
+(Controls the appearance of flowing sequences.)<br>
+「Hidden+」と「Sudden+」についてはプレイ中に「pageUp」「pageDown」を押すことで可視範囲を調整できます。<br>
+(For &quot;Hidden+&quot; and &quot;Sudden+&quot;, you can adjust the viewable range by pressing &quot;pageUp&quot; or &quot;pageDown&quot; during play.)</p>
+<table>
+<thead>
+<tr>
+<th>種類</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Visible</td>
+<td>すべてが見える状態<br>(Everything is visible)</td>
+</tr>
+<tr>
+<td>Hidden</td>
+<td>初めの50%までは見えますが、その後は見えなくなります。<br>(Visible up to the first 50%, then disappears)</td>
+</tr>
+<tr>
+<td>Sudden</td>
+<td>初めの40%までは見えませんが、その後は見えるようになります。<br>(Not visible until first 40%, then visible)</td>
+</tr>
+<tr>
+<td>Hidden+</td>
+<td>基本的にHiddenと同じですが、Hiddenの可視範囲をプレイ中に調整できます。<br>(Same as &quot;Hidden&quot;, but the visibility of &quot;Hidden&quot; can be adjusted during play)</td>
+</tr>
+<tr>
+<td>Sudden+</td>
+<td>基本的にSuddenと同じですが、Suddenの可視範囲をプレイ中に調整できます。<br>(Same as &quot;Sudden&quot;, but the visibility of &quot;Sudden&quot; can be adjusted during play)</td>
+</tr>
+<tr>
+<td>Hid&amp;Sud+</td>
+<td>Hidden+とSudden+を組み合わせて表示します。<br>(The combination of &quot;Hidden+&quot; and &quot;Sudden+&quot; is displayed.)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="opacity-%E5%88%A4%E5%AE%9A%E3%82%AD%E3%83%A3%E3%83%A9%E3%82%AF%E3%82%BF%E3%81%AE%E9%80%8F%E6%98%8E%E5%BA%A6">Opacity (判定キャラクタの透明度)</h3>
+<p>判定キャラクタ、コンボ数、Fast/Slow、Hidden+/Sudden+の境界線表示の透明度を設定します。<br>
+(Set the transparency of the judgment character, the number of combos, Fast and Slow, and the border line display of &quot;Hidden+&quot; and &quot;Sudden+&quot;.)</p>
+<h2 id="keyconfig--%E3%82%AD%E3%83%BC%E3%82%B3%E3%83%B3%E3%83%95%E3%82%A3%E3%82%B0%E7%9F%A2%E5%8D%B0%E3%81%AB%E5%AF%BE%E5%BF%9C%E3%81%99%E3%82%8B%E3%82%AD%E3%83%BC%E3%81%AE%E5%89%B2%E3%82%8A%E5%BD%93%E3%81%A6">Keyconfig / キーコンフィグ（矢印に対応するキーの割り当て）</h2>
 <ul>
-<li>画面が表示されている間に対応するキーを押すことで、<br>
-割り当てるキーを変えることができます。<br>
+<li>画面が表示されている間に対応するキーを押すことで、割り当てるキーを変えることができます。<br>
 変更されたキーは「黄色」で表示されます。</li>
 <li>また、設定画面で「Data Save」を「ON」にしていれば、<br>
 次回以降、設定したキーコンフィグをパターンとして丸ごと保存します。<br>
@@ -618,25 +750,35 @@ In this case, you can change it by setting &quot;ConfigType&quot; on the top lef
 <h3 id="colortype">ColorType</h3>
 <p>矢印色の配色パターンを変更できます。<br>
 (You can change the color scheme of the arrow color.)</p>
-<h3 id="ptnchange-keyconfig%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3%E5%A4%89%E6%9B%B4">PtnChange (KeyConfigパターン変更)</h3>
+<h3 id="keyconfig%E3%83%91%E3%82%BF%E3%83%BC%E3%83%B3%E5%A4%89%E6%9B%B4---%E3%83%9C%E3%82%BF%E3%83%B3">KeyConfigパターン変更 (&lt;&lt; &gt;&gt; ボタン)</h3>
 <p>キーコンフィグの配列パターンを変更します。<br>
 「前回のキーコンフィグパターン」→「パターン1」(→「パターン2」→・・・)<br>
 の順に切り替わります。<br>
 (Change the array pattern of key configuration.
 &quot;Previous key configuration pattern&quot; → &quot;pattern 1&quot; (→ &quot;pattern 2&quot; → ...)
 It changes in order of.)</p>
+<h4 id="%E5%88%A5%E3%82%AD%E3%83%BC%E3%83%A2%E3%83%BC%E3%83%89-transkey-mode">別キーモード (TransKey Mode)</h4>
+<p>キーによっては、形状の似ている別のキーで遊ぶことができます。<br>
+ただし、正規の譜面では無い遊び方のため、キーコンフィグやハイスコアは保存されません。<br>
+(Depending on the key, you can play with another key that has a similar shape.<br>
+However, the key config and high score will not be saved because it is not a regular music.)</p>
 <h3 id="reset-keyconfig%E3%81%AE%E3%83%AA%E3%82%BB%E3%83%83%E3%83%88">Reset (KeyConfigのリセット)</h3>
 <p>キーコンフィグのキー配列をデフォルトのキーパターンに戻します。<br>
 (Restore key configuration key layout to default key pattern.)</p>
-<h2 id="main-%E3%83%97%E3%83%AC%E3%82%A4%E7%94%BB%E9%9D%A2">Main / プレイ画面</h2>
+<h2 id="main--%E3%83%97%E3%83%AC%E3%82%A4%E7%94%BB%E9%9D%A2">Main / プレイ画面</h2>
 <ul>
 <li>Ready? が出た後にゲームが始まります。<br>
 ※ゲームによって、表示の仕方が異なる場合があります。<br>
 (The game starts after &quot;Ready?&quot;.)</li>
 </ul>
 <p><img src="./wiki/31game-main1.png" alt="31game-main1"></p>
+<p>タイミング良くキーボードを押すと(・∀・)ｲｲ!!や(ﾟ∀ﾟ)ｷﾀｰ!!となり、ライフが上がります。<br>
+一方、タイミングを外すと(´・ω・`)ｼｮﾎﾞｰﾝ、(`Д´)ｳﾜｧﾝ、(・A・)ｲｸﾅｲとなり、ライフが下がります。<br>
+ゲーム終了までにライフゲージのライフが残っているか、ノルマ以上であればゲームクリアです。<br>
+(When you press the keyboard with good timing (・∀・)ｲｲ!! (ﾟ∀ﾟ)ｷﾀｰ!! and life will go up. On the other hand, if you remove the timing (´・ω・`)ｼｮﾎﾞｰﾝ, (`Д´)ｳﾜｧﾝ, (・A・)ｲｸﾅｲ will be, life falls. If the life of the life gauge remains by the end of the game or it is over the quota, the game is cleared.)</p>
+<p><img src="./wiki/howtoplay2.png" alt="howtoplay2"></p>
 <p><img src="./wiki/32game-main2.png" alt="32game-main2"></p>
-<h2 id="result-%E7%B5%90%E6%9E%9C%E7%94%BB%E9%9D%A2">Result / 結果画面</h2>
+<h2 id="result--%E7%B5%90%E6%9E%9C%E7%94%BB%E9%9D%A2">Result / 結果画面</h2>
 <ul>
 <li>ゲームが終わると、結果画面へ移行します。<br>
 最終的な判定やランクが画面に表示されます。<br>

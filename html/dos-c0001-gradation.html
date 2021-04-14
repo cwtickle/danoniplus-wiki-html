@@ -5,16 +5,17 @@
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 
 <style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
 body {
-	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
-	font-size: 14px;
-	padding: 0 12px;
-	line-height: 22px;
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
 	word-wrap: break-word;
 }
 
@@ -38,7 +39,6 @@ body {
 	background-color:#007acc;
 	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
 }
-
 
 body.scrollBeyondLastLine {
 	margin-bottom: calc(100vh - 22px);
@@ -71,12 +71,20 @@ body.showEditorSelection li.code-line:hover:before {
 	border-left: 3px solid rgba(0, 0, 0, 0.40);
 }
 
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
 .vscode-dark.showEditorSelection .code-active-line:before {
 	border-left: 3px solid rgba(255, 255, 255, 0.4);
 }
 
 .vscode-dark.showEditorSelection .code-line:hover:before {
 	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
 }
 
 .vscode-high-contrast.showEditorSelection .code-active-line:before {
@@ -87,14 +95,21 @@ body.showEditorSelection li.code-line:hover:before {
 	border-left: 3px solid rgba(255, 160, 0, 1);
 }
 
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
 img {
 	max-width: 100%;
 	max-height: 100%;
 }
 
 a {
-	color: #4080D0;
 	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
 }
 
 a:focus,
@@ -122,21 +137,6 @@ h1, h2, h3 {
 	font-weight: normal;
 }
 
-h1 code,
-h2 code,
-h3 code,
-h4 code,
-h5 code,
-h6 code {
-	font-size: inherit;
-	line-height: auto;
-}
-
-a:hover {
-	color: #4080D0;
-	text-decoration: underline;
-}
-
 table {
 	border-collapse: collapse;
 }
@@ -160,22 +160,18 @@ table > tbody > tr + tr > td {
 blockquote {
 	margin: 0 7px 0 5px;
 	padding: 0 16px 0 10px;
-	border-left: 5px solid;
+	border-left-width: 5px;
+	border-left-style: solid;
 }
 
 code {
 	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
-	font-size: 14px;
-	line-height: 19px;
+	font-size: 1em;
+	line-height: 1.357em;
 }
 
 body.wordWrap pre {
 	white-space: pre-wrap;
-}
-
-.mac code {
-	font-size: 12px;
-	line-height: 18px;
 }
 
 pre:not(.hljs),
@@ -185,43 +181,22 @@ pre.hljs code > div {
 	overflow: auto;
 }
 
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
 /** Theming */
 
-.vscode-light,
-.vscode-light pre code {
-	color: rgb(30, 30, 30);
-}
-
-.vscode-dark,
-.vscode-dark pre code {
-	color: #DDD;
-}
-
-.vscode-high-contrast,
-.vscode-high-contrast pre code {
-	color: white;
-}
-
-.vscode-light code {
-	color: #A31515;
-}
-
-.vscode-dark code {
-	color: #D7BA7D;
-}
-
-.vscode-light pre:not(.hljs),
-.vscode-light code > div {
+.vscode-light pre {
 	background-color: rgba(220, 220, 220, 0.4);
 }
 
-.vscode-dark pre:not(.hljs),
-.vscode-dark code > div {
+.vscode-dark pre {
 	background-color: rgba(10, 10, 10, 0.4);
 }
 
-.vscode-high-contrast pre:not(.hljs),
-.vscode-high-contrast code > div {
+.vscode-high-contrast pre {
 	background-color: rgb(0, 0, 0);
 }
 
@@ -249,16 +224,6 @@ pre.hljs code > div {
 	border-color: rgba(255, 255, 255, 0.18);
 }
 
-.vscode-light blockquote,
-.vscode-dark blockquote {
-	background: rgba(127, 127, 127, 0.1);
-	border-color: rgba(0, 122, 204, 0.5);
-}
-
-.vscode-high-contrast blockquote {
-	background: transparent;
-	border-color: #fff;
-}
 </style>
 
 <style>
@@ -343,7 +308,8 @@ pre.hljs code > div {
  */
 
  body {
-	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
 }
 
 pre {
@@ -369,6 +335,11 @@ blockquote {
 	height: 1.4em;
 }
 
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
 /* for inline code */
 :not(pre):not(.hljs) > code {
 	color: #C9AE75; /* Change the old color so it seems less like an error */
@@ -382,11 +353,21 @@ blockquote {
 }
 
 </style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
 </head>
 <body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
 <p><a href="dos_header.html">← 譜面ヘッダー仕様に戻る</a><br>
-<a href="dos_effect.html">← 譜面データによる画面効果に戻る</a></p>
-<h2 id="%E3%82%B0%E3%83%A9%E3%83%87%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E4%BB%95%E6%A7%98%EF%BC%88%E5%85%B1%E9%80%9A%EF%BC%89">グラデーション仕様（共通）</h2>
+<a href="dos_effect.html">← 譜面エフェクト仕様に戻る</a></p>
+<h2 id="%E3%82%B0%E3%83%A9%E3%83%87%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E4%BB%95%E6%A7%98%E5%85%B1%E9%80%9A">グラデーション仕様（共通）</h2>
 <h3 id="%E4%BD%BF%E3%81%84%E6%96%B9">使い方</h3>
 <pre>
 |setColor=<b>#99ff66:#66ff99</b>,#9999ff,#ffffff,#ff9999,#ffff99|
@@ -395,6 +376,8 @@ blockquote {
 300,20,<b>45deg:#ffff99:#ffffff:#9999ff</b>
 400,20,<b>#ffff99:#ffffff:#9999ff@radial-gradient</b>
 500,20,<b>#ffff99:#ffffff:#9999ff@conic-gradient</b>
+600,20,<b>blue:red</b>
+700,20,<b>blue;100:orange;255:red;255</b>
 |
 </pre>
 <h3 id="%E8%A8%98%E8%BF%B0%E4%BB%95%E6%A7%98">記述仕様</h3>
@@ -432,13 +415,31 @@ blockquote {
 <h3 id="%E8%A3%9C%E8%B6%B3">補足</h3>
 <ul>
 <li><code>linear-gradient</code>及び<code>repeating-linear-gradient</code>のグラデーションの方向を変えたい場合は、先頭に「45deg」「to top right」などをつけることで変更することができます。</li>
-<li>カラーコード指定が原則です。色名指定も可能ですが、意図しない動きになることがありますのでご注意ください。</li>
+<li>カラーコード指定が原則です。色名指定も可能ですが、<br>
+意図しない動きになることがありますのでご注意ください。
+<ul>
+<li>ver14.1.0より、色名指定に対応しました。<br>
+ただし、環境により色味が変わる可能性があるためご注意ください。</li>
+<li>ver19.2.0より、色名に対して透明度を指定できるようになりました。<br>
+<code>色名;透明度(0～255)</code>のように指定してください。</li>
 </ul>
+</li>
+</ul>
+<h4 id="%E5%8F%82%E8%80%83%E8%89%B2%E5%90%8D%E3%81%A8%E3%82%AB%E3%83%A9%E3%83%BC%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AE%E5%AF%BE%E5%BF%9C%E8%A1%A8">参考：色名とカラーコードの対応表</h4>
+<p>https://www.colordic.org/<br>
+https://www.webcreatorbox.com/webinfo/color-name</p>
+<h4 id="%E5%8F%82%E8%80%83%E3%82%B0%E3%83%A9%E3%83%87%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E8%A9%B3%E7%B4%B0">参考：グラデーション詳細</h4>
+<ul>
+<li>カンマになっている部分はコロンに置き換えてください。基本そのまま使用できます。<br>
+現状、グラデーションの重ね合わせのみ未対応です。</li>
+</ul>
+<p>https://developer.mozilla.org/ja/docs/Web/CSS/linear-gradient()<br>
+https://developer.mozilla.org/ja/docs/Web/CSS/CSS_Images/Using_CSS_gradients</p>
 <h3 id="%E9%96%A2%E9%80%A3%E9%A0%85%E7%9B%AE">関連項目</h3>
 <ul>
-<li><a href="dos-h0003-setColor.html"><strong>setColor</strong></a> (*, ★) 矢印色</li>
-<li><a href="dos-h0004-frzColor.html"><strong>frzColor</strong></a> (*, ★) フリーズアロー色</li>
-<li><a href="dos-h0032-titlegrd.html">titlegrd / titlearrowgrd</a> グラデーション</li>
+<li><a href="dos-h0003-setColor.html"><strong>setColor</strong></a> (*, ★)  矢印色</li>
+<li><a href="dos-h0004-frzColor.html"><strong>frzColor</strong></a> (*, ★)  フリーズアロー色</li>
+<li><a href="dos-h0032-titlegrd.html">titlegrd / titlearrowgrd</a>  グラデーション</li>
 <li><a href="dos-e0002-colorData.html">色変化 (acolor_data, color_data)</a>(★)</li>
 </ul>
 <h3 id="%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B4">更新履歴</h3>
@@ -450,6 +451,14 @@ blockquote {
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v19.2.0">v19.2.0</a></td>
+<td>・色名指定時、透明度を指定できるように変更</td>
+</tr>
+<tr>
+<td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v14.1.0">v14.1.0</a></td>
+<td>・色名指定に対応</td>
+</tr>
 <tr>
 <td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v12.0.0">v12.0.0</a></td>
 <td>・初期実装</td>

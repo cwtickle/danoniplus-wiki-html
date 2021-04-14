@@ -5,16 +5,17 @@
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 
 <style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
 body {
-	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
-	font-size: 14px;
-	padding: 0 12px;
-	line-height: 22px;
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
 	word-wrap: break-word;
 }
 
@@ -38,7 +39,6 @@ body {
 	background-color:#007acc;
 	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
 }
-
 
 body.scrollBeyondLastLine {
 	margin-bottom: calc(100vh - 22px);
@@ -71,12 +71,20 @@ body.showEditorSelection li.code-line:hover:before {
 	border-left: 3px solid rgba(0, 0, 0, 0.40);
 }
 
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
 .vscode-dark.showEditorSelection .code-active-line:before {
 	border-left: 3px solid rgba(255, 255, 255, 0.4);
 }
 
 .vscode-dark.showEditorSelection .code-line:hover:before {
 	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
 }
 
 .vscode-high-contrast.showEditorSelection .code-active-line:before {
@@ -87,14 +95,21 @@ body.showEditorSelection li.code-line:hover:before {
 	border-left: 3px solid rgba(255, 160, 0, 1);
 }
 
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
 img {
 	max-width: 100%;
 	max-height: 100%;
 }
 
 a {
-	color: #4080D0;
 	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
 }
 
 a:focus,
@@ -122,21 +137,6 @@ h1, h2, h3 {
 	font-weight: normal;
 }
 
-h1 code,
-h2 code,
-h3 code,
-h4 code,
-h5 code,
-h6 code {
-	font-size: inherit;
-	line-height: auto;
-}
-
-a:hover {
-	color: #4080D0;
-	text-decoration: underline;
-}
-
 table {
 	border-collapse: collapse;
 }
@@ -160,22 +160,18 @@ table > tbody > tr + tr > td {
 blockquote {
 	margin: 0 7px 0 5px;
 	padding: 0 16px 0 10px;
-	border-left: 5px solid;
+	border-left-width: 5px;
+	border-left-style: solid;
 }
 
 code {
 	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
-	font-size: 14px;
-	line-height: 19px;
+	font-size: 1em;
+	line-height: 1.357em;
 }
 
 body.wordWrap pre {
 	white-space: pre-wrap;
-}
-
-.mac code {
-	font-size: 12px;
-	line-height: 18px;
 }
 
 pre:not(.hljs),
@@ -185,43 +181,22 @@ pre.hljs code > div {
 	overflow: auto;
 }
 
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
 /** Theming */
 
-.vscode-light,
-.vscode-light pre code {
-	color: rgb(30, 30, 30);
-}
-
-.vscode-dark,
-.vscode-dark pre code {
-	color: #DDD;
-}
-
-.vscode-high-contrast,
-.vscode-high-contrast pre code {
-	color: white;
-}
-
-.vscode-light code {
-	color: #A31515;
-}
-
-.vscode-dark code {
-	color: #D7BA7D;
-}
-
-.vscode-light pre:not(.hljs),
-.vscode-light code > div {
+.vscode-light pre {
 	background-color: rgba(220, 220, 220, 0.4);
 }
 
-.vscode-dark pre:not(.hljs),
-.vscode-dark code > div {
+.vscode-dark pre {
 	background-color: rgba(10, 10, 10, 0.4);
 }
 
-.vscode-high-contrast pre:not(.hljs),
-.vscode-high-contrast code > div {
+.vscode-high-contrast pre {
 	background-color: rgb(0, 0, 0);
 }
 
@@ -249,16 +224,6 @@ pre.hljs code > div {
 	border-color: rgba(255, 255, 255, 0.18);
 }
 
-.vscode-light blockquote,
-.vscode-dark blockquote {
-	background: rgba(127, 127, 127, 0.1);
-	border-color: rgba(0, 122, 204, 0.5);
-}
-
-.vscode-high-contrast blockquote {
-	background: transparent;
-	border-color: #fff;
-}
 </style>
 
 <style>
@@ -343,7 +308,8 @@ pre.hljs code > div {
  */
 
  body {
-	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
 }
 
 pre {
@@ -369,6 +335,11 @@ blockquote {
 	height: 1.4em;
 }
 
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
 /* for inline code */
 :not(pre):not(.hljs) > code {
 	color: #C9AE75; /* Change the old color so it seems less like an error */
@@ -383,12 +354,25 @@ blockquote {
 
 </style>
 
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
 </head>
 <body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
 <p><a href="dos_header.html">← 譜面ヘッダー仕様に戻る</a></p>
-<h2 id="gaugenormal-gaugeeasy-gaugehardbr%E3%83%8E%E3%83%AB%E3%83%9E%E5%88%B6%E3%82%B2%E3%83%BC%E3%82%B8">gaugeNormal / gaugeEasy / gaugeHard<br>(ノルマ制ゲージ)</h2>
+<h2 id="gaugenormal--gaugeeasy--gaugehardbr%E3%83%8E%E3%83%AB%E3%83%9E%E5%88%B6%E3%82%B2%E3%83%BC%E3%82%B8">gaugeNormal / gaugeEasy / gaugeHard<br>(ノルマ制ゲージ)</h2>
 <h3 id="%E4%BD%BF%E3%81%84%E6%96%B9">使い方</h3>
-<pre class="hljs"><code><div>|gaugeEasy=70,2,5,40$70,5,7,30|
+<pre class="hljs"><code><div>|gaugeEasy=70,2,5,40$70,5,7,30| // 2譜面分をまとめて記述
+|gaugeHard=x,1,50,100|  // 全譜面共通の設定
+
+|gaugeExHard=x,1,70,100| // 1譜面目
+|gaugeExHard2=x,1,80,100| // 2譜面目
 </div></code></pre>
 <h3 id="%E8%AA%AC%E6%98%8E">説明</h3>
 <p>ゲージパラメータの設定を記述します。</p>
@@ -466,14 +450,15 @@ blockquote {
 </table>
 <p>1譜面目の設定をgauge***で行っているが2譜面目の設定はない場合、一律以下の設定になります。<br>
 →ノルマ70%、ライフ増加2、ライフ減少7、初期ライフ25%</p>
-<h2 id="gaugeoriginal-gaugelight-gaugenorecoverybr%E3%83%A9%E3%82%A4%E3%83%95%E5%88%B6%E3%82%B2%E3%83%BC%E3%82%B8">gaugeOriginal / gaugeLight / gaugeNoRecovery<br>(ライフ制ゲージ)</h2>
+<h2 id="gaugeoriginal--gaugelight--gaugeheavy--gaugenorecoverybr%E3%83%A9%E3%82%A4%E3%83%95%E5%88%B6%E3%82%B2%E3%83%BC%E3%82%B8">gaugeOriginal / gaugeLight / gaugeHeavy / gaugeNoRecovery<br>(ライフ制ゲージ)</h2>
 <h3 id="%E4%BD%BF%E3%81%84%E6%96%B9">使い方</h3>
 <pre class="hljs"><code><div>|gaugeLight=x,20,70,30$x,30,40,30|
 |gaugeNoRecovery=x,0,100,100$|
 </div></code></pre>
 <h3 id="%E8%AA%AC%E6%98%8E">説明</h3>
 <p>ゲージパラメータの設定を記述します。</p>
-<p>gaugeOriginal, gaugeLight, gaugeNoRecoveryがそれぞれOriginal, Light, NoRecoveryゲージの設定です。<br>
+<p>gaugeOriginal, gaugeLight, gaugeHeavy, gaugeNoRecoveryがそれぞれ<br>
+Original, Light, Heavy, NoRecoveryゲージの設定です。<br>
 &quot;$&quot;区切りで譜面ごとの設定で、<br>
 さらにカンマ区切りでノルマ割合、<strong>ライフ増加・減少量(固定)</strong>、初期ライフ割合を指定します。<br>
 カンマ区切りの内容は次の通りです。</p>
@@ -537,6 +522,13 @@ blockquote {
 <td>25%</td>
 </tr>
 <tr>
+<td>Heavy</td>
+<td>-</td>
+<td>2</td>
+<td>50</td>
+<td>50%</td>
+</tr>
+<tr>
 <td>NoRecovery</td>
 <td>-</td>
 <td>0</td>
@@ -547,7 +539,7 @@ blockquote {
 </table>
 <h3 id="%E9%96%A2%E9%80%A3%E9%A0%85%E7%9B%AE">関連項目</h3>
 <ul>
-<li><a href="dos-h0002-difData.html"><strong>difData</strong></a> (*, ★)  譜面情報</li>
+<li><a href="dos-h0002-difData.html"><strong>difData</strong></a> (★)  譜面情報</li>
 <li><a href="dos-h0053-customGauge.html">customGauge</a>  カスタムゲージ設定</li>
 <li><a href="dos-h0045-maxLifeVal.html">maxLifeVal</a>  ライフの上限値</li>
 <li><a href="dos-h0037-frzStartjdgUse.html">frzStartjdgUse</a>  フリーズアロー開始判定の設定有無</li>
@@ -563,12 +555,24 @@ blockquote {
 </thead>
 <tbody>
 <tr>
+<td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v21.1.0">v21.1.0</a></td>
+<td>・2譜面目以降の分割書式に対応</td>
+</tr>
+<tr>
+<td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v19.0.0">v19.0.0</a></td>
+<td>・2譜面目以降が未指定の場合、1譜面目の設定で補完する設定を追加</td>
+</tr>
+<tr>
+<td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v18.6.0">v18.6.0</a></td>
+<td>・gaugeHeavy (ライフ制ゲージ)を実装</td>
+</tr>
+<tr>
 <td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v9.4.0">v9.4.0</a></td>
-<td>・gaugeXXXを実装（XXXは任意のカスタムゲージ名）。</td>
+<td>・gaugeXXXを実装（XXXは任意のカスタムゲージ名）</td>
 </tr>
 <tr>
 <td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v6.5.0">v6.5.0</a></td>
-<td>・gaugeOriginal / gaugeLight / gaugeNoRecovery (ライフ制ゲージ)を実装。<br>・既定値をゲージ設定ごとに個別設定できるように変更。</td>
+<td>・gaugeOriginal / gaugeLight / gaugeNoRecovery (ライフ制ゲージ)を実装。<br>・既定値をゲージ設定ごとに個別設定できるように変更</td>
 </tr>
 <tr>
 <td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v1.5.0">v1.5.0</a></td>
