@@ -5,16 +5,17 @@
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 
 <style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
 body {
-	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
-	font-size: 14px;
-	padding: 0 12px;
-	line-height: 22px;
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
 	word-wrap: break-word;
 }
 
@@ -38,7 +39,6 @@ body {
 	background-color:#007acc;
 	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
 }
-
 
 body.scrollBeyondLastLine {
 	margin-bottom: calc(100vh - 22px);
@@ -71,12 +71,20 @@ body.showEditorSelection li.code-line:hover:before {
 	border-left: 3px solid rgba(0, 0, 0, 0.40);
 }
 
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
 .vscode-dark.showEditorSelection .code-active-line:before {
 	border-left: 3px solid rgba(255, 255, 255, 0.4);
 }
 
 .vscode-dark.showEditorSelection .code-line:hover:before {
 	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
 }
 
 .vscode-high-contrast.showEditorSelection .code-active-line:before {
@@ -87,14 +95,21 @@ body.showEditorSelection li.code-line:hover:before {
 	border-left: 3px solid rgba(255, 160, 0, 1);
 }
 
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
 img {
 	max-width: 100%;
 	max-height: 100%;
 }
 
 a {
-	color: #4080D0;
 	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
 }
 
 a:focus,
@@ -122,21 +137,6 @@ h1, h2, h3 {
 	font-weight: normal;
 }
 
-h1 code,
-h2 code,
-h3 code,
-h4 code,
-h5 code,
-h6 code {
-	font-size: inherit;
-	line-height: auto;
-}
-
-a:hover {
-	color: #4080D0;
-	text-decoration: underline;
-}
-
 table {
 	border-collapse: collapse;
 }
@@ -160,22 +160,18 @@ table > tbody > tr + tr > td {
 blockquote {
 	margin: 0 7px 0 5px;
 	padding: 0 16px 0 10px;
-	border-left: 5px solid;
+	border-left-width: 5px;
+	border-left-style: solid;
 }
 
 code {
 	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
-	font-size: 14px;
-	line-height: 19px;
+	font-size: 1em;
+	line-height: 1.357em;
 }
 
 body.wordWrap pre {
 	white-space: pre-wrap;
-}
-
-.mac code {
-	font-size: 12px;
-	line-height: 18px;
 }
 
 pre:not(.hljs),
@@ -185,43 +181,22 @@ pre.hljs code > div {
 	overflow: auto;
 }
 
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
 /** Theming */
 
-.vscode-light,
-.vscode-light pre code {
-	color: rgb(30, 30, 30);
-}
-
-.vscode-dark,
-.vscode-dark pre code {
-	color: #DDD;
-}
-
-.vscode-high-contrast,
-.vscode-high-contrast pre code {
-	color: white;
-}
-
-.vscode-light code {
-	color: #A31515;
-}
-
-.vscode-dark code {
-	color: #D7BA7D;
-}
-
-.vscode-light pre:not(.hljs),
-.vscode-light code > div {
+.vscode-light pre {
 	background-color: rgba(220, 220, 220, 0.4);
 }
 
-.vscode-dark pre:not(.hljs),
-.vscode-dark code > div {
+.vscode-dark pre {
 	background-color: rgba(10, 10, 10, 0.4);
 }
 
-.vscode-high-contrast pre:not(.hljs),
-.vscode-high-contrast code > div {
+.vscode-high-contrast pre {
 	background-color: rgb(0, 0, 0);
 }
 
@@ -249,16 +224,6 @@ pre.hljs code > div {
 	border-color: rgba(255, 255, 255, 0.18);
 }
 
-.vscode-light blockquote,
-.vscode-dark blockquote {
-	background: rgba(127, 127, 127, 0.1);
-	border-color: rgba(0, 122, 204, 0.5);
-}
-
-.vscode-high-contrast blockquote {
-	background: transparent;
-	border-color: #fff;
-}
 </style>
 
 <style>
@@ -343,7 +308,8 @@ pre.hljs code > div {
  */
 
  body {
-	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
 }
 
 pre {
@@ -369,6 +335,11 @@ blockquote {
 	height: 1.4em;
 }
 
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
 /* for inline code */
 :not(pre):not(.hljs) > code {
 	color: #C9AE75; /* Change the old color so it seems less like an error */
@@ -382,19 +353,667 @@ blockquote {
 }
 
 </style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
 </head>
 <body>
-<h1 id="%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89%E3%82%AC%E3%82%A4%E3%83%89-migration-guide">アップグレードガイド (Migration Guide)</h1>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%E3%82%A2%E3%83%83%E3%83%97%E3%82%B0%E3%83%AC%E3%83%BC%E3%83%89%E3%82%AC%E3%82%A4%E3%83%89--migration-guide">アップグレードガイド / Migration Guide</h1>
 <ul>
 <li>最新の情報は<a href="https://github.com/cwtickle/danoniplus/releases">Release</a>をご覧ください。</li>
 <li>更新情報の概要については<a href="UpdateInfo.html">更新情報(UpdateInfo)</a>もご覧ください。</li>
 </ul>
+<h2 id="%E2%AD%90-v20---v21">⭐ v20 -&gt; v21</h2>
+<p>ReleasesのFiles Changedの項目を参照してください。</p>
+<h3 id="1-%E4%B8%80%E9%83%A8%E9%96%A2%E6%95%B0%E3%81%AE%E8%A6%8B%E7%9B%B4%E3%81%97">1. 一部関数の見直し</h3>
+<ul>
+<li>一部関数について廃止もしくは引数の見直しを行っています。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>関数</th>
+<th>変更内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>resetCursor</td>
+<td>引数カット</td>
+</tr>
+<tr>
+<td>resetCursorMain</td>
+<td>廃止</td>
+</tr>
+<tr>
+<td>resetCursorReplaced</td>
+<td>廃止</td>
+</tr>
+<tr>
+<td>resetCursorALL</td>
+<td>廃止</td>
+</tr>
+<tr>
+<td>setKeyConfigCursor</td>
+<td>引数カット</td>
+</tr>
+</tbody>
+</table>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85">🛠 修正事項</h4>
+<ul>
+<li>カスタムJs等で利用している場合は注意してください。</li>
+</ul>
+<h3 id="2-danonilegacyfunctionjs-%E3%81%B8%E7%A7%BB%E5%8B%95%E3%81%97%E3%81%9F%E9%96%A2%E6%95%B0%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">2. danoni_legacy_function.js へ移動した関数について</h3>
+<ul>
+<li>現行ソースで未使用の以下の関数を「danoni_legacy_function.js」へ移動しました。<br>
+対象：checkArrayVal, getStrLength, paddingLeft, createDivCustomLabel</li>
+</ul>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85">🛠 修正事項</h4>
+<ul>
+<li>今後も利用する場合は、lib/danoni_legacy_function.js をサーバーへアップロードしてください。</li>
+</ul>
+<h2 id="%E2%AD%90-v19---v20">⭐ v19 -&gt; v20</h2>
+<p>ReleasesのFiles Changedの項目を参照してください。</p>
+<h3 id="1-%E5%A4%89%E6%95%B0%E5%90%8D%E3%81%AE%E5%A4%89%E6%9B%B4">1. 変数名の変更</h3>
+<ul>
+<li>現行ソースで未使用、もしくは今後の機能拡張上支障が出る変数群に対して<br>
+変数名の見直しを行いました。</li>
+</ul>
+<details>
+<summary>変更対象の変数一覧（クリックして開閉）</summary>
+<h4 id="%E5%88%A4%E5%AE%9A%E3%82%AD%E3%83%A3%E3%83%A9%E3%82%AF%E3%82%BF">判定キャラクタ</h4>
+<table>
+<thead>
+<tr>
+<th>旧変数</th>
+<th>新変数</th>
+<th>デフォルト値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C_JCR_II</td>
+<td>g_lblNameObj.j_ii</td>
+<td>&quot;(・∀・)ｲｲ!!&quot;</td>
+</tr>
+<tr>
+<td>C_JCR_SHAKIN</td>
+<td>g_lblNameObj.j_shakin</td>
+<td>&quot;(`・ω・)ｼｬｷﾝ&quot;</td>
+</tr>
+<tr>
+<td>C_JCR_MATARI</td>
+<td>g_lblNameObj.j_matari</td>
+<td>&quot;( ´∀`)ﾏﾀｰﾘ&quot;</td>
+</tr>
+<tr>
+<td>C_JCR_SHOBON</td>
+<td>g_lblNameObj.j_shobon</td>
+<td>&quot;(´・ω・`)ｼｮﾎﾞｰﾝ&quot;</td>
+</tr>
+<tr>
+<td>C_JCR_UWAN</td>
+<td>g_lblNameObj.j_uwan</td>
+<td>&quot;( `Д´)ｳﾜｧﾝ!!&quot;</td>
+</tr>
+<tr>
+<td>C_JCR_KITA</td>
+<td>g_lblNameObj.j_kita</td>
+<td>&quot;(ﾟ∀ﾟ)ｷﾀ-!!&quot;</td>
+</tr>
+<tr>
+<td>C_JCR_IKNAI</td>
+<td>g_lblNameObj.j_iknai</td>
+<td>&quot;(・A・)ｲｸﾅｲ&quot;</td>
+</tr>
+</tbody>
+</table>
+<h4 id="%E5%88%A4%E5%AE%9A%E9%A0%98%E5%9F%9F-gjudgobj-%E3%81%AE%E4%BD%8D%E7%BD%AE">判定領域 g_judgObj の位置</h4>
+<table>
+<thead>
+<tr>
+<th>旧変数</th>
+<th>新変数</th>
+<th>デフォルト値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C_JDG_II</td>
+<td>g_judgPosObj.ii</td>
+<td>0</td>
+</tr>
+<tr>
+<td>C_JDG_SHAKIN</td>
+<td>g_judgPosObj.shakin</td>
+<td>1</td>
+</tr>
+<tr>
+<td>C_JDG_MATARI</td>
+<td>g_judgPosObj.matari</td>
+<td>2</td>
+</tr>
+<tr>
+<td>C_JDG_SHOBON</td>
+<td>g_judgPosObj.shobon</td>
+<td>3</td>
+</tr>
+<tr>
+<td>C_JDG_UWAN</td>
+<td>g_judgPosObj.uwan</td>
+<td>4</td>
+</tr>
+<tr>
+<td>C_JDG_KITA</td>
+<td>g_judgPosObj.kita</td>
+<td>0</td>
+</tr>
+<tr>
+<td>C_JDG_SFSF</td>
+<td>g_judgPosObj.sfsf</td>
+<td>1</td>
+</tr>
+<tr>
+<td>C_JDG_IKNAI</td>
+<td>g_judgPosObj.iknai</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<h4 id="%E8%A8%AD%E5%AE%9A%E7%B3%BB%E5%A4%89%E6%95%B0%E7%BE%A4">設定系変数群</h4>
+<table>
+<thead>
+<tr>
+<th>旧変数</th>
+<th>新変数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>g_speeds</td>
+<td>g_settings.speeds</td>
+</tr>
+<tr>
+<td>g_speedNum</td>
+<td>g_settings.speedNum</td>
+</tr>
+<tr>
+<td>g_motions</td>
+<td>g_settings.motions</td>
+</tr>
+<tr>
+<td>g_motionNum</td>
+<td>g_settings.motionNum</td>
+</tr>
+<tr>
+<td>g_scrolls</td>
+<td>g_settings.scrolls</td>
+</tr>
+<tr>
+<td>g_scrollNum</td>
+<td>g_settings.scrollNum</td>
+</tr>
+<tr>
+<td>g_reverses</td>
+<td>g_settings.reverses</td>
+</tr>
+<tr>
+<td>g_reverseNum</td>
+<td>g_settings.reverseNum</td>
+</tr>
+<tr>
+<td>g_shuffles</td>
+<td>g_settings.shuffles</td>
+</tr>
+<tr>
+<td>g_shuffleNum</td>
+<td>g_settings.shuffleNum</td>
+</tr>
+<tr>
+<td>g_autoPlays</td>
+<td>g_settings.autoPlays</td>
+</tr>
+<tr>
+<td>g_autoPlayNum</td>
+<td>g_settings.autoPlayNum</td>
+</tr>
+<tr>
+<td>g_gauges</td>
+<td>g_settings.gauges</td>
+</tr>
+<tr>
+<td>g_gaugeNum</td>
+<td>g_settings.gaugeNum</td>
+</tr>
+<tr>
+<td>g_adjustments</td>
+<td>g_settings.adjustments</td>
+</tr>
+<tr>
+<td>g_adjustmentNum</td>
+<td>g_settings.adjustmentNum</td>
+</tr>
+<tr>
+<td>g_volumes</td>
+<td>g_settings.volumes</td>
+</tr>
+<tr>
+<td>g_volumeNum</td>
+<td>g_settings.volumeNum</td>
+</tr>
+<tr>
+<td>g_appearances</td>
+<td>g_settings.appearances</td>
+</tr>
+<tr>
+<td>g_appearanceNum</td>
+<td>g_settings.appearanceNum</td>
+</tr>
+<tr>
+<td>g_opacitys</td>
+<td>g_settings.opacitys</td>
+</tr>
+<tr>
+<td>g_opacityNum</td>
+<td>g_settings.opacityNum</td>
+</tr>
+<tr>
+<td>g_scoreDetails</td>
+<td>g_settings.scoreDetails</td>
+</tr>
+<tr>
+<td>g_scoreDetailNum</td>
+<td>g_settings.scoreDetailNum</td>
+</tr>
+</tbody>
+</table>
+<h4 id="%E5%89%8D%E6%AC%A1%E3%81%AE%E8%A8%AD%E5%AE%9A%E3%81%AB%E9%80%B2%E3%82%81%E3%82%8B%E3%83%9C%E3%82%BF%E3%83%B3%E3%81%AE%E8%A1%A8%E7%A4%BA%E4%BD%8D%E7%BD%AE">前/次の設定に進めるボタンの表示位置</h4>
+<table>
+<thead>
+<tr>
+<th>旧変数</th>
+<th>新変数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C_LBL_SETMINIL</td>
+<td>g_settingBtnObj.chara.L</td>
+</tr>
+<tr>
+<td>C_LBL_SETMINILL</td>
+<td>g_settingBtnObj.chara.LL</td>
+</tr>
+<tr>
+<td>C_LBL_SETMINIR</td>
+<td>g_settingBtnObj.chara.R</td>
+</tr>
+<tr>
+<td>C_LBL_SETMINIRR</td>
+<td>g_settingBtnObj.chara.RR</td>
+</tr>
+<tr>
+<td>C_LBL_SETMINIL_LEFT</td>
+<td>g_settingBtnObj.pos.L</td>
+</tr>
+<tr>
+<td>C_LBL_SETMINILL_LEFT</td>
+<td>g_settingBtnObj.pos.LL</td>
+</tr>
+<tr>
+<td>C_LBL_SETMINIR_LEFT</td>
+<td>g_settingBtnObj.pos.R</td>
+</tr>
+<tr>
+<td>C_LBL_SETMINIRR_LEFT</td>
+<td>g_settingBtnObj.pos.RR</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85">🛠 修正事項</h4>
+<ul>
+<li>該当する変数群をカスタムしている場合は、新変数に変更してください。</li>
+</ul>
+<h3 id="2-danonilegacyfunctionjs-%E3%81%B8%E7%A7%BB%E5%8B%95%E3%81%97%E3%81%9F%E9%96%A2%E6%95%B0%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">2. danoni_legacy_function.js へ移動した関数について</h3>
+<ul>
+<li>現行ソースで未使用の以下の関数を「danoni_legacy_function.js」へ移動しました。<br>
+対象：createLabel</li>
+</ul>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85">🛠 修正事項</h4>
+<ul>
+<li>今後も利用する場合は、lib/danoni_legacy_function.js をサーバーへアップロードしてください。</li>
+</ul>
+<h3 id="3-gresultmsgobj-%E3%81%AE%E5%BB%83%E6%AD%A2-ver1951%E4%BB%A5%E9%99%8D">3. g_resultMsgObj の廃止 (ver19.5.1以降)</h3>
+<ul>
+<li>FULL COMBOやPerfectの表示部分のhtml部分を管理する<code>g_resultMsgObj</code>が廃止になっています。</li>
+</ul>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85">🛠 修正事項</h4>
+<ul>
+<li>利用している場合は、代替関数 <code>resultViewText</code> の利用を検討してください。</li>
+</ul>
+<h3 id="4-display%E7%94%BB%E9%9D%A2%E3%81%8B%E3%82%89settings%E7%94%BB%E9%9D%A2%E3%81%B8%E6%88%BB%E3%82%8B%E3%83%9C%E3%82%BF%E3%83%B3%E3%81%AE%E4%BD%8D%E7%BD%AE%E5%A4%89%E6%9B%B4">4. Display画面からSettings画面へ戻るボタンの位置変更</h3>
+<ul>
+<li>Settings画面からDisplay画面へ移動するボタンと統一しました。<br>
+ID名は従来のままのため、個別の設定は可能です。</li>
+</ul>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85">🛠 修正事項</h4>
+<ul>
+<li>当該ボタンをカスタムしている場合、念のため見た目に影響が無いか確認してください。</li>
+</ul>
+<h3 id="5-%E3%82%B9%E3%83%86%E3%83%83%E3%83%97%E3%82%BE%E3%83%BC%E3%83%B3%E4%BD%8D%E7%BD%AE%E3%82%92%E8%A1%A8%E3%81%99%E6%97%A7%E5%A4%89%E6%95%B0%E3%81%AE%E5%89%8A%E9%99%A4">5. ステップゾーン位置を表す旧変数の削除</h3>
+<ul>
+<li>従来、ステップゾーン位置を表していた <code>g_stepY</code>や<code>g_distY</code>などについて、<br>
+正式に g_posObj へ移行しました。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>旧変数</th>
+<th>新変数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>g_stepY</td>
+<td>g_posObj.stepY</td>
+</tr>
+<tr>
+<td>g_stepYR</td>
+<td>g_posObj.stepYR</td>
+</tr>
+<tr>
+<td>g_distY</td>
+<td>g_posObj.distY</td>
+</tr>
+<tr>
+<td>g_reverseStepY</td>
+<td>g_posObj.reverseStepY</td>
+</tr>
+</tbody>
+</table>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85">🛠 修正事項</h4>
+<ul>
+<li>v20以降、旧変数は使えなくなります。<br>
+カスタム側で使用している場合は変数を置き換えてください。</li>
+</ul>
+<h2 id="%E2%AD%90-v18---v19">⭐ v18 -&gt; v19</h2>
+<p>ReleasesのFiles Changedの項目を参照してください。</p>
+<h3 id="1-danonilegacyfunctionjs-%E3%81%B8%E7%A7%BB%E5%8B%95%E3%81%97%E3%81%9F%E9%96%A2%E6%95%B0%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">1. danoni_legacy_function.js へ移動した関数について</h3>
+<ul>
+<li>現行ソースで未使用の以下の関数を「danoni_legacy_function.js」へ移動しました。<br>
+対象：createDivCssLabel, createCssButton, createColorObject</li>
+</ul>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85">🛠 修正事項</h4>
+<ul>
+<li>今後も利用する場合は、lib/danoni_legacy_function.js をサーバーへアップロードしてください。</li>
+</ul>
+<h3 id="2-gaugex%E3%81%AE%E5%88%9D%E6%9C%9F%E5%80%A4%E8%A3%9C%E5%AE%8C%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">2. gaugeXの初期値補完について</h3>
+<ul>
+<li>gaugeX (gaugeEasy, gaugeHardなど)について、2譜面目以降の設定を省略した場合、<br>
+1譜面目のgaugeXの設定が引き継がれるようになりました。</li>
+</ul>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85">🛠 修正事項</h4>
+<ul>
+<li>基本的に影響は無いはずですが、gaugeXを中途半端に設定していた場合、<br>
+設定の引継ぎにより設定値が変わる可能性があります。<br>
+必要に応じて、gaugeXの設定値を見直してください。</li>
+</ul>
+<h3 id="3-%E5%88%9D%E6%9C%9F%E8%A1%A8%E7%A4%BA%E6%99%82%E3%81%AEclearwindow%E9%96%A2%E6%95%B0%E5%86%85%E5%8C%85">3. 初期表示時のclearWindow関数内包</h3>
+<ul>
+<li>titleInit / optionInit / settingsDisplayInit / loadMusic / MainInit / resultInit の処理の先頭に<br>
+clearWindow() 処理を追加しています。</li>
+</ul>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85">🛠 修正事項</h4>
+<ul>
+<li>上記関数呼び出し時のclearWindow関数の呼び出しが不要になります。<br>
+基本的に影響は無いと思いますが、カスタムで処理をさせている場合はご注意ください。</li>
+<li>clearWindow関数を上記関数前に指定している場合、2回呼び出されることになりますが影響はありません。</li>
+</ul>
+<h2 id="%E2%AD%90-v17---v18">⭐ v17 -&gt; v18</h2>
+<p>ReleasesのFiles Changedの項目を参照してください。</p>
+<h3 id="1-%E7%9F%A2%E5%8D%B0%E3%83%BB%E3%83%95%E3%83%AA%E3%83%BC%E3%82%BA%E3%82%A2%E3%83%AD%E3%83%BC%E3%81%AE%E5%80%8B%E5%88%A5%E5%B1%9E%E6%80%A7%E3%81%AE%E5%A4%89%E6%9B%B4%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">1. 矢印・フリーズアローの個別属性の変更について</h3>
+<ul>
+<li>直接使用する機会は無いかもしれませんが、矢印・フリーズアローの個別属性の仕様が変わりました。
+カスタムjsで使用している場合、修正が必要です。</li>
+</ul>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85">🛠 修正事項</h4>
+<ul>
+<li><a href="objectMainRef.html">主要オブジェクトのプロパティ</a>に記載の変数を使用している場合、修正が必要です。</li>
+</ul>
+<p>変更前</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> boostSpd = <span class="hljs-built_in">parseFloat</span>(<span class="hljs-built_in">document</span>.querySelector(<span class="hljs-string">`#arrow<span class="hljs-subst">${_j}</span>_<span class="hljs-subst">${_k}</span>`</span>).getAttribute(<span class="hljs-string">`boostSpd`</span>));
+</div></code></pre>
+<p>変更後</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> boostSpd = g_attrObj[<span class="hljs-string">`arrow<span class="hljs-subst">${_j}</span>_<span class="hljs-subst">${_k}</span>`</span>].boostSpd;
+</div></code></pre>
+<h3 id="2-%E3%82%BF%E3%82%A4%E3%83%88%E3%83%AB%E3%82%A2%E3%83%8B%E3%83%A1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E4%BB%95%E6%A7%98%E5%A4%89%E6%9B%B4-ver1850%E4%BB%A5%E9%99%8D">2. タイトルアニメーションの仕様変更 (ver18.5.0以降)</h3>
+<ul>
+<li>タイトル文字のアニメーションを譜面ヘッダー：<a href="dos-h0077-titleanimation.html">titleanimation</a> にて設定できるようになりました。</li>
+</ul>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85">🛠 修正事項</h4>
+<ul>
+<li>今後、<code>#lblmusicTitle</code> にてCSSを直接変更した場合、両方の設定が反映されます。ご注意ください。</li>
+<li>従来の設定を維持したい場合は、<code>danoni_main.css</code>を<strong>変更せず</strong>、
+<code>danoni_setting.js</code>にてg_presetCustomDesignUse の titleAnimation を <code>true</code>に変更してください。</li>
+</ul>
+<h4 id="%E5%BE%93%E6%9D%A5%E3%81%AE%E6%8C%87%E5%AE%9A%E6%96%B9%E6%B3%95">従来の指定方法</h4>
+<pre class="hljs"><code><div><span class="hljs-selector-id">#lblmusicTitle</span> {
+    <span class="hljs-attribute">animation-name</span>: upToDown;
+    <span class="hljs-attribute">animation-duration</span>: <span class="hljs-number">2.0s</span>;
+}
+</div></code></pre>
+<h4 id="%E4%BB%8A%E5%BE%8C%E3%81%AE%E6%8C%87%E5%AE%9A%E6%96%B9%E6%B3%95">今後の指定方法</h4>
+<pre class="hljs"><code><div>|titleanimation=upToDown,120,0|
+</div></code></pre>
+<h3 id="3-gitter%E3%83%9C%E3%82%BF%E3%83%B3%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95%E3%83%AA%E3%83%B3%E3%82%AF%E3%81%AE%E8%BF%BD%E5%8A%A0-ver1880%E4%BB%A5%E9%99%8D">3. Gitterボタン、操作方法リンクの追加 (ver18.8.0以降)</h3>
+<ul>
+<li>Gitter（結果画面）、操作方法（タイトル画面）へリンクするボタンが追加されました。<br>
+ID名はそれぞれ「btnGitter」「btnHelp」です。</li>
+</ul>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85">🛠 修正事項</h4>
+<ul>
+<li>結果画面、タイトル画面のデザインを変更している場合は修正が必要となります。</li>
+</ul>
+<h2 id="%E2%AD%90-v16---v17">⭐ v16 -&gt; v17</h2>
+<p>ReleasesのFiles Changedの項目を参照してください。</p>
+<h3 id="1-strict%E3%83%A2%E3%83%BC%E3%83%89%E3%81%AE%E5%86%8D%E6%9C%89%E5%8A%B9%E5%8C%96-ver1740%E3%82%88%E3%82%8A">1. strictモードの再有効化 (ver17.4.0より)</h3>
+<ul>
+<li>v2～v17.3まで、strictモードが有効になっていませんでした。<br>
+ver17.4.0より再度有効化しています。<br>
+カスタムjsにて予約語を利用していたり、変数を初期化していない場合動作しないことがあります。</li>
+</ul>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85">🛠 修正事項</h4>
+<ul>
+<li>カスタムjsにて変数を初期化していること、予約語を使用していないことを確認してください。<br>
+以下は予約語のため、変数に使用できません。
+<ul>
+<li>implements、interface、let、package、private、protected、public、static、yield</li>
+</ul>
+</li>
+<li>参考：https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Strict_mode</li>
+</ul>
+<h3 id="2-%E3%83%A9%E3%83%99%E3%83%AB%E3%83%BB%E3%83%9C%E3%82%BF%E3%83%B3%E3%83%BB%E8%89%B2%E4%BB%98%E3%81%8D%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E4%BD%9C%E6%88%90%E7%94%A8%E9%96%A2%E6%95%B0%E3%81%AE%E5%A4%89%E6%9B%B4">2. ラベル・ボタン・色付きオブジェクト作成用関数の変更</h3>
+<ul>
+<li>それぞれ次の関数に移行しています。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>変更前関数</th>
+<th>変更後関数</th>
+<th>概要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>createDivCssLabel</td>
+<td>createDivCss2Label</td>
+<td>ラベル作成用関数</td>
+</tr>
+<tr>
+<td>createCssButton</td>
+<td>createCss2Button</td>
+<td>ボタン作成用関数</td>
+</tr>
+<tr>
+<td>createColorObject</td>
+<td>createColorObject2</td>
+<td>色付きオブジェクト作成用関数</td>
+</tr>
+</tbody>
+</table>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85">🛠 修正事項</h4>
+<ul>
+<li>変更前関数は残しているのでそのままでも問題はありませんが、<br>
+今後<code>danoni_legacy_function.js</code>へ移動となる可能性があります。<br>
+customjsで指定している場合はご注意ください。</li>
+</ul>
+<h2 id="%E2%AD%90-v15---v16">⭐ v15 -&gt; v16</h2>
+<p>ReleasesのFiles Changedの項目を参照してください。</p>
+<h3 id="1-copyresult%E3%83%9C%E3%82%BF%E3%83%B3%E3%81%AE%E8%BF%BD%E5%8A%A0-ver1610%E3%82%88%E3%82%8A">1. CopyResultボタンの追加 (ver16.1.0より)</h3>
+<ul>
+<li>リザルトデータをクリップボードへコピーするボタンが追加されました。<br>
+ID名は「btnCopy」です。</li>
+</ul>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85">🛠 修正事項</h4>
+<ul>
+<li>結果画面デザインを変更している場合は修正が必要となります。</li>
+</ul>
+<h2 id="%E2%AD%90-v14---v15">⭐ v14 -&gt; v15</h2>
+<p>ReleasesのFiles Changedの項目を参照してください。</p>
+<h3 id="1-%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2%E5%86%85%E3%81%AE%E8%A8%AD%E5%AE%9A%E5%88%A5%E3%82%B9%E3%83%97%E3%83%A9%E3%82%A4%E3%83%88%E5%A4%89%E6%95%B0%E5%90%8D%E5%A4%89%E6%9B%B4">1. 設定画面内の設定別スプライト変数名変更</h3>
+<ul>
+<li>設定別のスプライト変数名を変更しています。
+なお、ID名は変更していません。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>変数変更前</th>
+<th>変数変更後</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>difficultySprite</td>
+<td>spriteList.difficulty</td>
+</tr>
+<tr>
+<td>speedSprite</td>
+<td>spriteList.speed</td>
+</tr>
+<tr>
+<td>motionSprite</td>
+<td>spriteList.motion</td>
+</tr>
+<tr>
+<td>shuffleSprite</td>
+<td>spriteList.shuffle</td>
+</tr>
+<tr>
+<td>scrollSprite</td>
+<td>spriteList.scroll</td>
+</tr>
+<tr>
+<td>reverseSprite</td>
+<td>spriteList.reverse</td>
+</tr>
+<tr>
+<td>autoPlaySprite</td>
+<td>spriteList.autoPlay</td>
+</tr>
+<tr>
+<td>gaugeSprite</td>
+<td>spriteList.gauge</td>
+</tr>
+<tr>
+<td>adjustmentSprite</td>
+<td>spriteList.adjustment</td>
+</tr>
+<tr>
+<td>fadeinSprite</td>
+<td>spriteList.fadein</td>
+</tr>
+<tr>
+<td>volumeSprite</td>
+<td>spriteList.volume</td>
+</tr>
+<tr>
+<td>appearanceSprite</td>
+<td>spriteList.appearance</td>
+</tr>
+<tr>
+<td>opacitySprite</td>
+<td>spriteList.opacity</td>
+</tr>
+</tbody>
+</table>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85">🛠 修正事項</h4>
+<ul>
+<li>設定別スプライト変数名をそのまま使用している場合は、変更が必要です。<br>
+ID名参照（例：<code>querySelector('#difficultySprite')</code>など）の場合は変更不要です。</li>
+</ul>
+<h2 id="%E2%AD%90%EF%B8%8F-v13---v14">⭐️ v13 -&gt; v14</h2>
+<p>ReleasesのFiles Changedの項目を参照してください。</p>
+<h3 id="1-%E3%82%B9%E3%82%AD%E3%83%B3%E3%83%95%E3%82%A1%E3%82%A4%E3%83%ABcss%E3%81%AE%E6%9B%B4%E6%96%B0">1. スキンファイル(css)の更新</h3>
+<ul>
+<li>Opacityオプションの追加、Displayオプションの無効化ボタン背景色追加による変更です。</li>
+</ul>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85%E5%BF%85%E9%A0%88">🛠 修正事項（必須）</h4>
+<ul>
+<li>デフォルトスキンを利用している方は、Files Changedの項目を参考に入れ替えてください。</li>
+<li>独自スキンを利用している方は、以下の項目を足してください。</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment">/* opacityオプション用：ver13.5.1以降。ver13.4.0以前からの変更のみ追加 */</span>
+<span class="hljs-selector-class">.settings_Opacity</span><span class="hljs-selector-pseudo">::first-letter</span> {
+	<span class="hljs-attribute">color</span>:<span class="hljs-number">#999999</span>;
+}
+
+<span class="hljs-comment">/* ステップゾーン用の影矢印色：ver14.1.0以降 */</span>
+<span class="hljs-selector-class">.main_objStepShadow</span> {
+	<span class="hljs-attribute">background-color</span>: <span class="hljs-number">#000000</span>;
+}
+
+<span class="hljs-comment">/* ボタン：ON/OFF 無効化ボタン用 */</span>
+<span class="hljs-selector-class">.button_DisabledOFF</span> {
+	<span class="hljs-attribute">color</span>: <span class="hljs-number">#999999</span>;
+	<span class="hljs-attribute">background-color</span>: <span class="hljs-number">#333333</span>;
+}
+<span class="hljs-selector-class">.button_DisabledON</span> {
+	<span class="hljs-attribute">color</span>: <span class="hljs-number">#ffffff</span>;
+	<span class="hljs-attribute">background-color</span>: <span class="hljs-number">#009999</span>;
+}
+</div></code></pre>
+<h2 id="%E2%AD%90%EF%B8%8F-v12---v13">⭐️ v12 -&gt; v13</h2>
+<p>ReleasesのFiles Changedの項目を参照してください。</p>
+<h3 id="1-%E3%82%B9%E3%82%AD%E3%83%B3%E3%83%95%E3%82%A1%E3%82%A4%E3%83%ABcss%E3%81%AE%E6%9B%B4%E6%96%B0">1. スキンファイル(css)の更新</h3>
+<ul>
+<li>Opacityオプションの追加、Displayオプションの無効化ボタン背景色追加による変更です。</li>
+</ul>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85%E5%BF%85%E9%A0%88">🛠 修正事項（必須）</h4>
+<ul>
+<li>デフォルトスキンを利用している方は、Files Changedの項目を参考に入れ替えてください。</li>
+<li>独自スキンを利用している方は、以下の項目を足してください。</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment">/* opacityオプション用：ver13.5.1以降 */</span>
+<span class="hljs-selector-class">.settings_Opacity</span><span class="hljs-selector-pseudo">::first-letter</span> {
+	<span class="hljs-attribute">color</span>:<span class="hljs-number">#999999</span>;
+}
+</div></code></pre>
 <h2 id="%E2%AD%90%EF%B8%8F-v11---v12">⭐️ v11 -&gt; v12</h2>
 <h3 id="1-danonicontentsjs%E3%81%AE%E6%9B%B4%E6%96%B0">1. danoni_contents.jsの更新</h3>
 <ul>
 <li>譜面詳細画面の追加に伴う変更です。</li>
 </ul>
-<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85%EF%BC%88%E5%BF%85%E9%A0%88%EF%BC%89">🛠 修正事項（必須）</h4>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85%E5%BF%85%E9%A0%88">🛠 修正事項（必須）</h4>
 <ul>
 <li>danoni_contents.js を入れ替えてください。（./js/lib にあります）</li>
 </ul>
@@ -403,11 +1022,11 @@ blockquote {
 <ul>
 <li>キーコンフィグの見直しを行っています。</li>
 </ul>
-<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85%EF%BC%88%E5%BF%85%E9%A0%88%EF%BC%89">🛠 修正事項（必須）</h4>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85%E5%BF%85%E9%A0%88">🛠 修正事項（必須）</h4>
 <ul>
 <li>danoni_contents.js を入れ替えてください。（./js/lib にあります）</li>
 </ul>
-<h3 id="2-danoniskindefaultlight-skybluecss-%E3%81%AE%E6%9B%B4%E6%96%B0%EF%BC%88v1011%E4%BB%A5%E5%89%8D%E3%81%8B%E3%82%89%E3%81%AE%E6%9B%B4%E6%96%B0%E3%81%AE%E3%81%BF%EF%BC%89">2. danoni_skin_default(light, skyblue).css の更新（v10.1.1以前からの更新のみ）</h3>
+<h3 id="2-danoniskindefaultlight-skybluecss-%E3%81%AE%E6%9B%B4%E6%96%B0v1011%E4%BB%A5%E5%89%8D%E3%81%8B%E3%82%89%E3%81%AE%E6%9B%B4%E6%96%B0%E3%81%AE%E3%81%BF">2. danoni_skin_default(light, skyblue).css の更新（v10.1.1以前からの更新のみ）</h3>
 <ul>
 <li>v10.2.1より、Reverse / Scroll の色設定を追加しています。</li>
 </ul>
@@ -421,7 +1040,7 @@ blockquote {
 </ul>
 </li>
 </ul>
-<h3 id="3-wordbackmaskdata%E3%81%AEcrosssplit%E5%AF%BE%E5%BF%9C%EF%BC%88v1011%E4%BB%A5%E5%89%8D%E3%81%8B%E3%82%89%E3%81%AE%E6%9B%B4%E6%96%B0%E3%81%AE%E3%81%BF%EF%BC%89">3. word/back/mask_dataのCross/Split対応（v10.1.1以前からの更新のみ）</h3>
+<h3 id="3-wordbackmaskdata%E3%81%AEcrosssplit%E5%AF%BE%E5%BF%9Cv1011%E4%BB%A5%E5%89%8D%E3%81%8B%E3%82%89%E3%81%AE%E6%9B%B4%E6%96%B0%E3%81%AE%E3%81%BF">3. word/back/mask_dataのCross/Split対応（v10.1.1以前からの更新のみ）</h3>
 <ul>
 <li>v10.2.1より、Cross/Split等のスクロール拡張オプションが追加されています。<br>
 スクロール方向により、演出系に影響がある場合は独自に対応するか、<br>
@@ -514,20 +1133,20 @@ Cross/Split等の実行時は演出OFFにするといった対応が必要です
 <li>通常は変更不要です。<br>
 矢印・フリーズアローを作成・削除する処理を外部から行っている場合、変更が必要です。</li>
 </ul>
-<h3 id="2-danonimaincss%E3%81%AE%E6%9B%B4%E6%96%B0%EF%BC%88v943%E3%81%AB%E3%81%A6%E6%9B%B4%E6%96%B0%E3%81%82%E3%82%8A%EF%BC%89">2. danoni_main.cssの更新（v9.4.3にて更新あり）</h3>
+<h3 id="2-danonimaincss%E3%81%AE%E6%9B%B4%E6%96%B0v943%E3%81%AB%E3%81%A6%E6%9B%B4%E6%96%B0%E3%81%82%E3%82%8A">2. danoni_main.cssの更新（v9.4.3にて更新あり）</h3>
 <ul>
 <li>Appearance用のクリッピングマスクとして、CSSクラスを追加しています。</li>
 <li>設定画面のGaugeオプションの詳細表示で、新たにCSSクラスを追加しています。</li>
 </ul>
-<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85%EF%BC%88%E5%BF%85%E9%A0%88%EF%BC%89">🛠 修正事項（必須）</h4>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85%E5%BF%85%E9%A0%88">🛠 修正事項（必須）</h4>
 <ul>
 <li>danoni_main.css を入れ替えてください。</li>
 </ul>
-<h3 id="3-danonisettingjs%E3%81%AE%E6%9B%B4%E6%96%B0%EF%BC%88v942%E3%81%AB%E3%81%A6%E6%9B%B4%E6%96%B0%E3%81%82%E3%82%8A%EF%BC%89">3. danoni_setting.jsの更新（v9.4.2にて更新あり）</h3>
+<h3 id="3-danonisettingjs%E3%81%AE%E6%9B%B4%E6%96%B0v942%E3%81%AB%E3%81%A6%E6%9B%B4%E6%96%B0%E3%81%82%E3%82%8A">3. danoni_setting.jsの更新（v9.4.2にて更新あり）</h3>
 <ul>
 <li>カスタムゲージ実装によりデフォルト設定以外のゲージの再設定が必要なため、一部追加が必要です。</li>
 </ul>
-<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85%EF%BC%88%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%82%B2%E3%83%BC%E3%82%B8%E5%88%A9%E7%94%A8%E6%99%82%E5%BF%85%E9%A0%88%EF%BC%89">🛠 修正事項（カスタムゲージ利用時必須）</h4>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%82%B2%E3%83%BC%E3%82%B8%E5%88%A9%E7%94%A8%E6%99%82%E5%BF%85%E9%A0%88">🛠 修正事項（カスタムゲージ利用時必須）</h4>
 <ul>
 <li>danoni_setting.js のg_presetGaugeCustom を、以下のように変更してください。<br>
 SuddenDeath以外の各数値は必要に応じて変更して問題ありません。</li>
@@ -635,7 +1254,7 @@ SuddenDeath以外の各数値は必要に応じて変更して問題ありませ
 </ul>
 <pre class="hljs"><code><div>|colorDataType=v6|
 </div></code></pre>
-<h3 id="2-%E6%A5%BD%E6%9B%B2%E3%81%AE%E7%B5%82%E4%BA%86%E5%88%A4%E5%AE%9A%E3%82%BF%E3%82%A4%E3%83%9F%E3%83%B3%E3%82%B0%E3%81%AE%E5%A4%89%E6%9B%B4%EF%BC%88%E7%A7%92%E5%8D%98%E4%BD%8D%E3%81%8B%E3%82%89%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E5%8D%98%E4%BD%8D%E3%81%B8%EF%BC%89">2. 楽曲の終了判定タイミングの変更（秒単位からフレーム単位へ）</h3>
+<h3 id="2-%E6%A5%BD%E6%9B%B2%E3%81%AE%E7%B5%82%E4%BA%86%E5%88%A4%E5%AE%9A%E3%82%BF%E3%82%A4%E3%83%9F%E3%83%B3%E3%82%B0%E3%81%AE%E5%A4%89%E6%9B%B4%E7%A7%92%E5%8D%98%E4%BD%8D%E3%81%8B%E3%82%89%E3%83%95%E3%83%AC%E3%83%BC%E3%83%A0%E5%8D%98%E4%BD%8D%E3%81%B8">2. 楽曲の終了判定タイミングの変更（秒単位からフレーム単位へ）</h3>
 <ul>
 <li>楽曲の終了判定タイミングがフレーム単位に変わりました。</li>
 </ul>
@@ -649,12 +1268,12 @@ SuddenDeath以外の各数値は必要に応じて変更して問題ありませ
 <ul>
 <li>誤爆抑止用のボタンアニメの実装のために、CSSモーションを追加しています。</li>
 </ul>
-<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85%EF%BC%88%E5%BF%85%E9%A0%88%EF%BC%89">🛠 修正事項（必須）</h4>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85%E5%BF%85%E9%A0%88">🛠 修正事項（必須）</h4>
 <ul>
 <li>danoni_main.css を入れ替えてください。</li>
 </ul>
 <h2 id="%E2%AD%90%EF%B8%8F-v5---v6">⭐️ v5 -&gt; v6</h2>
-<h3 id="1-%E3%83%A9%E3%82%A4%E3%83%95%E3%82%B2%E3%83%BC%E3%82%B8%EF%BC%88%E5%88%9D%E6%9C%9F%EF%BC%89%E3%81%AE%E5%80%A4%E5%A4%89%E6%9B%B4">1. ライフゲージ（初期）の値変更</h3>
+<h3 id="1-%E3%83%A9%E3%82%A4%E3%83%95%E3%82%B2%E3%83%BC%E3%82%B8%E5%88%9D%E6%9C%9F%E3%81%AE%E5%80%A4%E5%A4%89%E6%9B%B4">1. ライフゲージ（初期）の値変更</h3>
 <ul>
 <li>ライフ上限値を可変にしたため、ライフゲージ（初期）の値(lifeInit)の取り方が変わりました。</li>
 </ul>
@@ -717,7 +1336,7 @@ SuddenDeath以外の各数値は必要に応じて変更して問題ありませ
 <ul>
 <li>歌詞表示のフェードイン・アウト用のCSSモーションを追加しています。</li>
 </ul>
-<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85%EF%BC%88%E5%BF%85%E9%A0%88%EF%BC%89">🛠 修正事項（必須）</h4>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85%E5%BF%85%E9%A0%88">🛠 修正事項（必須）</h4>
 <ul>
 <li>danoni_main.css を入れ替えてください。</li>
 </ul>
@@ -732,7 +1351,7 @@ SuddenDeath以外の各数値は必要に応じて変更して問題ありませ
 <ul>
 <li>作品群全体の設定ファイル(danoni_setting.js)が追加されました。</li>
 </ul>
-<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85%EF%BC%88%E5%BF%85%E9%A0%88%EF%BC%89">🛠 修正事項（必須）</h4>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85%E5%BF%85%E9%A0%88">🛠 修正事項（必須）</h4>
 <ul>
 <li>jsフォルダ配下に、<code>danoni_setting.js</code>を追加する必要があります。</li>
 </ul>
@@ -740,7 +1359,7 @@ SuddenDeath以外の各数値は必要に応じて変更して問題ありませ
 <ul>
 <li>タイトル文字用のCSSモーションを追加しています。</li>
 </ul>
-<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85%EF%BC%88%E5%BF%85%E9%A0%88%EF%BC%89">🛠 修正事項（必須）</h4>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85%E5%BF%85%E9%A0%88">🛠 修正事項（必須）</h4>
 <ul>
 <li>danoni_main.css を入れ替えてください。</li>
 </ul>
@@ -773,9 +1392,9 @@ SuddenDeath以外の各数値は必要に応じて変更して問題ありませ
 <ul>
 <li>従来のcustomファイルより、共通部分がdanoni_main.jsへ移動しました。</li>
 </ul>
-<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85%EF%BC%88%E5%BF%85%E9%A0%88%EF%BC%89">🛠 修正事項（必須）</h4>
+<h4 id="%F0%9F%9B%A0-%E4%BF%AE%E6%AD%A3%E4%BA%8B%E9%A0%85%E5%BF%85%E9%A0%88">🛠 修正事項（必須）</h4>
 <ul>
-<li><a href="for_ver2.1.0.html">ver2.1.0への移行について</a>をご覧ください。</li>
+<li><a href="for_ver2.1.0">ver2.1.0への移行について</a>をご覧ください。</li>
 </ul>
 
 </body>

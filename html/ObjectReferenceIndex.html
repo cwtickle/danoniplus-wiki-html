@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ObjectReferenceIndex.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9">オブジェクトリファレンス</h1>
+<h2 id="%E4%B8%BB%E8%A6%81%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88">主要オブジェクト</h2>
+<ul>
+<li><a href="obj-v0001-g_rootObj.html">g_rootObj</a></li>
+<li><a href="obj-v0002-g_headerObj.html"><strong>g_headerObj</strong></a></li>
+<li><a href="obj-v0003-g_keyObj.html"><strong>g_keyObj</strong></a></li>
+<li><a href="obj-v0004-g_stateObj.html"><strong>g_stateObj</strong></a></li>
+<li><a href="obj-v0005-g_scoreObj.html">g_scoreObj</a></li>
+<li><a href="obj-v0006-g_loadObj.html">g_loadObj</a></li>
+<li><a href="obj-v0007-g_gaugeOptionObj.html">g_gaugeOptionObj</a></li>
+<li><a href="obj-v0008-g_detailObj.html">g_detailObj</a></li>
+<li><a href="obj-v0009-g_wordObj.html">g_wordObj</a></li>
+<li><a href="obj-v0010-g_attrObj.html"><strong>g_attrObj</strong></a></li>
+<li><a href="obj-v0011-g_resultObj.html">g_resultObj</a></li>
+<li><a href="obj-v0012-g_resultMsgObj.html">g_resultMsgObj</a>  - v19.5.2以降廃止</li>
+<li><a href="obj-v0013-g_rankObj.html">g_rankObj</a></li>
+<li><a href="obj-v0014-g_hidSudObj.html">g_hidSudObj</a></li>
+<li><a href="obj-v0015-g_lblNameObj.html"><strong>g_lblNameObj / g_local_lblNameObj</strong></a></li>
+<li><a href="obj-v0016-g_msgObj.html"><strong>g_msgObj / g_local_msgObj</strong></a></li>
+<li><a href="obj-v0024-g_msgInfoObj.html">g_msgInfoObj</a></li>
+<li><a href="obj-v0026-g_errMsgObj.html">g_errMsgObj</a></li>
+<li><a href="obj-v0018-g_btnAddFunc.html"><strong>g_btnAddFunc</strong> / <strong>g_cxtAddFunc</strong></a></li>
+<li><a href="obj-v0019-g_btnDeleteFlg.html"><strong>g_btnDeleteFlg</strong> / <strong>g_cxtDeleteFlg</strong></a></li>
+<li><a href="obj-v0017-g_shortcutObj.html"><strong>g_shortcutObj</strong></a></li>
+<li><a href="obj-v0020-g_btnWaitFrame.html"><strong>g_btnWaitFrame</strong></a></li>
+<li><a href="obj-v0021-g_btnPatterns.html">g_btnPatterns</a></li>
+<li><a href="obj-v0022-g_scViewObj.html">g_scViewObj</a></li>
+<li><a href="obj-v0023-g_escapeStr.html">g_escapeStr</a></li>
+<li><a href="obj-v0025-g_settings.html">g_settings</a></li>
+<li>g_posObj</li>
+<li>g_diffObj</li>
+<li>g_imgObj</li>
+<li>g_cssObj</li>
+<li>g_workObj</li>
+</ul>
+<h2 id="%E7%94%BB%E9%9D%A2%E5%AE%9A%E7%BE%A9%E9%96%A2%E6%95%B0">画面定義関数</h2>
+<ol>
+<li><a href="dsp-m0001-initialControl.html">タイトル前処理</a>
+<ul>
+<li>initialControl ()</li>
+<li>getScoreDetailData (_scoreId)</li>
+<li>storeBaseData (_scoreId, _scoreObj, _keyCtrlPtn)</li>
+<li>initAfterDosLoaded ()
+<ul>
+<li>initAfterCssLoaded ()</li>
+</ul>
+</li>
+<li>loadSettingJs ()</li>
+<li>loadCustomJs (_afterFunc)</li>
+</ul>
+</li>
+<li>タイトル表示
+<ul>
+<li>titleInit ()</li>
+<li>flowTitleTimeline ()</li>
+</ul>
+</li>
+<li>設定画面表示
+<ul>
+<li>optionInit ()</li>
+</ul>
+</li>
+<li>設定画面（Display）表示
+<ul>
+<li>settingsDisplayInit ()</li>
+</ul>
+</li>
+<li>キーコンフィグ画面表示
+<ul>
+<li>keyConfigInit ()
+<ul>
+<li>getKeyConfigColor (_j, _colorPos)</li>
+<li>searchPattern (_tempPtn, _sign, _transKeyUse, _keyCheck)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="dsp-m0006-loadingScoreInit.html">プレイ開始前設定</a>
+<ul>
+<li>loadMusic ()</li>
+<li>setAudio (_url)</li>
+<li>initWebAudioAPIfromBase64 (_url)</li>
+<li>initWebAudioAPIfromURL (_url)</li>
+<li>musicAfterLoaded ()</li>
+<li>loadingScoreInit ()
+<ul>
+<li>setData (_data, _minLength)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>プレイ画面表示
+<ul>
+<li>mainInit ()
+<ul>
+<li>mainKeyDownActFunc[_autoAllFlg] (_keyCode)</li>
+<li>mainKeyUpActFunc[_autoAllFlg] ()</li>
+<li>changeColorFunc[_arrow] (_j, _k)</li>
+<li>changeColorFunc[_frz] (_j, _k, _state)</li>
+<li>judgeObjDelete[_arrow] (_j, _deleteObj)</li>
+<li>judgeMotionFunc[_arrow] (_j, _arrow, _cnt)</li>
+<li>judgeMotionFunc[_frz] (_j, _k, _frzRoot, _cnt)</li>
+<li>judgeMotionFunc[_frzKeyUp] (_j, _k, _frzRoot, _cnt, _keyUpFrame)</li>
+<li>judgeNextFunc[_frz] (_j, _k, _cnt)</li>
+<li>checkKeyUpFunc[_frz] (_j)</li>
+<li><strong>makeArrow</strong> (_j, _arrowCnt, _name, _color)</li>
+<li><strong>movArrow</strong> (_j, _k, _name)</li>
+<li><strong>makeFrzArrow</strong> (_j, _arrowCnt, _name, _normalColor, _barColor)</li>
+<li><strong>movFrzArrow</strong> (_j, _k, _name)</li>
+</ul>
+</li>
+<li>flowTimeline ()</li>
+</ul>
+</li>
+<li>結果画面表示
+<ul>
+<li>resultInit ()
+<ul>
+<li>withOptions (_flg, _defaultSet, _displayText)</li>
+</ul>
+</li>
+<li>flowResultTimeline ()</li>
+</ul>
+</li>
+</ol>
+<h2 id="%E7%94%BB%E9%9D%A2%E5%AE%9A%E7%BE%A9%E9%96%A2%E6%95%B0%E8%A3%9C%E5%8A%A9">画面定義関数（補助）</h2>
+<ul>
+<li><a href="fnc-c0011-loadDos.html"><strong>loadDos</strong> (_afterFunc, _scoreId, _cyclicFlg)</a></li>
+<li><strong>reloadDos</strong> (_scoreId)</li>
+<li>copySetColor(_baseObj, _scoreId)</li>
+<li><a href="fnc-c0013-makeWarningWindow.html">makeWarningWindow (_text, _resetFlg)</a></li>
+<li><a href="fnc-c0012-makeInfoWindow.html">makeInfoWindow (_text, _animationName)</a>
+<ul>
+<li>setWindowStyle (_text, _bkColor, _textColor, _align)</li>
+</ul>
+</li>
+<li><a href="fnc-c0035-setShortcutEvent.html"><strong>setShortcutEvent</strong> (_displayName, _func, _displayFlg)</a>
+<ul>
+<li><a href="fnc-c0034-createScTextCommon.html">createScTextCommon (_displayName)</a>
+<ul>
+<li><a href="fnc-c0008-createScText.html"><strong>createScText</strong> (_obj, _settingLabel, { displayName, dfLabel, targetLabel, x })</a></li>
+</ul>
+</li>
+<li><a href="fnc-c0007-commonKeyDown.html"><strong>commonKeyDown</strong> (_evt, _displayName, _func)</a></li>
+<li><strong>commonKeyUp</strong> (_evt)</li>
+</ul>
+</li>
+</ul>
+<h2 id="%E4%B8%BB%E8%A6%81%E9%96%A2%E6%95%B0">主要関数</h2>
+<h3 id="%E6%B1%8E%E7%94%A8">汎用</h3>
+<ul>
+<li><a href="fnc-c0042-multiAppend.html"><strong>multiAppend</strong> (_baseObj, ...rest)</a></li>
+<li>setAttrs (_baseObj, { ...rest })</li>
+<li>getNumAttr (_baseObj, _attrkey)</li>
+<li><a href="fnc-c0017-hasVal.html"><strong>hasVal</strong> (_data)</a></li>
+<li><a href="fnc-c0006-listMatching.html"><strong>listMatching</strong> (_str, _list, { prefix, suffix })</a></li>
+<li><a href="fnc-c0039-fuzzyListMatching.html"><strong>fuzzyListMatching</strong> (_str, _headerList, _footerList)</a></li>
+<li><a href="fnc-c0041-checkLightOrDark.html"><strong>checkLightOrDark</strong> (_colorStr)</a></li>
+<li><strong>copyArray2d</strong> (_array2d)</li>
+<li><strong>sumData</strong> (_array)</li>
+<li>transCode (_setKey)</li>
+<li>blockCode (_setKey)</li>
+<li><a href="fnc-c0018-openLink.html"><strong>openLink</strong> (_url)</a></li>
+<li><strong>splitLF</strong> (_str)</li>
+<li><a href="fnc-c0001-setVal.html"><strong>setVal</strong> (_checkStr, _default, _type)</a></li>
+<li><a href="fnc-c0014-id.html"><strong>$id</strong> (_id)</a></li>
+<li><a href="fnc-c0015-toCapitalize.html">toCapitalize (_str)</a></li>
+<li><a href="fnc-c0016-roundZero.html">roundZero (_num, _init = 0)</a></li>
+<li><a href="fnc-c0019-preloadFile.html">preloadFile (_as, _href, _type, _crossOrigin)</a></li>
+<li><a href="fnc-c0020-importCssFile.html">importCssFile (_href, _func)</a></li>
+<li><a href="fnc-c0029-getBasicFont.html">getBasicFont (_priorityFont)</a></li>
+<li><a href="fnc-c0009-getFontSize.html"><strong>getFontSize</strong> (_str, _maxWidth, _font, _maxFontsize)</a>
+<ul>
+<li>getStrWidth (_str, _fontsize, _font)</li>
+</ul>
+</li>
+<li><a href="fnc-c0028-copyTextToClipboard.html">copyTextToClipboard (_textVal)</a></li>
+<li>createDiv (_id, _x, _y, _width, _height)</li>
+<li><a href="fnc-c0002-createDivCss2Label.html"><strong>createDivCss2Label</strong> (_id, {x, y, w, h, siz, align, ...rest}, ..._classes)</a></li>
+<li>createImg (_id, _imgPath, _x, _y, _width, _height)</li>
+<li><a href="fnc-c0003-createColorObject2.html"><strong>createColorObject2</strong> (_id, {x, y, w, h, rotate, styleName, ...rest}, ..._classes)</a></li>
+<li><strong>createSprite</strong> (_parentObjName, _newObjName, _x, _y, _width, _height, _options) ※v21以降非推奨</li>
+<li><a href="fnc-c0043-createEmptySprite.html"><strong>createEmptySprite</strong> (_parentObj, _newObjId, {x, y, w, h, title, ...rest}, ..._classes)</a></li>
+<li>createMultipleSprite(_baseName, _num)</li>
+<li><a href="fnc-c0022-deleteChildspriteAll.html"><strong>deleteChildspriteAll</strong> (_parentObjName)</a></li>
+<li><a href="fnc-c0004-createCss2Button.html"><strong>createCss2Button</strong> (_id, _text, _func, {x, y, w, h, siz, align, title, groupName, initDisabledFlg, resetFunc, cxtFunc, ...rest}, ..._classes)</a></li>
+<li><a href="fnc-c0005-changeStyle.html"><strong>changeStyle</strong> (_id, {x, y, w, h, siz, align, title, ...rest})</a></li>
+<li>getTitleDivLabel (_id, _titlename, _x, _y)</li>
+<li><a href="fnc-c0021-clearWindow.html"><strong>clearWindow</strong> (_redrawFlg, _customDisplayName)</a>
+<ul>
+<li>resetKeyControl ()</li>
+<li><a href="fnc-c0024-drawDefaultBackImage.html">drawDefaultBackImage (_key)</a></li>
+</ul>
+</li>
+<li><a href="fnc-c0010-loadScript.html"><strong>loadScript</strong> (_url, _callback, _requiredFlg, _charset)</a></li>
+<li><a href="fnc-c0038-checkDuplicatedObjects.html">checkDuplicatedObjects (_obj)</a></li>
+<li><a href="fnc-c0025-getQueryParamVal.html"><strong>getQueryParamVal</strong> (_name)</a></li>
+<li><a href="fnc-c0030-transFrameToTimer.html">transFrameToTimer (_frame)</a></li>
+<li><a href="fnc-c0031-transTimerToFrame.html">transTimerToFrame (_str)</a></li>
+<li><strong>calcLevel</strong> (_scoreObj)</li>
+<li><a href="fnc-c0037-getFilePath.html"><strong>getFilePath</strong> (_fileName, _directory)</a>
+<ul>
+<li><strong>getFolderAndType</strong> (_path, _pos, _directory)</li>
+</ul>
+</li>
+<li><a href="fnc-c0026-checkImage.html"><strong>checkImage</strong> (_str)</a></li>
+<li><a href="fnc-c0027-colorToHex.html">colorToHex (_color)</a>
+<ul>
+<li><a href="fnc-c0040-colorNameToCode.html">colorNameToCode (_color)</a></li>
+<li>byteToHex (_num)</li>
+</ul>
+</li>
+<li>isColorCd (_str)</li>
+<li>hasAnglePointInfo (_str)</li>
+<li>colorCdPadding (_useFlg, _colorStr)</li>
+<li><a href="fnc-c0036-makeColorGradation.html"><strong>makeColorGradation</strong> (_colorStr, { _defaultColorgrd, _colorCdPaddingUse, _objType, _shadowFlg })</a></li>
+<li><a href="fnc-c0023-keyIsDown.html"><strong>keyIsDown</strong> (_keyCode)</a></li>
+<li>replaceStr (_str, _pairs)</li>
+<li><a href="fnc-c0032-escapeHtml.html"><strong>escapeHtml</strong> (_str, _escapeList)</a></li>
+<li><a href="fnc-c0032-escapeHtml.html"><strong>escapeHtmlForEnabledTag</strong> (_str)</a></li>
+<li><a href="fnc-c0033-unEscapeHtml.html"><strong>unEscapeHtml</strong> (_str)</a></li>
+<li>escapeHtmlForArray (_array)</li>
+</ul>
+<h3 id="%E5%85%B1%E9%80%9A%E6%B1%8E%E7%94%A8%E7%9A%84%E3%81%A7%E7%84%A1%E3%81%84%E3%82%82%E3%81%AE">共通（汎用的で無いもの）</h3>
+<ul>
+<li><strong>current</strong> ()</li>
+<li>makeSpriteData (_data, _calcFrame)
+<ul>
+<li>makeSpriteImage (_obj)</li>
+<li>makeSpriteText (_obj)</li>
+</ul>
+</li>
+<li>loadLocalStorage ()</li>
+<li>makePlayButton(_func)</li>
+<li>drawSpriteData (_frame, _spriteName, _depthName)</li>
+<li>drawMainSpriteData (_frame, _depthName)</li>
+<li>getSpriteJumpFrame (_frames)</li>
+<li>drawTitleResultMotion (_spriteName)</li>
+<li>changeSetColor()</li>
+</ul>
+<h3 id="%E3%82%BF%E3%82%A4%E3%83%88%E3%83%AB%E7%94%BB%E9%9D%A2">タイトル画面</h3>
+<ul>
+<li><strong>dosConvert</strong> (_dos)</li>
+<li>getMusicNameSimple (_musicName)</li>
+<li>getMusicNameMultiLine (_musicName)</li>
+<li><strong>preheaderConvert</strong> (_dosObj)</li>
+<li><strong>headerConvert</strong> (_dosObj)</li>
+<li>resetBaseColorList (_baseObj, _dosObj, { scoreId })
+<ul>
+<li>setColorList (_data, _colorInit, _colorInitLength,<br>
+{ _defaultColorgrd, _colorCdPaddingUse, _defaultFrzColorUse, _objType, _shadowFlg})</li>
+</ul>
+</li>
+<li>addGaugeFulls (_obj)</li>
+<li>resetCustomGauge (_dosObj, { scoreId })</li>
+<li>getGaugeSetting (_dosObj, _name, _difLength, { scoreId })
+<ul>
+<li>setGaugeDetails (_scoreId, _gaugeDetails)</li>
+<li>getGaugeDetailList (_scoreId, _defaultGaugeList)</li>
+</ul>
+</li>
+<li><strong>keysConvert</strong> (_dosObj)
+<ul>
+<li>existParam (_data, _paramName)</li>
+<li>newKeyMultiParam (_key, _name, _convFunc, { errCd, baseCopyFlg, loopFunc })</li>
+<li>newKeySingleParam (_key, _name, _type)</li>
+<li>newKeyPairParam(_key, _name, _pairName, _defaultName, _defaultVal)</li>
+</ul>
+</li>
+</ul>
+<h3 id="%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2">設定画面</h3>
+<ul>
+<li>commonSettingBtn (_labelName)</li>
+<li><strong>setSpriteList</strong> (_settingList)</li>
+<li>createOptionWindow (_sprite)
+<ul>
+<li>resetDifWindow ()</li>
+<li>makeDifList (_difList, _difCover, _targetKey)</li>
+<li>nextDifficulty (_scrollNum)</li>
+<li>makeDifBtn (_scrollNum)</li>
+<li>createDifWindow (_key)</li>
+<li>createScoreDetail (_name, _graphUseFlg)</li>
+<li>setScoreDetail ()</li>
+<li>getScoreBaseData(_scoreId)</li>
+<li>drawSpeedGraph (_scoreId)</li>
+<li>drawDensityGraph (_scoreId)</li>
+<li>drawBaseLine (_context, _resolution)</li>
+<li>drawLine (_context, _y, _lineType, _fixed)</li>
+<li>updateScoreDetailLabel(_name, _label, _value, _pos, _labelname)</li>
+<li>makeDifInfoLabels (_scoreId)</li>
+<li>makeDifInfo (_scoreId)</li>
+<li>setReverse (_btn)</li>
+<li>setReverseView (_btn)</li>
+<li>setGauge (_scrollNum)</li>
+<li>gaugeChange (_gaugeNum)
+<ul>
+<li>setLife (_baseProperty, _setProperty, _magnification)</li>
+<li>setLifeCategory (_baseObj, { _magInit = 1, _magRcv = 1, _magDmg = 1 }</li>
+<li>changeLifeMode (_baseObj)</li>
+</ul>
+</li>
+<li>gaugeFormat (_mode, _border, _rcv, _dmg, _init, _lifeValFlg)</li>
+<li><strong>setDifficulty</strong> (_initFlg)</li>
+</ul>
+</li>
+<li><strong>createGeneralSetting</strong> (_obj, _settingName, { unitName, skipTerm, settingLabel, displayName, scLabel })</li>
+<li>createLblSetting (_settingName, _adjY, _settingLabel)</li>
+<li>setSetting (_scrollNum, _settingName, _unitName)</li>
+<li>makeDisabledLabel (_id, _heightPos, _defaultStr)</li>
+<li><strong>getKeyCtrl</strong> (_localStorage, _extraKeyName)</li>
+<li>makeSettingLblCssButton (_id, _name, _heightPos, _func, { x, y, w, h, siz, cxtFunc, ...rest })</li>
+<li>makeDifLblCssButton (_id, _name, _heightPos, _func, { x, w, btnStyle })</li>
+<li>makeMiniCssButton (_id, _directionFlg, _heightPos, _func, { dx, dy, dw, dh, dsiz })</li>
+</ul>
+<h3 id="%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2display">設定画面（Display）</h3>
+<ul>
+<li>createSettingsDisplayWindow (_sprite)
+<ul>
+<li>makeDisplayButton (_name, _heightPos, _widthPos)
+<ul>
+<li>makeDisabledDisplayLabel (_id, _heightPos, _widthPos, _defaultStr, _flg)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>interlockingButton (_headerObj, _name, _current, _next, _buttonFlg)</li>
+</ul>
+<h3 id="%E3%82%AD%E3%83%BC%E3%82%B3%E3%83%B3%E3%83%95%E3%82%A3%E3%82%B0%E7%94%BB%E9%9D%A2">キーコンフィグ画面</h3>
+<ul>
+<li>getKeyConfigColor (_j, _colorPos)</li>
+<li>changeKeyConfigColor (_j, _k, _cssName)</li>
+<li>searchNextCursor (_pos)</li>
+<li>setConfigType (_scrollNum)</li>
+<li>setColorType (_scrollNum)</li>
+<li>setKeyConfigCursor ()</li>
+<li>resetCursor (_resetPos, _resetCursorFlg)</li>
+<li>searchPattern (_tempPtn, _sign, _transKeyUse, _keyCheck)</li>
+<li>removeClassList (_j, _k) ※v21.4.0に廃止予定</li>
+</ul>
+<h3 id="%E3%83%AD%E3%83%BC%E3%83%89%E7%94%BB%E9%9D%A2">ロード画面</h3>
+<ul>
+<li>setScoreIdHeader (_scoreId, _scoreLockFlg)</li>
+<li>applyShuffle (_keyNum, _shuffleGroup, _style)</li>
+<li>applyMirror (_keyNum, _shuffleGroup)</li>
+<li>applyRandom (_keyNum, _shuffleGroup)</li>
+<li>applySRandom (_keyNum, _shuffleGroup, _arrowHeader, _frzHeader)</li>
+<li><strong>scoreConvert</strong> (_dosObj, _scoreId, _preblankFrame, _dummyNo, _keyCtrlPtn, _scoreAnalyzeFlg)
+<ul>
+<li>calcFrame (_frame)</li>
+<li>storeArrowData (_data)</li>
+<li>setSpeedData (_header, _scoreNo, _footer)</li>
+<li>setColorData (_header, _scoreNo)</li>
+<li>setCssMotionData (_header, _scoreNo)</li>
+<li>makeWordData (_scoreNo)</li>
+<li>makeSpriteWordData (_data, _reverseFlg)</li>
+<li>makeBackgroundData (_header, _scoreNo)</li>
+<li>makeBackgroundResultData (_header, _scoreNo, _defaultHeader)</li>
+</ul>
+</li>
+<li>calcLifeVals (_allArrows)</li>
+<li>calcLifeVal (_val, _allArrows)</li>
+<li>getLastFrame (_dataObj, _keyCtrlPtn)</li>
+<li>getFirstArrowFrame (_dataObj, _keyCtrlPtn)</li>
+<li>getStartFrame (_lastFrame, _fadein, _scoreId)</li>
+<li><strong>setSpeedOnFrame</strong> (_speedData, _lastFrame)</li>
+<li><strong>setMotionOnFrame</strong> ()</li>
+<li><strong>getFirstArrivalFrame</strong> (_startFrame, _speedOnFrame, motionOnFrame)</li>
+<li><strong>pushArrows</strong> (_dataObj, _speedOnFrame, _motionOnFrame, _firstArrivalFrame)
+<ul>
+<li><strong>setNotes</strong> (_j, _k, _data, _startPoint, _header, _frzFlg)</li>
+<li><strong>calcNotes</strong> (_j, _data, _header, _frzFlg)</li>
+<li><strong>calcColorData</strong> (_header)</li>
+<li>calcCssMotion (_header)</li>
+</ul>
+</li>
+<li><strong>getArrowStartFrame</strong> (_frame, _speedOnFrame, _motionOnFrame)</li>
+<li>isFrzHitColor (_val)</li>
+<li><strong>getFrzLength</strong> (_speedOnFrame, _startFrame, _endFrame)</li>
+<li><strong>convertreplaceNums</strong> ()</li>
+<li><strong>pushColors</strong> (_header, _frame, _val, _colorCd)</li>
+<li>pushCssMotions (_header, _frame, _val, _styleName, _styleNameRev)</li>
+<li><strong>getArrowSettings</strong> ()</li>
+<li><strong>setKeyCtrl</strong> (_localStorage, _keyNum, _keyCtrlPtn)</li>
+</ul>
+<h3 id="%E3%83%A1%E3%82%A4%E3%83%B3%E7%94%BB%E9%9D%A2">メイン画面</h3>
+<ul>
+<li><strong>changeAppearanceFilter</strong> (_appearance, _num)</li>
+<li>makeCounterSymbol (_id, _x, _class, _heightPos, _text)</li>
+<li><strong>changeArrowColors</strong> (_mkColor, _mkColorCd, _allFlg)</li>
+<li><strong>changeFrzColors</strong> (_mkColor, _mkColorCd, _colorPatterns, _allFlg)</li>
+<li>changeCssMotions (_mkCssMotion, _mkCssMotionName, _name)</li>
+<li><strong>changeHitFrz</strong> (_j, _k, _name)</li>
+<li><strong>changeFailedFrz</strong> (_j, _k)</li>
+<li>checkJudgment (_difCnt)</li>
+<li><strong>judgeArrow</strong> (_j)</li>
+<li>displayDiff (_difFrame, _justFrames)</li>
+<li>countFastSlow (_difFrame, _justFrames)</li>
+<li>changeLifeColor (_state)</li>
+<li><strong>lifeRecovery</strong> ()</li>
+<li><strong>lifeDamage</strong> ()</li>
+<li>updateCombo ()</li>
+<li>judgeIi (_difFrame)</li>
+<li>judgeShakin (_difFrame)</li>
+<li>judgeMatari (_difFrame)</li>
+<li>judgeDamage ()</li>
+<li>judgeShobon (_difFrame)</li>
+<li>judgeUwan (_difFrame)</li>
+<li>judgeKita (_difFrame)</li>
+<li>judgeIknai (_difFrame)</li>
+<li>makeFinishView (_text)</li>
+<li>finishViewing ()</li>
+</ul>
+<h3 id="%E7%B5%90%E6%9E%9C%E7%94%BB%E9%9D%A2">結果画面</h3>
+<ul>
+<li>makeCssResultPlayData (_id, _x, _class, _heightPos, _text, _align)</li>
+<li>makeCssResultSymbol (_id, _x, _class, _heightPos, _text, _align)</li>
+</ul>
+
+</body>
+</html>

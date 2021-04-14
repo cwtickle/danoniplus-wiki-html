@@ -5,16 +5,17 @@
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 
 <style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
 body {
-	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
-	font-size: 14px;
-	padding: 0 12px;
-	line-height: 22px;
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
 	word-wrap: break-word;
 }
 
@@ -38,7 +39,6 @@ body {
 	background-color:#007acc;
 	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
 }
-
 
 body.scrollBeyondLastLine {
 	margin-bottom: calc(100vh - 22px);
@@ -71,12 +71,20 @@ body.showEditorSelection li.code-line:hover:before {
 	border-left: 3px solid rgba(0, 0, 0, 0.40);
 }
 
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
 .vscode-dark.showEditorSelection .code-active-line:before {
 	border-left: 3px solid rgba(255, 255, 255, 0.4);
 }
 
 .vscode-dark.showEditorSelection .code-line:hover:before {
 	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
 }
 
 .vscode-high-contrast.showEditorSelection .code-active-line:before {
@@ -87,14 +95,21 @@ body.showEditorSelection li.code-line:hover:before {
 	border-left: 3px solid rgba(255, 160, 0, 1);
 }
 
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
 img {
 	max-width: 100%;
 	max-height: 100%;
 }
 
 a {
-	color: #4080D0;
 	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
 }
 
 a:focus,
@@ -122,21 +137,6 @@ h1, h2, h3 {
 	font-weight: normal;
 }
 
-h1 code,
-h2 code,
-h3 code,
-h4 code,
-h5 code,
-h6 code {
-	font-size: inherit;
-	line-height: auto;
-}
-
-a:hover {
-	color: #4080D0;
-	text-decoration: underline;
-}
-
 table {
 	border-collapse: collapse;
 }
@@ -160,22 +160,18 @@ table > tbody > tr + tr > td {
 blockquote {
 	margin: 0 7px 0 5px;
 	padding: 0 16px 0 10px;
-	border-left: 5px solid;
+	border-left-width: 5px;
+	border-left-style: solid;
 }
 
 code {
 	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
-	font-size: 14px;
-	line-height: 19px;
+	font-size: 1em;
+	line-height: 1.357em;
 }
 
 body.wordWrap pre {
 	white-space: pre-wrap;
-}
-
-.mac code {
-	font-size: 12px;
-	line-height: 18px;
 }
 
 pre:not(.hljs),
@@ -185,43 +181,22 @@ pre.hljs code > div {
 	overflow: auto;
 }
 
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
 /** Theming */
 
-.vscode-light,
-.vscode-light pre code {
-	color: rgb(30, 30, 30);
-}
-
-.vscode-dark,
-.vscode-dark pre code {
-	color: #DDD;
-}
-
-.vscode-high-contrast,
-.vscode-high-contrast pre code {
-	color: white;
-}
-
-.vscode-light code {
-	color: #A31515;
-}
-
-.vscode-dark code {
-	color: #D7BA7D;
-}
-
-.vscode-light pre:not(.hljs),
-.vscode-light code > div {
+.vscode-light pre {
 	background-color: rgba(220, 220, 220, 0.4);
 }
 
-.vscode-dark pre:not(.hljs),
-.vscode-dark code > div {
+.vscode-dark pre {
 	background-color: rgba(10, 10, 10, 0.4);
 }
 
-.vscode-high-contrast pre:not(.hljs),
-.vscode-high-contrast code > div {
+.vscode-high-contrast pre {
 	background-color: rgb(0, 0, 0);
 }
 
@@ -249,16 +224,6 @@ pre.hljs code > div {
 	border-color: rgba(255, 255, 255, 0.18);
 }
 
-.vscode-light blockquote,
-.vscode-dark blockquote {
-	background: rgba(127, 127, 127, 0.1);
-	border-color: rgba(0, 122, 204, 0.5);
-}
-
-.vscode-high-contrast blockquote {
-	background: transparent;
-	border-color: #fff;
-}
 </style>
 
 <style>
@@ -343,7 +308,8 @@ pre.hljs code > div {
  */
 
  body {
-	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
 }
 
 pre {
@@ -369,6 +335,11 @@ blockquote {
 	height: 1.4em;
 }
 
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
 /* for inline code */
 :not(pre):not(.hljs) > code {
 	color: #C9AE75; /* Change the old color so it seems less like an error */
@@ -382,18 +353,28 @@ blockquote {
 }
 
 </style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
 </head>
 <body>
-<h1 id="%E3%82%AD%E3%83%BC%E3%81%AE%E4%BB%95%E6%A7%98%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">キーの仕様について</h1>
-<p><img src="./wiki/keys1.png" alt="keys" width="600"></p>
-<p>Dan☆Oniの各キーは、キーとパターンの組み合わせから成っています。<br>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%E3%82%AD%E3%83%BC%E6%95%B0%E4%BB%95%E6%A7%98--keys-specification">キー数仕様 / Keys' Specification</h1>
+<img src="./wiki/keys1.png" width="400">
+<p>Dancing☆Onigiri (CW Edition)における各キーは、キーとパターンの組み合わせから成っています。<br>
 以下であれば、11keyの1番目（0番目）のパターンであることを示します。</p>
 <pre>
 pos<b>11</b>_<b>0</b>
 </pre>
 <p>同じキーに属するパターンの設定は似ていますが、<br>
 全く別のキーの扱いです。設定も個別に変更できます。<br>
-配列の記載順は、必ず左から右、上から下になるよう記載が必要です。</p>
+配列の記載順は、必ず<strong>左から右、上から下</strong>になるよう記載が必要です。</p>
 <table>
 <thead>
 <tr>
@@ -421,7 +402,7 @@ pos<b>11</b>_<b>0</b>
 <tr>
 <td>posX_Y</td>
 <td>ステップゾーン位置</td>
-<td>ステップゾーンを等間隔で置いた場合に、どこに置くかを示した数字。上記画像参照。<br>等間隔にしたくない場合は、上の例のように番号をスキップすることでステップゾーンを置かないこともできる。</td>
+<td>ステップゾーンを等間隔で置いた場合に、どこに置くかを示した数字。上記画像参照。<br>等間隔にしたくない場合は、上の例のように番号をスキップすることでステップゾーンを置かないことができる。</td>
 </tr>
 <tr>
 <td>divX_Y</td>
@@ -472,6 +453,16 @@ pos<b>11</b>_<b>0</b>
 <td>scrollDirX_Y</td>
 <td>スクロール拡張の方向設定</td>
 <td>矢印毎の方向設定。「1」は下から上へ、「-1」は上から下へ流れる。</td>
+</tr>
+<tr>
+<td>assistNameX</td>
+<td>キーアシスト名</td>
+<td>一部のキーのアシストで使用する名前。これにALL(全て)やOFFは含まれない。デフォルトはなし。</td>
+</tr>
+<tr>
+<td>assistPosX_Y</td>
+<td>アシストするキーの設定</td>
+<td>矢印毎のアシスト設定。「1」はオートプレイ対象、「0」はオートプレイ対象外。</td>
 </tr>
 </tbody>
 </table>
@@ -573,6 +564,13 @@ pos<b>11</b>_<b>0</b>
 <p>キーコードが書かれています。<br>
 これだけだとピンときませんが、3番目だけ要素が2つあるのが確認できると思います。<br>
 この部分は代替キーがあることを表します。</p>
+<h3 id="%E8%A3%9C%E8%B6%B3-%E3%82%AD%E3%83%BC%E3%82%B3%E3%83%B3%E3%83%95%E3%82%A3%E3%82%B0">補足 (キーコンフィグ)</h3>
+<p>この画像の例では3番目だけ代替キーがありますが、<br>
+現在のバージョンでは全てのキーに代替キーを最低１つ割り当てています。<br>
+ここで指定する番号は <a href="https://developer.mozilla.org/ja/docs/Web/API/KeyboardEvent/keycode">KeyboardEvent.keyCode</a> の値です。0は未割り当てを表します。<br>
+なおKeyCodeは非推奨のため、内部的には <a href="https://developer.mozilla.org/ja/docs/Web/API/KeyboardEvent/code">KeyboardEvent.code</a> に変換しています。</p>
+<pre class="hljs"><code><div>keyCtrl11_0: [[<span class="hljs-number">37</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">40</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">38</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">39</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">83</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">68</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">70</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">32</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">74</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">75</span>, <span class="hljs-number">0</span>], [<span class="hljs-number">76</span>, <span class="hljs-number">0</span>]],
+</div></code></pre>
 <h2 id="%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%82%AD%E3%83%BC%E3%81%AE%E5%A0%B4%E5%90%88">カスタムキーの場合</h2>
 <p>自分で作ったキーを公開する場合、譜面データに記述が必要です。<br>
 基本的な考え方は上述と全く同じですが、記述方法が少し異なります。</p>
@@ -584,6 +582,30 @@ pos<b>11</b>_<b>0</b>
 <h3 id="colorx-charax-divx-steprtnx-keyctrlx-blankx-shufflex">colorX, charaX, divX, stepRtnX, keyCtrlX, blankX, shuffleX</h3>
 <p>それぞれ、colorX_Y, charaX_Y, divX_Y, stepRtnX_Y, keyCtrlX_Y, blankX_Y, shuffleX_Yに相当します。複数指定の場合は&quot;$&quot;で区切ります。<br>
 keyCtrlの場合、代替キー指定はスラッシュ(/)で区切ります。</p>
+<h3 id="scrollx-assistx">scrollX, assistX</h3>
+<p>コロンを2つ繋げてコロンの前が名称、後が矢印ごとの設定になるよう記述します。
+設定を増やす場合はスラッシュ(/)で区切ります。<br>
+キーパターンが複数ある場合は&quot;$&quot;で区切ります。</p>
+<p>これらのみ、通常キーの変数の定義方法とは異なります。</p>
+<table>
+<thead>
+<tr>
+<th>追加キーでの指定名</th>
+<th>通常キーでの変数名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>scrollX</td>
+<td>scrollNameX<br>scrollDirX_Y</td>
+</tr>
+<tr>
+<td>assistX</td>
+<td>assistNameX<br>assistPosX_Y</td>
+</tr>
+</tbody>
+</table>
+<h3 id="%E4%BD%BF%E7%94%A8%E4%BE%8B">使用例</h3>
 <table>
 <thead>
 <tr>
@@ -639,6 +661,49 @@ keyCtrlの場合、代替キー指定はスラッシュ(/)で区切ります。<
 <tr>
 <td>scrollX</td>
 <td>scroll6=Cross::1,1,-1,-1,1,1/Split::1,1,1,-1,-1,-1/Alternate::1,-1,1,-1,1,-1$Cross::1,1,-1,-1,1,1/Split::1,1,1,-1,-1,-1/Alternate::1,-1,1,-1,1,-1</td>
+</tr>
+<tr>
+<td>assistX</td>
+<td>assist6=Onigiri::0,0,0,0,0,1/AA::0,0,0,1,1,1$...</td>
+</tr>
+</tbody>
+</table>
+<h3 id="%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B4">更新履歴</h3>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>変更内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v15.2.0">v15.0.0</a></td>
+<td>・キーアシスト設定(assistNameX, assistPosX_Y)を追加</td>
+</tr>
+<tr>
+<td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v12.1.0">v12.1.0</a></td>
+<td>・矢印描画エリアを縮小する設定(scaleX_Y)を追加</td>
+</tr>
+<tr>
+<td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v10.2.1">v10.2.1</a></td>
+<td>・スクロール拡張設定(scrollNameX, scrollDirX_Y)を追加</td>
+</tr>
+<tr>
+<td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v5.11.0">v5.11.0</a></td>
+<td>・タイトルバック、リトライ用ショートカットキー設定(keyRetryX_Y, keyTtitleBackX_Y)を追加</td>
+</tr>
+<tr>
+<td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v4.8.0">v4.8.0</a></td>
+<td>・別キーとしてプレイできるモードの設定(transKeyX_Y)を追加</td>
+</tr>
+<tr>
+<td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v3.1.0">v3.1.0</a></td>
+<td>・ミラー／ランダムの設定(shuffleX_Y)を追加</td>
+</tr>
+<tr>
+<td><a href="https://github.com/cwtickle/danoniplus/releases/tag/v1.0.1">v1.0.0</a></td>
+<td>・初期実装</td>
 </tr>
 </tbody>
 </table>

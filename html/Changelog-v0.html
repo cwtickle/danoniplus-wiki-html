@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Changelog-v0.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<p>⭐ New Features / 🛠️ Improvements / 🐞 Bug Fixes</p>
+<p><a href="Changelog-v1.html"><strong>&lt;- v1</strong></a> | <strong>v0</strong> |</p>
+<h2 id="warning-%E9%96%8B%E7%99%BA%E7%89%88%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E6%B3%A8%E6%84%8F%E7%82%B9">[Warning] 開発版における注意点</h2>
+<ul>
+<li>v0は開発版のため、機能未実装や仕掛中がある場合があります。</li>
+</ul>
+<h2 id="v077x-2018-11-24">v0.77.x (2018-11-24)</h2>
+<ul>
+<li>⭐️ リザルト画面に曲名・譜面名・設定したオプション表示を追加 ( #105 )</li>
+<li>🛠️ 事前読込対象にライフボーダー用画像を追加 ( #106 )</li>
+<li>🐞 結果画面表示のColor:OFFの表示不具合を修正 ( #107 )</li>
+</ul>
+<h2 id="v076x-2018-11-24">v0.76.x (2018-11-24)</h2>
+<ul>
+<li>⭐️ Fadeinオプションにスライドバーを追加 ( #99 )</li>
+<li>⭐️ ライフゲージバーのデザイン追加、位置調整 ( #100, #102 )</li>
+<li>🐞 ライフゲージ非表示時の記述ミスを修正 ( #101 )</li>
+</ul>
+<h2 id="v075x-2018-11-24">v0.75.x (2018-11-24)</h2>
+<ul>
+<li>⭐️ ライフゲージバー初期実装</li>
+</ul>
+<h2 id="v074x-2018-11-23">v0.74.x (2018-11-23)</h2>
+<ul>
+<li>⭐️ Displayオプションを実装</li>
+<li>🛠️ 画面レイアウトの修正</li>
+</ul>
+<h2 id="v073x-2018-11-20">v0.73.x (2018-11-20)</h2>
+<ul>
+<li>🛠️ varではなくconst/letで変数宣言するように変更 ( #85 )</li>
+<li>🛠️ 現在時刻の取得方法変更(performance.now()を利用) ( #87 )</li>
+<li>🛠️ 楽曲時間長を秒切り上げに変更</li>
+</ul>
+<h2 id="v072x-2018-11-20">v0.72.x (2018-11-20)</h2>
+<ul>
+<li>⭐️ ライフゲージ（数字）初期実装</li>
+</ul>
+<h2 id="v071x-2018-11-17">v0.71.x (2018-11-17)</h2>
+<ul>
+<li>⭐️ customjsファイルを1作品につき最大2ファイル指定できるように変更</li>
+</ul>
+<h2 id="v070x-2018-11-17">v0.70.x (2018-11-17)</h2>
+<ul>
+<li>⭐️ フリーズアローの猶予フレームを実装</li>
+<li>🐞 オート時にフリーズアローが失敗する不具合を修正</li>
+<li>🐞 リザルト画面移行時、jsエラーが出力される問題を修正</li>
+</ul>
+<h2 id="v069x-2018-11-17">v0.69.x (2018-11-17)</h2>
+<ul>
+<li>⭐️ ショボーン判定を実装</li>
+</ul>
+<h2 id="v068x-2018-11-17">v0.68.x (2018-11-17)</h2>
+<ul>
+<li>⭐️ フェードアウト、曲終了時間指定時は曲を結果画面中も垂れ流すように変更</li>
+</ul>
+<h2 id="v067x-2018-11-17">v0.67.x (2018-11-17)</h2>
+<ul>
+<li>⭐️ back_dataのAnimationDurationの単位を秒数からフレーム数に変更</li>
+<li>⭐️ 画像のpreloadを実装 (rel:preload形式)</li>
+<li>🐞 途中終了、曲終了時にデバッグ時エラーが発生していた問題を修正</li>
+</ul>
+<h2 id="v066x-2018-11-16">v0.66.x (2018-11-16)</h2>
+<ul>
+<li>⭐️ 背景モーション (back_data) において、spanタグ適用時に色も指定できるよう変更</li>
+</ul>
+<h2 id="v065x-2018-11-16">v0.65.x (2018-11-16)</h2>
+<ul>
+<li>⭐️ 背景モーション (back_data) の実装</li>
+<li>🛠️ 背景画像について、.png/.gif/.jpg/.bmpでないときは文字を表示するように変更</li>
+</ul>
+<h2 id="v064x-2018-11-14">v0.64.x (2018-11-14)</h2>
+<ul>
+<li>⭐️ Canvasのレイヤーを集約し、1つでも動作するように対応</li>
+<li>🐞 歌詞データが同一フレーム指定の場合にフレームを自動調整するように修正</li>
+</ul>
+<h2 id="v063x-2018-11-13">v0.63.x (2018-11-13)</h2>
+<ul>
+<li>🐞 フェードイン時の環境ズレを部分的に解消</li>
+<li>🐞 色変化＆キーパターンの組み合わせで色変化（矢印）の対象が異なる問題を修正</li>
+</ul>
+<h2 id="v062x-2018-11-11">v0.62.x (2018-11-11)</h2>
+<ul>
+<li>⭐️ 独自キーでキーコンパターンの複数指定に対応</li>
+</ul>
+<h2 id="v061x-2018-11-11">v0.61.x (2018-11-11)</h2>
+<ul>
+<li>⭐️ 音楽フォルダを変更可能にするヘッダー変数を追加（musicFolder）</li>
+<li>🐞 checkArrayVal の判定誤りを修正</li>
+<li>🐞 キーコンフィグパターン変更時、カーソル位置がおかしくなる不具合を修正</li>
+</ul>
+<h2 id="v060x-2018-11-10">v0.60.x (2018-11-10)</h2>
+<ul>
+<li>⭐️ キーコンフィグの対象範囲変更に対応 (ConfigTypeで設定)</li>
+<li>🐞 キーコンフィグパターン変更時、カーソル位置がおかしくなる不具合を修正</li>
+</ul>
+<h2 id="v059x-2018-11-10">v0.59.x (2018-11-10)</h2>
+<ul>
+<li>⭐️ 警告メッセージ枠をタイトルに追加（ブラウザチェックなど）</li>
+<li>⭐️ 新キー作成時のアラートメッセージを追加</li>
+</ul>
+<h2 id="v058x-2018-11-07">v0.58.x (2018-11-07)</h2>
+<ul>
+<li>⭐️ 11i, 13(TP), 14i, 16ikeyを追加</li>
+</ul>
+<h2 id="v057x-2018-11-07">v0.57.x (2018-11-07)</h2>
+<ul>
+<li>🛠️ フォントに考慮した記述に一部変更</li>
+<li>🛠️ スコアがリザルト画面に反映されていない問題を修正</li>
+<li>🛠️ 全体的にソースのフォーマッターを実行</li>
+</ul>
+<h2 id="v056x-2018-11-06">v0.56.x (2018-11-06)</h2>
+<ul>
+<li>🛠️ 判定カウンタ、曲名、歌詞表示を別スプライトへ移動</li>
+<li>🛠️ 判定カウンタ作成関数を外へ出してカスタムでも使えるように修正</li>
+</ul>
+<h2 id="v055x-2018-11-04">v0.55.x (2018-11-04)</h2>
+<ul>
+<li>🛠️ サンプルがそのまま動くように無音のmp3を追加</li>
+<li>🐞 判定系を矢印の手前に表示されるよう修正</li>
+<li>🐞 コピーライト表記を修正</li>
+</ul>
+<h2 id="v054x-2018-11-04">v0.54.x (2018-11-04)</h2>
+<ul>
+<li>⭐️ フェードインの早回しボタンを追加</li>
+<li>🛠️ jsファイルをそのまま使えるように、ライセンス原文を追加</li>
+<li>🛠️ タイトルページにGithubのリンクを追加</li>
+</ul>
+<h2 id="v053x-2018-11-04">v0.53.x (2018-11-04)</h2>
+<ul>
+<li>⭐️ 逆回しボタン、右クリック制御を追加</li>
+<li>🛠️ オプション画面のボタン制御を定数・関数化して整理</li>
+<li>🐞 速度変化・色変化の記述がない場合にメイン画面が動作しない問題を修正</li>
+<li>🐞 色変化未使用時、プレイ続行できない問題を修正</li>
+<li>🐞 最初の矢印を押したタイミングだけ、キーが無効になる問題を修正</li>
+</ul>
+<h2 id="v052x-2018-11-04">v0.52.x (2018-11-04)</h2>
+<ul>
+<li>⭐️ オプション画面の一部操作を除き、Contextmenuを非表示に変更</li>
+<li>🛠️ オプション画面のFadein:100%を削除</li>
+<li>🐞 結果画面移行時の内部エラーを修正（実動作には影響しない）</li>
+</ul>
+<h2 id="v051x-2018-11-03">v0.51.x (2018-11-03)</h2>
+<ul>
+<li>🛠️ 判定キャラクタ 及び ステップゾーンヒット時のモーションを一定時間後に消去するよう変更</li>
+<li>🐞 色変化が動作しない問題を修正</li>
+</ul>
+<h2 id="v050x-2018-11-01">v0.50.x (2018-11-01)</h2>
+<ul>
+<li>⭐️ Fadeinオプションの実装</li>
+<li>⭐️ Volumeの選択域を変更 (1%単位 -&gt; 指定されたボリューム群のみ選択可)</li>
+<li>🐞 Fadein時に速度変化が入っているとタイミングがずれる問題を修正</li>
+</ul>
+<h2 id="v049x-2018-10-31">v0.49.x (2018-10-31)</h2>
+<ul>
+<li>⭐️ 個別、全体色変化実装</li>
+<li>🐞 danoni_custom.js のMain(EnterFrame)が使用できない問題を修正</li>
+</ul>
+<h2 id="v047x-2018-10-30">v0.47.x (2018-10-30)</h2>
+<ul>
+<li>⭐️ 初期フリーズアロー色の変更に対応 (frzColorの実装)</li>
+</ul>
+<h2 id="v046x-2018-10-30">v0.46.x (2018-10-30)</h2>
+<ul>
+<li>⭐️ 歌詞表示のフェードイン・アウトに対応</li>
+</ul>
+<h2 id="v044x-2018-10-29">v0.44.x (2018-10-29)</h2>
+<ul>
+<li>🐞 譜面データの数字が小さく到達時間に満たない場合、自動で曲開始位置をずらすように修正</li>
+</ul>
+<h2 id="v043x-2018-10-29">v0.43.x (2018-10-29)</h2>
+<ul>
+<li>🛠️ ユーザーカスタムイベントの存在チェックを追加</li>
+<li>🛠️ 読込画面のカスタム処理を追加</li>
+<li>🐞 キーコンフィグのカーソルがおかしい問題を修正</li>
+<li>🛠️ キー押下状態を取得して判定を確認する方法に変更</li>
+<li>🐞 fadeFrame, endFrameが端数時に、曲時間がおかしくなる問題を修正</li>
+<li>🛠️ 譜面ヘッダー未入力の場合の処理を追加</li>
+<li>🛠️ キーコンフィグ画面においてボタンが前面に来るように修正</li>
+</ul>
+<h2 id="v042x-2018-10-28">v0.42.x (2018-10-28)</h2>
+<ul>
+<li>⭐️ startFrameに対するendFrameを設定できるように変更</li>
+</ul>
+<h2 id="v041x-2018-10-28">v0.41.x (2018-10-28)</h2>
+<ul>
+<li>🛠️ 矢印画像を差し替え</li>
+<li>🐞 速度が初期化できていない問題を修正</li>
+<li>🛠️ 譜面ヘッダーのTwitURLを廃止（location.href利用）</li>
+<li>🛠️ リザルトコピーにハッシュタグを付加する譜面ヘッダー（hashTag）追加</li>
+</ul>
+<h2 id="v040x-2018-10-27">v0.40.x (2018-10-27)</h2>
+<ul>
+<li>⭐️ 作品別customjsファイルを新設</li>
+</ul>
+<p>※これ以前のバージョンについては<a href="https://github.com/cwtickle/danoniplus/releases/tag/v1.0.1">こちら</a>をご覧ください。</p>
+<p><a href="Changelog-v1.html"><strong>&lt;- v1</strong></a> | <strong>v0</strong> |</p>
+
+</body>
+</html>

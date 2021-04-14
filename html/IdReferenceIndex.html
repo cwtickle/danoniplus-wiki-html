@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>IdReferenceIndex.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="id%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9">IDリファレンス</h1>
+<h2 id="%E3%82%BF%E3%82%A4%E3%83%88%E3%83%AB%E7%94%BB%E9%9D%A2">タイトル画面</h2>
+<img src="./wiki/id01_title.png" width="100%">
+<ul>
+<li>divBack</li>
+<li>lblArrow</li>
+<li>backTitleSprite - 背景モーション(タイトル)
+<ul>
+<li>backTitleSprite<em>N</em></li>
+</ul>
+</li>
+<li>lblTitle</li>
+<li>lblmusicTitle [<a href="dos-h0001-musicTitle.html">musicTitle</a>] - 曲名
+<ul>
+<li>lblmusicTitle1 - 曲名(1行目)</li>
+<li>lblmusicTitle2 - 曲名(2行目)</li>
+</ul>
+</li>
+<li>lblWarning - 警告メッセージエリア</li>
+<li>btnStart [<a href="obj-v0015-g_lblNameObj#%E3%83%9A%E3%83%BC%E3%82%B8%E3%82%BF%E3%82%A4%E3%83%88%E3%83%AB">lbl.clickHere</a>] - スタートボタン
+<ul>
+<li>scStart</li>
+</ul>
+</li>
+<li>btnReset - ローカルストレージのデータ消去ボタン</li>
+<li>btnReload - リロードボタン</li>
+<li>btnHelp - ゲーム画面説明へのリンクボタン　※ver18.8.0より</li>
+<li>lnkMaker [<a href="dos-h0017-tuning.html">tuning</a>] - 制作者リンク</li>
+<li>lnkArtist [<a href="dos-h0001-musicTitle.html">musicTitle</a>]- アーティストリンク</li>
+<li>lnkVersion [<a href="dos-h0036-releaseDate.html">releaseDate</a>]- バージョン番号、GitHubリンク</li>
+<li>lnkComparison - セキュリティポリシーリンク</li>
+<li>lblComment [<a href="dos-h0066-commentVal.html">commentVal</a>] - コメントエリア</li>
+<li>btnComment [<a href="obj-v0015-g_lblNameObj#%E3%83%9A%E3%83%BC%E3%82%B8%E3%82%BF%E3%82%A4%E3%83%88%E3%83%AB">lbl.comment</a>] - コメントエリアの表示有無ボタン</li>
+<li>maskTitleSprite - マスクモーション(タイトル)
+<ul>
+<li>maskTitleSprite<em>N</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2">設定画面</h2>
+<img src="./wiki/id02_settings01.png" width="100%">  
+<img src="./wiki/id02_settings02.png" width="100%">
+<ul>
+<li>divBack</li>
+<li>lblTitle</li>
+<li>optionsprite - 設定描画エリア
+<ul>
+<li>difficultySprite
+<ul>
+<li>lblDifficulty [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2%E3%83%A9%E3%83%99%E3%83%AB">lbl.Difficulty</a>]</li>
+<li>lnkDifficulty</li>
+<li>lnkDifficultyR</li>
+<li>lnkDifficultyL</li>
+<li>scDifficulty</li>
+</ul>
+</li>
+<li>speedSprite
+<ul>
+<li>lblSpeed [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2%E3%83%A9%E3%83%99%E3%83%AB">lbl.Speed</a>]</li>
+<li>lnkSpeed</li>
+<li>lnkSpeedR</li>
+<li>lnkSpeedL</li>
+<li>lnkSpeedRR</li>
+<li>lnkSpeedLL</li>
+<li>scSpeed</li>
+<li>btnGraph - 譜面詳細子画面の開閉ボタン
+<ul>
+<li>scGraph</li>
+</ul>
+</li>
+<li>scDifficulty</li>
+</ul>
+</li>
+<li>motionSprite
+<ul>
+<li>lblMotion [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2%E3%83%A9%E3%83%99%E3%83%AB">lbl.Motion</a>]</li>
+<li>lnkMotion</li>
+<li>lnkMotionR</li>
+<li>lnkMotionL</li>
+<li>scMotion</li>
+</ul>
+</li>
+<li>reverseSprite - Reverse設定エリア：拡張スクロール設定(Scroll)が無効時にscrollSpriteの代わりに使用
+<ul>
+<li>lblReverse [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2%E3%83%A9%E3%83%99%E3%83%AB">lbl.Reverse</a>]</li>
+<li>lnkReverse</li>
+<li>lnkReverseR</li>
+<li>lnkReverseL</li>
+<li>scReverse</li>
+</ul>
+</li>
+<li>scrollSprite - Scroll設定エリア
+<ul>
+<li>lblScroll [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2%E3%83%A9%E3%83%99%E3%83%AB">lbl.Scroll</a>]</li>
+<li>lnkScroll</li>
+<li>lnkScrollR</li>
+<li>lnkScrollL</li>
+<li>btnReverse</li>
+<li>scScroll</li>
+</ul>
+</li>
+<li>shuffleSprite
+<ul>
+<li>lblShuffle [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2%E3%83%A9%E3%83%99%E3%83%AB">lbl.Shuffle</a>]</li>
+<li>lnkShuffle</li>
+<li>lnkShuffleR</li>
+<li>lnkShuffleL</li>
+<li>scShuffle</li>
+</ul>
+</li>
+<li>autoPlaySprite
+<ul>
+<li>lblAutoPlay [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2%E3%83%A9%E3%83%99%E3%83%AB">lbl.AutoPlay</a>]</li>
+<li>lnkAutoPlay</li>
+<li>lnkAutoPlayR</li>
+<li>lnkAutoPlayL</li>
+<li>scAutoPlay</li>
+</ul>
+</li>
+<li>gaugeSprite
+<ul>
+<li>lblGauge [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2%E3%83%A9%E3%83%99%E3%83%AB">lbl.Gauge</a>]</li>
+<li>lblGauge2
+<ul>
+<li>gaugeDivCover
+<ul>
+<li>lblGaugeDivTable - ゲージ詳細画面ヘッダー
+<ul>
+<li>lblGaugeStart [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2%E3%82%B2%E3%83%BC%E3%82%B8%E8%A9%B3%E7%B4%B0%E8%A1%A8%E7%A4%BA">lbl.g_start</a>]</li>
+<li>lblGaugeBorder [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2%E3%82%B2%E3%83%BC%E3%82%B8%E8%A9%B3%E7%B4%B0%E8%A1%A8%E7%A4%BA">lbl.g_border</a>]</li>
+<li>lblGaugeRecovery [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2%E3%82%B2%E3%83%BC%E3%82%B8%E8%A9%B3%E7%B4%B0%E8%A1%A8%E7%A4%BA">lbl.g_recovery</a>]</li>
+<li>lblGaugeDamage [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2%E3%82%B2%E3%83%BC%E3%82%B8%E8%A9%B3%E7%B4%B0%E8%A1%A8%E7%A4%BA">lbl.g_damage</a>]</li>
+</ul>
+</li>
+<li>dataGaugeDivTable - ゲージ詳細画面数値部分
+<ul>
+<li>dataGaugeStart</li>
+<li>dataGaugeBorder</li>
+<li>dataGaugeRecovery</li>
+<li>dataGaugeDamage</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>lnkGauge</li>
+<li>lnkGaugeR</li>
+<li>lnkGaugeL</li>
+<li>scGauge</li>
+</ul>
+</li>
+<li>adjustmentSprite
+<ul>
+<li>lblAdjustment [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2%E3%83%A9%E3%83%99%E3%83%AB">lbl.Adjustment</a>]</li>
+<li>lnkAdjustment</li>
+<li>lnkAdjustmentR</li>
+<li>lnkAdjustmentL</li>
+<li>lnkAdjustmentRR</li>
+<li>lnkAdjustmentLL</li>
+<li>scAdjustment</li>
+</ul>
+</li>
+<li>fadeinSprite
+<ul>
+<li>lblFadein [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2%E3%83%A9%E3%83%99%E3%83%AB">lbl.Fadein</a>]</li>
+<li>lnkFadein</li>
+<li>lnkFadeinR</li>
+<li>lnkFadeinL</li>
+<li>lblFadeinBar</li>
+<li>fadeinSlider</li>
+</ul>
+</li>
+<li>volumeSprite
+<ul>
+<li>lblVolume [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2%E3%83%A9%E3%83%99%E3%83%AB">lbl.Volume</a>]</li>
+<li>lnkVolume</li>
+<li>lnkVolumeR</li>
+<li>lnkVolumeL</li>
+<li>scVolume</li>
+</ul>
+</li>
+<li>scoreDetail - 譜面詳細エリア
+<ul>
+<li>lnkScoreDetail
+<ul>
+<li>scScoreDetail</li>
+</ul>
+</li>
+<li>detailSpeed - 速度変化グラフ描画エリア
+<ul>
+<li>graphSpeed</li>
+<li>lblSpeed [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2%E9%80%9F%E5%BA%A6%E5%AF%86%E5%BA%A6%E3%82%B0%E3%83%A9%E3%83%95%E3%83%84%E3%83%BC%E3%83%AB%E5%80%A4%E8%A1%A8%E7%A4%BA">lbl.s_speed</a>]</li>
+<li>dataSpeed</li>
+<li>lblBoost [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2%E9%80%9F%E5%BA%A6%E5%AF%86%E5%BA%A6%E3%82%B0%E3%83%A9%E3%83%95%E3%83%84%E3%83%BC%E3%83%AB%E5%80%A4%E8%A1%A8%E7%A4%BA">lbl.s_boost</a>]</li>
+<li>dataBoost</li>
+</ul>
+</li>
+<li>detailDensity - 譜面密度グラフ描画エリア
+<ul>
+<li>graphDensity</li>
+<li>lblAPM [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2%E9%80%9F%E5%BA%A6%E5%AF%86%E5%BA%A6%E3%82%B0%E3%83%A9%E3%83%95%E3%83%84%E3%83%BC%E3%83%AB%E5%80%A4%E8%A1%A8%E7%A4%BA">lbl.s_apm</a>]</li>
+<li>dataAPM</li>
+<li>lblTime [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2%E9%80%9F%E5%BA%A6%E5%AF%86%E5%BA%A6%E3%82%B0%E3%83%A9%E3%83%95%E3%83%84%E3%83%BC%E3%83%AB%E5%80%A4%E8%A1%A8%E7%A4%BA">lbl.s_time</a>]</li>
+<li>dataTime</li>
+<li>lblArrow [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2%E9%80%9F%E5%BA%A6%E5%AF%86%E5%BA%A6%E3%82%B0%E3%83%A9%E3%83%95%E3%83%84%E3%83%BC%E3%83%AB%E5%80%A4%E8%A1%A8%E7%A4%BA">lbl.s_arrow</a>]</li>
+<li>dataArrow</li>
+<li>lblFrz [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2%E9%80%9F%E5%BA%A6%E5%AF%86%E5%BA%A6%E3%82%B0%E3%83%A9%E3%83%95%E3%83%84%E3%83%BC%E3%83%AB%E5%80%A4%E8%A1%A8%E7%A4%BA">lbl.s_frz</a>]</li>
+<li>dataFrz</li>
+</ul>
+</li>
+<li>detailToolDif - レベル計算ツール値描画エリア
+<ul>
+<li>lblToolDif [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2%E9%80%9F%E5%BA%A6%E5%AF%86%E5%BA%A6%E3%82%B0%E3%83%A9%E3%83%95%E3%83%84%E3%83%BC%E3%83%AB%E5%80%A4%E8%A1%A8%E7%A4%BA">lbl.s_level</a>]</li>
+<li>dataToolDif</li>
+<li>lblDouji [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2%E9%80%9F%E5%BA%A6%E5%AF%86%E5%BA%A6%E3%82%B0%E3%83%A9%E3%83%95%E3%83%84%E3%83%BC%E3%83%AB%E5%80%A4%E8%A1%A8%E7%A4%BA">lbl.s_douji</a>]</li>
+<li>lblTate [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2%E9%80%9F%E5%BA%A6%E5%AF%86%E5%BA%A6%E3%82%B0%E3%83%A9%E3%83%95%E3%83%84%E3%83%BC%E3%83%AB%E5%80%A4%E8%A1%A8%E7%A4%BA">lbl.s_tate</a>]</li>
+<li>dataDouji</li>
+<li>dataTate</li>
+<li>lblArrowInfo [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2%E9%80%9F%E5%BA%A6%E5%AF%86%E5%BA%A6%E3%82%B0%E3%83%A9%E3%83%95%E3%83%84%E3%83%BC%E3%83%AB%E5%80%A4%E8%A1%A8%E7%A4%BA">lbl.s_cnts</a>]</li>
+<li>dataArrowInfo</li>
+<li>lblArrowInfo2 [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2%E9%80%9F%E5%BA%A6%E5%AF%86%E5%BA%A6%E3%82%B0%E3%83%A9%E3%83%95%E3%83%84%E3%83%BC%E3%83%AB%E5%80%A4%E8%A1%A8%E7%A4%BA">lbl.s_linecnts</a>]</li>
+<li>dataArrowInfo2</li>
+<li>lnkDifInfo [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2%E9%80%9F%E5%BA%A6%E5%AF%86%E5%BA%A6%E3%82%B0%E3%83%A9%E3%83%95%E3%83%84%E3%83%BC%E3%83%AB%E5%80%A4%E8%A1%A8%E7%A4%BA">lbl.s_print</a>]
+<ul>
+<li>scDifInfo</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>difList - 譜面選択用セレクター(右側)
+<ul>
+<li>dif<em>N</em></li>
+</ul>
+</li>
+<li>difCover - 譜面選択用セレクター(左側)
+<ul>
+<li>difRandom</li>
+<li>keyFilter</li>
+<li>keyFilter<em>N</em></li>
+</ul>
+</li>
+<li>btnDifU</li>
+<li>btnDifD</li>
+</ul>
+</li>
+<li>btnBack [<a href="obj-v0015-g_lblNameObj#%E7%94%BB%E9%9D%A2%E7%A7%BB%E5%8B%95%E7%B3%BB%E3%83%9C%E3%82%BF%E3%83%B3">lbl.b_back</a>]
+<ul>
+<li>scBack</li>
+</ul>
+</li>
+<li>btnKeyConfig [<a href="obj-v0015-g_lblNameObj#%E7%94%BB%E9%9D%A2%E7%A7%BB%E5%8B%95%E7%B3%BB%E3%83%9C%E3%82%BF%E3%83%B3">lbl.b_keyConfig</a>]
+<ul>
+<li>scKeyConfig</li>
+</ul>
+</li>
+<li>btnPlay [<a href="obj-v0015-g_lblNameObj#%E7%94%BB%E9%9D%A2%E7%A7%BB%E5%8B%95%E7%B3%BB%E3%83%9C%E3%82%BF%E3%83%B3">lbl.b_play</a>]
+<ul>
+<li>scPlay</li>
+</ul>
+</li>
+<li>btnDisplay
+<ul>
+<li>scDisplay</li>
+</ul>
+</li>
+<li>btnSave [<a href="obj-v0015-g_lblNameObj#%E5%9B%BA%E5%AE%9A%E3%83%9C%E3%82%BF%E3%83%B3">lbl.dataSave</a>]
+<ul>
+<li>scSave</li>
+</ul>
+</li>
+</ul>
+<h2 id="display%E7%94%BB%E9%9D%A2">Display画面</h2>
+<img src="./wiki/id03_settings01.png" width="100%">  
+<ul>
+<li>divBack</li>
+<li>lblTitle</li>
+<li>optionsprite - 設定描画エリア
+<ul>
+<li>appearanceSprite
+<ul>
+<li>lblAppearance [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2display%E7%94%BB%E9%9D%A2">lbl.Appearance</a>]</li>
+<li>lnkAppearance</li>
+<li>lnkAppearanceR</li>
+<li>lnkAppearanceL</li>
+<li>scAppearance</li>
+</ul>
+</li>
+<li>opacitySprite
+<ul>
+<li>lblOpacity [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2display%E7%94%BB%E9%9D%A2">lbl.Opacity</a>]</li>
+<li>lnkOpacity</li>
+<li>lnkOpacityR</li>
+<li>lnkOpacityL</li>
+<li>scOpacity</li>
+</ul>
+</li>
+<li>displaySprite
+<ul>
+<li>lnkstepZone [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2display%E7%94%BB%E9%9D%A2">lbl.d_StepZone</a>]
+<ul>
+<li>scstepZone</li>
+</ul>
+</li>
+<li>lnkjudgment [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2display%E7%94%BB%E9%9D%A2">lbl.d_Judgment</a>]
+<ul>
+<li>scjudgment</li>
+</ul>
+</li>
+<li>lnkfastSlow [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2display%E7%94%BB%E9%9D%A2">lbl.d_FastSlow</a>]
+<ul>
+<li>scfastSlow</li>
+</ul>
+</li>
+<li>lnklifeGauge [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2display%E7%94%BB%E9%9D%A2">lbl.d_LifeGauge</a>]
+<ul>
+<li>sclifeGauge</li>
+</ul>
+</li>
+<li>lnkscore [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2display%E7%94%BB%E9%9D%A2">lbl.d_Score</a>]
+<ul>
+<li>scscore</li>
+</ul>
+</li>
+<li>lnkmusicInfo [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2display%E7%94%BB%E9%9D%A2">lbl.d_MusicInfo</a>]
+<ul>
+<li>scmusicInfo</li>
+</ul>
+</li>
+<li>lnkfilterLine [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2display%E7%94%BB%E9%9D%A2">lbl.d_FilterLine</a>]
+<ul>
+<li>scfilterLine</li>
+</ul>
+</li>
+<li>lnkspeed [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2display%E7%94%BB%E9%9D%A2">lbl.d_Speed</a>]
+<ul>
+<li>scspeed</li>
+</ul>
+</li>
+<li>lnkcolor [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2display%E7%94%BB%E9%9D%A2">lbl.d_Color</a>]
+<ul>
+<li>sccolor</li>
+</ul>
+</li>
+<li>lnklyrics [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2display%E7%94%BB%E9%9D%A2">lbl.d_Lyrics</a>]
+<ul>
+<li>sclyrics</li>
+</ul>
+</li>
+<li>lnkbackground [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2display%E7%94%BB%E9%9D%A2">lbl.d_Background</a>]
+<ul>
+<li>scbackground</li>
+</ul>
+</li>
+<li>lnkarrowEffect [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2display%E7%94%BB%E9%9D%A2">lbl.d_ArrowEffect</a>]
+<ul>
+<li>scarrowEffect</li>
+</ul>
+</li>
+<li>lnkspecial [<a href="obj-v0015-g_lblNameObj#%E8%A8%AD%E5%AE%9A%E7%94%BB%E9%9D%A2display%E7%94%BB%E9%9D%A2">lbl.d_Special</a>]
+<ul>
+<li>scspecial</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>sdDesc - Display画面の説明エリア</li>
+<li>scMsg - Display画面の注意点表示エリア</li>
+<li>btnBack [<a href="obj-v0015-g_lblNameObj#%E7%94%BB%E9%9D%A2%E7%A7%BB%E5%8B%95%E7%B3%BB%E3%83%9C%E3%82%BF%E3%83%B3">lbl.b_back</a>]
+<ul>
+<li>scBack</li>
+</ul>
+</li>
+<li>btnKeyConfig [<a href="obj-v0015-g_lblNameObj#%E7%94%BB%E9%9D%A2%E7%A7%BB%E5%8B%95%E7%B3%BB%E3%83%9C%E3%82%BF%E3%83%B3">lbl.b_keyConfig</a>]
+<ul>
+<li>scKeyConfig</li>
+</ul>
+</li>
+<li>btnPlay [<a href="obj-v0015-g_lblNameObj#%E7%94%BB%E9%9D%A2%E7%A7%BB%E5%8B%95%E7%B3%BB%E3%83%9C%E3%82%BF%E3%83%B3">lbl.b_play</a>]
+<ul>
+<li>scPlay</li>
+</ul>
+</li>
+<li>btnSettings
+<ul>
+<li>scSettings</li>
+</ul>
+</li>
+<li>btnSave [<a href="obj-v0015-g_lblNameObj#%E5%9B%BA%E5%AE%9A%E3%83%9C%E3%82%BF%E3%83%B3">lbl.dataSave</a>]
+<ul>
+<li>scSave</li>
+</ul>
+</li>
+</ul>
+<h2 id="%E3%82%AD%E3%83%BC%E3%82%B3%E3%83%B3%E3%83%95%E3%82%A3%E3%82%B0%E7%94%BB%E9%9D%A2">キーコンフィグ画面</h2>
+<img src="./wiki/id04_keyconfig.png" width="50%">  
+<ul>
+<li>divBack</li>
+<li>lblTitle</li>
+<li>kcDesc - キーコンフィグ画面の説明エリア</li>
+<li>keyconSprite
+<ul>
+<li>arrowShadow<em>N</em></li>
+<li>arrow<em>N</em></li>
+<li>keycon<em>N</em>_<em>P</em></li>
+<li>cursor</li>
+</ul>
+</li>
+<li>scMsg - ショートカットキーの説明エリア</li>
+<li>kcMsg - 別キーモードの説明エリア</li>
+<li>lblKcType [<a href="obj-v0015-g_lblNameObj#%E3%82%AD%E3%83%BC%E3%82%B3%E3%83%B3%E3%83%95%E3%82%A3%E3%82%B0%E7%94%BB%E9%9D%A2">lbl.ConfigType</a>]</li>
+<li>lnkKcType</li>
+<li>lblcolorType [<a href="obj-v0015-g_lblNameObj#%E3%82%AD%E3%83%BC%E3%82%B3%E3%83%B3%E3%83%95%E3%82%A3%E3%82%B0%E7%94%BB%E9%9D%A2">lbl.ColorType</a>]</li>
+<li>lnkcolorType</li>
+<li>btnBack
+<ul>
+<li>scBack</li>
+</ul>
+</li>
+<li>lblPattern [<a href="obj-v0015-g_lblNameObj#%E3%82%AD%E3%83%BC%E3%82%B3%E3%83%B3%E3%83%95%E3%82%A3%E3%82%B0%E7%94%BB%E9%9D%A2">lbl.KeyPattern</a>]</li>
+<li>btnPtnChangeR</li>
+<li>btnPtnChangeL</li>
+<li>btnReset [<a href="obj-v0015-g_lblNameObj#%E7%94%BB%E9%9D%A2%E7%A7%BB%E5%8B%95%E7%B3%BB%E3%83%9C%E3%82%BF%E3%83%B3">lbl.b_reset</a>]</li>
+</ul>
+<h2 id="%E3%83%AD%E3%83%BC%E3%83%89%E7%94%BB%E9%9D%A2">ロード画面</h2>
+<ul>
+<li>divBack</li>
+<li>lblLoading</li>
+<li>lblWarning - 警告メッセージエリア</li>
+<li>btnPlay [<a href="obj-v0015-g_lblNameObj#%E7%94%BB%E9%9D%A2%E7%A7%BB%E5%8B%95%E7%B3%BB%E3%83%9C%E3%82%BF%E3%83%B3">lbl.b_play</a>]</li>
+</ul>
+<h2 id="%E3%83%A1%E3%82%A4%E3%83%B3%E7%94%BB%E9%9D%A2">メイン画面</h2>
+<ul>
+<li>divBack</li>
+<li>backSprite - 背景モーション(メイン)
+<ul>
+<li>backSprite<em>N</em></li>
+</ul>
+</li>
+<li>mainSprite
+<ul>
+<li>stepRoot<em>N</em> - ステップゾーン
+<ul>
+<li>stepShadow<em>N</em> - 本体の影部分</li>
+<li>step<em>N</em> - 本体</li>
+<li>stepDiv<em>N</em> - 空打ち時のオブジェクト</li>
+<li>stepHit<em>N</em> - ヒット時のオブジェクト</li>
+</ul>
+</li>
+<li>stepBar - Flat時のステップゾーンの代わり</li>
+<li>filterBar<em>N</em> - Appearance用の境界線フィルター</li>
+<li>borderBar<em>N</em> - 矢印描画（最大）境界線フィルター</li>
+<li>filterView - Appearance(Hidden+/Sudden+)の表示率</li>
+<li>arrowSprite<em>N</em>
+<ul>
+<li><em>arrowNameN</em>_<em>Cnt</em> - 矢印本体
+<ul>
+<li><em>arrowName</em>Shadow<em>N</em>_<em>Cnt</em></li>
+<li><em>arrowName</em>Top<em>N</em>_<em>Cnt</em></li>
+</ul>
+</li>
+<li><em>frzNameN</em>_<em>Cnt</em> - フリーズアロー本体
+<ul>
+<li><em>frzName</em>Bar<em>N</em>_<em>Cnt</em></li>
+<li><em>frzName</em>TopShadow<em>N</em>_<em>Cnt</em></li>
+<li><em>frzName</em>Top<em>N</em>_<em>Cnt</em></li>
+<li><em>frzName</em>BtmShadow<em>N</em>_<em>Cnt</em></li>
+<li><em>frzName</em>Btm<em>N</em>_<em>Cnt</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>frzHit<em>N</em> - フリーズアローヒット部分
+<ul>
+<li>frzHitShadow<em>N</em></li>
+<li>frzHitTop<em>N</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>infoSprite
+<ul>
+<li>lblLife - ライフ（数字）</li>
+<li>lifeBackObj - ライフ背景オブジェクト</li>
+<li>lifeBar - ライフゲージ本体</li>
+<li>lifeBorderObj - ライフのノルマライン</li>
+</ul>
+</li>
+<li>judgeSprite
+<ul>
+<li>wordSprite - 歌詞表示エリア
+<ul>
+<li>lblword<em>N</em></li>
+</ul>
+</li>
+<li>lblCredit - 楽曲クレジット</li>
+<li>lblTime1 - 現在の経過時間</li>
+<li>lblTime2 - 総時間</li>
+<li>charaJ - 判定キャラクタ（矢印）</li>
+<li>comboJ - コンボ数（矢印）</li>
+<li>diffJ - Fast/Slow表示エリア（矢印）</li>
+<li>charaFJ - 判定キャラクタ（フリーズアロー）</li>
+<li>comboFJ - コンボ数（フリーズアロー）</li>
+<li>diffFJ - Fast/Slow表示エリア（フリーズアロー）※未使用</li>
+<li>lbl<em>Judge</em> - 判定別数</li>
+<li>finishView - 終了時演出</li>
+</ul>
+</li>
+<li>maskSprite - マスクモーション(メイン)
+<ul>
+<li>maskSprite<em>N</em></li>
+</ul>
+</li>
+<li>lblFrame - 現在のフレーム数</li>
+<li>lblReady - Ready表示</li>
+</ul>
+<h2 id="%E7%B5%90%E6%9E%9C%E7%94%BB%E9%9D%A2">結果画面</h2>
+<img src="./wiki/id07_result.png" width="100%">
+<ul>
+<li>divBack</li>
+<li>backResultSprite - 背景モーション(結果)
+<ul>
+<li>backResultSprite<em>N</em></li>
+</ul>
+</li>
+<li>lblTitle</li>
+<li>playDataWindow
+<ul>
+<li>lblMusic - 曲名(ラベル)</li>
+<li>lblMusicData - 曲名(1行目)</li>
+<li>lblMusicData2 - 曲名(2行目)</li>
+<li>lblDifficulty - 難易度(ラベル)</li>
+<li>lblDifData - キー数、難易度名（Shuffle設定）</li>
+<li>lblStyle - プレイスタイル（ラベル）</li>
+<li>lblStyleData - プレイスタイル（実際の設定）</li>
+<li>lblDisplay - Display設定（ラベル）</li>
+<li>lblDisplayData - Display設定（1行目）</li>
+<li>lblDisplay2Data - Display設定（2行目）</li>
+</ul>
+</li>
+<li>resultWindow
+<ul>
+<li>lbl<em>Judge</em> - 判定キャラクタ</li>
+<li>lbl<em>Judge</em>S - 判定キャラクタに対する判定数</li>
+<li>lblFast - Fast（ラベル）</li>
+<li>lblSlow - Slow（ラベル）</li>
+<li>lblFastS - Fast値</li>
+<li>lblSlowS - Slow値</li>
+<li>lblRank - ランク</li>
+<li>lbl<em>Judge</em>L1 - ハイスコア差分（左括弧）</li>
+<li>lbl<em>Judge</em>LS - ハイスコア差分値</li>
+<li>lbl<em>Judge</em>L2 - ハイスコア差分（右括弧）</li>
+<li>lblAutoView - Autoプレイ時に<code>(No Record)</code>を表示</li>
+</ul>
+</li>
+<li>lblResultPre - Clear/Failed表示（モーション付き）</li>
+<li>lblResultPre2 - Clear/Failed表示（固定）</li>
+<li>btnBack [<a href="obj-v0015-g_lblNameObj#%E7%94%BB%E9%9D%A2%E7%A7%BB%E5%8B%95%E7%B3%BB%E3%83%9C%E3%82%BF%E3%83%B3">lbl.b_back</a>]
+<ul>
+<li>scBack</li>
+</ul>
+</li>
+<li>btnCopy [<a href="obj-v0015-g_lblNameObj#%E7%94%BB%E9%9D%A2%E7%A7%BB%E5%8B%95%E7%B3%BB%E3%83%9C%E3%82%BF%E3%83%B3">lbl.b_copy</a>] - リザルトデータをクリップボードへコピーするボタン
+<ul>
+<li>scCopy</li>
+</ul>
+</li>
+<li>btnTweet [<a href="obj-v0015-g_lblNameObj#%E7%94%BB%E9%9D%A2%E7%A7%BB%E5%8B%95%E7%B3%BB%E3%83%9C%E3%82%BF%E3%83%B3">lbl.b_tweet</a>] - Twitterへリザルトデータを転送するボタン
+<ul>
+<li>scTweet</li>
+</ul>
+</li>
+<li>btnGitter [<a href="obj-v0015-g_lblNameObj#%E7%94%BB%E9%9D%A2%E7%A7%BB%E5%8B%95%E7%B3%BB%E3%83%9C%E3%82%BF%E3%83%B3">lbl.b_gitter</a>] - Gitter（得点報告用）へのリンクボタン　※ver18.8.0より
+<ul>
+<li>scGitter</li>
+</ul>
+</li>
+<li>btnRetry [<a href="obj-v0015-g_lblNameObj#%E7%94%BB%E9%9D%A2%E7%A7%BB%E5%8B%95%E7%B3%BB%E3%83%9C%E3%82%BF%E3%83%B3">lbl.b_retry</a>] - リトライボタン
+<ul>
+<li>scRetry</li>
+</ul>
+</li>
+<li>maskResultSprite - マスクモーション(メイン)
+<ul>
+<li>maskResultSprite<em>N</em></li>
+</ul>
+</li>
+</ul>
+
+</body>
+</html>

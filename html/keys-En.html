@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>keys-En.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<p><a href="Sidebar-En.html">&lt;- Menu Title (English)</a></p>
+<h1 id="keys-specification">Keys Specification</h1>
+<p><img src="http://cw7.sakura.ne.jp/danoni/wiki/keys1.png" alt="keys"></p>
+<p>Each key of &quot;Dancing Onigiri&quot; consists of a combination of keys and patterns.<br>
+The following indicates that it is the 1st(0th) pattern of &quot;11key&quot;.</p>
+<pre>
+pos<b>11</b>_<b>0</b>
+</pre>
+<p>The settings for patterns belonging to the same key are similar, but they are treated as completely different keys.   Settings can also be changed individually.<br>
+The order in which the sequences are listed must be from left to right and top to bottom.</p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Description</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>charaX_Y</td>
+<td>Read variable prefix</td>
+<td>Represents a character string before &quot;_data&quot; such as &quot;left_data&quot;, &quot;down_data&quot;.</td>
+</tr>
+<tr>
+<td>colorX_Y</td>
+<td>Arrow color assignment</td>
+<td>Allocate the color code described in &quot;setColor&quot; in the chart data. <br>Normally, 0 to 4 can be used, and the color corresponding to the number when &quot;setColor&quot; is arranged is assigned as the initial color.</td>
+</tr>
+<tr>
+<td>stepRtnX_Y</td>
+<td>Angle / ASCII Art type</td>
+<td>This indicates how many times the rotated arrow is arranged based on the left-pointing arrow. <br> Alternatively, specify the target ASCII art (AA). <br>6 types of ASCII Art can be specified: &quot;onigiri&quot;, &quot;giko&quot;, &quot;iyo&quot;, &quot;c&quot;, &quot;morara&quot;, &quot;monar&quot;.</td>
+</tr>
+<tr>
+<td>posX_Y</td>
+<td>Step zone position</td>
+<td>A number indicating where to place step zones when they are spaced equally. See the image above. <br> If you don't want to be evenly spaced, you can skip the step zone by skipping numbers as in the example above.</td>
+</tr>
+<tr>
+<td>divX_Y</td>
+<td>Upper or lower folding position</td>
+<td>Specify the position to fold the upper and lower steps of the step zone. <br> The value specified is posX_Y. Specify the lower number for the first time. <br> If there is no upper or lower binding, specify the last digit +1.</td>
+</tr>
+<tr>
+<td>blankX_Y</td>
+<td>Step zone interval (X coordinate)</td>
+<td>Specify the step zone interval. If not specified, it will normally be 55px.</td>
+</tr>
+<tr>
+<td>keyCtrlX_Y</td>
+<td>Key config</td>
+<td>Specify the key code corresponding to each step. Expressed as a multidimensional array. Multiple keys can be assigned to the same step.</td>
+</tr>
+<tr>
+<td>shuffleX_Y</td>
+<td>Shuffle group</td>
+<td>When using Mirror, Random, S-Random, swap with the same group. The same number is in the same group.</td>
+</tr>
+<tr>
+<td>transKeyX_Y</td>
+<td>Set different key mode</td>
+<td>Specifies the name of the key if the specified key pattern is for another key. <u>Do not specify for the same key. </u><br>If specified, the key specified here will be displayed as supplementary information on the result screen. <br> Also, while playing in another key mode, high score, key config, etc. are not saved.</td>
+</tr>
+<tr>
+<td>keyRetryX_Y</td>
+<td>Retry key</td>
+<td>Specify the key code of the key that can be retried with the shortcut during play. <br>The default is 8 (BackSpace).</td>
+</tr>
+<tr>
+<td>keyTitleBackX_Y</td>
+<td>Title back key</td>
+<td>Specify the key code of the key that can be used for title back with the shortcut during play. <br> The default is 46 (Delete).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="a-little-concrete-example-in-case-of-11key">A little concrete example (in case of 11key)</h2>
+<p>Since it may not come with a pin even if it is written in letters, let's look specifically at the example of 11key pattern 0 (first).
+The setting value looks like this. The order is left to right and top to bottom.</p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>chara11_0</td>
+<td>[&quot;sleft&quot;, &quot;sdown&quot;, &quot;sup&quot;, &quot;sright&quot;, &quot;left&quot;, &quot;leftdia&quot;, &quot;down&quot;, &quot;space&quot;, &quot;up&quot;, &quot;rightdia&quot;, &quot;right&quot;]</td>
+</tr>
+</tbody>
+</table>
+<p>In this case, you can import in the following chart format. (Numbers omitted)</p>
+<pre>
+|sleft_data=...|sdown_data=...|...|right_data=...|
+</pre>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>color11_0</td>
+<td>[3, 3, 3, 3, 0, 1, 0, 2, 0, 1, 0]</td>
+</tr>
+<tr>
+<td>setColor</td>
+<td>0xcc99ff, 0xffccff, 0xffffff, 0xffff99, 0xff9966</td>
+</tr>
+</tbody>
+</table>
+<p>In the top image, the upper row is 3 (#ffff99, yellow), the lower odd number is 0 (#cc99ff, purple), the even number is 1 (#ffccff, pink), Onigiri is 2 (#ffffff, white).</p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>stepRtn11_0</td>
+<td>[0, -90, 90, 180, 0, -45, -90, &quot;onigiri&quot;, 90, 135, 180]</td>
+</tr>
+</tbody>
+</table>
+<p>In the top image, with respect to the left arrow, -90° is a down arrow, 90° is an up arrow, and 180° is a right arrow.
+The part of &quot;onigiri&quot; is a rice ball.</p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pos11_0</td>
+<td>[2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]</td>
+</tr>
+<tr>
+<td>div11_0</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<p>I put numbers in yellow letters in the top image.
+It wraps to the bottom from where the number is written as 6.
+Since 0 and 1 are not specified, the arrow is not displayed.</p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>keyCtrl11_0</td>
+<td>[ [37], [40], [38, 0], [39], [83], [68], [70], [32], [74], [75], [76] ]</td>
+</tr>
+</tbody>
+</table>
+<p>The key code is written.
+This isn't a pinch, but you can see that there are only two-third elements.
+This part indicates that there is a substitute key.</p>
+<h2 id="for-custom-keys">For custom keys</h2>
+<p>If you want to publish your own key, you need to describe it in the chart data.
+The basic idea is exactly the same as above, but the description method is slightly different.</p>
+<h3 id="keyextralist">keyExtraList</h3>
+<p>A list of keys to add. You can add any number separated by commas.</p>
+<pre>
+|keyExtraList=6|
+</pre>
+<h3 id="colorx-charax-divx-steprtnx-keyctrlx-blankx-shufflex">colorX, charaX, divX, stepRtnX, keyCtrlX, blankX, shuffleX</h3>
+<p>They correspond to colorX_Y, charaX_Y, divX_Y, stepRtnX_Y, keyCtrlX_Y, blankX_Y, shuffleX_Y, respectively. Separate multiple specifications with &quot;$&quot;.<br>
+For keyCtrl, separate alternate key specifications with a slash (/).</p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>colorX</td>
+<td>color6=0,1,0,1,0,2$0,1,0,1,0,2</td>
+</tr>
+<tr>
+<td>charaX</td>
+<td>chara6=arrowA,arrowB,arrowC,arrowD,arrowE,arrowF$arrowA,arrowB,arrowC,arrowD,arrowE,arrowF</td>
+</tr>
+<tr>
+<td>divX</td>
+<td>div6=6$3</td>
+</tr>
+<tr>
+<td>stepRtnX</td>
+<td>stepRtn6=0,45,-90,135,180,onigiri$0,45,-90,135,180,onigiri</td>
+</tr>
+<tr>
+<td>keyCtrlX</td>
+<td>keyCtrl6=75,79,76,80,187,32/0$75,79,76,80,187,32/0</td>
+</tr>
+<tr>
+<td>blankX</td>
+<td>blank6=60$60</td>
+</tr>
+<tr>
+<td>shuffleX</td>
+<td>shuffle6=0,0,0,0,0,1$0,0,0,0,0,1</td>
+</tr>
+<tr>
+<td>transKeyX</td>
+<td>transKey6=$6i</td>
+</tr>
+<tr>
+<td>keyRetryX</td>
+<td>keyRetry6=9</td>
+</tr>
+<tr>
+<td>keyTitleBackX</td>
+<td>keyTitleBack6=46</td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>

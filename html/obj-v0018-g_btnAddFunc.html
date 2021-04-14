@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>obj-v0018-g_btnAddFunc.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<p><a href="ObjectReferenceIndex.html">← オブジェクトリファレンスに戻る</a></p>
+<h2 id="gbtnaddfunc--gcxtaddfunc">g_btnAddFunc / g_cxtAddFunc</h2>
+<h3 id="%E6%A6%82%E8%A6%81">概要</h3>
+<ul>
+<li>ボタンの処理拡張を管理するオブジェクト。</li>
+<li><code>g_btnAddFunc</code>はボタン左クリック時、<code>g_cxtAddFunc</code>はボタン右クリック時の処理拡張を表す。</li>
+<li><code>g_btnAddFunc.[ボタンid名]</code> もしくは <code>g_cxtAddFunc.[ボタンid名]</code>の形式で指定する。<br>
+ボタンの既定処理が行われた後、これらの変数が指定されていれば実行される。</li>
+<li>ボタンの既定処理をやめたい場合、これと合わせて<a href="obj-v0019-g_btnDeleteFlg.html"><strong>g_btnDeleteFlg</strong> / <strong>g_cxtDeleteFlg</strong></a>を使用する。</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">customTitleInit</span>(<span class="hljs-params"></span>) </span>{
+    g_btnAddFunc.btnStart = <span class="hljs-function">(<span class="hljs-params">_evt, _func, _resetFunc</span>) =&gt;</span> {
+        _evt.target.style.background = <span class="hljs-string">`#9999ff`</span>; <span class="hljs-comment">// evt.targetでボタン本体に対する処理を記述できる</span>
+        commentInit(); <span class="hljs-comment">// g_btnAddFunc.(ボタンID) に関数を定義することでその処理を後から挿入</span>
+    };
+
+    g_cxtAddFunc.btnStart = <span class="hljs-function"><span class="hljs-params">evt</span> =&gt;</span> {
+        commentInit(); <span class="hljs-comment">// g_cxtAddFunc.(ボタンID) に関数を定義することでその処理を後から挿入</span>
+    };
+}
+</div></code></pre>
+<h3 id="%E5%BC%95%E6%95%B0%E4%BB%95%E6%A7%98">引数仕様</h3>
+<ul>
+<li>_func, _resetFuncはv20からの仕様。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>引数</th>
+<th>型</th>
+<th>必須</th>
+<th>指定内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>_evt</td>
+<td>object</td>
+<td></td>
+<td>イベントオブジェクト。<br><code>_evt.target</code>でボタン本体を指定できる。</td>
+</tr>
+<tr>
+<td>_func</td>
+<td>function</td>
+<td></td>
+<td>ボタン本体の処理。<br>処理中に<code>_func(_evt);</code>と指定することで<br>任意の箇所でボタン本体処理が実行できる。<br>g_btnDeleteFlg / g_cxtDeleteFlg でボタン処理を無効にした上での利用を想定。<br>主にボタン本体の処理より前にカスタム処理を挟みたい場合に利用。</td>
+</tr>
+<tr>
+<td>_resetFunc</td>
+<td>function</td>
+<td></td>
+<td>ボタン本体の処理のうち、画面移動を伴う処理。<br>処理中に<code>_resetFunc(_evt);</code>と指定することで<br>ボタン本体処理が実行できる。<br>g_btnDeleteFlg / g_cxtDeleteFlg でボタン処理を無効にした上での利用を想定。<br>通常は一番最後に指定する。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="%E7%94%9F%E6%88%90%E3%82%BF%E3%82%A4%E3%83%9F%E3%83%B3%E3%82%B0">生成タイミング</h3>
+<ul>
+<li>初回起動時</li>
+</ul>
+<h3 id="%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3">プロパティ</h3>
+<ul>
+<li>(固定で指定されているものは初期では無し)</li>
+</ul>
+<h3 id="%E9%96%A2%E9%80%A3%E9%A0%85%E7%9B%AE">関連項目</h3>
+<ul>
+<li><a href="fnc-c0004-createCss2Button.html">createCss2Button</a></li>
+<li><a href="fnc-c0007-commonKeyDown.html">commonKeyDown</a></li>
+<li><a href="obj-v0019-g_btnDeleteFlg.html"><strong>g_btnDeleteFlg</strong> / <strong>g_cxtDeleteFlg</strong></a></li>
+</ul>
+
+</body>
+</html>

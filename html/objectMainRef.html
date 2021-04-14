@@ -5,16 +5,17 @@
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 
 <style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
 body {
-	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
-	font-size: 14px;
-	padding: 0 12px;
-	line-height: 22px;
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
 	word-wrap: break-word;
 }
 
@@ -38,7 +39,6 @@ body {
 	background-color:#007acc;
 	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
 }
-
 
 body.scrollBeyondLastLine {
 	margin-bottom: calc(100vh - 22px);
@@ -71,12 +71,20 @@ body.showEditorSelection li.code-line:hover:before {
 	border-left: 3px solid rgba(0, 0, 0, 0.40);
 }
 
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
 .vscode-dark.showEditorSelection .code-active-line:before {
 	border-left: 3px solid rgba(255, 255, 255, 0.4);
 }
 
 .vscode-dark.showEditorSelection .code-line:hover:before {
 	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
 }
 
 .vscode-high-contrast.showEditorSelection .code-active-line:before {
@@ -87,14 +95,21 @@ body.showEditorSelection li.code-line:hover:before {
 	border-left: 3px solid rgba(255, 160, 0, 1);
 }
 
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
 img {
 	max-width: 100%;
 	max-height: 100%;
 }
 
 a {
-	color: #4080D0;
 	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
 }
 
 a:focus,
@@ -122,21 +137,6 @@ h1, h2, h3 {
 	font-weight: normal;
 }
 
-h1 code,
-h2 code,
-h3 code,
-h4 code,
-h5 code,
-h6 code {
-	font-size: inherit;
-	line-height: auto;
-}
-
-a:hover {
-	color: #4080D0;
-	text-decoration: underline;
-}
-
 table {
 	border-collapse: collapse;
 }
@@ -160,22 +160,18 @@ table > tbody > tr + tr > td {
 blockquote {
 	margin: 0 7px 0 5px;
 	padding: 0 16px 0 10px;
-	border-left: 5px solid;
+	border-left-width: 5px;
+	border-left-style: solid;
 }
 
 code {
 	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
-	font-size: 14px;
-	line-height: 19px;
+	font-size: 1em;
+	line-height: 1.357em;
 }
 
 body.wordWrap pre {
 	white-space: pre-wrap;
-}
-
-.mac code {
-	font-size: 12px;
-	line-height: 18px;
 }
 
 pre:not(.hljs),
@@ -185,43 +181,22 @@ pre.hljs code > div {
 	overflow: auto;
 }
 
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
 /** Theming */
 
-.vscode-light,
-.vscode-light pre code {
-	color: rgb(30, 30, 30);
-}
-
-.vscode-dark,
-.vscode-dark pre code {
-	color: #DDD;
-}
-
-.vscode-high-contrast,
-.vscode-high-contrast pre code {
-	color: white;
-}
-
-.vscode-light code {
-	color: #A31515;
-}
-
-.vscode-dark code {
-	color: #D7BA7D;
-}
-
-.vscode-light pre:not(.hljs),
-.vscode-light code > div {
+.vscode-light pre {
 	background-color: rgba(220, 220, 220, 0.4);
 }
 
-.vscode-dark pre:not(.hljs),
-.vscode-dark code > div {
+.vscode-dark pre {
 	background-color: rgba(10, 10, 10, 0.4);
 }
 
-.vscode-high-contrast pre:not(.hljs),
-.vscode-high-contrast code > div {
+.vscode-high-contrast pre {
 	background-color: rgb(0, 0, 0);
 }
 
@@ -249,16 +224,6 @@ pre.hljs code > div {
 	border-color: rgba(255, 255, 255, 0.18);
 }
 
-.vscode-light blockquote,
-.vscode-dark blockquote {
-	background: rgba(127, 127, 127, 0.1);
-	border-color: rgba(0, 122, 204, 0.5);
-}
-
-.vscode-high-contrast blockquote {
-	background: transparent;
-	border-color: #fff;
-}
 </style>
 
 <style>
@@ -343,7 +308,8 @@ pre.hljs code > div {
  */
 
  body {
-	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
 }
 
 pre {
@@ -369,6 +335,11 @@ blockquote {
 	height: 1.4em;
 }
 
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
 /* for inline code */
 :not(pre):not(.hljs) > code {
 	color: #C9AE75; /* Change the old color so it seems less like an error */
@@ -383,10 +354,24 @@ blockquote {
 
 </style>
 
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
 </head>
 <body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
 <h1 id="%E4%B8%BB%E8%A6%81%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%AE%E3%83%97%E3%83%AD%E3%83%91%E3%83%86%E3%82%A3">主要オブジェクトのプロパティ</h1>
-<h2 id="%E7%9F%A2%E5%8D%B0-arrow-%E3%83%95%E3%83%AA%E3%83%BC%E3%82%BA%E3%82%A2%E3%83%AD%E3%83%BCfrzarrow%E5%85%B1%E9%80%9A">矢印 (Arrow) / フリーズアロー(FrzArrow)共通</h2>
+<ul>
+<li>矢印・フリーズアローが持つ属性値のプロパティです。<br>
+v17まではオブジェクトのgetAttributeにて取得します。（型変換必要）<br>
+v18以降は<code>g_attrObj.オブジェクトid名.プロパティ名</code>で取得できます。（型変換不要）</li>
+</ul>
+<h2 id="%E7%9F%A2%E5%8D%B0-arrow--%E3%83%95%E3%83%AA%E3%83%BC%E3%82%BA%E3%82%A2%E3%83%AD%E3%83%BCfrzarrow%E5%85%B1%E9%80%9A">矢印 (Arrow) / フリーズアロー(FrzArrow)共通</h2>
 <table>
 <thead>
 <tr>
@@ -407,14 +392,19 @@ blockquote {
 <td>Motionオプション(Boost, Brake)を設定した場合に使用。<br>g_workObj.motionOnFramesにBoost, Brakeを適用した場合の矢印軌道がフレーム毎に格納されており、ステップゾーン到達から逆算したフレーム数を指定する。<br><code>cnt</code>同様にフレーム毎に1ずつ減算するが、ストップ時は（動きが止まるため）減算しない。</td>
 </tr>
 <tr>
-<td>judgEndFlg</td>
-<td>false</td>
-<td>判定済フラグ。判定が終わったら<code>true</code>となる。</td>
-</tr>
-<tr>
 <td>boostSpd</td>
 <td>boostSpd * scrollDir</td>
 <td>スクロール方向付き個別加速の倍速。</td>
+</tr>
+<tr>
+<td>y</td>
+<td>-</td>
+<td>矢印・フリーズアローの現Y座標</td>
+</tr>
+<tr>
+<td>prevY</td>
+<td>-</td>
+<td>矢印・フリーズアローの1フレーム前のY座標</td>
 </tr>
 </tbody>
 </table>
@@ -439,7 +429,7 @@ blockquote {
 <td>フリーズアローのバーの長さ。<br>ヒット中はバーの長さが速度に応じて小さくなる。<br>フリーズアローをスルーしたときに、フリーズアローを消去するための条件としても使用している。</td>
 </tr>
 <tr>
-<td>frzAttempt</td>
+<td>keyUpFrame</td>
 <td>0</td>
 <td>フリーズアローヒット時に手を離したフレーム数。<br>このフレーム数が一定以上を超えると、NG判定となる。</td>
 </tr>
@@ -447,6 +437,26 @@ blockquote {
 <td>dividePos</td>
 <td>0 or 1</td>
 <td>スクロール方向。通常時は<code>0</code>, リバース時は<code>1</code>が入る。<br>スクロール方向が変わると開始矢印と終端矢印が逆転し、表示位置計算を変える必要があるため設定している。</td>
+</tr>
+<tr>
+<td>judgEndFlg</td>
+<td>false</td>
+<td>判定済フラグ。判定が終わったら<code>true</code>となる。</td>
+</tr>
+<tr>
+<td>dir</td>
+<td>1 or -1</td>
+<td>スクロール方向。通常時は<code>1</code>, リバース時は<code>-1</code>。</td>
+</tr>
+<tr>
+<td>barY</td>
+<td>-</td>
+<td>フリーズアローバーのY座標</td>
+</tr>
+<tr>
+<td>btmY</td>
+<td>-</td>
+<td>フリーズアロー(後発矢印)のY座標</td>
 </tr>
 </tbody>
 </table>

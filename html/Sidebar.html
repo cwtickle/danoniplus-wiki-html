@@ -1,430 +1,439 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>Sidebar.md</title>
-<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 
-<style>
-/*---------------------------------------------------------------------------------------------
+<head>
+	<title>_Sidebar.md</title>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+	<style>
+		/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+		/*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
-body {
-	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
-	font-size: 14px;
-	padding: 0 12px;
-	line-height: 22px;
-	word-wrap: break-word;
-}
+		body {
+			font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+			font-size: var(--vscode-markdown-font-size, 14px);
+			padding: 0 26px;
+			line-height: var(--vscode-markdown-line-height, 22px);
+			word-wrap: break-word;
+		}
 
-#code-csp-warning {
-	position: fixed;
-	top: 0;
-	right: 0;
-	color: white;
-	margin: 16px;
-	text-align: center;
-	font-size: 12px;
-	font-family: sans-serif;
-	background-color:#444444;
-	cursor: pointer;
-	padding: 6px;
-	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
-}
+		#code-csp-warning {
+			position: fixed;
+			top: 0;
+			right: 0;
+			color: white;
+			margin: 16px;
+			text-align: center;
+			font-size: 12px;
+			font-family: sans-serif;
+			background-color: #444444;
+			cursor: pointer;
+			padding: 6px;
+			box-shadow: 1px 1px 1px rgba(0, 0, 0, .25);
+		}
 
-#code-csp-warning:hover {
-	text-decoration: none;
-	background-color:#007acc;
-	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
-}
+		#code-csp-warning:hover {
+			text-decoration: none;
+			background-color: #007acc;
+			box-shadow: 2px 2px 2px rgba(0, 0, 0, .25);
+		}
 
+		body.scrollBeyondLastLine {
+			margin-bottom: calc(100vh - 22px);
+		}
 
-body.scrollBeyondLastLine {
-	margin-bottom: calc(100vh - 22px);
-}
+		body.showEditorSelection .code-line {
+			position: relative;
+		}
 
-body.showEditorSelection .code-line {
-	position: relative;
-}
+		body.showEditorSelection .code-active-line:before,
+		body.showEditorSelection .code-line:hover:before {
+			content: "";
+			display: block;
+			position: absolute;
+			top: 0;
+			left: -12px;
+			height: 100%;
+		}
 
-body.showEditorSelection .code-active-line:before,
-body.showEditorSelection .code-line:hover:before {
-	content: "";
-	display: block;
-	position: absolute;
-	top: 0;
-	left: -12px;
-	height: 100%;
-}
+		body.showEditorSelection li.code-active-line:before,
+		body.showEditorSelection li.code-line:hover:before {
+			left: -30px;
+		}
 
-body.showEditorSelection li.code-active-line:before,
-body.showEditorSelection li.code-line:hover:before {
-	left: -30px;
-}
+		.vscode-light.showEditorSelection .code-active-line:before {
+			border-left: 3px solid rgba(0, 0, 0, 0.15);
+		}
 
-.vscode-light.showEditorSelection .code-active-line:before {
-	border-left: 3px solid rgba(0, 0, 0, 0.15);
-}
+		.vscode-light.showEditorSelection .code-line:hover:before {
+			border-left: 3px solid rgba(0, 0, 0, 0.40);
+		}
 
-.vscode-light.showEditorSelection .code-line:hover:before {
-	border-left: 3px solid rgba(0, 0, 0, 0.40);
-}
+		.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+			border-left: none;
+		}
 
-.vscode-dark.showEditorSelection .code-active-line:before {
-	border-left: 3px solid rgba(255, 255, 255, 0.4);
-}
+		.vscode-dark.showEditorSelection .code-active-line:before {
+			border-left: 3px solid rgba(255, 255, 255, 0.4);
+		}
 
-.vscode-dark.showEditorSelection .code-line:hover:before {
-	border-left: 3px solid rgba(255, 255, 255, 0.60);
-}
+		.vscode-dark.showEditorSelection .code-line:hover:before {
+			border-left: 3px solid rgba(255, 255, 255, 0.60);
+		}
 
-.vscode-high-contrast.showEditorSelection .code-active-line:before {
-	border-left: 3px solid rgba(255, 160, 0, 0.7);
-}
+		.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+			border-left: none;
+		}
 
-.vscode-high-contrast.showEditorSelection .code-line:hover:before {
-	border-left: 3px solid rgba(255, 160, 0, 1);
-}
+		.vscode-high-contrast.showEditorSelection .code-active-line:before {
+			border-left: 3px solid rgba(255, 160, 0, 0.7);
+		}
 
-img {
-	max-width: 100%;
-	max-height: 100%;
-}
+		.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+			border-left: 3px solid rgba(255, 160, 0, 1);
+		}
 
-a {
-	color: #4080D0;
-	text-decoration: none;
-}
+		.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+			border-left: none;
+		}
 
-a:focus,
-input:focus,
-select:focus,
-textarea:focus {
-	outline: 1px solid -webkit-focus-ring-color;
-	outline-offset: -1px;
-}
+		img {
+			max-width: 100%;
+			max-height: 100%;
+		}
 
-hr {
-	border: 0;
-	height: 2px;
-	border-bottom: 2px solid;
-}
+		a {
+			text-decoration: none;
+		}
 
-h1 {
-	padding-bottom: 0.3em;
-	line-height: 1.2;
-	border-bottom-width: 1px;
-	border-bottom-style: solid;
-}
+		a:hover {
+			text-decoration: underline;
+		}
 
-h1, h2, h3 {
-	font-weight: normal;
-}
+		a:focus,
+		input:focus,
+		select:focus,
+		textarea:focus {
+			outline: 1px solid -webkit-focus-ring-color;
+			outline-offset: -1px;
+		}
 
-h1 code,
-h2 code,
-h3 code,
-h4 code,
-h5 code,
-h6 code {
-	font-size: inherit;
-	line-height: auto;
-}
+		hr {
+			border: 0;
+			height: 2px;
+			border-bottom: 2px solid;
+		}
 
-a:hover {
-	color: #4080D0;
-	text-decoration: underline;
-}
+		h1 {
+			padding-bottom: 0.3em;
+			line-height: 1.2;
+			border-bottom-width: 1px;
+			border-bottom-style: solid;
+		}
 
-table {
-	border-collapse: collapse;
-}
+		h1,
+		h2,
+		h3 {
+			font-weight: normal;
+		}
 
-table > thead > tr > th {
-	text-align: left;
-	border-bottom: 1px solid;
-}
+		table {
+			border-collapse: collapse;
+		}
 
-table > thead > tr > th,
-table > thead > tr > td,
-table > tbody > tr > th,
-table > tbody > tr > td {
-	padding: 5px 10px;
-}
+		table>thead>tr>th {
+			text-align: left;
+			border-bottom: 1px solid;
+		}
 
-table > tbody > tr + tr > td {
-	border-top: 1px solid;
-}
+		table>thead>tr>th,
+		table>thead>tr>td,
+		table>tbody>tr>th,
+		table>tbody>tr>td {
+			padding: 5px 10px;
+		}
 
-blockquote {
-	margin: 0 7px 0 5px;
-	padding: 0 16px 0 10px;
-	border-left: 5px solid;
-}
+		table>tbody>tr+tr>td {
+			border-top: 1px solid;
+		}
 
-code {
-	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
-	font-size: 14px;
-	line-height: 19px;
-}
+		blockquote {
+			margin: 0 7px 0 5px;
+			padding: 0 16px 0 10px;
+			border-left-width: 5px;
+			border-left-style: solid;
+		}
 
-body.wordWrap pre {
-	white-space: pre-wrap;
-}
+		code {
+			font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+			font-size: 1em;
+			line-height: 1.357em;
+		}
 
-.mac code {
-	font-size: 12px;
-	line-height: 18px;
-}
+		body.wordWrap pre {
+			white-space: pre-wrap;
+		}
 
-pre:not(.hljs),
-pre.hljs code > div {
-	padding: 16px;
-	border-radius: 3px;
-	overflow: auto;
-}
+		pre:not(.hljs),
+		pre.hljs code>div {
+			padding: 16px;
+			border-radius: 3px;
+			overflow: auto;
+		}
 
-/** Theming */
+		pre code {
+			color: var(--vscode-editor-foreground);
+			tab-size: 4;
+		}
 
-.vscode-light,
-.vscode-light pre code {
-	color: rgb(30, 30, 30);
-}
+		/** Theming */
 
-.vscode-dark,
-.vscode-dark pre code {
-	color: #DDD;
-}
+		.vscode-light pre {
+			background-color: rgba(220, 220, 220, 0.4);
+		}
 
-.vscode-high-contrast,
-.vscode-high-contrast pre code {
-	color: white;
-}
+		.vscode-dark pre {
+			background-color: rgba(10, 10, 10, 0.4);
+		}
 
-.vscode-light code {
-	color: #A31515;
-}
+		.vscode-high-contrast pre {
+			background-color: rgb(0, 0, 0);
+		}
 
-.vscode-dark code {
-	color: #D7BA7D;
-}
+		.vscode-high-contrast h1 {
+			border-color: rgb(0, 0, 0);
+		}
 
-.vscode-light pre:not(.hljs),
-.vscode-light code > div {
-	background-color: rgba(220, 220, 220, 0.4);
-}
+		.vscode-light table>thead>tr>th {
+			border-color: rgba(0, 0, 0, 0.69);
+		}
 
-.vscode-dark pre:not(.hljs),
-.vscode-dark code > div {
-	background-color: rgba(10, 10, 10, 0.4);
-}
+		.vscode-dark table>thead>tr>th {
+			border-color: rgba(255, 255, 255, 0.69);
+		}
 
-.vscode-high-contrast pre:not(.hljs),
-.vscode-high-contrast code > div {
-	background-color: rgb(0, 0, 0);
-}
+		.vscode-light h1,
+		.vscode-light hr,
+		.vscode-light table>tbody>tr+tr>td {
+			border-color: rgba(0, 0, 0, 0.18);
+		}
 
-.vscode-high-contrast h1 {
-	border-color: rgb(0, 0, 0);
-}
+		.vscode-dark h1,
+		.vscode-dark hr,
+		.vscode-dark table>tbody>tr+tr>td {
+			border-color: rgba(255, 255, 255, 0.18);
+		}
+	</style>
 
-.vscode-light table > thead > tr > th {
-	border-color: rgba(0, 0, 0, 0.69);
-}
+	<style>
+		/* Tomorrow Theme */
+		/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+		/* Original theme - https://github.com/chriskempson/tomorrow-theme */
 
-.vscode-dark table > thead > tr > th {
-	border-color: rgba(255, 255, 255, 0.69);
-}
+		/* Tomorrow Comment */
+		.hljs-comment,
+		.hljs-quote {
+			color: #8e908c;
+		}
 
-.vscode-light h1,
-.vscode-light hr,
-.vscode-light table > tbody > tr + tr > td {
-	border-color: rgba(0, 0, 0, 0.18);
-}
+		/* Tomorrow Red */
+		.hljs-variable,
+		.hljs-template-variable,
+		.hljs-tag,
+		.hljs-name,
+		.hljs-selector-id,
+		.hljs-selector-class,
+		.hljs-regexp,
+		.hljs-deletion {
+			color: #c82829;
+		}
 
-.vscode-dark h1,
-.vscode-dark hr,
-.vscode-dark table > tbody > tr + tr > td {
-	border-color: rgba(255, 255, 255, 0.18);
-}
+		/* Tomorrow Orange */
+		.hljs-number,
+		.hljs-built_in,
+		.hljs-builtin-name,
+		.hljs-literal,
+		.hljs-type,
+		.hljs-params,
+		.hljs-meta,
+		.hljs-link {
+			color: #f5871f;
+		}
 
-.vscode-light blockquote,
-.vscode-dark blockquote {
-	background: rgba(127, 127, 127, 0.1);
-	border-color: rgba(0, 122, 204, 0.5);
-}
+		/* Tomorrow Yellow */
+		.hljs-attribute {
+			color: #eab700;
+		}
 
-.vscode-high-contrast blockquote {
-	background: transparent;
-	border-color: #fff;
-}
-</style>
+		/* Tomorrow Green */
+		.hljs-string,
+		.hljs-symbol,
+		.hljs-bullet,
+		.hljs-addition {
+			color: #718c00;
+		}
 
-<style>
-/* Tomorrow Theme */
-/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
-/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+		/* Tomorrow Blue */
+		.hljs-title,
+		.hljs-section {
+			color: #4271ae;
+		}
 
-/* Tomorrow Comment */
-.hljs-comment,
-.hljs-quote {
-	color: #8e908c;
-}
+		/* Tomorrow Purple */
+		.hljs-keyword,
+		.hljs-selector-tag {
+			color: #8959a8;
+		}
 
-/* Tomorrow Red */
-.hljs-variable,
-.hljs-template-variable,
-.hljs-tag,
-.hljs-name,
-.hljs-selector-id,
-.hljs-selector-class,
-.hljs-regexp,
-.hljs-deletion {
-	color: #c82829;
-}
+		.hljs {
+			display: block;
+			overflow-x: auto;
+			color: #4d4d4c;
+			padding: 0.5em;
+		}
 
-/* Tomorrow Orange */
-.hljs-number,
-.hljs-built_in,
-.hljs-builtin-name,
-.hljs-literal,
-.hljs-type,
-.hljs-params,
-.hljs-meta,
-.hljs-link {
-	color: #f5871f;
-}
+		.hljs-emphasis {
+			font-style: italic;
+		}
 
-/* Tomorrow Yellow */
-.hljs-attribute {
-	color: #eab700;
-}
+		.hljs-strong {
+			font-weight: bold;
+		}
+	</style>
 
-/* Tomorrow Green */
-.hljs-string,
-.hljs-symbol,
-.hljs-bullet,
-.hljs-addition {
-	color: #718c00;
-}
-
-/* Tomorrow Blue */
-.hljs-title,
-.hljs-section {
-	color: #4271ae;
-}
-
-/* Tomorrow Purple */
-.hljs-keyword,
-.hljs-selector-tag {
-	color: #8959a8;
-}
-
-.hljs {
-	display: block;
-	overflow-x: auto;
-	color: #4d4d4c;
-	padding: 0.5em;
-}
-
-.hljs-emphasis {
-	font-style: italic;
-}
-
-.hljs-strong {
-	font-weight: bold;
-}
-</style>
-
-<style>
-/*
+	<style>
+		/*
  * Markdown PDF CSS
  */
 
- body {
-	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
-}
+		body {
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+			padding: 0 12px;
+		}
 
-pre {
-	background-color: #f8f8f8;
-	border: 1px solid #cccccc;
-	border-radius: 3px;
-	overflow-x: auto;
-	white-space: pre-wrap;
-	overflow-wrap: break-word;
-}
+		pre {
+			background-color: #f8f8f8;
+			border: 1px solid #cccccc;
+			border-radius: 3px;
+			overflow-x: auto;
+			white-space: pre-wrap;
+			overflow-wrap: break-word;
+		}
 
-pre:not(.hljs) {
-	padding: 23px;
-	line-height: 19px;
-}
+		pre:not(.hljs) {
+			padding: 23px;
+			line-height: 19px;
+		}
 
-blockquote {
-	background: rgba(127, 127, 127, 0.1);
-	border-color: rgba(0, 122, 204, 0.5);
-}
+		blockquote {
+			background: rgba(127, 127, 127, 0.1);
+			border-color: rgba(0, 122, 204, 0.5);
+		}
 
-.emoji {
-	height: 1.4em;
-}
+		.emoji {
+			height: 1.4em;
+		}
 
-/* for inline code */
-:not(pre):not(.hljs) > code {
-	color: #C9AE75; /* Change the old color so it seems less like an error */
-	font-size: inherit;
-}
+		code {
+			font-size: 14px;
+			line-height: 19px;
+		}
 
-/* Page Break : use <div class="page"/> to insert page break
+		/* for inline code */
+		:not(pre):not(.hljs)>code {
+			color: #C9AE75;
+			/* Change the old color so it seems less like an error */
+			font-size: inherit;
+		}
+
+		/* Page Break : use <div class="page"/> to insert page break
 -------------------------------------------------------- */
-.page {
-	page-break-after: always;
-}
+		.page {
+			page-break-after: always;
+		}
+	</style>
 
-</style>
-
+	<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
 </head>
+
 <body>
-<h2 id="home"><a href="Home.html" target="right">Home</a></h2>
-<h2 id="how-to-play">How To Play</h2>
-<ul>
-<li><a href="AboutGameSystem.html" target="right">ゲーム画面の説明</a></li>
-<li><a href="HowToLocalPlay.html" target="right">ローカルでのプレイ方法</a></li>
-</ul>
-<h2 id="how-to-make">How To Make</h2>
-<ul>
-<li><a href="forParaFlaUser.html" target="right">ParaFla!ユーザ向け移行概要</a></li>
-<li><a href="HowtoMake.html" target="right">譜面の作成概要</a></li>
-<li><a href="dos_header.html" target="right">譜面ヘッダー仕様</a></li>
-<li><a href="dos_score.html" target="right">譜面データ仕様</a></li>
-<li><a href="dos_effect.html" target="right">譜面データによる画面効果</a></li>
-<li><a href="keys.html" target="right">キーの仕様について</a></li>
-<li><a href="AboutSource.html" target="right">ソースの構成</a></li>
-<li><a href="HowToUpdate.html" target="right">本体のバージョンアップ</a></li>
-<li><a href="MigrationGuide.html" target="right">アップグレードガイド</a></li>
-<li><a href="UpdateInfo.html" target="right">更新情報概要</a></li>
-</ul>
-<h2 id="customize">Customize</h2>
-<ul>
-<li><a href="varReference.html" target="right">オブジェクトリファレンス</a></li>
-<li><a href="objectMainRef.html" target="right">主要オブジェクトのプロパティ</a></li>
-<li><a href="for_ver2.1.0.html" target="right">ver2.1.0への移行について</a></li>
-</ul>
-<h2 id="tips">Tips</h2>
-<ul>
-<li><a href="tips-XXXX-template.html" target="right">XXXX-tipsテンプレート</a></li>
-<li><a href="tips-0001-comma.html" target="right">タイトルや歌詞表示に半角コンマ(,)を使う</a></li>
-</ul>
-<h2 id="for-developers">For Developers</h2>
-<ul>
-<li><a href="BranchesPolicy.html" target="right">ブランチポリシー</a></li>
-</ul>
-<h2 id="others">Others</h2>
-<ul>
-<li><a href="DOM.html" target="right">オブジェクト構成・ボタン</a></li>
-<li><a href="AboutCustomJs.html" target="right">カスタムjs(スキンjs)による処理割込み</a></li>
-<li><a href="LocalStorage.html" target="right">ローカルストレージ仕様</a></li>
-</ul>
+	<script>
+		mermaid.initialize({
+			startOnLoad: true,
+			theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+				? 'dark'
+				: 'default'
+		});
+	</script>
+	<h2 id="home"><a href="https://github.com/cwtickle/danoniplus/wiki/" target="_blank">Home</a></h2>
+	<h2 id="how-to-playbr%E3%83%97%E3%83%AC%E3%82%A4%E6%96%B9%E6%B3%95">How To Play<br>(プレイ方法)</h2>
+	<ul>
+		<li><a href="AboutGameSystem.html" target="right">ゲーム画面の説明</a></li>
+		<li><a href="Shortcut.html" target="right">ゲーム内ショートカット</a></li>
+		<li><a href="HowToLocalPlay.html" target="right">ローカルでのプレイ方法</a></li>
+		<li><a href="DifferenceFromFlashVer.html" target="right">Flash版との機能差異</a></li>
+	</ul>
+	<h2 id="how-to-makebr%E4%BD%9C%E3%82%8A%E6%96%B9%E7%A7%BB%E8%A1%8C%E6%96%B9%E6%B3%95">How To Make<br>(作り方、移行方法)</h2>
+	<ul>
+		<li><a href="HowtoMake.html" target="right">譜面の作成概要</a></li>
+		<li><a href="forParaFlaUser.html" target="right">ParaFla!ユーザ向け移行概要</a></li>
+		<li><a href="AboutSource.html" target="right">ソースの構成</a></li>
+	</ul>
+	<h2
+		id="how-to-upgrade--whats-newbr%E6%9C%AC%E4%BD%93%E3%81%AE%E6%9B%B4%E6%96%B0%E6%96%B9%E6%B3%95%E6%9B%B4%E6%96%B0%E6%83%85%E5%A0%B1">
+		How To Upgrade? / What's New?<br>(本体の更新方法、更新情報)</h2>
+	<ul>
+		<li><a href="HowToUpdate.html" target="right">本体のバージョンアップ</a></li>
+		<li><a href="MigrationGuide.html" target="right">アップグレードガイド</a></li>
+		<li><a href="UpdateInfo.html" target="right">更新情報概要</a></li>
+		<li><a href="DeprecatedVersionBugs.html" target="right">更新を終了したバージョンの不具合情報</a></li>
+		<li><a href="Changelog-v21.html" target="right">Changelog</a></li>
+	</ul>
+	<h2 id="specification-for-creatorsbr%E4%BB%95%E6%A7%98%E3%83%BB%E8%A3%BD%E4%BD%9C%E8%80%85%E5%90%91%E3%81%91">
+		Specification (for creators)<br>(仕様・製作者向け)</h2>
+	<ul>
+		<li><a href="dos_header.html" target="right">譜面ヘッダー仕様</a></li>
+		<li><a href="dos_score.html" target="right">譜面本体仕様</a></li>
+		<li><a href="dos_effect.html" target="right">譜面エフェクト仕様 (速度/ 色/ 背景)</a></li>
+		<li><a href="dos-c0001-gradation.html" target="right">グラデーション仕様</a></li>
+		<li><a href="dos_setting.html" target="right">共通設定ファイル仕様</a></li>
+		<li><a href="QueryParameter.html" target="right">作品URLのクエリパラメーター仕様</a></li>
+		<li><a href="SpecialCharacters.html" target="right">譜面データ中の特殊文字の取り扱い</a></li>
+		<li><a href="keys.html" target="right">キーの仕様について</a></li>
+		<li><a href="ErrorList.html" target="right">実行時エラー一覧</a></li>
+	</ul>
+	<h2 id="specification-for-developersbr%E4%BB%95%E6%A7%98%E3%83%BB%E9%96%8B%E7%99%BA%E8%80%85%E5%90%91%E3%81%91">
+		Specification (for developers)<br>(仕様・開発者向け)</h2>
+	<ul>
+		<li><a href="idReferenceIndex.html" target="right">ID一覧</a></li>
+		<li><a href="objectReferenceIndex.html" target="right">オブジェクト一覧</a></li>
+		<li><a href="DOM.html" target="right">オブジェクト構成・ボタン</a></li>
+		<li><a href="AboutCustomJs.html" target="right">カスタムjs(スキンjs)による処理割込み</a></li>
+		<li><a href="LocalStorage.html" target="right">ローカルストレージ仕様</a></li>
+		<li><a href="Audio.html" target="right">オーディオ仕様</a></li>
+		<li><a href="objectMainRef.html" target="right">主要オブジェクトのプロパティ</a></li>
+		<li><a href="varReference.html" target="right">オブジェクトリファレンス</a></li>
+	</ul>
+	<h2 id="tipsbr%E7%94%A8%E9%80%94%E5%88%A5%E5%AF%BE%E5%87%A6%E6%96%B9%E6%B3%95">Tips<br>(用途別対処方法)</h2>
+	<ul>
+		<li><a href="tips-index.html" target="right">Tips一覧</a></li>
+		<li><a href="tips-XXXX-template.html" target="right">XXXX-tipsテンプレート</a></li>
+	</ul>
+	<h2
+		id="repository-local-rulesbr%E3%83%AA%E3%83%9D%E3%82%B8%E3%83%88%E3%83%AA%E3%83%AB%E3%83%BC%E3%83%AB%E3%83%BB%E7%AE%A1%E7%90%86%E8%80%85%E5%90%91%E3%81%91">
+		Repository Local Rules<br>(リポジトリルール・管理者向け)</h2>
+	<ul>
+		<li><a href="BranchesPolicy.html" target="right">ブランチポリシー</a></li>
+		<li><a href="VersioningPolicy.html" target="right">バージョン管理ポリシー</a></li>
+	</ul>
+	<h2 id="othersbr%E3%81%9D%E3%81%AE%E4%BB%96" target="right">Others<br>(その他)</h2>
+	<ul>
+		<li><a href="Ruffle.html" target="right">Ruffleの使い方</a></li>
+	</ul>
 
 </body>
+
 </html>
